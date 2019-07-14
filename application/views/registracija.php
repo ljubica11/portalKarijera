@@ -15,7 +15,7 @@
                     <?php echo $err ?? '' ?>
                     <form name="reg" method="POST" action="<?php echo site_url('Registracija/reg') ?>" >
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 offset-sm-1 col-form-label">Username</label>
+                            <label for="inputEmail3" class="col-sm-2 offset-sm-1 col-form-label">Korisnicko</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
                                     <div class="input-group mb-2">
@@ -65,7 +65,7 @@
 
 
                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Prezime</label>
+                            <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Pol</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
                                     <input name="pol" type="radio" value="<?php echo set_value('pol') ?>" class="form-control" id="inputPassword3" placeholder="M">
