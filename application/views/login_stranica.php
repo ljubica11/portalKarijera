@@ -14,7 +14,7 @@
             <input type="submit" name="log" value="Login">
         </form>  
         
-        
+        <a href="<?php echo site_url('Registracija')?>">Registracija</a>
         <?php
         // put your code here
         ?>
