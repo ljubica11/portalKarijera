@@ -16,7 +16,7 @@
                     <?php echo $err ?? '' ?>
                     <form name="reg" method="POST" action="<?php echo site_url('Registracija/reg') ?>" >
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 offset-sm-1 col-form-label">Korisnicko</label>
+                            <label for="inputEmail3" class="col-sm-2 offset-sm-1 col-form-label">Korisnicko ime</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
                                     <div class="input-group mb-2">
@@ -24,7 +24,7 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">@</div>
                                             </div>
-                                            <input name="korisnicko" type="text" value="<?php echo set_value('korisnicko') ?>" class="form-control" id="inlineFormInputGroup" placeholder="Korisnicko"><?php echo form_error('korisnicko') ?> 
+                                            <input name="korisnicko" type="text" value="<?php echo set_value('korisnicko') ?>" class="form-control" id="inlineFormInputGroup" placeholder="Korisnicko ime"><?php echo form_error('korisnicko') ?> 
                                         </div>
                                     </div>
                                 </div>
@@ -44,10 +44,10 @@
 
 
                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">srednje ime</label>
+                            <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Srednje ime</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
-                                    <input name="serdnjeIme" type="text" value="<?php echo set_value('srednjeIme') ?>" class="form-control" id="inputPassword3" placeholder="srednje ime"> 
+                                    <input name="serdnjeIme" type="text" value="<?php echo set_value('srednjeIme') ?>" class="form-control" id="inputPassword3" placeholder="Srednje ime"> 
                                 </div>
 
                             </div>
@@ -69,14 +69,28 @@
                             <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Pol</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
-                                    <input name="pol" type="radio" value="<?php echo set_value('pol') ?>" class="form-control" id="inputPassword3" placeholder="M">
-                                    <input name="pol" type="radio" value="<?php echo set_value('pol') ?>" class="form-control" id="inputPassword3" placeholder="Z">
+                                    
+                                    <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="<?php echo set_value('pol') ?>" checked>
+          <label class="form-check-label" for="gridRadios1">
+            Muski
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="<?php echo set_value('pol') ?>">
+          <label class="form-check-label" for="gridRadios2">
+            Zenski
+          </label>
+        </div>
+                                    
+                                    
+                                   
                                 </div>
 
                             </div>
                         </div>
-
-
+                        
+                   
                         <div class="form-group row">
                             <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Drzavljanstvo</label>
                             <div class="col-sm-5 col-sm-5">
@@ -93,7 +107,7 @@
                             <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Telefon</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
-                                    <input name="telefon" type="text" value="<?php echo set_value('telefon') ?>" class="form-control" id="inputPassword3" placeholder="Prezime"><?php echo form_error('telefon') ?> 
+                                    <input name="telefon" type="text" value="<?php echo set_value('telefon') ?>" class="form-control" id="inputPassword3" placeholder="broj telefona"><?php echo form_error('telefon') ?> 
                                 </div>
 
                             </div>
@@ -186,7 +200,7 @@
 
 
                         <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Datum</label>
+                            <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Datum rodjenja</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
                                     <input type="date" name="datum" class="form-control" id="inputPassword3" placeholder="datum rodjenja" value="<?php echo set_value('datum') ?>"> <?php echo form_error('datum') ?>  
@@ -200,7 +214,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-9 offset-sm-7">
-                                <input type="submit"  name="reg" value="Register" class="btn btn-primary">
+                                <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">
                             </div>
                         </div>
                     </form>
