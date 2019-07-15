@@ -47,7 +47,7 @@
                             <label for="inputPassword3" class="col-sm-2  offset-sm-1 col-form-label">Srednje ime</label>
                             <div class="col-sm-5 col-sm-5">
                                 <div class="col-sm-5 col-sm-5">
-                                    <input name="serdnjeIme" type="text" value="<?php echo set_value('srednjeIme') ?>" class="form-control" id="inputPassword3" placeholder="Srednje ime"> 
+                                    <input name="srednjeIme" type="text" value="<?php echo set_value('srednjeIme') ?>" class="form-control" id="inputPassword3" placeholder="Srednje ime"> 
                                 </div>
 
                             </div>
@@ -71,13 +71,13 @@
                                 <div class="col-sm-5 col-sm-5">
                                     
                                     <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="<?php echo set_value('pol') ?>" checked>
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="m" checked>
           <label class="form-check-label" for="gridRadios1">
             Muski
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="<?php echo set_value('pol') ?>">
+          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="z">
           <label class="form-check-label" for="gridRadios2">
             Zenski
           </label>
