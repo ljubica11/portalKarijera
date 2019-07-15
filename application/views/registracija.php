@@ -71,13 +71,13 @@
                                 <div class="col-sm-5 col-sm-5">
                                     
                                     <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="<?php echo set_value('pol') ?>" checked>
+          <input class="form-check-input" type="radio" name="pol" id="gridRadios1" value="<?php echo set_value('pol') ?>" checked>
           <label class="form-check-label" for="gridRadios1">
             Muski
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="<?php echo set_value('pol') ?>">
+          <input class="form-check-input" type="radio" name="pol" id="gridRadios2" value="<?php echo set_value('pol') ?>">
           <label class="form-check-label" for="gridRadios2">
             Zenski
           </label>
@@ -208,6 +208,8 @@
 
                             </div>
                         </div>
+                        
+                        <input type="hidden" name="tip" value="s">
 
 
 
