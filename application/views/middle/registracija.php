@@ -39,7 +39,7 @@
     </div>
     <div id="Kompanija" class="tabcontent overflow-auto">
          <h4>Pronadjite najbolje studente za vas posao</h4>
-    <form name="regKom" method="POST" action="<?php echo site_url('Registracija/reg') ?>">
+    <form name="regKom" method="POST" action="<?php echo site_url('Registracija/regKomp') ?>">
             <input type="text" name="naziv" value="<?php echo set_value('naziv') ?>" placeholder="Naziv"><?php echo form_error('naziv') ?>
             <br/>
             <input type="text" name="adresa" value="<?php echo set_value('adresa') ?>" placeholder="Adresa sedista"><?php echo form_error('adresa') ?>
