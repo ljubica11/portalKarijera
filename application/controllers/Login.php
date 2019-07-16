@@ -5,7 +5,11 @@ class Login extends CI_Controller{
     
   
     public function index(){
-        $this->load->view('login_stranica');  
+         $data["middle"] = "middle/login_stranica";
+         $this->load->view('viewTemplate', $data);
+        
+        
+       // $this->load->view('login_stranica');  
     }
 
         public function logovanje(){
@@ -21,7 +25,7 @@ class Login extends CI_Controller{
             }else{
                 $user = $users[0];
                 $this->session->set_userdata('user', $user);
-                redirect('User');
+                redirect("User");
             }
         
     }
