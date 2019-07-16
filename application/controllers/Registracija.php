@@ -5,7 +5,8 @@ class Registracija extends CI_Controller {
     
     
     public function index(){
-        $this->load->view('registracija');
+        $data["middle"] = "middle/registracija";
+        $this->load->view('viewTemplate', $data);
  
     }
     
