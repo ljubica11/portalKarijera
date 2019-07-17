@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
         <form name="loginForma" method="POST" action="<?php echo site_url('Login/logovanje')?>">
             Username: <input type="text" name="username">
             <br/>
@@ -19,4 +13,4 @@
         // put your code here
         ?>
     </body>
-</html>
+

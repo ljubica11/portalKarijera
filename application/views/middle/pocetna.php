@@ -4,14 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/css/style.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
+
         
       <div class="container-fluid">
           <div class="row">
@@ -19,6 +12,7 @@ and open the template in the editor.
                 <b>Osnovni podaci: </b>
                 <br/>
                 <?php
+                if(isset($podaci)){
                 echo $podaci[0]['ime']." ".$podaci[0]['prezime'];
                 echo "<br/>";
                 echo "Datum rodjenja: ".$podaci[0]['datum'];
@@ -34,6 +28,7 @@ and open the template in the editor.
                 echo "Status: ".$podaci[0]['status'];
                 echo "<br/>";
                 echo "Kurs: ".$podaci[0]['kurs'];
+                }
                 ?>
             </div>
             <div class="col-6">
@@ -90,4 +85,4 @@ and open the template in the editor.
           </div>
         </div> 
     </body>
-</html>
+
