@@ -2,7 +2,22 @@
 
 class RegistrationModel extends CI_Model{
     
-    public function dodajKorisnika($korisnicko, $lozinka, $email, $tip){
+    public function dohvatiKurs(){
+        $query = $this->db->get('sifkurs');
+        return $query->result_array();
+    }
+    
+    public function dohvatiDrz(){
+        $query = $this->db->get('sifdrzavljanstvo');
+        return $query->result_array();
+    }
+    
+    public function dohvatiMesto(){
+        $query = $this->db->get('sifgradovi');
+        return $query->result_array();
+    }
+
+        public function dodajKorisnika($korisnicko, $lozinka, $email, $tip){
         $data = [
             "korisnicko" => $korisnicko,
             "lozinka" => $lozinka,
@@ -22,7 +37,7 @@ class RegistrationModel extends CI_Model{
         return $query->result_array();
     }
     
-    public function dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $idKor){
+    public function dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor){
         $data = [
             "ime" => $ime,
             "srednjeIme" => $srednjeIme,
@@ -35,10 +50,27 @@ class RegistrationModel extends CI_Model{
             "mesto" => $mesto,
             "pin" => $pin,
             "status" => $status,
-            "idKor" => $idKor
+            "idKor" => $idKor,
+            "idKurs" => $kurs
         ];
         
         $this->db->insert("student", $data);
         
+    }
+    
+    public function dodajKompaniju($naziv, $sediste, $pib, $telefoni, $opis, $oblast, $brojzap, $sajt, $idKor){
+        $data = [
+            "naziv" => $naziv,
+            "sediste" => $sediste,
+            "pib" => $pib,
+            "telefoni" => $telefoni,
+            "opis" => $opis,
+            "oblastDelovanja" => $oblast,
+            "brojZap" => $brojzap,
+            "sajt" => $sajt,
+            "idKor" => $idKor,  
+        ];
+        
+        $this->db->insert("kompanija", $data);
     }
 }
