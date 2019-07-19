@@ -1,16 +1,13 @@
-<!DOCTYPE html>
 
-        <form name="loginForma" method="POST" action="<?php echo site_url('Login/logovanje')?>">
-            Username: <input type="text" name="username">
-            <br/>
-            Password: <input type="password" name="pass">
-            <br/>
-            <input type="submit" name="log" value="Login">
-        </form>  
-        
-        <a href="<?php echo site_url('Registracija')?>">Registracija</a>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/css/styleGuest.css">
+    </head>
+    <body background="pozadinaPocetna2.jpg">
         <?php
         // put your code here
         ?>
     </body>
-
+</html>

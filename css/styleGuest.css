@@ -27,6 +27,7 @@
 }
 .navbar{
     border-bottom: 1px solid lightgray;
+    
 }
 
 .wrapper{
@@ -97,6 +98,4 @@
   from {opacity: 0;}
   to {opacity: 1;}
 }
-
-
 
