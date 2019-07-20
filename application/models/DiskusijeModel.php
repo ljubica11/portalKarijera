@@ -67,7 +67,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('posiljalac', $idKor);
         $this->db->set('diskusija', $idDis);
         $this->db->set('tekst', $tekst);
-        $this->db->set('poslatoDatum', DateTime('Y-m-d\H:i:s'));
+        $this->db->set('poslatoDatum', date("Y-m-d H:i:s"));
         $this->db->insert('postdiskusija');
         
         

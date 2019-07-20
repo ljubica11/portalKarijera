@@ -2,9 +2,9 @@
 
  <div id='wrapper'></div>
      <?php
-                    
-                  // <div class="postdesno" id="wrapper"> <input type="text" id='novipost' class="form-control" width="90%"></div> 
-                   
+                 //   var_dump($this->session->userdata('user')['idKor']);
+                    //var_dump($tekst);
+                 
                     foreach($postovi as $p){
                         
                         ?>

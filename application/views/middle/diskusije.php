@@ -46,6 +46,8 @@ and open the template in the editor.
               </div>
           </div>
         </div> 
+        
+        
           <script>
            function diskusije(id){
             
@@ -75,28 +77,52 @@ and open the template in the editor.
             xmlhttp.send();   
             }
             
-            function dodajdiv(idDis){
-                document.getElementById('wrapper').innerHTML += '<div class="postdesno" id="wrapper"> <input type="text" id="novipost" class="form-control" width="90%"></div>' 
+            
+            function dodajdiv(id){
+                document.getElementById('wrapper').innerHTML += '<div class="postdesno" id="wrapper">\n\
+                <input type="text" id="novipost" class="form-control" width="90%">\n\
+                <input type="button" name="Posalji" value="Posalji" onclick="dodajpost('+id+'); cleartext()" id="idDis" class="btn btn-primary"></div>' ;
                           
                 
                 
-            }
-            
-            
-             function dodajpost(id){
-            
+            }/*
+            function dodajpost (){
+            var tekst = document.getElementById('novipost').value;
+            var idDis = 1;
             xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function(){
                 if(this.readyState==4&&this.status==200){
-                    
-                    document.getElementById("novipost").innerHTML=this.responseText;
-                    
-                    
+                    document.getElementById("postovi").innerHTML=this.responseText;
                 }
             }
-            xmlhttp.open("GET", "<?php echo site_url('Diskusije/dodajPost')?>?id=" + id, true);
+            xmlhttp.open("GET", "<?php echo site_url('Diskusije/dodajPost')?>?idDis="+idDis+"&tekst="+tekst, true);
             xmlhttp.send();   
+            
+            }*/
+            
+             function dodajpost(id){
+                 
+            var tekst = document.getElementById('novipost').value;
+            var idDis = id;
+            
+            
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            //document.getElementById("novipost").value ="";
+            document.getElementById("postovi").innerHTML = this.responseText;
+      }
+    };
+            
+            xhttp.open("POST", "<?php echo site_url('Diskusije/dodajPost');?>" , true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("idDis="+idDis+"&tekst="+tekst);   
             }
+            
+             function cleartext(){
+             document.getElementById("novipost").value= '';
+        }
+           
             </script>
             
             
