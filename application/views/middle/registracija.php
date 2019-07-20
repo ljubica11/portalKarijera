@@ -13,7 +13,7 @@
 
     <div id="Student" class="tabcontent overflow-auto">
         <h4>Povezite se sa drugim studentima i inovativnim kompanijama</h4>
-       <form name="regStu" method="POST" action="<?php echo site_url('Registracija/regStu') ?>" >
+       <form name="regStu" method="POST" action="<?php echo site_url('Registracija/regStu') ?>">
                        
         <input name="korisnicko" type="text" value="<?php echo set_value('korisnicko') ?>" placeholder="Korisnicko ime"><?php echo form_error('korisnicko') ?> <br/>
         <input name="ime" type="text" value="<?php echo set_value('ime') ?>" placeholder="Ime"><?php echo form_error('ime') ?> <br/>
@@ -57,7 +57,7 @@
         </select><br/><?php echo form_error('mesto');?>
         <input name="pin" type="text" value="<?php echo set_value('pin') ?>"  placeholder="PIN"><?php echo form_error('pin') ?> <br/>
         <select name="status">
-            <option disabled selected value="">Trenutki status</option>
+            <option disabled selected value="">Trenutni status</option>
             <option value="student">Student</option>
             <option value="nezaposleni">Nezaposleni</option>
             <option value="zaposleni">Zaposleni</option>   
@@ -66,8 +66,7 @@
         <input name="ponLozinka" type="password"  placeholder="Ponovi lozinku"><?php echo form_error('ponLozinka') ?> <br/>
         <input type="email" name="email"  placeholder="E-mail" value="<?php echo set_value('email') ?>"><?php echo form_error('email') ?> <br/>
         <input type="date" name="datum"  placeholder="datum rodjenja" value="<?php echo set_value('datum') ?>"> <?php echo form_error('datum') ?>  <br/>
-        <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">
-                           
+        <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">                  
         </form>
     </div>
     <div id="Kompanija" class="tabcontent overflow-auto">
