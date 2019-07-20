@@ -74,8 +74,8 @@ class Registracija extends CI_Controller {
         $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $tip);
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
-        $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor);
-    }
+         $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor); 
+     }
     }
     public function regKomp(){
         
