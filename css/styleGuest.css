@@ -1,5 +1,5 @@
 .footer{ 
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
@@ -87,17 +87,18 @@
   border: 1px solid #ccc;
   border-top: none;
   height: 75vh;
+  background-color: white;
 }
-
+/*
 .tabcontent {
-  animation: fadeEffect 1s; 
-}
+ animation: fadeEffect 1s; 
+}*/
 
 
-@keyframes fadeEffect {
+/*@keyframes fadeEffect {
   from {opacity: 0;}
   to {opacity: 1;}
-}
+}*/
 
 body{
 background-image: url('../images/pozadinaPocetna3.jpg');
