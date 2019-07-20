@@ -41,8 +41,8 @@
                 </li>
               </ul>
                 <form class="form-inline my-2 my-lg-0" name="loginForma" method="POST" action="<?php echo site_url('Login/logovanje')?>">
-                    <input class="form-control mr-sm-2" type="text" value="Korisnicko ime">
-                    <input class="form-control mr-sm-2" type="text" value="Lozinka">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Korisnicko ime" name="username">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Lozinka" name="pass">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
                 </form>
             </div> 
