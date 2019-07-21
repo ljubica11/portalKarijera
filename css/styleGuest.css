@@ -103,3 +103,11 @@
 body{
 background-image: url('../images/pozadinaPocetna3.jpg');
 }
+
+.tabcontentInfo{
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+    height: 75vh;
+    background-color: white;
+}

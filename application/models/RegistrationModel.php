@@ -16,8 +16,13 @@ class RegistrationModel extends CI_Model{
         $query = $this->db->get('sifgradovi');
         return $query->result_array();
     }
+    
+    public function dohvatiInteresovanja(){
+        $query = $this->db->get('sifinteresovanja');
+        return $query->result_array();
+    }
 
-        public function dodajKorisnika($korisnicko, $lozinka, $email, $tip){
+    public function dodajKorisnika($korisnicko, $lozinka, $email, $tip){
         $data = [
             "korisnicko" => $korisnicko,
             "lozinka" => $lozinka,
@@ -72,5 +77,18 @@ class RegistrationModel extends CI_Model{
         ];
         
         $this->db->insert("kompanija", $data);
+    }
+    
+    public function dodajInteresovanjaZaKorisnika($idKor, $jednoInteresovanje){
+       
+        $data = ["idKor" => $idKor, "idInt" => $jednoInteresovanje];
+        $this->db->insert("imainteresovanja", $data);
+    }
+    
+    public function dodajNovaInteresovanja($inter){
+        $data = ["naziv" => $inter];
+        $this->db->insert("sifinteresovanja", $data);
+        $query = $this->db->get_where('sifinteresovanja', array('naziv' => $inter));
+        return $query->result_array();
     }
 }
