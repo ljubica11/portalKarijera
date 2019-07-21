@@ -10,7 +10,7 @@
   padding-left:35%;
   padding-top: 10px;
   background-color: #2E8B57;
-  
+  z-index:999;
 }
 
 .sfooter a{
@@ -48,9 +48,11 @@
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
 }
 
+
 .postdesno{
     margin-top: 20px;
     padding: 10px;
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
 }
+
