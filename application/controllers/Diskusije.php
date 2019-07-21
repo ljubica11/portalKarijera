@@ -52,8 +52,8 @@ class Diskusije extends CI_Controller {
     public function dodajDiskusiju(){
         
         
-        
-        $kategorija = $this->input->post('idKat');
+       
+        $kategorija = $this->input->post('kategorija');
         $naziv = $this->input->post('naziv');
         $opis= $this->input->post('opis');
         $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis);

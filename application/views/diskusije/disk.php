@@ -2,7 +2,7 @@
 
 
 <?php
-// var_dump($diskusije);
+//var_dump($diskusije);
 if (isset($diskusije)) {
     foreach ($diskusije as $d) {
         ?>
@@ -19,7 +19,7 @@ if (isset($diskusije)) {
 
 
         </div>
-    <?php
+        <?php
     }
 }
 ?>
@@ -29,14 +29,26 @@ if (isset($diskusije)) {
 
 
 <div class="centar" id="formaDiv">
-    
+    <?php
+    $ulogovani = $this->session->userdata('user')['korisnicko'];
+    $kategorije = $this->DiskusijeModel->dohvatiKategorije();
+    ?>
     <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju") ?>">
         <table>
             <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
-            <tr><td><b>Autor: </b></td><td><?php echo $d['korisnik'] ?></td></tr>
+            <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
             <tr><td><b>Opis: </b></td><td><input type="text" name="opis" ></td></tr>
-            <tr><td><b>Kategorija: </td><td></b><?php echo $d['kategorija'] ?></td></tr>
-            <input type='hidden' name='idKat' value='<?php echo $d['idKat'] ?>'>
+            <tr><td><b>Kategorija: </td><td></b>
+                        <select name="kategorija">
+                        <option disabled selected value="">Izaberi kategoriju</option>
+                        <?php
+                        foreach ($kategorije as $k) {
+                            
+                            $idKat = $k['idKatDis'];
+                            $nazivKat = $k['naziv'];
+                            echo "<option value='$idKat'>$nazivKat</option>";
+                        }
+                        ?></select></td></tr>
 
             <tr><td></td><td><input type="submit" value="dodaj"></td></tr>
         </table>

@@ -30,11 +30,6 @@ and open the template in the editor.
                 </div>
                 <div class="col-6">
                     <div id="diskusije"> </div>
-
-
-
-
-
                 </div>
                 <div class="col-3">
                     <div id='wrapper'></div>
@@ -59,9 +54,8 @@ and open the template in the editor.
                 xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiDiskusije') ?>?id=" + id, true);
                 xmlhttp.send();
             }
-
-
-
+            
+       
             function postovi(id) {
 
                 xmlhttp = new XMLHttpRequest();
