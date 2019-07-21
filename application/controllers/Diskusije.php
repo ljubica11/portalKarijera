@@ -44,7 +44,20 @@ class Diskusije extends CI_Controller {
         $idDis = $this->input->post('idDis');
         $tekst = $this->input->post('tekst');
         $this->DiskusijeModel->dodajPost($this->session->userdata('user')['idKor'], $idDis, $tekst);
-       // $this->ispisiPostove();
+        $this->ispisiPostove();
+        
+        
+    }
+    
+    public function dodajDiskusiju(){
+        
+        
+        
+        $kategorija = $this->input->post('idKat');
+        $naziv = $this->input->post('naziv');
+        $opis= $this->input->post('opis');
+        $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis);
+        $this->index();
         
         
     }
