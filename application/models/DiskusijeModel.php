@@ -18,7 +18,7 @@ class DiskusijeModel extends CI_Model {
 
 
         $this->db->from('diskusija');
-        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik');
+        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
         $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
@@ -69,12 +69,18 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('tekst', $tekst);
         $this->db->set('poslatoDatum', date("Y-m-d H:i:s"));
         $this->db->insert('postdiskusija');
+         
+    }
+    
+    public function dodajDiskusiju($idKor, $kategorija, $naziv, $opis){
         
-        
+        $this->db->set('autor', $idKor);
+        $this->db->set('kategorija', $kategorija);
+        $this->db->set('naziv', $naziv);
+        $this->db->set('opis', $opis);
+        $this->db->set('datum', date('Y-m-d H:i:s'));
+        $this->db->insert('diskusija');
                 
-        
-        
-        
     }
 
 }
