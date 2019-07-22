@@ -61,4 +61,11 @@ class Diskusije extends CI_Controller {
         
         
     }
+    
+    public function dodajKategoriju(){
+        
+        $naziv = $this->input->post('naziv');
+        $this->DiskusijeModel->dodajKategoriju($naziv);
+        $this->index();
+    }
 }
