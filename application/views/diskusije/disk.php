@@ -8,9 +8,9 @@ if (isset($diskusije)) {
         ?>
         <div class="centar">
 
-            <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
-        <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
+        <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
         <b>Opis: </b><?php echo $d['opis'] ?><br/>
+        <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
         <?php $id = $d['idDis'] ?>
         <?php echo "<a href='#' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
@@ -35,8 +35,8 @@ if (isset($diskusije)) {
     ?>
     <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju") ?>">
         <table>
-            <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
             <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
+            <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
             <tr><td><b>Opis: </b></td><td><input type="text" name="opis" ></td></tr>
             <tr><td><b>Kategorija: </td><td></b>
                         <select name="kategorija">
