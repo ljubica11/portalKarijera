@@ -14,7 +14,7 @@ and open the template in the editor.
     </head>
     <body>
 
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-bottom: 50px">
             <div class="row">
                 <div class="col-3 levo">
                     <b>Kategorije: </b>
@@ -27,7 +27,19 @@ and open the template in the editor.
                         echo "<a href='#' onclick='diskusije($idKatDis)'>" . $k['naziv'] . "</a><br/>";
                     }
                     ?>
+                     <div>
+                    <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju">
+                    </div>
+                    
+                    <div id='formaDivKat'>
+                        <form name='dodajKat' method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju') ?>">
+                            Naziv kategorije: <input type="text" name='naziv'>
+                            <input type="submit" name="dodaj" value="Dodaj">
+                            
+                        </form>
+                    </div>
                 </div>
+               
                 <div class="col-6">
                     <div id="diskusije"> </div>
                 </div>
@@ -81,6 +93,11 @@ and open the template in the editor.
 
                 document.getElementById("formaDiv").style.display = "block";
 
+            }
+            
+            function prikaziFormuKat(){
+                
+                document.getElementById("formaDivKat").style.display = "block";
             }
 
             function dodajpost(id) {

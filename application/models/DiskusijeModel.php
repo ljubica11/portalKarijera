@@ -82,5 +82,11 @@ class DiskusijeModel extends CI_Model {
         $this->db->insert('diskusija');
                 
     }
+    
+    public function dodajKategoriju($naziv){
+        
+        $this->db->set('naziv', $naziv);
+        $this->db->insert('sifkategorijadiskusija');
+    }
 
 }
