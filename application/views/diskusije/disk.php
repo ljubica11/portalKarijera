@@ -13,8 +13,8 @@ if (isset($diskusije)) {
         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
         <?php $id = $d['idDis'] ?>
-        <?php echo "<a href='#' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
-        <?php echo "<a href='#' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a><br/>" ?>
+        <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
+        <?php echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a><br/>" ?>
 
 
 
@@ -25,7 +25,7 @@ if (isset($diskusije)) {
 ?>
 
 
-<div class="centar"> <input type='button' onclick="prikaziFormu()" value='Zapocni novu diskusiju'></div>
+<div class="centar"> <input type='button' class="btn btn-outline-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'></div>
 
 
 <div class="centar" id="formaDiv">
@@ -50,7 +50,7 @@ if (isset($diskusije)) {
                         }
                         ?></select></td></tr>
 
-            <tr><td></td><td><input type="submit" value="dodaj"></td></tr>
+            <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
         </table>
     </form>
 
