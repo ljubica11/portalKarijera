@@ -9,6 +9,7 @@
   border-top: 1px solid lightgray;
   padding-left:35%;
   padding-top: 10px;
+  z-index: 999;
 }
 
 .footer a{
@@ -100,6 +101,13 @@
   to {opacity: 1;}
 }*/
 
-body{
-background-image: url('../images/pozadinaPocetna3.jpg');
+#container1{
+background-image: url('../images/pozadina1.jpg');
+max-width: 1400px;
+}
+
+#container2{
+    height: 180px;
+    background-color: lightgray;
+    max-width: 1400px;
 }
