@@ -31,7 +31,7 @@ and open the template in the editor.
                     <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju">
                     </div>
                     
-                    <div id='formaDiv'>
+                    <div id='formaDivKat'>
                         <form name='dodajKat' method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju') ?>">
                             Naziv kategorije: <input type="text" name='naziv'>
                             <input type="submit" name="dodaj" value="Dodaj">
@@ -97,7 +97,7 @@ and open the template in the editor.
             
             function prikaziFormuKat(){
                 
-                document.getElementById("formaDiv").style.display = "block";
+                document.getElementById("formaDivKat").style.display = "block";
             }
 
             function dodajpost(id) {
