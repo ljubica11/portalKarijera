@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 
         
-      <div class="container-fluid">
+<div class="container-fluid" style="margin-bottom: 50px">
           <div class="row">
             <div class="col-3 levo">
                 <?php 
