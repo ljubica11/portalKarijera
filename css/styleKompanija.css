@@ -10,7 +10,6 @@
   padding-left:35%;
   padding-top: 10px;
   background-color: #4169E1;
-  z-index: 999;
 }
 
 .kfooter a{
@@ -48,3 +47,10 @@
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
 }
 
+.container-fluid{
+    margin-bottom:50px;
+}
+
+#formaDiv{
+    display: none;
+}

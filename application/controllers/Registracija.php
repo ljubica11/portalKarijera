@@ -3,8 +3,12 @@ defined('BASEPATH') or exit('no direct access');
 
 class Registracija extends CI_Controller {
     
-     public function __construct() {
+     public function __construct() { 
         parent::__construct();
+        
+         if ($this->session->has_userdata('user')) {
+            redirect('User');
+        }
         
         $this->load->model('RegistrationModel');
         
@@ -74,7 +78,8 @@ class Registracija extends CI_Controller {
         $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $tip);
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
-         $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor); 
+        $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor);
+        $this->dodatneInfo($idKor);
      }
     }
     public function regKomp(){
@@ -176,7 +181,7 @@ class Registracija extends CI_Controller {
         }
         return true;
     }
-  
+    
 //    public function validUrl($url){
 //       if (filter_var($url, FILTER_VALIDATE_URL)){
 //          return TRUE;
@@ -186,5 +191,34 @@ class Registracija extends CI_Controller {
 //          return FALSE;  
 //       }
 //    }
+    
+    public function dodatneInfo($idKor){
+        //$idKor=10;
+        $data["middle_data"] = ["interesovanja" => $this->RegistrationModel->dohvatiInteresovanja(),
+                                "idKor" => $idKor];
+        $data["middle"] = "middle/dodatneInformacije";
+        $this->load->view('viewTemplate', $data); 
+    }
+    
+    public function dodajInteresovanjaZaKorisnika(){
+        $idKor = $this->input->post('idKor');
+        $listaInteresovanja = $this->input->post('int');
+        foreach ($listaInteresovanja as $jednoInteresovanje){
+        $this->RegistrationModel->dodajInteresovanjaZaKorisnika($idKor, $jednoInteresovanje);
+        }
+    }
+    
+    public function dodajNovaInteresovanja(){
+        $inter = $this->input->post('inter');
+        $novaInteresovanja = $this->RegistrationModel->dodajNovaInteresovanja($inter);
+        $nazivInt = $novaInteresovanja[0]['naziv']; 
+        $idInt = $novaInteresovanja[0]['idInt'];
+        $this->load->library ( 'parser' );
+        $data = array(
+        'idInt' => $idInt,
+        'nazivInt' => $nazivInt
+        );
+        $this->parser->parse('interesovanja', $data);  
+    }
 }
     
