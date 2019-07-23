@@ -24,17 +24,17 @@ and open the template in the editor.
                         $idKatDis = $k['idKatDis'];
 
                         //var_dump($idKatDis);
-                        echo "<a href='#' onclick='diskusije($idKatDis)'>" . $k['naziv'] . "</a><br/>";
+                        echo "<a href='#' class='list-group-item list-group-item-action' onclick='diskusije($idKatDis)'>" . $k['naziv'] . "</a><br/>";
                     }
                     ?>
                      <div>
-                    <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju">
+                    <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju" class="btn btn-outline-primary">
                     </div>
                     
                     <div id='formaDivKat'>
                         <form name='dodajKat' method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju') ?>">
-                            Naziv kategorije: <input type="text" name='naziv'>
-                            <input type="submit" name="dodaj" value="Dodaj">
+                            <input type="text" name='naziv' placeholder="Naziv kategorije">
+                            <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary">
                             
                         </form>
                     </div>
@@ -85,7 +85,7 @@ and open the template in the editor.
             function dodajdiv(id) {
                 document.getElementById('wrapper').innerHTML += '<div class="postdesno" id="wrapper">\n\
               <input type="text" id="novipost" class="form-control" width="90%">\n\
-              <input type="button" name="Posalji" value="Posalji" onclick="dodajpost(' + id + '); cleartext()" id="idDis" class="btn btn-primary"></div>';
+              <input type="button" class="btn btn-outline-primary btn-sm" name="Posalji" value="Posalji" onclick="dodajpost(' + id + '); cleartext()" id="idDis" class="btn btn-primary"></div>';
 
             }
 
