@@ -30,7 +30,7 @@ class DiskusijeModel extends CI_Model {
     
     public function dohvatiPostove($diskusija){
         
-        $this->db->select('postdiskusija.tekst, korisnik.korisnicko as "korisnik", postdiskusija.poslatoDatum as "datum"');
+        $this->db->select('postdiskusija.tekst, korisnik.korisnicko as "korisnik", postdiskusija.poslatoDatum as "datum", postdiskusija.brLajkova, postdiskusija.idPos');
         $this->db->from('postdiskusija');
         $this->db->join('diskusija', 'diskusija.idDis = postdiskusija.diskusija');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
@@ -87,6 +87,28 @@ class DiskusijeModel extends CI_Model {
         
         $this->db->set('naziv', $naziv);
         $this->db->insert('sifkategorijadiskusija');
+    }
+    
+    
+    public function dohvatiLajkove($idPos){
+        
+        $this->db->select('brLajkova');
+        $this->db->from('postdiskusija');
+        $this->db->where('idPos', $idPos);
+        $query = $this->db->get();
+        return $query -> result_array();
+        
+        
+    }
+
+
+    public function dodajLajk($brLajkova, $idPos){
+        
+        $data = array('brLajkova' => $brLajkova);
+        $this->db->where('idPos', $idPos);
+        $this->db->update('postdiskusija', $data);
+        
+        
     }
 
 }
