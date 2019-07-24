@@ -122,6 +122,23 @@ and open the template in the editor.
             function cleartext() {
                 document.getElementById("novipost").value = '';
             }
+            
+           
+         function lajk(idPos){
+     
+     
+     xmlhttp = new XMLHttpRequest();
+     xmlhttp.onreadystatechange = function(){
+         if(this.readyState == 4 && this.status == 200 ){
+             document.getElementById('brLajkova').innerHTML = (this.responseText);
+             
+         }
+     }
+          xmlhttp.open('GET', "<?php echo site_url('Diskusije/lajkPost') ?>?idPos=" + idPos, true);
+          xmlhttp.send();
+     
+     
+ }
 
         </script>
 

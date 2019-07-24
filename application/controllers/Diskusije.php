@@ -68,4 +68,14 @@ class Diskusije extends CI_Controller {
         $this->DiskusijeModel->dodajKategoriju($naziv);
         $this->index();
     }
+    
+    public function lajkPost(){
+        
+        $idPos = $this->input->get('idPos');
+        $lajkovi = $this->DiskusijeModel->dohvatiLajkove($idPos);
+        $brLajkova = $lajkovi[0]['brLajkova'];
+        $brLajkova++;
+        $this->DiskusijeModel->dodajLajk($brLajkova, $idPos);
+       // $this->ispisiPostove($idPos);
+    }
 }
