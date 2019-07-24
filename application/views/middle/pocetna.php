@@ -6,9 +6,9 @@ and open the template in the editor.
 -->
 
         
-<div class="container-fluid" style="margin-bottom: 50px">
-          <div class="row">
-            <div class="col-3 levo">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 levo">
                 <?php 
                 
                 $idKor = $this->session->userdata('user')['idKor'];
@@ -80,8 +80,8 @@ and open the template in the editor.
                     echo "Sajt: <a href='http://".$podaciKompanija[0]['sajt']."'>".$podaciKompanija[0]['sajt']."</a>";
                 }
                 ?>
-            </div>
-            <div class="col-6">
+        </div>
+        <div class="col-6">
                 
                     <?php if($this->session->userdata('user')['tip'] == "s"){?>
                 <div class="centar">
@@ -187,17 +187,19 @@ and open the template in the editor.
                                         }
                     ?>
                 </div>
-
+            <div>
                 <?php
                     }
                     ?>
                 
             
             </div>
+              
+            </div>
               <div class="col-3">
                    <a class="btn" href="<?php echo site_url("User/logout")?>">Logout</a> 
               </div>
-          </div>
+            </div>  
         </div> 
     </body>
 
