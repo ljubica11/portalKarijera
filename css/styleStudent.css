@@ -10,6 +10,7 @@
   padding-left:35%;
   padding-top: 10px;
   background-color: #2E8B57;
+  z-index:999;
 }
 
 .sfooter a{
@@ -57,5 +58,13 @@
 
 
 #formaDivKat{
+    display: none;
+}
+
+.container-fluid {
+    margin-bottom: 50px;
+}
+
+#formaDiv{
     display: none;
 }
