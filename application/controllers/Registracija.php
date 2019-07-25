@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('no direct access');
 
-class Registracija extends CI_Controller {
+class Registracija extends MY_Controller {
     
      public function __construct() { 
         parent::__construct();
@@ -11,20 +11,21 @@ class Registracija extends CI_Controller {
         }
         
         $this->load->model('RegistrationModel');
+        $this->load->model('SifrarniciModel');
         
         $this->form_validation->set_message('required', '{field} je obavezno polje');
         $this->form_validation->set_message('valid_email', 'E-mail adresa nije u ispravnom formatu');
         $this->form_validation->set_message('is_unique', 'Polje {field} mora biti jedinstveno.');
         $this->form_validation->set_message('regex_match', '{field} nije odgovarajuceg formata. ');
         $this->form_validation->set_message('matches', ' {field} i lozinka se ne poklapaju');
-        $this->form_validation->set_message('exact_length', '{field} mora da sadrzi tacno {param} cifre');
+        $this->form_validation->set_message('exact_length', '{field} mora da sadrzi tacno {param} cifre');     
     }
     
     
     public function index(){
-        $data["middle_data"] = ["kursevi" => $this->RegistrationModel->dohvatiKurs(), 
-                                "drzavljanstvo" => $this->RegistrationModel->dohvatiDrz(),
-                                "mesta" => $this->RegistrationModel->dohvatiMesto()];
+        $data["middle_data"] = ["kursevi" => $this->SifrarniciModel->dohvatiKurs(), 
+                                "drzavljanstvo" => $this->SifrarniciModel->dohvatiDrz(),
+                                "mesta" => $this->SifrarniciModel->dohvatiMesto()];
         $data["middle"] = "middle/registracija";
         $this->load->view('viewTemplate', $data);
  
@@ -44,7 +45,7 @@ class Registracija extends CI_Controller {
         $this->form_validation->set_rules('kurs', 'Kurs', 'required|numeric');
         $this->form_validation->set_rules('telefon', 'Telefon', 'required|regex_match[/^\d{3}\/?\d{6,7}$/]');
         $this->form_validation->set_rules('adresa', 'Adresa', 'required');
-        $this->form_validation->set_rules('mesto', 'Mesto', 'required|numeric');
+        $this->form_validation->set_rules('mesto', 'Mesto', 'required|alpha_numeric');
         $this->form_validation->set_rules('pin', 'Pin', 'required|numeric|exact_length[4]|is_unique[student.pin]');
         $this->form_validation->set_rules('status', 'Status', 'required|alpha');
         
@@ -74,12 +75,21 @@ class Registracija extends CI_Controller {
         $status = $this->input->post('status');
         $kurs = $this->input->post('kurs');
         
+        $univerzitet = $this->input->post('univerzitet');
+        $fakultet = $this->input->post('fakultet');
+        $sedisteFak = $this->input->post('sediste');
+        $nivo = $this->input->post('nivo');
+        $godinaStu = $this->input->post('godinaStudija');
+        
         $this->load->model('RegistrationModel');
         $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $tip);
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
         $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor);
-        $this->dodatneInfo($idKor);
+        if($fakultet !== null){
+        $this->RegistrationModel->dodajStudije($idKor, $univerzitet, $fakultet, $sedisteFak, $nivo, $godinaStu);
+        }
+        $this->dodatneInfo($idKor, "int");
      }
     }
     public function regKomp(){
@@ -182,43 +192,111 @@ class Registracija extends CI_Controller {
         return true;
     }
     
-//    public function validUrl($url){
-//       if (filter_var($url, FILTER_VALIDATE_URL)){
-//          return TRUE;
-//       }else {
-//           var_dump($url);
-//           $this->form_validation->set_message('validUrl', '{field} nije u ispravnom formatu');
-//          return FALSE;  
-//       }
-//    }
     
-    public function dodatneInfo($idKor){
-        //$idKor=10;
-        $data["middle_data"] = ["interesovanja" => $this->RegistrationModel->dohvatiInteresovanja(),
+    public function dodatneInfo($idKor, $tip){
+        if($tip == "int"){     
+        $data["middle_data"] = ["interesovanja" => $this->SifrarniciModel->dohvatiInteresovanja(),
                                 "idKor" => $idKor];
+        }else if($tip == "ves"){
+         $data["middle_data"] = ["vestine" => $this->SifrarniciModel->dohvatiVestine(),
+                                "idKor" => $idKor];   
+        }else if($tip == "dipl"){
+            $data["middle_data"] = ["fakulteti" => $this->SifrarniciModel->dohvatiFakultete(),
+                                 "idKor" => $idKor];
+        }else if($tip == "rad"){
+            $data["middle_data"] = ["kompanije" => $this->SifrarniciModel->dohvatiKompanije(),
+                                    "pozicije" => $this->SifrarniciModel->dohvatiPozicije(),
+                                    "gradovi" => $this->SifrarniciModel->dohvatiMesto(),
+                                    "idKor" => $idKor];
+        }
         $data["middle"] = "middle/dodatneInformacije";
         $this->load->view('viewTemplate', $data); 
     }
     
     public function dodajInteresovanjaZaKorisnika(){
         $idKor = $this->input->post('idKor');
+        if($this->input->post('int')!== null){
         $listaInteresovanja = $this->input->post('int');
         foreach ($listaInteresovanja as $jednoInteresovanje){
         $this->RegistrationModel->dodajInteresovanjaZaKorisnika($idKor, $jednoInteresovanje);
+            }
         }
+        $this->dodatneInfo($idKor, "ves");
+        
     }
     
-    public function dodajNovaInteresovanja(){
-        $inter = $this->input->post('inter');
-        $novaInteresovanja = $this->RegistrationModel->dodajNovaInteresovanja($inter);
-        $nazivInt = $novaInteresovanja[0]['naziv']; 
-        $idInt = $novaInteresovanja[0]['idInt'];
-        $this->load->library ( 'parser' );
-        $data = array(
-        'idInt' => $idInt,
-        'nazivInt' => $nazivInt
-        );
-        $this->parser->parse('interesovanja', $data);  
+    public function dodajNovaInteresovanjaReg(){
+        $this->dodajNovaInteresovanja();
     }
+
+    
+    public function dodajVestineZaKorisnika(){
+        $idKor = $this->input->post('idKor');
+        if($this->input->post('ves')!== null){
+        $listaVestina = $this->input->post('ves');
+        foreach ($listaVestina as $jednaVestina){
+        $this->RegistrationModel->dodajVestineZaKorisnika($idKor, $jednaVestina);
+            }
+        }
+        $this->dodatneInfo($idKor, "dipl");
+        
+    }
+    
+    public function dodajDiplomuZaKorisnika(){
+         $idKor = $this->input->post('idKor');
+         $idFak = $this->input->post('fakultet');
+         $odsek = $this->input->post('odsek');
+         $zvanje = $this->input->post('zvanje');
+         $nivo = $this->input->post('nivo');
+         $godUpisa = $this->input->post('godUpisa');
+         $godZavrsetka = $this->input->post('godZavrsetka');
+         if($idFak !== null){
+         $this->RegistrationModel->dodajDiplomuZaKorisnika($idKor, $idFak, $odsek, $zvanje, $nivo, $godUpisa, $godZavrsetka);
+         }
+         $this->dodatneInfo($idKor, "rad");
+    }
+    
+    public function dodajIskustvoZaKorisnika(){
+        $idKor = $this->input->post('idKor');
+        $kompanija = $this->input->post('kompanija');
+        $mesto = $this->input->post('sediste');
+        $pozicija = $this->input->post('pozicija');
+        $od = $this->input->post('od');
+        $do = $this->input->post('do');
+        if($kompanija !== null){
+            $this->RegistrationModel->dodajIskustvoZaKorisnika($idKor, $kompanija, $mesto, $pozicija, $od, $do);
+        }
+        $this->session->set_flashdata('msg', 'Uspesno ste se registrovali! Ulogujte se i zapocnite nezaboravno iskustvo na portalu Karijera!');
+        redirect('Login');    
+    }
+
+    public function dodajNoveVestineReg(){
+        $this->dodajNoveVestine();
+        
+    }
+
+    
+    public function podaciStudije(){
+        $gradovi = $this->SifrarniciModel->dohvatiMesto();
+        $fakulteti = $this->SifrarniciModel->dohvatiFakultete();
+        $univerziteti = $this->SifrarniciModel->dohvatiUniverzitete();
+        $this->load->view("formaStudije", ["gradovi" => $gradovi, "fakulteti" => $fakulteti, "univerziteti" => $univerziteti]);
+    }
+    
+    
+    public function izmeniSifrarnik(){
+        if($this->input->post('tip') == 'mesto'){
+            $this->dodajNovoMesto('mesto');
+        }else if($this->input->post('tip') == 'sediste'){
+            $this->dodajNovoMesto('sediste');
+        }else if($this->input->post('tip') == 'fakultet'){
+            $this->dodajNoviFakultet();
+        }else if($this->input->post('tip') == 'kompanija'){
+            $this->dodajNovuKompaniju();
+        }else if($this->input->post('tip') == 'pozicija'){
+            $this->dodajNovuPoziciju();
+        }
+    }
+
 }
     
