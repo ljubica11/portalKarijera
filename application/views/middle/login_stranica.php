@@ -7,6 +7,10 @@
         <title></title>
     </head>
     <body>
+        <?php if ($this->session->flashdata('msg') !== null) { 
+            $msg = $this->session->flashdata('msg');
+            echo "<script type='text/javascript'>alert('$msg');</script>";
+        }?>
         <div class="container" id="container1">
             <div class="row">
                 <div class="offset-sm-12" style="height: 50px"></div>
