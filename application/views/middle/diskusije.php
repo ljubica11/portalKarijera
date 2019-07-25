@@ -130,7 +130,7 @@ and open the template in the editor.
      xmlhttp = new XMLHttpRequest();
      xmlhttp.onreadystatechange = function(){
          if(this.readyState == 4 && this.status == 200 ){
-             document.getElementById('brLajkova').innerHTML = (this.responseText);
+             document.getElementById('brLajkova' + idPos).innerHTML = (this.responseText);
              
          }
      }

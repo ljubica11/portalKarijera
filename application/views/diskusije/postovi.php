@@ -9,7 +9,7 @@ foreach ($postovi as $p) {
     <div class="postdesno">
     <?php
     echo $p['korisnik'] . ': ' . $p['tekst'] . '<br> ' . $p['datum'] .'  '."<input type='button' class='btn btn-outline-primary btn-sm' value='svidjanje' onclick='lajk($idPos)'>".
-            '<div id="brLajkova">' .$p['brLajkova'] .'</div>'.'<br>'
+            '<div id="brLajkova'.$idPos.'">' .$p['brLajkova'] .'</div>'.'<br>'
     . '</div>';
 }
 ?>

@@ -76,6 +76,7 @@ class Diskusije extends CI_Controller {
         $brLajkova = $lajkovi[0]['brLajkova'];
         $brLajkova++;
         $this->DiskusijeModel->dodajLajk($brLajkova, $idPos);
-       // $this->ispisiPostove($idPos);
+        echo $brLajkova;
+        }
     }
-}
+    

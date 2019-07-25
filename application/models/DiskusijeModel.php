@@ -16,7 +16,6 @@ class DiskusijeModel extends CI_Model {
 
     public function dohvatiDiskusije($idKat) {
 
-
         $this->db->from('diskusija');
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
@@ -24,8 +23,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
         $query = $this->db->get();
         return $query -> result_array();
-        
-        
+            
     }
     
     public function dohvatiPostove($diskusija){
@@ -39,27 +37,20 @@ class DiskusijeModel extends CI_Model {
         $this->db->order_by('postdiskusija.poslatoDatum', 'DESC');
         $query = $this->db->get();
         return $query -> result_array();
-        
-        
-        
-        
+      
     }
 
     public function dohvatiPostoveKorisnika($idKor) {
-        
-        
+            
         $this->db->select('postdiskusija.tekst as tekst, postdiskusija.poslatoDatum as datum, diskusija.naziv as naziv');
         $this->db->from('postdiskusija');
-        
         $this->db->join('diskusija', 'diskusija.idDis = postdiskusija.diskusija');
         $this->db->where('postdiskusija.posiljalac', $idKor);
         $this->db->group_by('postdiskusija.idPos');
         $this->db->order_by('postdiskusija.poslatoDatum', 'DESC');
         $query = $this->db->get();
         return $query -> result_array();
-        
-        
-        
+     
     }
     
     public function dodajPost($idKor, $idDis, $tekst ){
@@ -89,7 +80,6 @@ class DiskusijeModel extends CI_Model {
         $this->db->insert('sifkategorijadiskusija');
     }
     
-    
     public function dohvatiLajkove($idPos){
         
         $this->db->select('brLajkova');
@@ -97,8 +87,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->where('idPos', $idPos);
         $query = $this->db->get();
         return $query -> result_array();
-        
-        
+               
     }
 
 
@@ -107,8 +96,7 @@ class DiskusijeModel extends CI_Model {
         $data = array('brLajkova' => $brLajkova);
         $this->db->where('idPos', $idPos);
         $this->db->update('postdiskusija', $data);
-        
-        
+           
     }
 
 }
