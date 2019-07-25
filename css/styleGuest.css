@@ -121,6 +121,7 @@ max-width: 1400px;
 }
 
 
+
 .div.main {
   width:90%;
   overflow:hidden;
@@ -163,4 +164,21 @@ max-width: 1400px;
  to {margin-left: -100%;width: 300%;} }
 @keyframes slide-left { from {margin-left: 0%;width: 100%;}
  to {margin-left: -100%;width: 300%;} }
+
+.infoStudije{
+    border: 2px solid lightblue;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+}
+
+.addInput{
+    border: 2px solid lightblue;
+    width: 50%;
+    margin-left: 25%;
+    padding: 3px;
+}
+
 
