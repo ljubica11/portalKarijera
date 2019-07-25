@@ -111,3 +111,20 @@ background-image: url('../images/pozadinaPocetna3.jpg');
     height: 75vh;
     background-color: white;
 }
+
+.infoStudije{
+    border: 2px solid lightblue;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+}
+
+.addInput{
+    border: 2px solid lightblue;
+    width: 50%;
+    margin-left: 25%;
+    padding: 3px;
+}
+
