@@ -32,7 +32,7 @@
                   <a class="nav-link" href="#">Moje grupe</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Oglasi</a>
+                  <a class="nav-link" href="<?php echo site_url('Oglasi');?>">Oglasi</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Ankete</a>
