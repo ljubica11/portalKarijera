@@ -20,7 +20,7 @@
                   <a class="nav-link" href="#">Vesti</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Obaveštenja</a>
+                  <a class="nav-link" href="<?php echo site_url("Obavestenja/index");?>">Obaveštenja</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Diskusije</a>
