@@ -37,6 +37,7 @@
     display: flex;
     justify-content: center;
     background-color: #E1E8ED;
+    padding-bottom: 6rem;
 }
 
 .regwrapper{
@@ -112,6 +113,17 @@ max-width: 1400px;
     max-width: 1400px;
 }
 
+#container3{
+    margin-bottom: 50px;
+}
+
+#container4{
+    margin-bottom: 50px;
+    background-color: darkslategrey;
+    max-width: 1400px;
+    height: 100px;
+}
+
 .tabcontentInfo{
     padding: 6px 12px;
     border: 1px solid #ccc;
@@ -181,4 +193,7 @@ max-width: 1400px;
     padding: 3px;
 }
 
+#regStuForm{
+    margin-bottom: 50px;
+}
 
