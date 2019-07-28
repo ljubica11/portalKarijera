@@ -38,6 +38,7 @@
     justify-content: center;
     background-color: #E1E8ED;
     padding-bottom: 6rem;
+    background-color: dimgrey;
 }
 
 .regwrapper{
@@ -75,7 +76,7 @@
 
 
 .tab button.active {
-  background-color: white;
+  background-color: lightgray;
   border: none;
   outline: none;
 }
@@ -89,7 +90,7 @@
   border: 1px solid #ccc;
   border-top: none;
   height: 75vh;
-  background-color: white;
+  background-color: lightgray;
 }
 /*
 .tabcontent {
@@ -195,5 +196,10 @@ max-width: 1400px;
 
 #regStuForm{
     margin-bottom: 50px;
+    
+}
+
+html{
+    background-color: dimgrey;
 }
 
