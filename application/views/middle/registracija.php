@@ -6,11 +6,6 @@
   <button class="tablinks" onclick="openReg(event, 'Student')" id="defaultOpen">Student</button>
   <button class="tablinks" onclick="openReg(event, 'Kompanija')">Kompanija</button>
 </div>   
-
-
-    <?php echo form_error(); ?>
-    <?php echo $err ?? '' ?>
-
     <div id="Student" class="tabcontent overflow-auto">
         <h4>Povezite se sa drugim studentima i inovativnim kompanijama</h4>
        <form name="regStu" id="regStuForm" method="POST" action="<?php echo site_url('Registracija/regStu') ?>">
