@@ -54,7 +54,7 @@
                 <div class="col-sm-2"><img src="<?php echo base_url('/images/firma6.png')?>" class="img-fluid" alt="Responsive image"></div>
             </div>
         </div>
-        <div class="container" id="container3" style="margin-bottom: 50px">
+        <div class="container" id="container3">
             <div class="row">
                 <div class="offset-sm-12" style="height: 60px"></div>
             </div>
@@ -81,7 +81,7 @@
                 </p>
             </div>
         </div>
-        <div class="container" id="container4" style="margin-bottom: 50px; background-color: darkslategrey; max-width: 1400px; height: 100px">
+        <div class="container" id="container4">
             <div class="row">
                 <div class="main slide-right col-sm-12">
                     <p>Posle dvadesetak sekundi menja se poruka.</p>
