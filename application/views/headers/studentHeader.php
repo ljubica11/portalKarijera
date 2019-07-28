@@ -29,7 +29,7 @@
                   <a class="nav-link" href="<?php echo site_url("Diskusije/index")?>">Diskusije</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Moje grupe</a>
+                  <a class="nav-link" href="<?php echo site_url("Grupe/index")?>">Moje grupe</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url('Oglasi');?>">Oglasi</a>
