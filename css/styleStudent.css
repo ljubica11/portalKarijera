@@ -37,6 +37,7 @@
 .levo{
     
     padding-top: 30px;
+    padding-bottom: 30px;
     border: 1px solid lightgray;
     line-height: 3;
 }
@@ -68,3 +69,32 @@
 #formaDiv{
     display: none;
 }
+
+.btn-search-job{
+    margin-top: 20px;
+}
+
+.naslov-oglas{
+    text-align: center;
+}
+
+.kompanija-oglas{
+    border-top: 1px solid black;
+    text-align: center;
+    padding: 20px;
+}
+
+.datum-oglas{
+    background-color: #4169E1;
+    color: white;
+    margin-top: 10px;
+    padding: 10px 0;
+    
+}
+    .oglas-wrapper{
+    border: 1px solid black;
+    margin: 20px;
+    padding: 0 30px 30px 40px;
+    }
+
+

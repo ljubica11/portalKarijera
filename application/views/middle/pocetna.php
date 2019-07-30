@@ -150,17 +150,18 @@ and open the template in the editor.
                           Dodaj CV (mora biti u PDF formatu): <input type="file" name="cv">
                           <input type="submit" value="Dodaj" name="dodaj">
                      </form>
-                    
+                            
                     <?php 
                        }else{
                     ?>
                     <br/>
                     <a href="<?php echo site_url('User/procitajCV')?>">Moj CV</a>
                     
-                </div>
+                
                 <?php
                     //ovde treba da se doda jos da ispisuje i radno iskustvo, i studije, ako trenutno studira i tako dalje...
                        }
+                       echo "</div>";
                     }else if($this->session->userdata('user')['tip']== "k"){ ?>
                 <div class="centar">
                     <b>Opis kompanije: </b> 
@@ -173,9 +174,11 @@ and open the template in the editor.
                     <b>Aktuleni oglasi: </b>
                     <br/>
                     <?php
-                                        foreach ($oglasi as $oglas){
-                                            echo "- <a href='#'>".$oglas['naslov']."</a><br/>";
-                                        }
+                        foreach ($oglasi as $oglas){ 
+                            $idOgl = $oglas['idOgl'];?>
+                            - <a href="<?php echo site_url("Oglasi/pogledajOglas/$idOgl")?>"><?php echo $oglas["naslov"]?></a><br/>
+                    <?php 
+                    }
                     ?>
                 </div>
                 <div class="centar">
@@ -201,5 +204,4 @@ and open the template in the editor.
               </div>
             </div>  
         </div> 
-    </body>
 
