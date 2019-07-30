@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 
 <h4> Pretraga </h4>
-            <form name="pretragaPoslovaForma" method="GET" action="<?php echo site_url('Oglasi/pretraga')?>">
-                <input type="text" name="pretraga" id="pretragaPoslova" class="form-control" placeholder="Kompanija, pozicija ili kljucna rec">
+           <form name="pretragaPoslovaForma" method="GET"> 
+                <input type="text" name="pretraga" id="pretragaPoslova" class="form-control" placeholder="Kompanija ili pozicija">
+                <div id="predlozi"></div>
+                    
                 <br/>
-                <select name="grad" class="form-control">
+                <select name="grad" class="form-control" id="grad">
                     <option disabled selected value="">Odaberite grad</option>
                     <?php
-                        foreach ($gradovi as $grad){
-                            $naziv = $grad["naziv"];
-                            $idGra = $grad["idGra"];
-                            echo "<option value='$idGra'>$naziv</option>";
-                        }
+                       foreach ($mesta as $mesto){
+                                        $naziv = $mesto["naziv"];
+                                        $idG = $mesto["idGra"];
+                                        echo "<option value='$idG'>$naziv</option>";
+                                    }
                     ?>
                     
                 </select>
-                <input type="submit" name="pretrazi" value="Pretrazi" class="btn btn-lg btn-primary btn-search-job" >
-            </form>
+                <input type="button" name="pretrazi" value="Pretrazi" class="btn btn-lg btn-primary btn-search-job" onclick="pretraziOglase()">
+            </form> 
