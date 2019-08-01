@@ -86,12 +86,7 @@ class UserModel extends CI_Model{
         $query=$this->db->get();
         return $query->result_array ();
     }
-    
-    public function imaOglase($id){
-        $query = $this->db->get_where('oglasi', array('autor' => $id));
-        return $query->result_array ();
-    }
-    
+      
     public function imaObavestenja($id){
         $query = $this->db->get_where('obavestenja', array('autor' => $id));
         return $query->result_array ();
