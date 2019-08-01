@@ -90,4 +90,10 @@ class Oglasi extends MY_Controller{
     public function dodajMesto(){
          $this->dodajNovoMesto('mesto');
     }
+    
+    public function traziBrisanje($idOgl){
+        $this->OglasiModel->traziBrisanje($idOgl);
+        $this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje oglasa administratoru. Vas oglas ce uskoro biti obrisan sa sajta.');
+        redirect("User");
+    }
 }

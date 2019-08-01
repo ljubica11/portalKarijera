@@ -82,8 +82,14 @@ and open the template in the editor.
                 ?>
             </div>
             <div class="col-6">
-                
-                    <?php if($this->session->userdata('user')['tip'] == "s"){?>
+                <?php if($this->session->flashdata('brisanje')){?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <?php echo $this->session->flashdata('brisanje');?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                <?php } if($this->session->userdata('user')['tip'] == "s"){?>
                 <div class="centar">
                     <b>Interesovanja:</b>
                     <br/>
@@ -175,8 +181,12 @@ and open the template in the editor.
                     <br/>
                     <?php
                         foreach ($oglasi as $oglas){ 
-                            $idOgl = $oglas['idOgl'];?>
-                            - <a href="<?php echo site_url("Oglasi/pogledajOglas/$idOgl")?>"><?php echo $oglas["naslov"]?></a><br/>
+                            $idOgl = $oglas['idOgl'];
+                            $vremeIst = $oglas['vremeIsticanja'];
+                            $date = strtotime($vremeIst);?>
+                            - <a href="<?php echo site_url("Oglasi/pogledajOglas/$idOgl")?>"><?php echo $oglas["naslov"]?></a>
+                                <?php if(date('Y-m-d') > date('Y-m-d', $date)){ echo " (istekao oglas)"; }?>
+                            <br/>
                     <?php 
                     }
                     ?>

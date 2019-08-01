@@ -14,6 +14,7 @@ class User extends CI_Controller{
     public function index(){
         
         $this->load->model('UserModel');
+        $this->load->model('OglasiModel');
         $id= $this->session->userdata('user')['idKor'];
         $tip= $this->session->userdata('user')['tip'];
         
@@ -30,7 +31,7 @@ class User extends CI_Controller{
             
         }else if($tip == 'k'){
             $data['middle_data']= ["podaciKompanija" => $this->UserModel->podaciZaKompaniju($id),
-                                   "oglasi" => $this->UserModel->imaOglase($id),
+                                   "oglasi" => $this->OglasiModel->dohvatiOglaseKorisnika($id),
                                    "obavestenja" => $this->UserModel->imaObavestenja($id)];
             $data["middle"] = "middle/pocetna";
             $this->load->view('viewTemplate', $data);

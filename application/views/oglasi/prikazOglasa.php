@@ -9,6 +9,14 @@
     <b>Kompanija:</b> <?php echo $oglas["naziv"];?>
     <br/>
     <b>Opis posla: </b> <?php echo $oglas["opis"];?>
+    <?php 
+     $vremeIst = $oglas["vremeIsticanja"];
+     $date = strtotime($vremeIst);
+             if(date('Y-m-d') > date('Y-m-d', $date)){
+                 echo "<div class='istekao-oglas'><b>Oglas je istekao</b></div>";
+             }
+    ?>
+
 </div>
 
 <?php } ?>

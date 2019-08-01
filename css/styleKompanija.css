@@ -157,16 +157,24 @@ input[type="number"] {
     padding: 20px;
 }
 
-.datum-oglas{
-    background-color: #4169E1;
-    color: white;
-    margin-top: 10px;
-    padding: 10px 0;
-    
+.aktivan-oglas{
+     background-color: #4169E1;
+     color: white;
+     padding: 10px 10px;
+     border-radius: 15px;
+     width: 200px;
 }
-    .oglas-wrapper{
+
+.istekao-oglas{
+    background-color: red;
+     color: white;
+     padding: 10px 10px;
+     border-radius: 15px;
+     width: 200px;
+}
+ .oglas-wrapper{
     border: 1px solid black;
-    margin: 20px;
+    margin: 20px 0;
     padding: 0 30px 30px 40px;
     }
-
+    
