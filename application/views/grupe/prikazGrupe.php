@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 
-       <?php foreach ($grupe as $g){ ?>
-
-<div class="centar">
+       <?php foreach ($grupe as $g){ 
+           $idGru = $g['idGru'];
+           $ulogovani = $this->session->userdata('user')['idKor'];
+           $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
+           
+           
+           ?>
+           
+<div class="centar">    
     <h5><a href="#"><?php echo $g["naziv"]?></a></h5>
-    <b>ID Grupe:</b> <?php $idGru =$g["idGru"]; echo $g["idGru"];?>
+    <b>ID Grupe:</b> <?php echo $idGru;?>
     <br/>
     <b>Naziv:</b> <?php echo $g["naziv"];?>
     <br/>
@@ -14,8 +20,40 @@
     $brojClanova = $this->db->where('idGru', $idGru)->count_all_results('clanovigrupe'); 
             echo ' '.$brojClanova; ?>
     <form name='uclaniLogovanog' method='GET' action="<?php echo site_url('Grupe/uclaniLogovanog')?>">
-        <input type="hidden" name='idGru' value="<?php echo $idGru; ?>">
-        <input type="submit" class="btn btn-outline-primary btn-sm float-right" value='UCLANI SE'>
+
+        <?php 
+           if(empty($clanovi)){
+                   echo " <input type='hidden' name='idGru' value='$idGru'>";
+                    echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UCLANI SE">';
+               } else {
+           if(isset($clanovi)){
+          
+           $idClana = $clanovi[0]['idKor'];
+                if($ulogovani != $idClana){
+                    echo " <input type='hidden' name='idGru' value='$idGru'>";
+                    echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UCLANI SE">';
+                }
+           } 
+               
+           }
+        ?>
+
+    </form>
+    
+    <form name="obrisiLogovanog" method="GET" action="<?php echo site_url('Grupe/obrisiLogovanog')?>">
+       
+        <?php 
+            
+            foreach ($clanovi as $c){
+                $idClana = $c['idKor'];
+            
+                if($ulogovani === $idClana){
+                    echo " <input type='hidden' name='idGru' value='$idGru'>";
+                    echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="NAPUSTI GRUPU">';
+              }
+            }
+        ?>
+
     </form>
  
     <form name='ispisClanova' method="POST" action="<?php echo site_url('Grupe/ispisiClanove')?>">

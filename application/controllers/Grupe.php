@@ -193,5 +193,13 @@ class Grupe extends CI_Controller {
         $this->GrupeModel->DodajStudente($idGru, $idKor);
          redirect('Grupe/index');
     }
+    
+    public function obrisiLogovanog(){
+        
+        $idGru = $this->input->get('idGru');
+        $idKor = $this->session->userdata('user')['idKor'];
+        $this->GrupeModel->obrisiStudente($idGru, $idKor);
+        redirect('Grupe/index');
+    }
 
 }
