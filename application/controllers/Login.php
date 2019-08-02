@@ -29,5 +29,8 @@ class Login extends CI_Controller{
             }
         
     }
+    public function uslovi(){
+        $this->load->view('uslovi_koriscenja');
+    }
     
 }
