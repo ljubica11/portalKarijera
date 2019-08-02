@@ -61,13 +61,15 @@ class Grupe extends CI_Controller {
         $kurs = $this->SifrarniciModel->dohvatiKurs();
         $interesovanja = $this->SifrarniciModel->dohvatiInteresovanja();
         $vestine = $this->SifrarniciModel->dohvatiVestine();
+        $diploma = $this->SifrarniciModel->dohvatiFakultete();
         $this->load->view('grupe/izborParametara', ['grupe' => $grupe, 'prebivaliste' => $prebivaliste, 'kurs' => $kurs,
-            'interesovanja' => $interesovanja, 'vestine' => $vestine, 'idGru' => $idGru]);
+            'interesovanja' => $interesovanja, 'vestine' => $vestine, 'diploma' => $diploma, 'idGru' => $idGru]);
     }
     
     /**
      * 
-     * metode za dohvatanje studenata po konkretnom parametru (kurs, prebivaliste, vestine...)
+     * metode za dohvatanje studenata po konkretnom parametru (kurs, prebivaliste, vestine,
+     * interesovanja, zavrseni fakultet...)
      */
 
     public function poKursu() {
@@ -173,6 +175,35 @@ class Grupe extends CI_Controller {
             foreach ($studentiVestine as $sv) {
                 $idKor = $sv['idKor'];
                 $ime = $sv['ime'];
+                if ($idKor == $postojiClan) {
+                    echo 'student' . $ime . ' vec je clan ';
+                } else {
+                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+                }
+                redirect('Grupe/index');
+            }
+        }
+    }
+    
+    public function poFakultetu() {
+
+        $idGru = $this->input->post('idGru');
+        $idFak = $this->input->post('idFak');
+        $studentiFakultet= $this->GrupeModel->dohvatiStudenteFakultet($idFak);
+        $clanoviFakultet = $this->GrupeModel->dohvatiClanove($idGru);
+        $postojiClan = $clanoviFakultet[0]['idKor'];
+
+
+        if ($clanoviFakultet == null) {
+            foreach ($studentiFakultet as $sf) {
+                $idKor = $sf['idKor'];
+                $this->GrupeModel->DodajStudente($idGru, $idKor);
+            }
+            redirect('Grupe/index');
+        } else {
+            foreach ($studentiFakultet as $sf) {
+                $idKor = $sf['idKor'];
+                $ime = $sf['ime'];
                 if ($idKor == $postojiClan) {
                     echo 'student' . $ime . ' vec je clan ';
                 } else {

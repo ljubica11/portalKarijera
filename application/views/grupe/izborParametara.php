@@ -104,6 +104,24 @@
             "<input type='submit' name='izborMesta' value='dodaj'   class='btn btn-outline-primary btn-sm'>"
             ?>   </select> 
     </form>
+    
+    <form name="izaberiFakultet" method="POST" action="<?php echo site_url('Grupe/poFakultetu') ?>">
+        <select name="idFak">
+            <option disabled selected value="">Završene studije</option>
+            <?php
+            foreach ($diploma as $d) {
+                $naziv = $d["naziv"];
+                $idFak = $d["idFak"];
+
+                echo "<option value='$idFak'>$naziv</option>";
+            }
+
+
+            echo
+            "<input type ='hidden' name='idGru' value=$idGru>" .
+            "<input type='submit' name='izborFakulteta' value='dodaj'   class='btn btn-outline-primary btn-sm'>"
+            ?>   </select> 
+    </form>
 
 </div>
 

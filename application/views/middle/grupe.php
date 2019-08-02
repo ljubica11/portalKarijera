@@ -8,7 +8,7 @@
             <form name ="napraviGrupu" method="POST" action="<?php echo site_url('Grupe/napraviGrupu') ?>">
                 <input type="text" name="nazivGrupe" placeholder="naziv grupe" required class="form-control form-control-sm">
                 <input type="text" name="opisGrupe" placeholder="opis" required class="form-control form-control-sm">
-                <input type="submit" name="napravi" id="grupe" value="napravi grupu" class="btn btn-outline-primary  btn-sm btn-block ">
+                <input type="submit" name="napravi" id="grupe" value="napravi grupu" class="btn btn-primary  btn-sm btn-block ">
 
                 <?php echo $this->session->flashdata('grpmsg'); ?>
 

@@ -57,6 +57,12 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    /**
+     * metoda za dohvatanje studenata po interesovanjima
+     * @param type $idInt
+     * @return type array
+     */
 
     public function dohvatiStudenteInteresovanja($idInt) {
 
@@ -65,6 +71,23 @@ class GrupeModel extends CI_Model {
         $this->db->join('imainteresovanja', 'imainteresovanja.idKor = student.idKor');
         $this->db->join('sifinteresovanja', 'sifinteresovanja.idInt = imainteresovanja.idInt');
         $this->db->where('imainteresovanja.idInt', $idInt);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+    /**
+     * metoda za dohvatanje studenata po zavrsenim studijama
+     * @param type $idFak
+     * @return type array
+     */
+    
+    public function dohvatiStudenteFakultet($idFak){
+        
+        $this->db->select('student.*');
+        $this->db->from('student');
+        $this->db->join('diploma', 'diploma.idKor = student.idKor');
+        $this->db->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak');
+        $this->db->where('siffakulteti.idFak', $idFak);
         $query = $this->db->get();
         return $query->result_array();
     }
