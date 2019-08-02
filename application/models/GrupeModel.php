@@ -2,7 +2,8 @@
 
 /**
  * Description of GrupeModel
- * metode za dohvatanje korisnika po različitim šifrarnicima za potrebe funkcionalnosti "Grupe"
+ * metode za dohvatanje korisnika po različitim šifrarnicima za potrebe funkcionalnosti "Grupe",
+ * kreiranje grupa i dodavanje korisnika po različitim parametrima
  * @author gordan
  */
 defined('BASEPATH') or exit('no direct access');

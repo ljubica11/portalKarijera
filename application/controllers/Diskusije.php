@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Description of Diskusije
+ *
+ * @author gordan
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Diskusije extends CI_Controller {
