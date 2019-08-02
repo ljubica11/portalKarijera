@@ -8,7 +8,7 @@ if (isset($diskusije)) {
         ?>
         <div class="centar">
 
-        <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
+            <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
         <b>Opis: </b><?php echo $d['opis'] ?><br/>
         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
@@ -25,7 +25,7 @@ if (isset($diskusije)) {
 ?>
 
 
-<div class="centar"> <input type='button' class="btn btn-outline-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'></div>
+<div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'></div>
 
 
 <div class="centar" id="formaDiv">
@@ -39,11 +39,11 @@ if (isset($diskusije)) {
             <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
             <tr><td><b>Opis: </b></td><td><input type="text" name="opis" ></td></tr>
             <tr><td><b>Kategorija: </td><td></b>
-                        <select name="kategorija">
+                    <select name="kategorija">
                         <option disabled selected value="">Izaberi kategoriju</option>
                         <?php
                         foreach ($kategorije as $k) {
-                            
+
                             $idKat = $k['idKatDis'];
                             $nazivKat = $k['naziv'];
                             echo "<option value='$idKat'>$nazivKat</option>";

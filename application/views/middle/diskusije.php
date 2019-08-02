@@ -28,13 +28,13 @@ and open the template in the editor.
                     }
                     ?>
                      <div>
-                    <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju" class="btn btn-outline-primary">
+                    <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju" class="btn btn-primary btn-lg btn-block">
                     </div>
                     
                     <div id='formaDivKat'>
                         <form name='dodajKat' method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju') ?>">
                             <input type="text" name='naziv' placeholder="Naziv kategorije">
-                            <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary">
+                            <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary  btn-lg btn-block">
                             
                         </form>
                     </div>
