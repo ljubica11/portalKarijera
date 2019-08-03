@@ -1,16 +1,16 @@
 
 .sfooter{ 
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50px;
-  border-top: 1px solid lightgray;
-  padding-left:35%;
-  padding-top: 10px;
-  background-color: #2E8B57;
-  z-index:999;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    border-top: 1px solid lightgray;
+    padding-left:35%;
+    padding-top: 10px;
+    background-color: #2E8B57;
+    z-index:999;
 }
 
 .sfooter a{
@@ -31,11 +31,11 @@
 .navbar{
     border-bottom: 1px solid lightgray;
     background-color: #2E8B57;
-    
+
 }
 
 .levo{
-    
+
     padding-top: 30px;
     padding-bottom: 30px;
     border: 1px solid lightgray;
@@ -85,24 +85,31 @@
 }
 
 .aktivan-oglas{
-     background-color: #4169E1;
-     color: white;
-     padding: 10px 10px;
-     border-radius: 15px;
-     width: 200px;
+    background-color: #4169E1;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    width: 200px;
 }
 
 .istekao-oglas{
     background-color: red;
-     color: white;
-     padding: 10px 10px;
-     border-radius: 15px;
-     width: 200px;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    width: 200px;
 }
-    .oglas-wrapper{
+.oglas-wrapper{
     border: 1px solid black;
     margin: 20px;
     padding: 0 30px 30px 40px;
-    }
+}
+
+#parametri {
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
 
 

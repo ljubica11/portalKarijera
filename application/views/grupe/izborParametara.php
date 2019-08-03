@@ -30,9 +30,9 @@
     ?>
     <h5>Izaberi parametre</h5>
 
-
+   
     <form name="izaberiMesto" method="POST" action="<?php echo site_url('Grupe/poGradu') ?>">
-        <select name="idGra">
+        <select name="idGra" class="form-control">
             <option disabled selected value="">Izaberi prebivaliste studenta</option>
             <?php
             foreach ($prebivaliste as $p) {
@@ -43,15 +43,16 @@
             }
 
 
-            echo
+            echo         
             "<input type ='hidden' name='idGru' value=$idGru>" .
-            "<input type='submit' name='izborMesta' value='dodaj'   class='btn btn-outline-primary btn-sm'>"
-            ?>   </select> 
+            "<input type='submit' name='izborMesta' value='dodaj' class='btn btn-outline-primary btn-sm'>"
+            ?>  
+        </select> 
     </form>
-
+         
 
     <form name="izaberiKurs" method="POST" action="<?php echo site_url('Grupe/poKursu') ?>">
-        <select name="idKurs">
+        <select name="idKurs" class="form-control" >
             <option disabled selected value="">Izaberi kurs studenta</option>
             <?php
             foreach ($kurs as $k) {
@@ -69,7 +70,7 @@
     </form>
 
     <form name="izaberiInteresovanja" method="POST" action="<?php echo site_url('Grupe/poInteresovanjima') ?>">
-        <select name="idInter">
+        <select name="idInter" class="form-control" >
                 <option disabled selected value="">Izaberi interesovanje</option>
                     <?php
                     foreach ($interesovanja as $inter) {
@@ -88,7 +89,7 @@
     </form>
     
     <form name="izaberiVestine" method="POST" action="<?php echo site_url('Grupe/poVestinama') ?>">
-        <select name="idVes">
+        <select name="idVes" class="form-control" >
             <option disabled selected value="">Izaberi vestine</option>
             <?php
             foreach ($vestine as $v) {
@@ -106,7 +107,7 @@
     </form>
     
     <form name="izaberiFakultet" method="POST" action="<?php echo site_url('Grupe/poFakultetu') ?>">
-        <select name="idFak">
+        <select name="idFak" class="form-control" >
             <option disabled selected value="">Završene studije</option>
             <?php
             foreach ($diploma as $d) {
