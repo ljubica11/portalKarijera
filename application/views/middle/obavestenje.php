@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <td><b>Autor:</b></td>
-                            <td><?php echo $id ?></td>
+                            <td><?php echo $this->session->userdata('user')['korisnicko'] ?></td>
                         </tr>
                         <tr>
                             <td>

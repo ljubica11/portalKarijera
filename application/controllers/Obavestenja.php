@@ -32,10 +32,9 @@ class Obavestenja extends CI_Controller {
                     $naslov = $this->input->post ("naslov");
                     $obavest = $this->input->post ("obavest");
                     //$dat = $this->input->post ("dat");
-                    $autor = $this->input->post ("aut");
                     $vidljivost = $this->input->post ("vidljivost");                    
 
-                    $this->ObavModel->dodajObavestenje ($this->session->userdata('user')['idKor'], $naslov, $obavest, $autor, $vidljivost);
+                    $this->ObavModel->dodajObavestenje ($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost);
                     $this->index();
                     
         }
