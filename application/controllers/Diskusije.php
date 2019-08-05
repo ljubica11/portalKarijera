@@ -66,6 +66,20 @@ class Diskusije extends CI_Controller {
         
     }
     
+    public function dodajDiskusijuGrupe(){
+        
+        
+        $idGru = $this->input->post('idGru');
+        $kategorija = $this->input->post('kategorija');
+        $naziv = $this->input->post('naziv');
+        $opis = $this->input->post('opis');
+        $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis);
+        $last_id = $this->db->insert_id();
+        $idDis = $last_id;
+        $this->DiskusijeModel->dodajDiskusijuGrupe($idDis, $idGru);
+        $this->jednaDiskusija($idDis);
+    }
+    
     public function dodajKategoriju(){
         
         $naziv = $this->input->post('naziv');
