@@ -61,8 +61,6 @@ class VestiModel extends CI_Model {
         
     }
 
-}
-
     
      public function dodajVestGrupe($idVes, $idGru){
         
