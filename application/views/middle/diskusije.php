@@ -1,18 +1,5 @@
 
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/style.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <body>
 
         <div class="container-fluid" style="margin-bottom: 50px">
             <div class="row">
@@ -22,11 +9,11 @@ and open the template in the editor.
                     <?php
                     foreach ($kategorije as $k) {
                         $idKatDis = $k['idKatDis'];
-
-                        //var_dump($idKatDis);
+                        $naziv = $k['naziv'];
+                       
                         echo "<a href='#' class='list-group-item list-group-item-action' onclick='diskusije($idKatDis)'>" . $k['naziv'] . "</a><br/>";
-                    }
-                    ?>
+       
+                    } ?>
                      <div>
                     <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju" class="btn btn-primary btn-lg btn-block">
                     </div>
@@ -41,15 +28,34 @@ and open the template in the editor.
                 </div>
                
                 <div class="col-6">
-                    <div id="diskusije"> </div>
+                    <div id="diskusije">
+                    <?php foreach($diskusije as $d){
+                        
+                        ?>
+                    
+                        <div class="centar">
+
+        <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
+        <b>Opis: </b><?php echo $d['opis'] ?><br/>
+        <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
+        <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
+         <?php $id = $d['idDis'] ?>
+        <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
+        <?php echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a><br/>" ?>
+                    </div> 
+                        
+                     <?php  } ?>
+                   
                 </div>
+                    
+                </div>      
                 <div class="col-3">
                     <div id='wrapper'></div>
                     <div id="postovi"></div>
                     <br><br>
 
                 </div>
-            </div>
+           
         </div> 
 
 
@@ -142,9 +148,6 @@ and open the template in the editor.
 
         </script>
 
-
-    </body>
-</html>
 
 
 

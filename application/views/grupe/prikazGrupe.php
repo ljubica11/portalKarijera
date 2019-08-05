@@ -4,12 +4,12 @@
            $idGru = $g['idGru'];
            $ulogovani = $this->session->userdata('user')['idKor'];
            $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
-           
+         
            
            ?>
            
 <div class="centar">    
-    <h5><a href="#"><?php echo $g["naziv"]?></a></h5>
+    <h5><a href="<?php echo site_url("Grupe/grupa/$idGru")?>"><?php echo $g["naziv"]?></a></h5>
     <b>ID Grupe:</b> <?php echo $idGru;?>
     <br/>
     <b>Naziv:</b> <?php echo $g["naziv"];?>

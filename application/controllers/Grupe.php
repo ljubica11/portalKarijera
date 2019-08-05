@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Description of Grupe
- *
+ *kontroler za funkcionalnost Grupe
  * @author gordan
  */
 class Grupe extends CI_Controller {
@@ -16,6 +16,8 @@ class Grupe extends CI_Controller {
         $this->load->model('UserModel');
         $this->load->model('GrupeModel');
         $this->load->model('SifrarniciModel');
+        $this->load->model('DiskusijeModel');
+        $this->load->model('OglasiModel');
     }
 
     public function index() {
@@ -225,12 +227,34 @@ class Grupe extends CI_Controller {
          redirect('Grupe/index');
     }
     
+    /**
+     * metoda za brisanje korisnika iz odredjene grupe
+     */
+    
     public function obrisiLogovanog(){
         
         $idGru = $this->input->get('idGru');
         $idKor = $this->session->userdata('user')['idKor'];
         $this->GrupeModel->obrisiStudente($idGru, $idKor);
         redirect('Grupe/index');
+    }
+    
+    
+    /**
+     * metoda za prikaz grupe i ispis diskusija, oglasa i ostalih funkcionalnosti
+     * u okviru odredjene grupe
+     * @param type $idGru
+     */
+    public function grupa($idGru){
+        
+        
+        $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
+        $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru);
+        $oglasiGrupe = $this->OglasiModel->dohvatiOglaseGrupe($idGru);
+        $data['middle'] = 'grupe/grupa';
+        $data['middle_data'] = ['clanovi' => $clanovi, 'diskusijeGrupe' => $diskusijeGrupe,
+                                'oglasiGrupe' => $oglasiGrupe];
+        $this->load->view('viewTemplate', $data);
     }
 
 }

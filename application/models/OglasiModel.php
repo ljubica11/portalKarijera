@@ -33,8 +33,27 @@ class OglasiModel extends CI_Model{
         $query=$this->db->get();
         return $query->result_array ();
     }
+    
+    /**
+     * Metoda za dohvatanje oglasa po kreiranim grupama korisnika
+     * @param type $idGru
+     * @return type array
+     */
+    public function dohvatiOglaseGrupe($idGru){
+        
+        $this->db->select('oglasi.*, kompanija.naziv')
+                 ->from('oglasi')
+                 ->join('kompanija', 'oglasi.autor = kompanija.idKor', 'left')
+                 ->join('sadrzioglas', 'sadrzioglas.idOgl = oglasi.idOgl')
+                 ->where('sadrzioglas.idGru', $idGru);
+        $query = $this->db->get();
+        return $query->result_array();
+        
+        
+        
+    }
 
-        public function dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija){
+    public function dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija){
         $data = [
             "naslov" => $naslov,
             "vremePostavljanja" =>  date("Y-m-d H:i:s"),

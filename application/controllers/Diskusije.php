@@ -19,12 +19,11 @@ class Diskusije extends CI_Controller {
     public function index(){
         
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
-        $data = [];
-        $data['middle_data'] = ['kategorije' => $kategorije];
+        $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiSveDiskusije()];
+        $data['middle_data'] = ['kategorije' => $kategorije, 
+                               $this->load->view("diskusije/disk", $diskusije, true)];
         $data['middle'] = 'middle/diskusije';
-        $this->load->view('viewTemplate', $data);
-       
-        
+        $this->load->view('viewTemplate', $data);      
     }
    
     
@@ -32,6 +31,16 @@ class Diskusije extends CI_Controller {
      $idKat = $this->input->get('id');
      $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat);
      $this->load->view("diskusije/disk", ["diskusije" => $diskusije]);
+        
+    }
+    
+    public function jednaDiskusija($idDis){
+        
+        $diskusija =  $this->DiskusijeModel->dohvatiJednuDiskusiju($idDis);
+        $data["middle_data"] = ["diskusija" => $diskusija];
+        $data["middle"] = "diskusije/diskusija";
+        $this->load->view('viewTemplate', $data);
+      //  $this->load->view("diskusije/disk", ["diskusija" => $diskusija]);
         
     }
     

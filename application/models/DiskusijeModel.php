@@ -24,6 +24,16 @@ class DiskusijeModel extends CI_Model {
         
     }
     
+    public function dohvatiSveDiskusije(){
+        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik')
+                ->from('diskusija')
+                ->join('korisnik', 'korisnik.idKor = diskusija.autor')
+                ->order_by('diskusija.idDis', 'DESC');
+        $query = $this->db->get();
+        return $query -> result_array();
+                
+    }
+    
     /**
      * metoda za dovatanje diskusija iz baze podataka
      * @param type $idKat
@@ -42,7 +52,33 @@ class DiskusijeModel extends CI_Model {
             
     }
     
-    /**
+    public function dohvatiJednuDiskusiju($idDis){
+        
+        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik')
+                ->from('diskusija')
+                ->join('korisnik', 'korisnik.idKor = diskusija.autor')
+                ->where('diskusija.idDis', $idDis);
+        $query = $this->db->get();
+        return $query -> result_array();
+    }
+
+        /**
+      * metoda za dohvatanje diskusija u okviru odredjene grupe
+      * @param type $idGru
+      * @return type
+      */
+    public function dohvatiDiskusijeGrupe($idGru){
+        
+        $this->db->select('diskusija.*, korisnik.korisnicko');
+        $this->db->from('diskusija');
+        $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
+        $this->db->join('sadrzidiskusije', 'sadrzidiskusije.idDisk = diskusija.idDis');
+        $this->db->where('sadrzidiskusije.idGrupe', $idGru);
+        $query = $this->db->get();
+        return $query ->result_array();
+    }
+
+        /**
      * metoda za dohvatanje postova odredjene diskusije iz baze podataka
      * @param type $diskusija
      * @return type array
@@ -113,6 +149,18 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('datum', date('Y-m-d H:i:s'));
         $this->db->insert('diskusija');
                 
+    }
+    
+    /**
+     * metoda za kreiranje diskusije u okviru odredjene grupe
+     * @param type $idDisk
+     * @param type $idGrupe
+     */
+    public function dodajDiskusijuGrupe($idDisk, $idGrupe){
+        
+        $this->db->set('idDisk', $idDisk);
+        $this->db->set('idGrupe', $idGrupe);
+        $this->db->insert('sadrzidiskusije');
     }
     
     /**

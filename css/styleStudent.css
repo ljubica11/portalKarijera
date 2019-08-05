@@ -9,7 +9,7 @@
     border-top: 1px solid lightgray;
     padding-left:35%;
     padding-top: 10px;
-    background-color: #2E8B57;
+    background: linear-gradient(to top, #000066 0%, #0066ff 70%);
     z-index:999;
 }
 
@@ -30,7 +30,7 @@
 
 .navbar{
     border-bottom: 1px solid lightgray;
-    background-color: #2E8B57;
+    background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);;
 
 }
 

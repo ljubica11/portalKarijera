@@ -6,9 +6,9 @@
             <h3>Napravi grupu</h3>
             <br>
             <form name ="napraviGrupu" method="POST" action="<?php echo site_url('Grupe/napraviGrupu') ?>">
-                <input type="text" name="nazivGrupe" placeholder="naziv grupe" required class="form-control form-control-sm">
-                <input type="text" name="opisGrupe" placeholder="opis" required class="form-control form-control-sm">
-                <input type="submit" name="napravi" id="grupe" value="napravi grupu" class="btn btn-primary  btn-sm btn-block ">
+                <input type="text" name="nazivGrupe" placeholder="naziv grupe" required class="form-control">
+                <input type="text" name="opisGrupe" placeholder="opis" required class="form-control">
+                <input type="submit" name="napravi" id="grupe" value="napravi grupu" class="btn btn-primary  btn btn-block ">
 
                 <?php echo $this->session->flashdata('grpmsg'); ?>
 
@@ -76,5 +76,5 @@ echo $grupe;
         xmlhttp.open("GET", "<?php echo site_url('Grupe/parametri') ?>?idGru=" + idGru, true);
         xmlhttp.send();
     }
-
+    
 </script>
