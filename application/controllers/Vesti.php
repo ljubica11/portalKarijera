@@ -28,6 +28,8 @@ class Vesti extends CI_Controller {
            
     }
     
+    
+    
     public function dodajVest() {
         
         $kategorija = $this->input->post('kategorija');

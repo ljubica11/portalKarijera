@@ -50,6 +50,22 @@
     </div>
     <div class="col-sm">
       <h4>Vesti</h4>
+    <?php
+     // var_dump($vestiGrupe);
+        foreach($vestiGrupe as $v){
+            $idVes = $v['idVes'];
+            ?>
+      <div class="postdesno">
+        <b>Naslov: </b><?php echo $v['naziv'] ?></b><br/>
+        <b>Tekst: </b><?php echo $v['tekst'] ?><br/>
+        <b>Autor: </b><?php echo $v['korisnicko'] ?><br/>
+        <b>Datum postavljanja: </b><?php echo $v['datum'] ?><br/>
+       
+        </div>
+        
+      <?php }
+    
+    ?>
         
         
         
@@ -57,6 +73,22 @@
      <div class="col-sm">
       <h4>Obaveštenja</h4>
         
+      <?php 
+     // var_dump($obavestenjaGrupe);
+      foreach($obavestenjaGrupe as $ob){
+          
+          $idOba = $ob['idOba'];
+          ?>
+       <div class="postdesno">
+        <b>Naslov: </b><?php echo $ob['naslov'] ?></b><br/>
+        <b>Tekst: </b><?php echo $ob['tekst'] ?><br/>
+        <b>Autor: </b><?php echo $ob['korisnicko'] ?><br/>
+        <b>Datum postavljanja: </b><?php echo $ob['datum'] ?><br/>
+       
+        </div>
+       <?php   
+      }
+      ?>
         
     </div>
   </div>

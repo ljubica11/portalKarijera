@@ -18,5 +18,17 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->insert('obavestenja', $podaci);    //u tabelu obavestenja unosimo podatke koje smo uneli po ovim kriterijumima
         
     }
+    
+     public function dohvatiObavestenjaGrupe($idGru){
+        
+        $this->db->select('obavestenja.*, korisnik.korisnicko')
+                 ->from('obavestenja')
+                 ->join('korisnik', 'obavestenja.autor = korisnik.idKor')
+                 ->join('sadrziobavestenje', 'sadrziobavestenje.idObav = obavestenja.idOba')
+                 ->where('sadrziobavestenje.idGrupe', $idGru);
+        $query = $this->db->get();
+        return $query->result_array();
+        
+     }
 }
 

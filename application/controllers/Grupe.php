@@ -17,7 +17,7 @@ class Grupe extends CI_Controller {
         $this->load->model('GrupeModel');
         $this->load->model('SifrarniciModel');
         $this->load->model('DiskusijeModel');
-        $this->load->model('OglasiModel');
+        
     }
 
     public function index() {
@@ -247,13 +247,18 @@ class Grupe extends CI_Controller {
      */
     public function grupa($idGru){
         
-        
+        $this->load->model('OglasiModel');
+        $this->load->model('VestiModel');
+        $this->load->model('ObavModel');
         $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
         $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru);
         $oglasiGrupe = $this->OglasiModel->dohvatiOglaseGrupe($idGru);
+        $vestiGrupe = $this->VestiModel->dohvatiVestiGrupe($idGru);
+        $obavestenjaGrupe = $this->ObavModel->dohvatiObavestenjaGrupe($idGru);
         $data['middle'] = 'grupe/grupa';
         $data['middle_data'] = ['clanovi' => $clanovi, 'diskusijeGrupe' => $diskusijeGrupe,
-                                'oglasiGrupe' => $oglasiGrupe];
+                                'oglasiGrupe' => $oglasiGrupe, 'vestiGrupe' => $vestiGrupe,
+                                'obavestenjaGrupe' => $obavestenjaGrupe];
         $this->load->view('viewTemplate', $data);
     }
 

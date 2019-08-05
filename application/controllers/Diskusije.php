@@ -40,7 +40,7 @@ class Diskusije extends CI_Controller {
         $data["middle_data"] = ["diskusija" => $diskusija];
         $data["middle"] = "diskusije/diskusija";
         $this->load->view('viewTemplate', $data);
-      //  $this->load->view("diskusije/disk", ["diskusija" => $diskusija]);
+      
         
     }
     

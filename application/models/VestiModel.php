@@ -24,6 +24,32 @@ class VestiModel extends CI_Model {
         
     }
     
+    /**
+     * metoda kojom dohvatamo sve vesti u okviru kreirane grupe korisnika
+     * @param type $idGru
+     * @return type
+     */
+     public function dohvatiVestiGrupe($idGru){
+        
+        $this->db->select('vesti.*, korisnik.korisnicko')
+                 ->from('vesti')
+                 ->join('korisnik', 'vesti.autor = korisnik.idKor')
+                 ->join('sadrzivesti', 'sadrzivesti.idVest = vesti.idVes')
+                 ->where('sadrzivesti.idGrupa', $idGru);
+        $query = $this->db->get();
+        return $query->result_array();
+        
+     }
+     public function dohvatiJednuVest($idVes){
+        
+        $this->db->select('vesti.*, korisnik.korisnicko as korisnik')
+                ->from('vesti')
+                ->join('korisnik', 'korisnik.idKor = vesti.autor')
+                ->where('vesti.idVes', $idVes);
+        $query = $this->db->get();
+        return $query -> result_array();
+    }
+        
     public function dodajVest($idKor, $kategorija, $naziv, $tekst) {
         
         $this->db->set('autor', $idKor);

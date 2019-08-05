@@ -46,6 +46,25 @@
                 xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiPostove') ?>?id=" + id, true);
                 xmlhttp.send();
             }
+            
+             function dodajpost(id) {
+
+                var tekst = document.getElementById('novipost').value;
+                var idDis = id;
+
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        //document.getElementById("novipost").value ="";
+                        document.getElementById("postovi").innerHTML = this.responseText;
+                    }
+                };
+
+                xhttp.open("POST", "<?php echo site_url('Diskusije/dodajPost'); ?>", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("idDis=" + idDis + "&tekst=" + tekst);
+            }
 
 
             function dodajdiv(id) {
