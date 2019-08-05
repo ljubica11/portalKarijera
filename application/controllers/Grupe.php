@@ -255,10 +255,11 @@ class Grupe extends CI_Controller {
         $oglasiGrupe = $this->OglasiModel->dohvatiOglaseGrupe($idGru);
         $vestiGrupe = $this->VestiModel->dohvatiVestiGrupe($idGru);
         $obavestenjaGrupe = $this->ObavModel->dohvatiObavestenjaGrupe($idGru);
+        $kategorije = $this->DiskusijeModel->dohvatiKategorije();
         $data['middle'] = 'grupe/grupa';
         $data['middle_data'] = ['clanovi' => $clanovi, 'diskusijeGrupe' => $diskusijeGrupe,
                                 'oglasiGrupe' => $oglasiGrupe, 'vestiGrupe' => $vestiGrupe,
-                                'obavestenjaGrupe' => $obavestenjaGrupe];
+                                'obavestenjaGrupe' => $obavestenjaGrupe, 'kategorije' => $kategorije];
         $this->load->view('viewTemplate', $data);
     }
 
