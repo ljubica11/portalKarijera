@@ -79,7 +79,17 @@ class UserModel extends CI_Model{
     }
     
     public function podaciZaKompaniju($id){
-        echo "cao";
+        $this->db->select('kompanija.naziv as naziv, pib, telefoni, opis, oblastDelovanja, brojZap, sajt, sifgradovi.naziv as sediste');
+        $this->db->from('kompanija');
+        $this->db->join('sifgradovi', 'kompanija.sediste = sifgradovi.idGra');
+        $this->db->where('idKor', $id);
+        $query=$this->db->get();
+        return $query->result_array ();
+    }
+      
+    public function imaObavestenja($id){
+        $query = $this->db->get_where('obavestenja', array('autor' => $id));
+        return $query->result_array ();
     }
     
 }

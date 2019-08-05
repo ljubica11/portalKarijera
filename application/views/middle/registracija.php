@@ -6,14 +6,9 @@
   <button class="tablinks" onclick="openReg(event, 'Student')" id="defaultOpen">Student</button>
   <button class="tablinks" onclick="openReg(event, 'Kompanija')">Kompanija</button>
 </div>   
-
-
-    <?php echo form_error(); ?>
-    <?php echo $err ?? '' ?>
-
     <div id="Student" class="tabcontent overflow-auto">
         <h4>Povezite se sa drugim studentima i inovativnim kompanijama</h4>
-       <form name="regStu" method="POST" action="<?php echo site_url('Registracija/regStu') ?>" >
+       <form name="regStu" id="regStuForm" method="POST" action="<?php echo site_url('Registracija/regStu') ?>">
                        
         <input name="korisnicko" type="text" value="<?php echo set_value('korisnicko') ?>" placeholder="Korisnicko ime"><?php echo form_error('korisnicko') ?> <br/>
         <input name="ime" type="text" value="<?php echo set_value('ime') ?>" placeholder="Ime"><?php echo form_error('ime') ?> <br/>
@@ -45,29 +40,36 @@
         </select><br/> <?php echo form_error('drzavljanstvo');?>
         <input name="telefon" type="text" value="<?php echo set_value('telefon') ?>" placeholder="broj telefona"><?php echo form_error('telefon') ?> <br/>
         <input name="adresa" type="text" value="<?php echo set_value('adresa') ?>" placeholder="Adresa"><?php echo form_error('adresa') ?> <br/>
-        <select name="mesto"> 
+        <div id="selectmesto">
+        <select name="mesto" onchange="dodajInput('mesto')" id="listamesto"> 
             <option disabled selected value="">Mesto</option>
-            <?php 
+              <?php 
             foreach ($mesta as $mesto){
                 $naziv = $mesto["naziv"];
                 $idG = $mesto["idGra"];
                 echo "<option value='$idG'>$naziv</option>";
             }
             ?>
-        </select><br/><?php echo form_error('mesto');?>
+           <option class="dodaj" value="dodaj">Dodaj novo mesto</option>
+           </select>
+        </div>
+        <div id="mesto">
+        </div> 
+        <?php echo form_error('mesto');?>
         <input name="pin" type="text" value="<?php echo set_value('pin') ?>"  placeholder="PIN"><?php echo form_error('pin') ?> <br/>
-        <select name="status">
-            <option disabled selected value="">Trenutki status</option>
+        <select name="status" id="st" onchange="formaZaStudije()">
+            <option disabled selected value="">Trenutni status</option>
             <option value="student">Student</option>
             <option value="nezaposleni">Nezaposleni</option>
             <option value="zaposleni">Zaposleni</option>   
         </select><br/><?php echo form_error('status');?>
+        <div id="res">
+        </div>
         <input name="lozinka" type="password"  placeholder="Lozinka"><?php echo form_error('lozinka') ?> <br/>
         <input name="ponLozinka" type="password"  placeholder="Ponovi lozinku"><?php echo form_error('ponLozinka') ?> <br/>
         <input type="email" name="email"  placeholder="E-mail" value="<?php echo set_value('email') ?>"><?php echo form_error('email') ?> <br/>
         <input type="date" name="datum"  placeholder="datum rodjenja" value="<?php echo set_value('datum') ?>"> <?php echo form_error('datum') ?>  <br/>
-        <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">
-                           
+        <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">  
         </form>
     </div>
     <div id="Kompanija" class="tabcontent overflow-auto">
@@ -112,26 +114,66 @@
    </div>
 </div>
 <script>
- function openReg(evt, regName) {
-  
- var i, tabcontent, tablinks;
+    function openReg(evt, regName) {
 
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
+    var i, tabcontent, tablinks;
 
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
+     tabcontent = document.getElementsByClassName("tabcontent");
+     for (i = 0; i < tabcontent.length; i++) {
+       tabcontent[i].style.display = "none";
+     }
 
-  document.getElementById(regName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
+     tablinks = document.getElementsByClassName("tablinks");
+     for (i = 0; i < tablinks.length; i++) {
+       tablinks[i].className = tablinks[i].className.replace(" active", "");
+     }
 
-document.getElementById("defaultOpen").click();
-    
+     document.getElementById(regName).style.display = "block";
+     evt.currentTarget.className += " active";
+   }
+
+   document.getElementById("defaultOpen").click();
+
+   function formaZaStudije(){
+       var st = document.getElementById("st");
+       var status = st.options[st.selectedIndex].value;
+       if(status === "student"){
+             xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                       document.getElementById("res").innerHTML = this.responseText; 
+                   }
+               };
+               xmlhttp.open("GET", "<?php echo site_url('Registracija/podaciStudije')?>", true);
+               xmlhttp.send(); 
+       }else{
+           document.getElementById("res").innerHTML = "";
+       }  
+   }
+   
+       function dodajInput(inputDiv){
+       var selectLista = document.getElementById("lista"+inputDiv);
+       var odabranaOpcija = selectLista.options[selectLista.selectedIndex].value;
+             if(odabranaOpcija == "dodaj"){
+           document.getElementById(inputDiv).innerHTML = "<div class='addInput'><input type='text' id='dodatakZaSifrarnik' placeholder='Dodaj novo'><input type='button' class='btn btn-sm' value='Dodaj' onclick=\"dodajUSifrarnik(\'" + inputDiv + "\')\"></div>";
+       }  else{
+           document.getElementById(inputDiv).innerHTML="";
+       }
+   }
+   
+   function dodajUSifrarnik(tip){
+       var dodatakZaSifrarnik = document.getElementById("dodatakZaSifrarnik").value;
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById(tip).innerHTML ="";
+                    document.getElementById("select"+tip).innerHTML=this.responseText;
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Registracija/izmeniSifrarnik'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("dodatak="+dodatakZaSifrarnik+"&tip="+tip);
+   }
 </script>
     
 </body>

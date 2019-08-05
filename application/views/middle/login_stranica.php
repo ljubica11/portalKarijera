@@ -1,6 +1,5 @@
-<<<<<<< Updated upstream
+
 <!DOCTYPE html>
-=======
 <html>
     <head>
         <meta charset="UTF-8">
@@ -88,10 +87,13 @@
             <div class="row">
                 <div class="main slide-right col-sm-12">
                     <p>VESTI:</p>
+
+                    
                 </div>
             </div>
         </div>
         <script>
+
             var title = ['<p>DISKUSIJE:</p>','<p>OGLASI:</p>'];
             var index = 0;
 
@@ -122,19 +124,37 @@
             to_left();
             to_right();
         </script>
->>>>>>> Stashed changes
+            var title = ['<p>Kada zavrsimo vesti diskusije i oglase.</p>','<p>Ovde ce se ispisivati i menjati poruke</p>','<p>Za sad je ovo samo proba.</p>'];
+            var index = 0;
 
-        <form name="loginForma" method="POST" action="<?php echo site_url('Login/logovanje')?>">
-            Username: <input type="text" name="username">
-            <br/>
-            Password: <input type="password" name="pass">
-            <br/>
-            <input type="submit" name="log" value="Login">
-        </form>  
-        
-        <a href="<?php echo site_url('Registracija')?>">Registracija</a>
-        <?php
-        // put your code here
-        ?>
+            function change_title() {
+                var x = title[index];
+                $('.main').html(x);
+                index++;
+                if (index >= title.length) { index = 0; }
+            };
+
+            function change_left() {
+                $('div').removeClass('slide-right').addClass('slide-left');
+            }
+
+            function change_right() {
+                $('div').removeClass('slide-left').addClass('slide-right');
+                change_title();
+            }
+
+            function to_left() {
+            setInterval(change_left, 10000);
+            };
+
+            function to_right() {
+                setInterval(change_right, 20000);
+            };
+
+            to_left();
+            to_right();
+        </script>
+
     </body>
-
+</html>
+   

@@ -2,22 +2,7 @@
 
 class RegistrationModel extends CI_Model{
     
-    public function dohvatiKurs(){
-        $query = $this->db->get('sifkurs');
-        return $query->result_array();
-    }
-    
-    public function dohvatiDrz(){
-        $query = $this->db->get('sifdrzavljanstvo');
-        return $query->result_array();
-    }
-    
-    public function dohvatiMesto(){
-        $query = $this->db->get('sifgradovi');
-        return $query->result_array();
-    }
-
-        public function dodajKorisnika($korisnicko, $lozinka, $email, $tip){
+    public function dodajKorisnika($korisnicko, $lozinka, $email, $tip){
         $data = [
             "korisnicko" => $korisnicko,
             "lozinka" => $lozinka,
@@ -68,9 +53,62 @@ class RegistrationModel extends CI_Model{
             "oblastDelovanja" => $oblast,
             "brojZap" => $brojzap,
             "sajt" => $sajt,
-            "idKor" => $idKor,  
+            "idKor" => $idKor  
         ];
         
         $this->db->insert("kompanija", $data);
     }
+    
+    public function dodajInteresovanjaZaKorisnika($idKor, $jednoInteresovanje){
+       
+        $data = ["idKor" => $idKor, "idInt" => $jednoInteresovanje];
+        $this->db->insert("imainteresovanja", $data);
+    }
+    
+    
+    public function dodajVestineZaKorisnika($idKor, $jednaVestina){
+        $data = ["idKor" => $idKor, "idVes" => $jednaVestina];
+        $this->db->insert("imavestine", $data); 
+    }
+    
+    public function dodajStudije($idKor, $univerzitet, $fakultet, $sedisteFak, $nivo, $godinaStu){
+        $data = [
+            "idKor" => $idKor,
+            "univerzitet" => $univerzitet,
+            "sediste" => $sedisteFak,
+            "nivo" => $nivo,
+            "godinaStudija" => $godinaStu,
+            "idFak" => $fakultet   
+        ];
+        
+        $this->db->insert("studije", $data);
+    }
+    
+    public function dodajDiplomuZaKorisnika($idKor, $idFak, $odsek, $zvanje, $nivo, $godUpisa, $godZavrsetka){
+        $data= [
+            "idKor" => $idKor,
+            "odsek" => $odsek,
+            "nivo" => $nivo,
+            "godinaUpisa" => $godUpisa,
+            "godinaZavrsetka" => $godZavrsetka,
+            "zvanje" => $zvanje,
+            "idFak" => $idFak    
+        ];
+        
+        $this->db->insert("diploma", $data);
+    }
+    
+    public function dodajIskustvoZaKorisnika($idKor, $kompanija, $mesto, $pozicija, $od, $do){
+        $data =[
+            "idKor" => $idKor,
+            "kompanija" => $kompanija,
+            "mesto" => $mesto,
+            "pozicija" => $pozicija,
+            "od" => $od,
+            "do" => $do   
+        ];
+        
+        $this->db->insert("zaposlenje", $data);
+    }
+
 }
