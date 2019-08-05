@@ -44,6 +44,7 @@ class User extends CI_Controller{
           redirect("Login");
       }
       
+
       public function novaSlika(){
           
           $idKor= $this->session->userdata('user')['idKor'];

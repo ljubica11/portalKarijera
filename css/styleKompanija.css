@@ -10,7 +10,7 @@
   padding-left:35%;
   padding-top: 10px;
   background-color: #4169E1;
-  z-index:999;
+  z-index: 999;
 }
 
 .kfooter a{
@@ -52,6 +52,15 @@
 
 .container-fluid{
     margin-bottom:50px;
+}
+
+
+#formaDiv{
+    display: none;
+}
+
+#formaDivKat{
+    display: none;
 }
 
 
@@ -177,4 +186,4 @@ input[type="number"] {
     margin: 20px 0;
     padding: 0 30px 30px 40px;
     }
-    
+

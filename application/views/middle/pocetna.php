@@ -6,9 +6,9 @@ and open the template in the editor.
 -->
 
         
-      <div class="container-fluid">
-          <div class="row">
-            <div class="col-3 levo">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 levo">
                 <?php 
                 
                 $idKor = $this->session->userdata('user')['idKor'];
@@ -80,6 +80,7 @@ and open the template in the editor.
                     echo "Sajt: <a href='http://".$podaciKompanija[0]['sajt']."'>".$podaciKompanija[0]['sajt']."</a>";
                 }
                 ?>
+
             </div>
             <div class="col-6">
                 <?php if($this->session->flashdata('brisanje')){?>
@@ -200,16 +201,18 @@ and open the template in the editor.
                                         }
                     ?>
                 </div>
-
+            <div>
                 <?php
                     }
                     ?>
                 
             
             </div>
+              
+            </div>
               <div class="col-3">
-                   <a class="btn" href="<?php echo site_url("User/logout")?>">Logout</a>
+                   <a class="btn" href="<?php echo site_url("User/logout")?>">Logout</a> 
               </div>
-          </div>
+            </div>  
         </div> 
 

@@ -48,8 +48,26 @@
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
 }
-.container-fluid{
-    margin-bottom:50px;
+
+
+.postdesno{
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+}
+
+
+#formaDivKat{
+    display: none;
+}
+
+.container-fluid {
+    margin-bottom: 50px;
+}
+
+#formaDiv{
+    display: none;
 }
 
 .btn-search-job{
@@ -86,4 +104,5 @@
     margin: 20px;
     padding: 0 30px 30px 40px;
     }
+
 
