@@ -69,6 +69,15 @@
 #formaDiv{
     display: none;
 }
+#formaDivV{
+    display: none;
+}
+
+#formaDivO{
+    display: none;
+}
+
+
 
 .btn-search-job{
     margin-top: 20px;
