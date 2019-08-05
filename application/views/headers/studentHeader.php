@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
     <head>
@@ -22,9 +22,10 @@
               <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url("Vesti/index") ?>">Vesti</a>
+
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Obaveštenja</a>
+                  <a class="nav-link" href="<?php echo site_url("Obavestenja/index");?>">Obaveštenja</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url("Diskusije/index")?>">Diskusije</a>

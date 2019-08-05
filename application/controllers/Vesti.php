@@ -25,7 +25,7 @@ class Vesti extends CI_Controller {
      $idKatVesti = $this->input->get('id');   
      $vesti = $this->VestiModel->dohvatiVesti($idKatVesti);
      $this->load->view("vesti/prikazVesti", ["vesti" => $vesti]);
-          
+           
     }
     
     public function dodajVest() {
