@@ -60,5 +60,15 @@ class VestiModel extends CI_Model {
         $this->db->insert('vesti');
         
     }
+
+}
+
+    
+     public function dodajVestGrupe($idVes, $idGru){
+        
+        $this->db->set('idVest', $idVes);
+        $this->db->set('idGrupa', $idGru);
+        $this->db->insert('sadrzivesti');
+    }
 }
 

@@ -10,7 +10,7 @@
     // }
     $idGru = $this->uri->segment(3);
     ?>
-    <div class="container" style="margin-bottom: 50px">
+    <div class="container" style="margin-bottom: 90px">
         <div class="row">
             <div class="col-sm">
                 <h4>Diskusije</h4>
@@ -25,7 +25,7 @@
                         <b>Opis: </b><?php echo $d['opis'] ?><br/>
                         <b>Autor: </b><?php echo $d['korisnicko'] ?><br/>
                         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
-                        <a href="<?php echo site_url("Diskusije/jednaDiskusija/$idDis") ?>">Pogledaj diskusiju</a>
+                        <a href="<?php echo site_url("Diskusije/jednaDiskusija/$idDis") ?>" target="_blank">Pogledaj diskusiju</a>
                     </div>
 <?php } ?>
                 <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'></div>
@@ -99,9 +99,37 @@ foreach ($vestiGrupe as $v) {
 
 <?php }
 ?>
+           <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormuV()" value='Postavi vest'></div>
+
+                <div class="centar" id="formaDivV">
+<form name="dodajVest" method="POST" action="<?php echo site_url("Vesti/dodajVestGrupe") ?>">
+                        <table>
+                            <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
+                            <tr><td><b>Naslov: </b></td><td><input type="text" name="naslov"></td></tr>
+                            <tr><td><b>Tekst: </b></td><td><input type="text" name="tekst" ></td></tr>
+                            <tr><td><b>Kategorija: </td><td></b>
+                    <select name="kategorija">
+                        <option disabled selected value="">Izaberi kategoriju</option>
+                        <?php
+                        foreach ($katVesti as $k) {
+
+                            $idKat = $k['idKatVesti'];
+                            $nazivKat = $k['naziv'];
+                            echo "<option value='$idKat'>$nazivKat</option>";
+                        }
+                        ?></select></td></tr>
+
+                            
+                            
+                            
+                            
+                            <input type="hidden" name="idGru" value="<?php echo $idGru ?>"
+                            <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
+                        </table>
+                    </form>
 
 
-
+                    </div>
             </div>
             <div class="col-sm">
                 <h4>Obaveštenja</h4>
@@ -133,6 +161,11 @@ foreach ($obavestenjaGrupe as $ob) {
     function prikaziFormu() {
 
         document.getElementById("formaDiv").style.display = "block";
+
+    }
+     function prikaziFormuV() {
+
+        document.getElementById("formaDivV").style.display = "block";
 
     }
 </script>

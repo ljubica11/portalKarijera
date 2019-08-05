@@ -187,3 +187,14 @@ input[type="number"] {
     padding: 0 30px 30px 40px;
     }
 
+#formaDiv{
+    display: none;
+}
+#formaDivV{
+    display: none;
+}
+#formaDivO{
+    display: none;
+}
+
+

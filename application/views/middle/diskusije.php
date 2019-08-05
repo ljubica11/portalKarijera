@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-        <div class="container-fluid" style="margin-bottom: 50px">
+        <div class="container-fluid" style="margin-bottom: 90px">
             <div class="row">
                 <div class="col-3 levo">
                     <b>Kategorije: </b>
