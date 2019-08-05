@@ -153,13 +153,13 @@ class DiskusijeModel extends CI_Model {
     
     /**
      * metoda za kreiranje diskusije u okviru odredjene grupe
-     * @param type $idDisk
-     * @param type $idGrupe
+     * @param type $idDis
+     * @param type $idGru
      */
-    public function dodajDiskusijuGrupe($idDisk, $idGrupe){
+    public function dodajDiskusijuGrupe($idDis, $idGru){
         
-        $this->db->set('idDisk', $idDisk);
-        $this->db->set('idGrupe', $idGrupe);
+        $this->db->set('idDisk', $idDis);
+        $this->db->set('idGrupe', $idGru);
         $this->db->insert('sadrzidiskusije');
     }
     
