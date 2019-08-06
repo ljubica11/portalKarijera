@@ -4,30 +4,6 @@
 
 <div id="parametri"> 
 
-    <?php
-    /*
-    foreach ($grupe as $g) {
-        echo $g['idGru'];
-        $idGru = $g['idGru'];
-    }
-   
-    foreach($prebivaliste as $p){
-        echo $p['idGra'];
-    }
-    
-    foreach($kurs as $k){
-        echo $k['idKurs'];
-    }
-    foreach ($interesovanja as $inter){
-        echo $inter['idInt'].' ';
-        
-    }
-    foreach ($vestine as $v){
-        echo $v['idVes'];
-    }
-    */
-    
-    ?>
     <h5>Izaberi parametre</h5>
 
    
