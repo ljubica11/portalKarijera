@@ -9,6 +9,7 @@
                 <select name="grad" class="form-control" id="grad">
                     <option disabled selected value="">Odaberite grad</option>
                     <?php
+                    $tip = $this->session->userdata('user')['tip'];
                        foreach ($mesta as $mesto){
                                         $naziv = $mesto["naziv"];
                                         $idG = $mesto["idGra"];
@@ -17,5 +18,5 @@
                     ?>
                     
                 </select>
-                <input type="button" name="pretrazi" value="Pretrazi" class="btn btn-lg btn-primary btn-search-job" onclick="pretraziOglase()">
+                <input type="button" name="pretrazi" value="Pretrazi" class="btn btn-lg btn-primary btn-search-job" onclick="pretraziOglase(<?php echo "'".$tip."'"?>)">
             </form> 
