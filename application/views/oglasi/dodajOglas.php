@@ -37,13 +37,21 @@
                                 $idKor = $this->session->userdata('user')['idKor'];
                                 if(is_dir('./userImg/'.$idKor)== false or 
                                        empty(array_diff(scandir('./userImg/'.$idKor), array('.', '..')))){?>
-                                <h5>Logo vase kompanije</h5>
+                                <h5>Logo vase kompanije *</h5>
                                 <input type="file" name="logo" id="fileToUpload">
                                        <?php } ?>
                                 <br/>
                             <h5>Opis posla *</h5>
                                 Unesite opis posla, kompanije, radne etike, atmosfere i ostalih stvari koje bi mogle da zainteresuju najbolje kandidate za vas posao. 
-                                <textarea class="form-control opis" maxlength="400" name="opis" required></textarea>
+                                <textarea class="form-control opis" name="opis" required></textarea>
+                            <h5>Ko moze da vidi vas oglas? *</h5>
+                                Odaberite nivo vidljivosti oglasa. <br/>
+                                <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta (ukljucujuci i druge kompanije)<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
+                                <div id="kurs"></div>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)">Formirana grupa studenata<br>
+                                <div id="grupa"></div>
                             <h5>Ponudjena platan u dinarima (opciono) </h5>
                             <div class="input-group plata-input">
                                 <div class="input-group-prepend">
@@ -62,7 +70,7 @@
                                 </select>
                               </div>
                             <br/>
-                            *Napomena: Napredna polja nisu obavezna, ali vam preporucujemo da ih popunite zbog brzeg i lakseg pronalazenja idealnih kandidata.
+                            *Napomena: Naredna polja nisu obavezna, ali vam preporucujemo da ih popunite zbog brzeg i lakseg pronalazenja idealnih kandidata.
                             <h5>Obaveze i odgovornosti kandidata</h5>
                                 Unesite po stavkama sta tacno podrazumeva ova pozicija. Trudite se da sto konkretnije opisete radne zadatke koje ce kandidat obavljati na ovoj poziciji.<br/>
                                 <input type="text" name="obaveze[]"class="form-control obaveze" placeholder="Primer: Obrada podataka i priprema izvestaja..."><br/>
@@ -91,7 +99,7 @@
                       </div>  
                                         
                     <div class="modal-footer">
-                        <h3>Footer</h3>
+                        <h5>Portal "Karijera"</h5>
                     </div>
                   </div>
                 </div>

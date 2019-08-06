@@ -28,22 +28,41 @@
 
 <script>
    
-   function pretraziOglase(){
+   function ispisiOpcije(value){
+        xmlhttp=new XMLHttpRequest();
+             xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                       document.getElementById(value).innerHTML = this.responseText; 
+                       if(value == "kurs"){
+                           document.getElementById("grupa").innerHTML ="";
+                       }else if(value == "grupa"){
+                           document.getElementById("kurs").innerHTML ="";
+                       }
+                   }
+               };
+            xmlhttp.open("POST", "<?php echo site_url('Oglasi/dohvatiOpcije'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("tip="+value);
+   }
+    
+    function pretraziOglase(tip){
        var rec = document.getElementById("pretragaPoslova").value;
        var selectLista = document.getElementById("grad");
        var grad = selectLista.options[selectLista.selectedIndex].value;
        xmlhttp=new XMLHttpRequest();
              xmlhttp.onreadystatechange=function(){
-                   if(this.readyState==4&&this.status==200){
+                   if(this.readyState==4&&this.status==200){ 
                        document.getElementById("oglasi").innerHTML = this.responseText; 
+                       document.getElementById("pretragaPoslova").value = "";
                    }
                };
             xmlhttp.open("POST", "<?php echo site_url('Oglasi/pretragaOglasa'); ?>", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("pretraga="+rec+"&grad="+grad);
+            xmlhttp.send("pretraga="+rec+"&grad="+grad+"&tip="+tip);
    }
    
     function mojiOglasi(idKor){ 
+    
         var dugme = document.getElementById("mojiOglasi");
              xmlhttp=new XMLHttpRequest();
              xmlhttp.onreadystatechange=function(){
