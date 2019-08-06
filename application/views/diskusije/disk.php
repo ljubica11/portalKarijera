@@ -49,6 +49,17 @@ if (isset($diskusije)) {
                             echo "<option value='$idKat'>$nazivKat</option>";
                         }
                         ?></select></td></tr>
+            <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
+        <tr><td></td><td>
+        
+                                <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta (ukljucujuci i druge kompanije)<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
+                                <div id="kurs"></div>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)">Formirana grupa studenata<br>
+                                <div id="grupa"></div>
+            </td>
+     
 
             <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
         </table>
