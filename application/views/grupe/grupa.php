@@ -67,6 +67,9 @@ $ulogovani = $this->session->userdata('user')['korisnicko'];
                 <h4>Oglasi</h4>
 <?php
 //   var_dump($oglasiGrupe);
+if($oglasiGrupe == null){
+    echo "<div class='postdesno'>Trenutno nema oglasa</div>";
+} else {
 foreach ($oglasiGrupe as $o) {
     $idOgl = $o['idOgl'];
     ?>
@@ -78,7 +81,7 @@ foreach ($oglasiGrupe as $o) {
                         <a href="<?php echo site_url("Oglasi/pogledajOglas/$idOgl") ?>">Pogledaj oglas</a>
                     </div>
 
-<?php } ?>
+<?php } } ?>
 
 
             </div>
