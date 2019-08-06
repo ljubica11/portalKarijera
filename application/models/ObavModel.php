@@ -18,7 +18,13 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->insert('obavestenja', $podaci);    //u tabelu obavestenja unosimo podatke koje smo uneli po ovim kriterijumima
         
     }
+   
     
+    /**
+     *  metoda za dohvatanje obavestenja u okviru konkretne grupe
+     * @param type $idGru
+     * @return type array;
+     */
      public function dohvatiObavestenjaGrupe($idGru){
         
         $this->db->select('obavestenja.*, korisnik.korisnicko')
@@ -30,5 +36,18 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         return $query->result_array();
         
      }
+     
+     /**
+      * metoda za dodavanje obavestenja u okviru odredjene grupe korisnika
+      * @param type $idOba
+      * @param type $idGru
+      */
+     
+     public function dodajObavestenjaGrupe($idOba, $idGru){
+        
+        $this->db->set('idObav', $idOba);
+        $this->db->set('idGrupe', $idGru);
+        $this->db->insert('sadrziobavestenje');
+    }
 }
 

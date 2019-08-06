@@ -28,8 +28,7 @@ class Vesti extends CI_Controller {
            
     }
     
-    
-    
+   
     public function dodajVest() {
         
         $kategorija = $this->input->post('kategorija');
@@ -38,6 +37,9 @@ class Vesti extends CI_Controller {
         $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naziv, $tekst);
         $this->index();
     }   
+    /**
+     * metoda za dodavanje vesti u okviru odredjene gurpe
+     */
     
      public function dodajVestGrupe(){
         

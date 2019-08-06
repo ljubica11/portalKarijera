@@ -150,6 +150,22 @@ foreach ($obavestenjaGrupe as $ob) {
     <?php
 }
 ?>
+                <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormuO()" value='Postavi obaveštenje'></div>
+                
+                 <div class="centar" id="formaDivO">
+<form name="dodajObavestenja" method="POST" action="<?php echo site_url("Obavestenja/dodajObavestenjaGrupe") ?>">
+                        <table>
+                            <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
+                            <tr><td><b>Naslov: </b></td><td><input type="text" name="naslov"></td></tr>
+                            <tr><td><b>Tekst: </b></td><td><input type="text" name="tekst" ></td></tr>
+                          
+                            <input type="hidden" name="idGru" value="<?php echo $idGru ?>"
+                            <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
+                        </table>
+                    </form>
+
+
+                    </div>
 
             </div>
         </div>
@@ -158,14 +174,23 @@ foreach ($obavestenjaGrupe as $ob) {
 </html>
 
 <script>
+    
+    
     function prikaziFormu() {
 
         document.getElementById("formaDiv").style.display = "block";
 
     }
+    
      function prikaziFormuV() {
 
         document.getElementById("formaDivV").style.display = "block";
+
+    }
+    
+    function prikaziFormuO() {
+
+        document.getElementById("formaDivO").style.display = "block";
 
     }
 </script>
