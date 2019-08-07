@@ -21,18 +21,23 @@ class Diskusije extends CI_Controller {
     public function index(){
         
         $tipKorisnika = $this->session->userdata('user')['tip'];
+        $idKat = $this->input->get('id');
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
-        $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
+        $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika)];
+        $sveDiskusije = ['sveDiskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
         $data['middle_data'] = ['kategorije' => $kategorije, 
-                               $this->load->view("diskusije/disk", $diskusije, true)];
+                               $this->load->view("diskusije/disk", $diskusije, true),
+                               $this->load->view("diskusije/disk", $sveDiskusije, true)];
         $data['middle'] = 'middle/diskusije';
         $this->load->view('viewTemplate', $data);      
     }
    
     
-    public function ispisiDiskusije(){
+   public function ispisiDiskusije(){
+    
      $idKat = $this->input->get('id');
-     $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat);
+     $tipKorisnika = $this->session->userdata('user')['tip'];
+     $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika);
      $this->load->view("diskusije/disk", ["diskusije" => $diskusije]);
         
     }
