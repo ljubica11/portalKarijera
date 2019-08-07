@@ -29,7 +29,8 @@ class Login extends CI_Controller{
             $users= $this->UserModel->login($username, $pass);
             
             if(count($users)==0){
-                echo "Nekorektni podaci!";
+               echo 'Pogresno korisnicko ime ili lozinka';
+               echo '<br><a href="#">Zaboravili ste lozinku??</a>';
             }else{
                 $user = $users[0];
                 $this->session->set_userdata('user', $user);
@@ -37,8 +38,18 @@ class Login extends CI_Controller{
             }
         
     }
-    public function uslovi(){
-        $this->load->view('uslovi_koriscenja');
+    public function usloviKoriscenja(){
+        $this->load->view('middle/usloviKoriscenja');
+    }
+
+    public function oNama(){
+        $this->load->view('middle/oNama');
     }
     
+    public function najnovijaVest(){
+        $idVes = $this->input->get('idVes');   
+        $vest = $this->GuestModel->najnovijaVest($idVes);
+        $this->load->view("middle/login_stranica",  $vest);
+    }
 }
+
