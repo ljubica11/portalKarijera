@@ -41,7 +41,7 @@ class DiskusijeModel extends CI_Model {
                 ->from('clanovigrupe')
                 ->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
-
+        
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik')
                 ->from('diskusija')
                 ->join('korisnik', 'korisnik.idKor = diskusija.autor')
@@ -89,17 +89,46 @@ class DiskusijeModel extends CI_Model {
     }
 
     /**
-     * metoda za dohvatanje diskusija u okviru odredjene grupe
+     * metoda za dohvatanje diskusija u okviru odredjene grupe sa razlicitim
+     * pravima pristupa u zavisnosti od tipa korisnika
      * @param type $idGru
      * @return type
      */
-    public function dohvatiDiskusijeGrupe($idGru) {
+    public function dohvatiDiskusijeGrupe($idGru, $tipKorisnika) {
+        
+        $idKor = $this->session->userdata('user')['idKor'];
 
+        $this->db->select('idKurs')
+                ->from('student')
+                ->where('idKor', $idKor);
+        $whereKurs = $this->db->get_compiled_select();
+        
+        $this->db->select('idGru')
+                ->from('clanovigrupe')
+                ->where('idKor', $idKor);
+        $whereGrupa = $this->db->get_compiled_select();
+        
         $this->db->select('diskusija.*, korisnik.korisnicko');
         $this->db->from('diskusija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sadrzidiskusije', 'sadrzidiskusije.idDisk = diskusija.idDis');
         $this->db->where('sadrzidiskusije.idGrupe', $idGru);
+        $this->db->where('vidljivost', 'korisnici');
+        
+        if ($tipKorisnika == 's') {
+            $this->db->or_where('vidljivost', 'studenti')
+                    ->or_group_start()
+                    ->where('vidljivost', 'kurs')
+                    ->where("vidljivostKurs in ($whereKurs)", null, false)
+                    ->group_end();
+            $this->db->or_group_start()
+                    ->where('vidljivost', 'grupa')
+                    ->where("vidljivostGrupa in ($whereGrupa)", null, false)
+                    ->group_end();
+        }
+        
+        
+        
         $query = $this->db->get();
         return $query->result_array();
     }

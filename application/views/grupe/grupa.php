@@ -45,6 +45,16 @@
                                             echo "<option value='$idKat'>$nazivKat</option>";
                                         }
                                         ?></select></td></tr>
+                             <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
+        <tr><td></td><td>
+        
+                                <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
+                                <div id="kurs"></div>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)">Formirana grupa studenata<br>
+                                <div id="grupa"></div>
+            </td></tr>
                             
                             <input type="hidden" name="idGru" value="<?php echo $idGru ?>"
                                    <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
@@ -164,6 +174,24 @@
 </html>
 
 <script>
+    
+     function ispisiOpcije(value){
+        xmlhttp=new XMLHttpRequest();
+             xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                       document.getElementById(value).innerHTML = this.responseText; 
+                       if(value == "kurs"){
+                           document.getElementById("grupa").innerHTML ="";
+                       }else if(value == "grupa"){
+                           document.getElementById("kurs").innerHTML ="";
+                       }
+                   }
+               };
+            xmlhttp.open("POST", "<?php echo site_url('Diskusije/ispisiOpcije'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("tip="+value);
+   }
+            
 
 
     function prikaziFormu() {

@@ -53,7 +53,7 @@ if (isset($diskusije)) {
         <tr><td></td><td>
         
                                 <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
-                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta (ukljucujuci i druge kompanije)<br>
+                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
                                 <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
                                 <div id="kurs"></div>
                                 <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)">Formirana grupa studenata<br>

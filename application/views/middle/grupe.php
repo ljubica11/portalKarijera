@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid" >
     <div class="row">
         <div class="col-3 levo"> 
             <h3>Napravi grupu</h3>
@@ -24,7 +24,7 @@
         ?>
 
 
-        <div class="col-6">  
+        <div class="col-6" style="margin-bottom: 90px">  
 
 <?php
 echo $grupe;
@@ -32,11 +32,7 @@ echo $grupe;
         </div>
 
         <div class="col-3">
-            <div id='studenti'></div>
-<?php
-?>
-
-
+            <div id="clanoviGrupe"> </div>
 
         </div>
 
@@ -52,7 +48,7 @@ echo $grupe;
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
 
-                document.getElementById("studenti").innerHTML = this.responseText;
+                document.getElementById("clanoviGrupe").innerHTML = this.responseText;
             }
         };
 

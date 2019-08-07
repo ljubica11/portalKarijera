@@ -187,6 +187,10 @@ input[type="number"] {
     padding: 0 30px 30px 40px;
     }
 
+    
+#formaDivKat{
+    display: none;
+}
 #formaDiv{
     display: none;
 }
@@ -197,4 +201,19 @@ input[type="number"] {
     display: none;
 }
 
+
+#parametri {
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
+
+
+#clanoviGrupe {
+    
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
 
