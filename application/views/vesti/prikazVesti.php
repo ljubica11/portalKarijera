@@ -6,7 +6,7 @@ if (isset($vesti)) {
         <div class="centar">
 
             <b>Naziv Vesti: </b><?php echo $v['naziv']; ?></b><br/>
-        <b>Autor: </b><?php echo $v['autor']; ?><br/>
+        <b>Autor: </b><?php echo $v['korisnik']; ?><br/>
         <b>Tekst: </b><?php echo $v['tekst']; ?><br/>
         <b>Datum vesti: </b><?php echo $v['datum']; ?><br/>
         <?php $id = $v['idVes']; ?>
