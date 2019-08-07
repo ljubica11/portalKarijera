@@ -62,6 +62,12 @@ class VestiModel extends CI_Model {
     }
 
     
+    /**
+     * 
+     * metoda za dodavanje vesti u okviru odredjene grupe korisnika
+     * @param type $idVes
+     * @param type $idGru
+     */
      public function dodajVestGrupe($idVes, $idGru){
         
         $this->db->set('idVest', $idVes);

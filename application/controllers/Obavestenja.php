@@ -37,12 +37,34 @@ class Obavestenja extends CI_Controller {
                     $this->ObavModel->dodajObavestenje ($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost);
                     $this->index();
                     
-        }
-    }   
            /* else {//slucaj da lice nije ulogovano
                 $this->load->view( 'login_stranica' ); 
             }*/
             
+                    
+                    
+                    
+                    
+          /**
+           * metoda za dodavanje obavestenja u okviru funkcionalnosti Grupe
+           */                    
+        }
+        
+        
+        public function dodajObavestenjaGrupe(){
+        
+        
+        $idGru = $this->input->post('idGru');
+        $naslov = $this->input->post('naslov');
+        $obavest = $this->input->post('tekst');
+        $vidljivost = 3;
+        $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost);
+        $last_id = $this->db->insert_id();
+        $idOba = $last_id;
+        $this->ObavModel->dodajObavestenjaGrupe($idOba, $idGru);
+        redirect("Grupe/grupa/$idGru");
+    }
+    }   
         
    
     

@@ -3,18 +3,13 @@
 <html>
 
     <?php
-    //  echo 'test';
-    // var_dump($clanovi);
-    //var_dump($diskusijeGrupe);
-    //  foreach($diskusijeGrupe as $dg){
-    // }
     $idGru = $this->uri->segment(3);
     ?>
     <div class="container" style="margin-bottom: 90px">
         <div class="row">
             <div class="col-sm">
                 <h4>Diskusije</h4>
-                
+
                 <?php
                 foreach ($diskusijeGrupe as $d) {
                     $idDis = $d['idDis'];
@@ -27,36 +22,42 @@
                         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
                         <a href="<?php echo site_url("Diskusije/jednaDiskusija/$idDis") ?>" target="_blank">Pogledaj diskusiju</a>
                     </div>
-<?php } ?>
+                <?php } ?>
                 <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'></div>
 
                 <div class="centar" id="formaDiv">
-<?php
-$ulogovani = $this->session->userdata('user')['korisnicko'];
-?>
+                    <?php
+                    $ulogovani = $this->session->userdata('user')['korisnicko'];
+                    ?>
                     <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusijuGrupe") ?>">
                         <table>
                             <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
                             <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
                             <tr><td><b>Opis: </b></td><td><input type="text" name="opis" ></td></tr>
                             <tr><td><b>Kategorija: </td><td></b>
-                    <select name="kategorija">
-                        <option disabled selected value="">Izaberi kategoriju</option>
-                        <?php
-                        foreach ($kategorije as $k) {
+                                    <select name="kategorija">
+                                        <option disabled selected value="">Izaberi kategoriju</option>
+                                        <?php
+                                        foreach ($kategorije as $k) {
 
-                            $idKat = $k['idKatDis'];
-                            $nazivKat = $k['naziv'];
-                            echo "<option value='$idKat'>$nazivKat</option>";
-                        }
-                        ?></select></td></tr>
-
-                            
-                            
-                            
+                                            $idKat = $k['idKatDis'];
+                                            $nazivKat = $k['naziv'];
+                                            echo "<option value='$idKat'>$nazivKat</option>";
+                                        }
+                                        ?></select></td></tr>
+                             <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
+        <tr><td></td><td>
+        
+                                <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
+                                <div id="kurs"></div>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)">Formirana grupa studenata<br>
+                                <div id="grupa"></div>
+            </td></tr>
                             
                             <input type="hidden" name="idGru" value="<?php echo $idGru ?>"
-                            <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
+                                   <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
                         </table>
                     </form>
 
@@ -65,30 +66,34 @@ $ulogovani = $this->session->userdata('user')['korisnicko'];
             </div>
             <div class="col-sm">
                 <h4>Oglasi</h4>
-<?php
-//   var_dump($oglasiGrupe);
-foreach ($oglasiGrupe as $o) {
-    $idOgl = $o['idOgl'];
-    ?>
-                    <div class="postdesno">
-                        <b>Naslov: </b><?php echo $o['naslov'] ?></b><br/>
-                        <b>Opis: </b><?php echo $o['opis'] ?><br/>
-                        <b>Autor: </b><?php echo $o['naziv'] ?><br/>
-                        <b>Datum postavljanja: </b><?php echo $o['vremePostavljanja'] ?><br/>
-                        <a href="<?php echo site_url("Oglasi/pogledajOglas/$idOgl") ?>">Pogledaj oglas</a>
-                    </div>
+                <?php
 
-<?php } ?>
+                if ($oglasiGrupe == null) {
+                    echo "<div class='postdesno'>Trenutno nema oglasa</div>";
+                } else {
+                    foreach ($oglasiGrupe as $o) {
+                        $idOgl = $o['idOgl'];
+                        ?>
+                        <div class="postdesno">
+                            <b>Naslov: </b><?php echo $o['naslov'] ?></b><br/>
+                            <b>Opis: </b><?php echo $o['opis'] ?><br/>
+                            <b>Autor: </b><?php echo $o['naziv'] ?><br/>
+                            <b>Datum postavljanja: </b><?php echo $o['vremePostavljanja'] ?><br/>
+                            <a href="<?php echo site_url("Oglasi/pogledajOglas/$idOgl") ?>">Pogledaj oglas</a>
+                        </div>
+
+                    <?php }
+                } ?>
 
 
             </div>
             <div class="col-sm">
                 <h4>Vesti</h4>
-<?php
-// var_dump($vestiGrupe);
-foreach ($vestiGrupe as $v) {
-    $idVes = $v['idVes'];
-    ?>
+                <?php
+
+                foreach ($vestiGrupe as $v) {
+                    $idVes = $v['idVes'];
+                    ?>
                     <div class="postdesno">
                         <b>Naslov: </b><?php echo $v['naziv'] ?></b><br/>
                         <b>Tekst: </b><?php echo $v['tekst'] ?><br/>
@@ -97,49 +102,44 @@ foreach ($vestiGrupe as $v) {
 
                     </div>
 
-<?php }
-?>
-           <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormuV()" value='Postavi vest'></div>
+                <?php }
+                ?>
+                <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormuV()" value='Postavi vest'></div>
 
                 <div class="centar" id="formaDivV">
-<form name="dodajVest" method="POST" action="<?php echo site_url("Vesti/dodajVestGrupe") ?>">
+                    <form name="dodajVest" method="POST" action="<?php echo site_url("Vesti/dodajVestGrupe") ?>">
                         <table>
                             <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
                             <tr><td><b>Naslov: </b></td><td><input type="text" name="naslov"></td></tr>
                             <tr><td><b>Tekst: </b></td><td><input type="text" name="tekst" ></td></tr>
                             <tr><td><b>Kategorija: </td><td></b>
-                    <select name="kategorija">
-                        <option disabled selected value="">Izaberi kategoriju</option>
-                        <?php
-                        foreach ($katVesti as $k) {
+                                    <select name="kategorija">
+                                        <option disabled selected value="">Izaberi kategoriju</option>
+                                        <?php
+                                        foreach ($katVesti as $k) {
 
-                            $idKat = $k['idKatVesti'];
-                            $nazivKat = $k['naziv'];
-                            echo "<option value='$idKat'>$nazivKat</option>";
-                        }
-                        ?></select></td></tr>
-
-                            
-                            
-                            
+                                            $idKat = $k['idKatVesti'];
+                                            $nazivKat = $k['naziv'];
+                                            echo "<option value='$idKat'>$nazivKat</option>";
+                                        }
+                                        ?></select></td></tr>
                             
                             <input type="hidden" name="idGru" value="<?php echo $idGru ?>"
-                            <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
+                                   <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
                         </table>
                     </form>
 
 
-                    </div>
+                </div>
             </div>
             <div class="col-sm">
                 <h4>Obaveštenja</h4>
 
-<?php
-// var_dump($obavestenjaGrupe);
-foreach ($obavestenjaGrupe as $ob) {
+                <?php
+                foreach ($obavestenjaGrupe as $ob) {
 
-    $idOba = $ob['idOba'];
-    ?>
+                    $idOba = $ob['idOba'];
+                    ?>
                     <div class="postdesno">
                         <b>Naslov: </b><?php echo $ob['naslov'] ?></b><br/>
                         <b>Tekst: </b><?php echo $ob['tekst'] ?><br/>
@@ -147,9 +147,25 @@ foreach ($obavestenjaGrupe as $ob) {
                         <b>Datum postavljanja: </b><?php echo $ob['datum'] ?><br/>
 
                     </div>
-    <?php
-}
-?>
+                    <?php
+                }
+                ?>
+                <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormuO()" value='Postavi obaveštenje'></div>
+
+                <div class="centar" id="formaDivO">
+                    <form name="dodajObavestenja" method="POST" action="<?php echo site_url("Obavestenja/dodajObavestenjaGrupe") ?>">
+                        <table>
+                            <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
+                            <tr><td><b>Naslov: </b></td><td><input type="text" name="naslov"></td></tr>
+                            <tr><td><b>Tekst: </b></td><td><input type="text" name="tekst" ></td></tr>
+
+                            <input type="hidden" name="idGru" value="<?php echo $idGru ?>"
+                                   <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
+                        </table>
+                    </form>
+
+
+                </div>
 
             </div>
         </div>
@@ -158,14 +174,41 @@ foreach ($obavestenjaGrupe as $ob) {
 </html>
 
 <script>
+    
+     function ispisiOpcije(value){
+        xmlhttp=new XMLHttpRequest();
+             xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                       document.getElementById(value).innerHTML = this.responseText; 
+                       if(value == "kurs"){
+                           document.getElementById("grupa").innerHTML ="";
+                       }else if(value == "grupa"){
+                           document.getElementById("kurs").innerHTML ="";
+                       }
+                   }
+               };
+            xmlhttp.open("POST", "<?php echo site_url('Diskusije/ispisiOpcije'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("tip="+value);
+   }
+            
+
+
     function prikaziFormu() {
 
         document.getElementById("formaDiv").style.display = "block";
 
     }
-     function prikaziFormuV() {
+
+    function prikaziFormuV() {
 
         document.getElementById("formaDivV").style.display = "block";
+
+    }
+
+    function prikaziFormuO() {
+
+        document.getElementById("formaDivO").style.display = "block";
 
     }
 </script>

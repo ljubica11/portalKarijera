@@ -79,6 +79,23 @@
                 xmlhttp.send();
             }
             
+             function ispisiOpcije(value){
+        xmlhttp=new XMLHttpRequest();
+             xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                       document.getElementById(value).innerHTML = this.responseText; 
+                       if(value == "kurs"){
+                           document.getElementById("grupa").innerHTML ="";
+                       }else if(value == "grupa"){
+                           document.getElementById("kurs").innerHTML ="";
+                       }
+                   }
+               };
+            xmlhttp.open("POST", "<?php echo site_url('Diskusije/ispisiOpcije'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("tip="+value);
+   }
+            
        
             function postovi(id) {
 

@@ -8,7 +8,7 @@
            
            ?>
            
-<div class="centar">    
+<div class="centar" >    
     <h5><a href="<?php echo site_url("Grupe/grupa/$idGru")?>"><?php echo $g["naziv"]?></a></h5>
     <b>ID Grupe:</b> <?php echo $idGru;?>
     <br/>
@@ -35,7 +35,7 @@
                 }
            } 
                
-           }
+           
         ?>
 
     </form>
@@ -52,6 +52,7 @@
                     echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="NAPUSTI GRUPU">';
               }
             }
+               }
         ?>
 
     </form>
