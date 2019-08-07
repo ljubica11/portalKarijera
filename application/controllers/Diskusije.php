@@ -24,8 +24,10 @@ class Diskusije extends CI_Controller {
         $idKat = $this->input->get('id');
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
         $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika)];
+        $sveDiskusije = ['sveDiskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
         $data['middle_data'] = ['kategorije' => $kategorije, 
-                               $this->load->view("diskusije/disk", $diskusije, true)];
+                               $this->load->view("diskusije/disk", $diskusije, true),
+                               $this->load->view("diskusije/disk", $sveDiskusije, true)];
         $data['middle'] = 'middle/diskusije';
         $this->load->view('viewTemplate', $data);      
     }

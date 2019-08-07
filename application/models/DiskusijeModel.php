@@ -88,6 +88,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
         $this->db->where('vidljivost', 'korisnici');
+         $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
        
         if ($tipKorisnika == 's') {
             $this->db->or_where('vidljivost', 'studenti')
