@@ -4,11 +4,11 @@
 <?php
 //var_dump($diskusije);
 if (isset($diskusije)) {
-    foreach ($diskusije as $d) {     
+    foreach ($diskusije as $d) {
         ?>
         <div class="centar">
-            
-        <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
+
+            <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
         <b>Opis: </b><?php echo $d['opis'] ?><br/>
         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
