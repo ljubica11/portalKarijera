@@ -30,9 +30,11 @@ class Diskusije extends CI_Controller {
     }
    
     
-    public function ispisiDiskusije(){
+   public function ispisiDiskusije(){
+    
      $idKat = $this->input->get('id');
-     $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat);
+     $tipKorisnika = $this->session->userdata('user')['tip'];
+     $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika);
      $this->load->view("diskusije/disk", ["diskusije" => $diskusije]);
         
     }

@@ -29,7 +29,7 @@
                
                 <div class="col-6">
                     <div id="diskusije">
-                    <?php foreach($diskusije as $d){
+                    <?php  foreach($diskusije as $d){
                         
                         ?>
                     
@@ -44,7 +44,7 @@
         <?php echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a><br/>" ?>
                     </div> 
                         
-                     <?php  } ?>
+                     <?php  }  ?>
                    
                 </div>
                     
