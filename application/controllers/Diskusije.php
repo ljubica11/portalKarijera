@@ -21,8 +21,9 @@ class Diskusije extends CI_Controller {
     public function index(){
         
         $tipKorisnika = $this->session->userdata('user')['tip'];
+        $idKat = $this->input->get('id');
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
-        $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
+        $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika)];
         $data['middle_data'] = ['kategorije' => $kategorije, 
                                $this->load->view("diskusije/disk", $diskusije, true)];
         $data['middle'] = 'middle/diskusije';
