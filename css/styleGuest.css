@@ -1,5 +1,5 @@
 .footer{ 
-  position: fixed;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
@@ -139,7 +139,7 @@ max-width: 100%;
 }
 
 #container5{
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     background-color: #696969;
     max-width: 100%;
     height: 100px;
@@ -301,5 +301,9 @@ button, input {
 }
 
 #oNama{
-    
+    background-color: #D3D3D3;
+    color: black;
+    border: double;
+    border-color: black;
+    border-width: 20px;
 }
