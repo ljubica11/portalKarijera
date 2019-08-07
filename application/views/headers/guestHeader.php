@@ -41,7 +41,7 @@
                 <form class="form-inline my-2 my-lg-0" name="loginForma" method="POST" action="http://localhost/portalKarijera/index.php/Login/logovanje">
                     <input class="form-control mr-sm-2" type="text" name="username" placeholder="Korisnicko ime">
                     <input class="form-control mr-sm-2" type="text" name="pass" placeholder="Lozinka">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Login</button>
+                    <button class="btn btn-outline-primary my-2 my-sm-0 btn-lg" type="submit">Login</button>
                 </form>
             </div> 
         </nav>
@@ -53,7 +53,7 @@
                   $("input[type='text']").focus();
                 });
           });
-
+    
         </script>
 
         
