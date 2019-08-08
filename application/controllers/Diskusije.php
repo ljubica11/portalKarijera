@@ -65,8 +65,8 @@ class Diskusije extends CI_Controller {
         $tekst = $this->input->post('tekst');
         $this->DiskusijeModel->dodajPost($this->session->userdata('user')['idKor'], $idDis, $tekst);
         $this->ispisiPostove();
-        
-        
+       
+             
     }
     
     public function dodajDiskusiju(){
@@ -122,6 +122,14 @@ class Diskusije extends CI_Controller {
         $this->index();
     }
     
+    public function arhivirajDiskusiju(){
+        
+        $idDis = $this->input->get('idDis');
+        $this->DiskusijeModel->arhivirajDiskusiju($idDis);
+        echo 'arhivirana';
+        }
+
+
     public function lajkPost(){
         
         $idPos = $this->input->get('idPos');

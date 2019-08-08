@@ -57,6 +57,11 @@ class DiskusijeModel extends CI_Model {
                     ->where('vidljivost', 'grupa')
                     ->where("vidljivostGrupa in ($whereGrupa)", null, false)
                     ->group_end();
+            $this->db->or_group_start()
+                    ->where('vidljivost', 'autor')
+                    ->where('autor', $idKor)
+                    ->order_by('diskusija.idDis', 'DESC')
+                    ->group_end();
         }
         $query = $this->db->get();
         return $query->result_array();
@@ -82,13 +87,13 @@ class DiskusijeModel extends CI_Model {
                 ->from('clanovigrupe')
                 ->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
-
+        
         $this->db->from('diskusija');
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
         $this->db->where('vidljivost', 'korisnici');
-         $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
+        $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
        
         if ($tipKorisnika == 's') {
             $this->db->or_where('vidljivost', 'studenti')
@@ -104,13 +109,19 @@ class DiskusijeModel extends CI_Model {
                     ->where('sifkategorijadiskusija.idKatDis', $idKat)
                     ->order_by('diskusija.idDis', 'DESC')
                     ->group_end();
+            $this->db->or_group_start()
+                    ->where('vidljivost', 'autor')
+                    ->where('sifkategorijadiskusija.idKatDis', $idKat)
+                    ->where('autor', $idKor)
+                    ->order_by('diskusija.idDis', 'DESC')
+                    ->group_end();
         }
         $query = $this->db->get();
         return $query->result_array();
     }
 
     public function dohvatiJednuDiskusiju($idDis) {
-
+        
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik')
                 ->from('diskusija')
                 ->join('korisnik', 'korisnik.idKor = diskusija.autor')
@@ -118,7 +129,7 @@ class DiskusijeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-
+    
    /**
     * metoda za dohvatanje diskusija u okviru odredjene grupe sa razlicitim
     * pravima pristupa u zavisnosti od tipa korisnika
@@ -270,6 +281,18 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('naziv', $naziv);
         $this->db->insert('sifkategorijadiskusija');
     }
+    
+        public function arhivirajDiskusiju($idDis){
+        
+            $this->db->set('vidljivost', 'autor')
+                    ->set('vidljivostGrupa', NULL)
+                    ->set('vidljivostKurs', NULL)
+                    ->where('idDis', $idDis)
+                    ->update('diskusija');
+        
+        
+    }
+         
 
     /**
      * metoda za dohvatanje lajkova po odredjenom postu korisnika

@@ -11,7 +11,7 @@
                         $idKatDis = $k['idKatDis'];
                         $naziv = $k['naziv'];
                        
-                        echo "<a href='#' class='list-group-item list-group-item-action' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a><br/>";
+                        echo "<div class='list-group' id='myList' role='tablist'><a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a></div><br/>";
        
                     } ?>
                      <div>
@@ -31,7 +31,7 @@
                     <div id="diskusijePoKategoriji"></div>
                     <div id="diskusije"> 
                     <?php  foreach($sveDiskusije as $s){
-                        
+                        $autor = $s['korisnik'];
                         ?>
                     
                         <div class="centar">
@@ -42,12 +42,13 @@
         <b>Datum pokretanja: </b><?php echo $s['datum'] ?><br/> 
          <?php $id = $s['idDis'] ?>
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
-        <?php echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a><br/>" ?>
+        <?php echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ?>
+        <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;}?>
                     </div> 
                         
                      <?php  }  ?>
-                   <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'></div>
-                   disk
+                   <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'>
+                   </div>
                 </div>
                     
                     
@@ -202,7 +203,20 @@
                 document.getElementById("novipost").value = '';
             }
             
-           
+            function arhiviraj(id){
+                
+       
+     xmlhttp = new XMLHttpRequest();
+     xmlhttp.onreadystatechange = function(){
+       
+     }
+          xmlhttp.open('GET', "<?php echo site_url('Diskusije/arhivirajDiskusiju') ?>?idDis=" + id, true);
+          xmlhttp.send();
+                
+                
+    }
+            
+
          function lajk(idPos){
      
      
