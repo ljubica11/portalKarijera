@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="offset-sm-1"></div>
-        <div class="col-sm-10">Here are our terms and conditions (“Terms”). Contact us via admin@portalkarijera.net if you have any other questions. Thanks for connecting.
+        <div class="col-sm-10">Here are our terms and conditions (“Terms”). Contact us via admin@portalkarijera.rs if you have any other questions. Thanks for connecting.
 
 Portal Karijera is a software platform made available by Data61 over the web. Access to Portal Karijera is offered as a service which enables students and employers to contact each other and to explore employment opportunities.
 
