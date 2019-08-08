@@ -56,7 +56,7 @@
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        //document.getElementById("novipost").value ="";
+                        document.getElementById("novipost").value ="";
                         document.getElementById("postovi").innerHTML = this.responseText;
                     }
                 };
@@ -70,7 +70,7 @@
             function dodajdiv(id) {
                 document.getElementById('wrapper').innerHTML += '<div class="postdesno" id="wrapper">\n\
               <input type="text" id="novipost" class="form-control" width="90%">\n\
-              <input type="button" class="btn btn-outline-primary btn-sm" name="Posalji" value="Posalji" onclick="dodajpost(' + id + '); cleartext()" id="idDis" class="btn btn-primary"></div>';
+              <input type="button" class="btn btn-outline-primary btn-sm" name="Posalji" value="Posalji" onclick="dodajpost(' + id + '); postovi(id); cleartext()" id="idDis" class="btn btn-primary"></div>';
 
             }
             function cleartext() {
