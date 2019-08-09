@@ -67,13 +67,12 @@ class DiskusijeModel extends CI_Model {
         return $query->result_array();
     }
 
-   /**
-    * metoda za dovatanje diskusija iz baze podataka po parametru katgorija
-    * @param type $idKat
-    * @param type $tipKorisnika
-    * @return type
-    */
-    
+ /**
+  * metoda za dovatanje diskusija iz baze podataka po parametru katgorija
+  * @param type $idKat
+  * @param type $tipKorisnika
+  * @return type array
+  */
     public function dohvatiDiskusije($idKat, $tipKorisnika) {
         
         $idKor = $this->session->userdata('user')['idKor'];
