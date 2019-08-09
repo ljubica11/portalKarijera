@@ -40,7 +40,7 @@ class Grupe extends CI_Controller {
         $idGru = $this->input->post('idGru');
         $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
         $brojClanova = $this->db->where('idGru', $idGru)->count_all_results('clanovigrupe');
-        $this->load->view('grupe/clanovi', ["clanovi" => $clanovi, 'brojClanova' => $brojClanova]);
+        $this->load->view('grupe/clanovi', ["clanovi" => $clanovi, 'brojClanova' => $brojClanova, 'idGru' => $idGru]);
     }
 
     public function napraviGrupu() {
@@ -238,7 +238,17 @@ class Grupe extends CI_Controller {
         $this->GrupeModel->obrisiStudente($idGru, $idKor);
         redirect('Grupe/index');
     }
-    
+    public function obrisiClanaGrupe(){
+        
+        $idGru= $this->input->post('idGru');
+        $idKorNiz = $this->input->post('idKor');
+        foreach($idKorNiz as $idKor){
+        $this->GrupeModel->obrisiStudente($idGru, $idKor);
+        }
+        redirect('Grupe/index');
+    }
+
+
     
     /**
      * metoda za prikaz grupe i ispis diskusija, oglasa i ostalih funkcionalnosti
