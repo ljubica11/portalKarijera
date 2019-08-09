@@ -149,16 +149,23 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get('grupe');
         return $query->result_array();
     }
-
-    /**
-     * dodavanje korisnika u grupu
-     * @param type $idGru
-     * @param type $idKor
-     */
-    public function dodajStudente($idGru, $idKor) {
-
-        $data = ['idGru' => $idGru, 'idKor' => $idKor];
+/**
+ * dodavanje studenta u grupu uz proveru da li je vec clan grupe
+ * @param type $idGru
+ * @param type $idKor
+ */
+    public function dodajStudente($idGru, $idKor){ 
+       
+        $query = $this->db->get_where('clanovigrupe', ['idGru' => $idGru, 'idKor' => $idKor]);
+        $count = $query->num_rows();
+        if($count == 0){
+        $data = ['idGru' => $idGru, 
+                 'idKor' => $idKor];
+        
+            
         $this->db->insert('clanovigrupe', $data);
+        
+        }
     }
 
     /**
@@ -172,6 +179,18 @@ class GrupeModel extends CI_Model {
         $data = ['idGru' => $idGru, 'idKor' => $idKor];
         $this->db->delete('clanovigrupe', $data);
       
+    }
+    
+    public function dohvatiStudenta($idKor){
+        
+        $this->db->select('student.*')
+                ->from('student')
+                ->where('idKor', $idKor);
+        $query = $this->db->get();
+        return $query->result_array();
+        
+                
+                
     }
 
 }
