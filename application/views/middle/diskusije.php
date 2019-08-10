@@ -42,7 +42,7 @@
         <b>Datum pokretanja: </b><?php echo $s['datum'] ?><br/> 
          <?php $id = $s['idDis'] ?>
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
-        <?php echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ?>
+        <?php if($s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
         <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;}?>
                     </div> 
                         
