@@ -21,5 +21,15 @@
              echo "<option value='$idGru'>$naziv</option>";
          }?>
 </select>
-<?php } ?>
+<?php } else if(isset($grad)){ ?>
+<select name="odabraniGrad">  
+    <option disabled selected value="">Odaberite grupu</option>
+    <?php
+         foreach ($grad as $g){
+             $idGra = $g['idGra'];
+             $naziv = $g['naziv'];
+             echo "<option value='$idGra'>$naziv</option>";
+         }?>
+</select>
+<?php } 
 
