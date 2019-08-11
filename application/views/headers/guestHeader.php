@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light" id="header">
-            <a class="navbar-brand" href="#"><img id="brand-image" src="http://localhost/portalKarijera//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>
+            <a class="navbar-brand" href="#"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,22 +23,22 @@
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/portalKarijera/index.php/obavestenja">Obavestenja<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="<?php echo base_url()?>/index.php/obavestenja">Obavestenja<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/portalKarijera/index.php/vesti">Vesti<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="<?php echo base_url()?>/index.php/vesti">Vesti<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/portalKarijera/index.php/diskusije">Diskusije</a>
+                  <a class="nav-link" href="<?php echo base_url()?>/index.php/diskusije">Diskusije</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/portalKarijera/index.php/oglasi">Oglasi</a>
+                  <a class="nav-link" href="<?php echo base_url()?>/index.php/oglasi">Oglasi</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="http://localhost/portalKarijera/index.php/registracija">Registracija</a>
+                  <a class="nav-link" href="<?php echo base_url()?>/index.php/registracija">Registracija</a>
                 </li>
               </ul>
-                <form class="form-inline my-2 my-lg-0" name="loginForma" method="POST" action="http://localhost/portalKarijera/index.php/Login/logovanje">
+                <form class="form-inline my-2 my-lg-0" name="loginForma" method="POST" action="<?php echo base_url()?>/index.php/Login/logovanje">
                     <input class="form-control mr-sm-2" type="text" name="username" placeholder="Korisnicko ime">
                     <input class="form-control mr-sm-2" type="text" name="pass" placeholder="Lozinka">
                     <button class="btn btn-outline-primary my-2 my-sm-0 btn-lg" type="submit">Login</button>
