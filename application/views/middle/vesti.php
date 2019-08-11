@@ -13,6 +13,17 @@
                 echo "<a href='#' onclick='vesti($idKatVesti)'>" . $k['naziv'] . "</a><br/>";
             }
             ?>
+            <div class="centar">
+                <h6>DODAVANJE NOVE KATEGORIJE VESTI:</h6>
+            </div>
+
+            <div class="centar">
+                <form name="forma_kat_vesti" method="POST" action="dodajKategorijuVesti">
+                    <input type="text" name="novakatvesti" placeholder="Polje za unos..." ><br>
+                    <input type="submit" value="Dodaj Kategoriju" class="btn btn-outline-primary">
+                </form>
+
+            </div>
         </div>
         <div class="col-6">
             <div id="vesti"> </div>

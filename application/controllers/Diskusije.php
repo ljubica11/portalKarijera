@@ -59,10 +59,23 @@ class Diskusije extends CI_Controller {
         $idDis = $this->input->post('idDis');
         $tekst = $this->input->post('tekst');
         $this->DiskusijeModel->dodajPost($this->session->userdata('user')['idKor'], $idDis, $tekst);
-        $this->ispisiPostove();
-        
-        
+        $postovi = $this->DiskusijeModel->dohvatiPostove($idDis);
+        foreach($postovi as $p){
+             
+             $idPos = $p['idPos'];
+   
+  
+    
+            echo '<div class="postdesno" >'. $p['korisnik'] . ': ' . $p['tekst'] . '<br> ' . $p['datum'] .'  '."<input type='button' class='btn btn-outline-primary btn-sm' value='svidjanje' onclick='lajk($idPos)'>".
+            '<div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'] .'</div>'.'<br>'
+            . '</div>';
+}
+
+
     }
+       
+             
+    
     
     public function dodajDiskusiju(){
         
@@ -117,6 +130,14 @@ class Diskusije extends CI_Controller {
         $this->index();
     }
     
+    public function arhivirajDiskusiju(){
+        
+        $idDis = $this->input->get('idDis');
+        $this->DiskusijeModel->arhivirajDiskusiju($idDis);
+        echo 'arhivirana';
+        }
+
+
     public function lajkPost(){
         
         $idPos = $this->input->get('idPos');
