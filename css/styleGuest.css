@@ -42,6 +42,7 @@ nav .navbar-nav li a {
 }
 
 .wrapper{
+    height: 100vh;
     width: auto;
     position: relative;
     display: flex;
