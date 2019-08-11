@@ -12,19 +12,29 @@ class User extends CI_Controller{
     }
     
     public function index(){
-        
+        $idKor = $this->input->get('id');
+        $tipKor = $this->input->get('tip');
         $this->load->model('UserModel');
         $this->load->model('OglasiModel');
+        if($idKor){
+            $id = $idKor;
+        }else{
         $id= $this->session->userdata('user')['idKor'];
+        }
+        if($tipKor){
+            $tip = $tipKor;
+        }else{
         $tip= $this->session->userdata('user')['tip'];
-        
+        }
         if($tip == 's'){
             $data = [];
             $data["middle_data"] = ["podaciStudent" => $this->UserModel->podaciZaStudenta($id),
                                     "interesovanja" => $this->UserModel->imaInteresovanja($id),
                                     "vestine" => $this->UserModel->imaVestine($id),
                                     "diploma" => $this->UserModel->imaDiplomu($id),
-                                    "iskustvo" => $this->UserModel->radnoIskustvo($id)];
+                                    "iskustvo" => $this->UserModel->radnoIskustvo($id),
+                                    "idKor" => $id,
+                                    "tip" => $tip];
             $data["middle"] = "middle/pocetna";
             $this->load->view('viewTemplate', $data);
            
@@ -32,7 +42,9 @@ class User extends CI_Controller{
         }else if($tip == 'k'){
             $data['middle_data']= ["podaciKompanija" => $this->UserModel->podaciZaKompaniju($id),
                                    "oglasi" => $this->OglasiModel->dohvatiOglaseKorisnika($id),
-                                   "obavestenja" => $this->UserModel->imaObavestenja($id)];
+                                   "obavestenja" => $this->UserModel->imaObavestenja($id),
+                                   "idKor" => $id,
+                                   "tip" => $tip];
             $data["middle"] = "middle/pocetna";
             $this->load->view('viewTemplate', $data);
             

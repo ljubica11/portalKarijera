@@ -4,16 +4,15 @@
         <div class="col-3 levo">
                 <?php 
                 
-                $idKor = $this->session->userdata('user')['idKor'];
                 if(is_dir('./userImg/'.$idKor)== false or 
                        empty(array_diff(scandir('./userImg/'.$idKor), array('.', '..')))){
-                    if($this->session->userdata('user')['tip'] == "s"){?>
+                    if($tip == "s"){?>
                     <img src="<?php echo base_url();?>/userImg/basicUser.png" class="img-fluid">
                     <?php
-                   }else if($this->session->userdata('user')['tip'] == "k"){?>
+                   }else if($tip == "k"){?>
                      <img src="<?php echo base_url();?>/userImg/basicLogo.png" class="img-fluid">
                        <?php
-                   }
+                   } if($idKor == $this->session->userdata('user')['idKor']){
                    ?>
                      
                      <form name="imageForm" method="POST" action="<?php echo site_url('User/novaSlika')?>" enctype="multipart/form-data">
@@ -22,6 +21,7 @@
                      </form>
                   
             <?php
+                   }
             }else{
                 
                 $dir= './userImg/'.$idKor;
@@ -83,7 +83,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                             </div>
-                <?php } if($this->session->userdata('user')['tip'] == "s"){?>
+                <?php } if($tip == "s"){?>
                 <div class="centar">
                     <b>Interesovanja:</b>
                     <br/>
@@ -145,6 +145,7 @@
                     
                     if(is_dir('./CV/'.$idKor)== false or 
                        empty(array_diff(scandir('./CV/'.$idKor), array('.', '..')))){
+                        if($idKor == $this->session->userdata('user')['idKor']){
                     ?>
                      <form name="cvForm" method="POST" action="<?php echo site_url('User/dodajCV')?>" enctype="multipart/form-data">
                           Dodaj CV (mora biti u PDF formatu): <input type="file" name="cv">
@@ -152,6 +153,7 @@
                      </form>
                             
                     <?php 
+                        }
                        }else{
                     ?>
                     <br/>
@@ -159,10 +161,10 @@
                     
                 
                 <?php
-                    //ovde treba da se doda jos da ispisuje i radno iskustvo, i studije, ako trenutno studira i tako dalje...
+                
                        }
                        echo "</div>";
-                    }else if($this->session->userdata('user')['tip']== "k"){ ?>
+                    }else if($tip == "k"){ ?>
                 <div class="centar">
                     <b>Opis kompanije: </b> 
                     <br/>
@@ -200,7 +202,9 @@
                 
             </div>
               <div class="col-3">
+
                    <a class="btn" href="<?php echo site_url("User/logout")?>">Logout</a> 
+
               </div>
             </div>
               
