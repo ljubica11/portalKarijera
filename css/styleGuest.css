@@ -330,3 +330,58 @@ button, input {
     font-size: 30px;
     color: darkgreen;
 }
+
+
+.poruka {
+    overflow: auto;
+    overflow-wrap: normal;
+}
+
+.lajk {
+    
+    float: right;
+}
+
+#formaDivKat{
+    display: none;
+}
+
+.container-fluid {
+    margin-bottom: 50px;
+}
+
+#formaDiv{
+    display: none;
+}
+#formaDivV{
+    display: none;
+}
+
+#formaDivO{
+    display: none;
+}
+
+
+
+
+.levo{
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
+    line-height: 3;
+}
+.centar{
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+}
+
+
+.postdesno{
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+}
