@@ -143,7 +143,10 @@ max-width: 100%;
     background-color: #696969;
     max-width: 100%;
     height: 100px;
-    color: white;
+    color: lightcyan;
+    font-style: italic;
+    border-style: dashed;
+    font-size: 18px;
 }
 
 .tabcontentInfo{
@@ -296,19 +299,33 @@ button, input {
     background-color: #D3D3D3;
     color: black;
     border: double;
-    border-color: black;
+    border-color: darkblue;
     border-width: 20px;
+}
+
+#naslovOnama{
+    color: darkblue;
+    text-shadow: -1px -1px 1px #aaa,
+             0px 4px 1px rgba(0,0,0,0.5),
+             4px 4px 5px rgba(0,0,0,0.7),
+             0px 0px 7px rgba(0,0,0,0.4)
 }
 
 #oNama{
     background-color: #D3D3D3;
-    color: black;
+    color: darkblue;
     border: double;
-    border-color: black;
+    border-color: darkblue;
     border-width: 20px;
-    font-style: italic;
-    text-shadow: -1px -1px 1px #aaa,
-             0px 4px 1px rgba(0,0,0,0.5),
-             4px 4px 5px rgba(0,0,0,0.7),
-             0px 0px 7px rgba(0,0,0,0.4);
+    font-style: italic;    
+         
+}
+
+#target{
+    font-size: 30px;
+}
+
+#mejl{
+    font-size: 30px;
+    color: darkgreen;
 }
