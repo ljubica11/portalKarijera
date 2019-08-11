@@ -8,10 +8,6 @@
     
                 <div class="container" id="container1">
             <div class="row">
-                <div class="offset-sm-10" style="height: 20px"></div>
-                <div class="col-sm-2 text-info" style="height: 20px"> <a href="" id="fpass">Forgot your password?</a></div>
-            </div>
-            <div class="row">
                 <div class="offset-sm-12" style="height: 50px"></div>
             </div>
             <div class="row">
@@ -99,16 +95,15 @@
         </div>
         <div class="container" id="container5">
             <div class="row">
-                <div id="najnovije" class="slide-right col-sm-12"><p>Najnovije diskusije:</p></div>
+                <div id="najnovije" class="slide-right col-sm-12"></div>
             </div>
         </div>
         <script>
-        
-            
-            var title = ['<p>Najnovije vesti:</p>vest', 
-                '<p>Najnovije diskusije:</p>',
-                '<p>Najnoviji oglasi:</p>',
-                '<p>Najnovija obavestenja:</p>'];
+             
+            var title = ['<p>Najnovija vest:<br><br>  <?php foreach ($vest as $v){ echo ($v['tekst']); } ?></p>', 
+                '<p>Najnovije obavestenje:<br><br>  <?php foreach ($obavestenje as $ob){ echo ($ob['tekst']); } ?></p>',
+                '<p>Najnoviji oglas:<br><br>  <?php foreach ($oglas as $og){ echo ($og['opis']); } ?></p>',
+                '<p>Najnovija diskusija:<br><br>  <?php foreach ($diskusija as $d){ echo ($d['opis']); } ?></p>'];
             var index = 0;
 
             function change_title() {
@@ -124,6 +119,7 @@
             };
 
             to_change_title();
+            
         </script>
     </body>
 </html>
