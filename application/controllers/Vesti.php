@@ -1,5 +1,6 @@
 <?php
 
+
 defined('BASEPATH') or exit('no direct access');
 
 class Vesti extends CI_Controller {
@@ -10,7 +11,9 @@ class Vesti extends CI_Controller {
         $this->load->database();
         $this->load->model('UserModel');
         $this->load->model('VestiModel');
+
     }
+
 
     public function index() {
         $kategorijeVesti = $this->VestiModel->dohvatiKategorijeVesti();
@@ -60,3 +63,4 @@ class Vesti extends CI_Controller {
     }
 
 }
+

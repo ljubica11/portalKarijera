@@ -1,6 +1,6 @@
 
 .kfooter{ 
-  position: fixed;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
@@ -217,3 +217,23 @@ input[type="number"] {
     top: 20px;
 }
 
+#usloviKor{
+    background-color: #D3D3D3;
+    color: black;
+    border: double;
+    border-color: black;
+    border-width: 20px;
+}
+
+#oNama{
+    background-color: #D3D3D3;
+    color: black;
+    border: double;
+    border-color: black;
+    border-width: 20px;
+    font-style: italic;
+    text-shadow: -1px -1px 1px #aaa,
+             0px 4px 1px rgba(0,0,0,0.5),
+             4px 4px 5px rgba(0,0,0,0.7),
+             0px 0px 7px rgba(0,0,0,0.4);
+}

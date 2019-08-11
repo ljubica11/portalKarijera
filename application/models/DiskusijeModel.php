@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /**
  * Description of DiskusijeModel
@@ -115,6 +115,7 @@ class DiskusijeModel extends CI_Model {
                     ->order_by('diskusija.idDis', 'DESC')
                     ->group_end();
         }
+
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -128,6 +129,7 @@ class DiskusijeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+
     
    /**
     * metoda za dohvatanje diskusija u okviru odredjene grupe sa razlicitim
@@ -136,6 +138,7 @@ class DiskusijeModel extends CI_Model {
     * @param type $tipKorisnika
     * @return type
     */
+
     public function dohvatiDiskusijeGrupe($idGru, $tipKorisnika) {
         
         $idKor = $this->session->userdata('user')['idKor'];
@@ -154,6 +157,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->from('diskusija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sadrzidiskusije', 'sadrzidiskusije.idDisk = diskusija.idDis');
+        $this->db->where('sadrzidiskusije.idGrupe', $idGru);
         $this->db->where('vidljivost', 'korisnici');
         
         if ($tipKorisnika == 's') {
@@ -161,12 +165,10 @@ class DiskusijeModel extends CI_Model {
                     ->or_group_start()
                     ->where('vidljivost', 'kurs')
                     ->where("vidljivostKurs in ($whereKurs)", null, false)
-                    ->where('sadrzidiskusije.idGrupe', $idGru)
                     ->group_end();
             $this->db->or_group_start()
                     ->where('vidljivost', 'grupa')
                     ->where("vidljivostGrupa in ($whereGrupa)", null, false)
-                    ->where('sadrzidiskusije.idGrupe', $idGru)
                     ->group_end();
         }
         
