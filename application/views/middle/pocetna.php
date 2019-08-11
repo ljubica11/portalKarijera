@@ -194,18 +194,15 @@
                                         }
                     ?>
                 </div>
-            <div>
                 <?php
                     }
                     ?>
                 
-            </div>
             </div>
               <div class="col-3">
                    <a class="btn" href="<?php echo site_url("User/logout")?>">Logout</a> 
               </div>
             </div>
               
-            </div>  
         </div> 
 
