@@ -5,7 +5,6 @@
  * @author gordan
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Diskusije extends CI_Controller {
     
     public function __construct() {
@@ -21,18 +20,23 @@ class Diskusije extends CI_Controller {
     public function index(){
         
         $tipKorisnika = $this->session->userdata('user')['tip'];
+        $idKat = $this->input->get('id');
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
-        $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
+        $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika)];
+        $sveDiskusije = ['sveDiskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
         $data['middle_data'] = ['kategorije' => $kategorije, 
-                               $this->load->view("diskusije/disk", $diskusije, true)];
+                               $this->load->view("diskusije/disk", $diskusije, true),
+                               $this->load->view("diskusije/disk", $sveDiskusije, true)];
         $data['middle'] = 'middle/diskusije';
         $this->load->view('viewTemplate', $data);      
     }
    
     
-    public function ispisiDiskusije(){
+   public function ispisiDiskusije(){
+    
      $idKat = $this->input->get('id');
-     $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat);
+     $tipKorisnika = $this->session->userdata('user')['tip'];
+     $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika);
      $this->load->view("diskusije/disk", ["diskusije" => $diskusije]);
         
     }
@@ -71,8 +75,6 @@ class Diskusije extends CI_Controller {
                   "<input type='button' class='btn btn-outline-primary btn-sm' value='svidjanje' onclick='lajk($idPos)'>".
                   '<span><div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'].'</span></div></div>';
 }
-
-
     }
        
              
@@ -139,8 +141,6 @@ class Diskusije extends CI_Controller {
         $this->DiskusijeModel->arhivirajDiskusiju($idDis);
         echo 'arhivirana';
         }
-
-
     public function lajkPost(){
         
         $idPos = $this->input->get('idPos');
