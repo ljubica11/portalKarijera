@@ -66,9 +66,10 @@ class Diskusije extends CI_Controller {
    
   
     
-            echo '<div class="postdesno" >'. $p['korisnik'] . ': ' . $p['tekst'] . '<br> ' . $p['datum'] .'  '."<input type='button' class='btn btn-outline-primary btn-sm' value='svidjanje' onclick='lajk($idPos)'>".
-            '<div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'] .'</div>'.'<br>'
-            . '</div>';
+            echo  '<div class="postdesno"><div class="porAut">'. $p['korisnik'] . ':</div>'. '<div class="poruka">'. $p['tekst'] . '</div>'.
+                  '<div class="porDatum">Poslato:'.'  '.$p['datum'] .'</div>'.
+                  "<input type='button' class='btn btn-outline-primary btn-sm' value='svidjanje' onclick='lajk($idPos)'>".
+                  '<span><div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'].'</span></div></div>';
 }
 
 
@@ -119,6 +120,8 @@ class Diskusije extends CI_Controller {
             $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()]; 
         }else if($tip == 'grupa'){
             $data = ["grupe" => $this->DiskusijeModel->dohvatiGrupe()];
+        }else if($tip == 'grad'){
+            $data = ['grad' => $this->SifrarniciModel->dohvatiMesto()];
         }
         $this->load->view('diskusije/opcije', $data);
     }
