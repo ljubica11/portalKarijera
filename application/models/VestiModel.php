@@ -71,6 +71,7 @@ class VestiModel extends CI_Model {
         $this->db->insert('sadrzivesti');
     }
 
+
     public function dodajKategorijuVesti($nova_kategorija) {
 
         $this->db->set('naziv', $nova_kategorija);

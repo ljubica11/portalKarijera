@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
         <div class="container-fluid" style="margin-bottom: 90px">
@@ -38,11 +37,11 @@
                     
                         <div class="centar">
 
-        <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
-        <b>Opis: </b><?php echo $d['opis'] ?><br/>
-        <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
-        <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
-         <?php $id = $d['idDis'] ?>
+        <b>Naziv diskusije: </b><?php echo $s['naziv'] ?></b><br/>
+        <b>Opis: </b><?php echo $s['opis'] ?><br/>
+        <b>Autor: </b><?php echo $s['korisnik'] ?><br/>
+        <b>Datum pokretanja: </b><?php echo $s['datum'] ?><br/> 
+         <?php $id = $s['idDis'] ?>
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
         <?php if($s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
         <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;}?>
@@ -54,7 +53,49 @@
 
                 </div>
                     
+                    
+                    <div class="centar" id="formaDiv">
+    <?php
+    $ulogovani = $this->session->userdata('user')['korisnicko'];
+    $kategorije = $this->DiskusijeModel->dohvatiKategorije();
+    ?>
+    <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju") ?>">
+        <table>
+            <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
+            <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
+            <tr><td><b>Opis: </b></td><td><input type="text" name="opis" ></td></tr>
+            <tr><td><b>Kategorija: </td><td></b>
+                    <select name="kategorija">
+                        <option disabled selected value="">Izaberi kategoriju</option>
+                        <?php
+                        foreach ($kategorije as $k) {
+                            $idKat = $k['idKatDis'];
+                            $nazivKat = $k['naziv'];
+                            echo "<option value='$idKat'>$nazivKat</option>";
+                        }
+                        ?></select></td></tr>
+            <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
+        <tr><td></td><td>
+        
+                                <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
+                                <div id="kurs"></div>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)">Formirana grupa studenata<br>
+                                <div id="grupa"></div>
+            </td>
+     
+
+            <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
+        </table>
+    </form>
+
+
+</div>
+                    
                 </div>      
+                
+                
                 <div class="col-3">
                     <div id='wrapper'></div>
                     <div id="postovi"></div>
@@ -73,12 +114,10 @@
 
         <script>
             function diskusije(id) {
-
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("diskusije").innerHTML = this.responseText;
-
+                        document.getElementById("diskusijePoKategoriji").innerHTML = this.responseText;
                     }
                 }
                 xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiDiskusije') ?>?id=" + id, true);
@@ -104,43 +143,36 @@
             
        
             function postovi(id) {
-
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         document.getElementById("postovi").innerHTML = this.responseText;
-
                     }
                 }
                 xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiPostove') ?>?id=" + id, true);
                 xmlhttp.send();
             }
-
-
             function dodajdiv(id) {
                 document.getElementById('wrapper').innerHTML += '<div class="postdesno" id="wrapper">\n\
               <input type="text" id="novipost" class="form-control" width="90%">\n\
               <input type="button" class="btn btn-outline-primary btn-sm" name="Posalji" value="Posalji" onclick="dodajpost(' + id + '); cleartext()" id="idDis" class="btn btn-primary"></div>';
-
             }
-
             function prikaziFormu() {
-
                 document.getElementById("formaDiv").style.display = "block";
-
             }
             
             function prikaziFormuKat(){
                 
                 document.getElementById("formaDivKat").style.display = "block";
             }
-
+            
+            function sakrijDiv(){
+                
+                document.getElementById("diskusije").style.display = "none";
+            }
             function dodajpost(id) {
-
                 var tekst = document.getElementById('novipost').value;
                 var idDis = id;
-
-
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
@@ -148,12 +180,10 @@
                         document.getElementById("postovi").innerHTML = this.responseText;
                     }
                 };
-
                 xhttp.open("POST", "<?php echo site_url('Diskusije/dodajPost'); ?>", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send("idDis=" + idDis + "&tekst=" + tekst);
             }
-
             function cleartext() {
                 document.getElementById("novipost").value = '';
             }
@@ -171,7 +201,6 @@
                 
     }
             
-
          function lajk(idPos){
      
      
@@ -186,15 +215,9 @@
           xmlhttp.send();
      
      
+    
  }
-
         </script>
-
-
-
-
-
-
 
 
 

@@ -2,7 +2,7 @@
 
 <h4> Pretraga </h4>
            <form name="pretragaPoslovaForma" method="GET"> 
-                <input type="text" name="pretraga" id="pretragaPoslova" class="form-control" placeholder="Kompanija ili pozicija">
+               <input type="text" name="pretraga" id="pretragaPoslova" class="form-control" placeholder="Kompanija ili pozicija">
                 <div id="predlozi"></div>
                     
                 <br/>

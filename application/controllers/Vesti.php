@@ -2,7 +2,6 @@
 
 defined('BASEPATH') or exit('no direct access');
 
-
 class Vesti extends CI_Controller {
 
     public function __construct() {
@@ -12,7 +11,7 @@ class Vesti extends CI_Controller {
         $this->load->model('UserModel');
         $this->load->model('VestiModel');
 
-     }        
+    }
 
 
     public function index() {
