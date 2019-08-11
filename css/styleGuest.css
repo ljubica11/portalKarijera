@@ -49,6 +49,7 @@ nav .navbar-nav li a {
     background-color: #E1E8ED;
     padding-bottom: 6rem;
     background-color: dimgrey;
+    height: 100vh;
 }
 
 .regwrapper{
@@ -56,7 +57,8 @@ nav .navbar-nav li a {
    position: absolute;
    justify-content: center;
    top:10px;
-   width:55%; 
+   width:55%;
+   height: 100vh;
 }
 
 
