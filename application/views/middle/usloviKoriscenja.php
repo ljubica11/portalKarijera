@@ -8,9 +8,9 @@
     <body>
         <div class="container-fluid" id="usloviKor">
     <div class="row">
-        <div class="offset-sm-4"></div>
+        <div class="col-sm-4"><a href="<?php echo base_url()?>"><img src="<?php echo base_url() ?>//images/strelicalevo.png" id="strelicaLevo"></a><a href="<?php echo base_url()?>">Početna stranica</a></div>
         <div class="col-sm-6"><h1>Terms & Conditions</h1></div>
-        <div class="offset-sm-2"></div>
+        <div class="col-sm-2"><a id="onam" href="<?php echo base_url() ?>/index.php/Login/oNama">O nama</a><a href="<?php echo base_url() ?>/index.php/Login/oNama"><img src="<?php echo base_url() ?>//images/strelicadesno.png"  id="strelicaDesno"></a></div>
     </div>
     <div class="row">
         <div class="offset-sm-1"></div>
@@ -135,6 +135,11 @@ Revised  24 July 2019</div>
     <div class="row">
         <div class="offset-sm-2"></div>
         <div class="col-sm-10">Version Number: 1  © National ICT Serbia Limited (Data61) 2019"</div>
+    </div>
+    <div class="row" id="kont">
+        <div class="offset-sm-4"></div>
+        <div class="col-sm-4">Kontakt: admin@portalkarijera.rs</div>
+        <div class="offset-sm-4"></div>
     </div>
 </div>
     </body>
