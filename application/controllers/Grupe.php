@@ -20,7 +20,7 @@ class Grupe extends CI_Controller {
     }
 
     public function index() {
-
+        
         $grupeData = ['grupe' => $this->GrupeModel->dohvatiGrupe()];
         $data['middle_data'] = ['grupe' => $this->load->view('grupe/prikazGrupe', $grupeData, true)];
         $data['middle'] = 'middle/grupe';
@@ -71,30 +71,6 @@ class Grupe extends CI_Controller {
      * metode za dohvatanje studenata po konkretnom parametru (kurs, prebivaliste, vestine,
      * interesovanja, zavrseni fakultet...)
      */
-    public function poKursu() {
-
-        $idGru = $this->input->post('idGru');
-        $idKurs = $this->input->post('idKurs');
-        $studentiKurs = $this->GrupeModel->dohvatiStudenteKurs($idKurs);
-        foreach ($studentiKurs as $s) {
-            $idKor = $s['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
-    public function poGradu() {
-
-        $idGru = $this->input->post('idGru');
-        $idGra = $this->input->post('idGra');
-        $studentiGrad = $this->GrupeModel->dohvatiStudenteGrad($idGra);
-        foreach ($studentiGrad as $s) {
-            $idKor = $s['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
     public function poInteresovanjima() {
 
         $idGru = $this->input->post('idGru');
@@ -106,20 +82,7 @@ class Grupe extends CI_Controller {
         }
         redirect('Grupe/index');
     }
-
-    public function poVestinama() {
-
-        $idGru = $this->input->post('idGru');
-        $idVes = $this->input->post('idVes');
-        $studentiVestine = $this->GrupeModel->dohvatiStudenteVestine($idVes);
-
-        foreach ($studentiVestine as $sv) {
-            $idKor = $sv['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
+    
     public function poFakultetu() {
 
         $idGru = $this->input->post('idGru');
@@ -193,6 +156,96 @@ class Grupe extends CI_Controller {
             'obavestenjaGrupe' => $obavestenjaGrupe, 'kategorije' => $kategorije,
             'katVesti' => $katVesti];
         $this->load->view('viewTemplate', $data);
+    }
+
+    public function ispisiOpcije() {
+
+        $tip = $this->input->post("tip");
+        if ($tip == 'kursgrupe') {
+            $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
+        } else if ($tip == 'gradgrupe') {
+            $data = ['grad' => $this->SifrarniciModel->dohvatiMesto()];
+        } else if ($tip == 'vestinegrupe') {
+            $data = ['vestine' => $this->SifrarniciModel->dohvatiVestine()];
+        } else if ($tip == 'fakultetgrupe') {
+            $data = ['fakultet' => $this->SifrarniciModel->dohvatiFakultete()];
+        }  else if ($tip == 'intergrupe'){
+              $data = ['interesovanja' => $this->SifrarniciModel->dohvatiInteresovanja()];
+        }
+    
+        $this->load->view('grupe/opcije', $data);
+    }
+
+    public function upitiTest() {
+
+        $idGru = $this->input->post("idGru"); //439;
+        $idKurs = $this->input->post("kurs");
+        $idGra = $this->input->post("grad");
+        $idVes = $this->input->post("vestine");
+        $idFak = $this->input->post("fakultet");
+        $idInt = $this->input->post("interesovanja");
+
+        if (isset($idGra) && isset($idKurs) && isset($idVes) && isset($idFak) && isset($idInt)) {
+
+            $studentiUpit = $this->GrupeModel->upiti($idGra, $idKurs, $idVes, $idFak, $idInt);
+
+
+            foreach ($studentiUpit as $su) {
+                $idKor = $su['idKor'];
+                $this->GrupeModel->DodajStudente($idGru, $idKor);
+            }
+        } else {
+            if (empty($idGra)) {
+
+                $studentiUpit = $this->GrupeModel->upitiBezGrada($idKurs, $idVes, $idFak, $idInt);
+
+                foreach ($studentiUpit as $su) {
+                    $idKor = $su['idKor'];
+                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+                }
+            } else if (empty($idKurs)) {
+                $studentiUpit = $this->GrupeModel->upitiBezKursa($idGra, $idVes, $idFak, $idInt);
+
+                foreach ($studentiUpit as $su) {
+                    $idKor = $su['idKor'];
+                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+                }
+            } else if (empty($idVes)) {
+
+
+                $studentiUpit = $this->GrupeModel->upitiBezVestina($idGra, $idKurs, $idFak, $idInt);
+                foreach ($studentiUpit as $su) {
+                    $idKor = $su['idKor'];
+                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+                }
+            }
+        } if (isset($idGra) && empty($idKurs) && empty($idVes) && empty($idFak) && empty($idInt)) {
+
+
+            $studentiGrad = $this->GrupeModel->dohvatiStudenteGrad($idGra);
+            foreach ($studentiGrad as $s) {
+                $idKor = $s['idKor'];
+                $this->GrupeModel->DodajStudente($idGru, $idKor);
+            }
+        } else {
+            if (isset($idKurs) && empty($idGra) && empty($idVes)&& empty($idFak) && empty($idInt)) {
+                $studentiKurs = $this->GrupeModel->dohvatiStudenteKurs($idKurs);
+                foreach ($studentiKurs as $s) {
+                    $idKor = $s['idKor'];
+                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+                }
+            } else if (isset($idVes) && empty($idKurs) && empty($idGra)&& empty($idFak) && empty($idInt)) {
+                $studentiVestine = $this->GrupeModel->dohvatiStudenteVestine($idVes);
+
+                foreach ($studentiVestine as $sv) {
+                    $idKor = $sv['idKor'];
+                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+                }
+            }
+        }
+
+
+        redirect('Grupe/index');
     }
 
 }

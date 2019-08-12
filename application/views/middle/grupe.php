@@ -18,12 +18,9 @@
             <?php
             ?>
             <div id="parametri">  </div>
-
+            
+    
         </div>
-        <?php
-        ?>
-
-
         <div class="col-6" style="margin-bottom: 90px">  
 
 <?php
@@ -73,4 +70,28 @@ echo $grupe;
         xmlhttp.send();
     }
     
+    function ispisiOpcije(value){
+        
+        xmlhttp=new XMLHttpRequest();
+             xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                       document.getElementById(value).innerHTML = this.responseText; 
+                       if(value == "kurs"){
+                           document.getElementById("kursgrupe").innerHTML ="";
+                       }else if(value == "grad"){
+                           document.getElementById("gradgrupe").innerHTML ="";
+                       }else if(value == "vestine"){
+                            document.getElementById("vestinegrupe").innerHTML ="";
+                       }else if(value == "fakultet"){
+                           document.getElementById("fakultetgrupe").innerHTML ="";
+                       }else if(value == "interesovanja"){
+                           document.getElementById("intergrupe").innerHTML ="";
+                       }
+                   }
+               };
+            xmlhttp.open("POST", "<?php echo site_url('Grupe/ispisiOpcije'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("tip="+value);
+ 
+   }
 </script>
