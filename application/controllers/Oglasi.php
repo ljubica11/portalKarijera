@@ -14,6 +14,7 @@ class Oglasi extends MY_Controller{
         if($this->session->has_userdata('user')){
         $tipKorisnika = $this->session->userdata('user')['tip'];
         }
+        $tipKorisnika=[];
         $oglasi = ["oglasi" => $this->OglasiModel->dohvatiSveOglase($tipKorisnika)];
         $gradovi = ["mesta" => $this->SifrarniciModel->dohvatiMesto()];        
         $data["middle_data"] = ["pretraga" => $this->load->view('oglasi/pretragaOglasa', $gradovi, true),
