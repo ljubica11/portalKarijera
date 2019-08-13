@@ -84,9 +84,8 @@ echo $grupe;
                             document.getElementById("vestinegrupe").innerHTML ="";
                        }else if(value == "fakultet"){
                            document.getElementById("fakultetgrupe").innerHTML ="";
-                       }else if(value == "interesovanja"){
-                           document.getElementById("intergrupe").innerHTML ="";
                        }
+                       
                    }
                };
             xmlhttp.open("POST", "<?php echo site_url('Grupe/ispisiOpcije'); ?>", true);

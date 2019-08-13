@@ -54,9 +54,9 @@ if (isset($diskusije)) {
     $ulogovani = $this->session->userdata('user')['korisnicko'];
     $kategorije = $this->DiskusijeModel->dohvatiKategorije();
     ?>
-    <?php if ($tipKorisnika != 'gost') {
+    <?php if ($tipKorisnika != 'gost') {?>
 
-        echo ' 
+      
     
     <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju") ?>">
         <table>
@@ -66,10 +66,10 @@ if (isset($diskusije)) {
             <tr><td><b>Kategorija: </td><td></b>
                     <select name="kategorija">
                         <option disabled selected value="">Izaberi kategoriju</option>
-    ';
-    }
-    ?>
-    <?php
+    
+   
+    
+    <?php }
 if ($tipKorisnika != 'gost') {
     foreach ($kategorije as $k) {
 
