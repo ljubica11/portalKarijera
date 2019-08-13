@@ -77,4 +77,14 @@ class VestiModel extends CI_Model {
         $this->db->insert('sifkategorijavesti');
     }
 
+    public function dohvatiSveVesti() {
+
+        $this->db->select('vesti.*, korisnik.korisnicko as korisnik');
+        $this->db->from('vesti');
+        $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
+        $this->db->order_by('idVes', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
 }
