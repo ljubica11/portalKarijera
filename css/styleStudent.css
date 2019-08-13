@@ -86,4 +86,84 @@
     margin: 20px;
     padding: 0 30px 30px 40px;
     }
+    
+/*    css za pretraguuu*/
+    
+    .pretraga-container{
+        padding: 20px;
+        line-height: 2;
+    }
+    
+    .btn-pretraga{
+        margin-left: 10px;
+        width: 40%;
+        height: 100px;
+        color: white !important;
+        font-weight: bold !important;
+        font-size: 150% !important;
+    }
+    
+    #pretraga-stud-div, #pretraga-komp-div{
+        display: none;
+    }
+    
+    .btn-pretrazi{
+        width: 100%;
+        height: 100px;
+        color: white !important;
+        font-weight: bold !important;
+        font-size: 150% !important;
+    }
+    
+    .pretraga-wrapper{
+        padding: 15px;
+        box-shadow: 0px 0px 26px 4px rgba(39,115,245,0.34);
+        border-radius: .25rem;
+        
+    }
+    
+    .user-img-pretraga{
+        border-radius: 50%;
+        width:50px;
+        height: 50px;
+    }
+    
+    .pretraga-rezultat-student{
+        margin-top:20px;
+        margin-bottom: 20px;
+        border: 1px solid lightblue;
+        padding: 10px;
+    }
+    
+    #pretraga-res{
+        max-height: 500px;
+        overflow: auto;
+    }
+    
+    
+/*    scroll da bude lep*/
 
+.scroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.scroll::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+	background-color: #0ae;
+	
+	background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	                   color-stop(.5, rgba(255, 255, 255, .2)),
+					   color-stop(.5, transparent), to(transparent));
+}
+    
+
+
+    
