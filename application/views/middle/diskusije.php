@@ -34,11 +34,11 @@
                     
                        ';}?>
                     
-                    <?php if($tipKorisnika != 'gost'){
-                          echo ' 
+                    <?php if($tipKorisnika != 'gost'){?>
+                         
                             
                     <div id="formaDivKat">
-                        <form name="dodajKat" method="POST" action="<?php echo site_url(\'Diskusije/dodajKategoriju\') ?>">
+                        <form name="dodajKat" method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju')?>" >
                             <input type="text" name="naziv" placeholder="Naziv kategorije">
                             <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary  btn-lg btn-block">
                             
@@ -47,7 +47,7 @@
                     
                    
                 </div>
-                    '; } ?>
+                    <?php  } ?>
                 </div>
                
                 <div class="col-6">
@@ -84,11 +84,11 @@
     $ulogovani = $this->session->userdata('user')['korisnicko'];
     $kategorije = $this->DiskusijeModel->dohvatiKategorije();
     ?>
-    <?php if($tipKorisnika != 'gost') {
+    <?php if($tipKorisnika != 'gost') { ?>
         
-        echo ' 
+       
     
-    <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju") ?>">
+    <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju")?> " >
         <table>
             <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
             <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
@@ -96,16 +96,16 @@
             <tr><td><b>Kategorija: </td><td></b>
                     <select name="kategorija">
                         <option disabled selected value="">Izaberi kategoriju</option>
-    ';}?>
-                        <?php if($tipKorisnika != 'gost'){
+  
+    <?php } if($tipKorisnika != 'gost'){
                         foreach ($kategorije as $k) {
                             $idKat = $k['idKatDis'];
                             $nazivKat = $k['naziv'];
                             echo "<option value='$idKat'>$nazivKat</option>";
                         }
                         } ?></select></td></tr>
-                    <?php if($tipKorisnika != 'gost'){
-                        echo ' 
+                    <?php if($tipKorisnika != 'gost'){?>
+                       
                     
                     
             <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
@@ -123,8 +123,8 @@
             <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
         </table>
     </form>
-                    ';}?>
-
+                   
+                    <?php }?>
 </div>
                     
                 </div>      

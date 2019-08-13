@@ -181,9 +181,9 @@
                    if(this.readyState==4&&this.status==200){
                        document.getElementById(value).innerHTML = this.responseText; 
                        if(value == "kurs"){
-                           document.getElementById("grupa").innerHTML ="";
-                       }else if(value == "grupa"){
                            document.getElementById("kurs").innerHTML ="";
+                       }else if(value == "grupa"){
+                           document.getElementById("grupa").innerHTML ="";
                        }
                    }
                };
