@@ -14,7 +14,9 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-dark">
+
             <a class="navbar-brand" href="<?php echo site_url("User/index") ?>"><img src="http://localhost/portalKarijera//images/logo.png" width="90" height="60" title="Logo" alt="Logo" />Portal Karijera</a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,7 +42,7 @@
                   <a class="nav-link" href="#">Ankete</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Pretraga sajta</a>
+                  <a class="nav-link" href="<?php echo site_url('Pretraga');?>">Pretraga sajta</a>
                 </li>
               </ul>
             </div> 
