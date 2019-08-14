@@ -385,6 +385,7 @@ button, input {
     padding: 10px;
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+
 }
 
 #strelicaLevo{
@@ -413,4 +414,5 @@ button, input {
     margin-bottom: 30px;
     font-size: 20px;
     color: darkblue;
+
 }

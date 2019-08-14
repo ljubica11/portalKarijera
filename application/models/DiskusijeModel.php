@@ -128,11 +128,11 @@ class DiskusijeModel extends CI_Model {
                     ->order_by('diskusija.idDis', 'DESC')
                     ->group_end();
         }
-<<<<<<< HEAD
 
-=======
     }  
->>>>>>> zajednickaBackUp
+
+    
+
         $query = $this->db->get();
         return $query->result_array();
     }
