@@ -69,14 +69,7 @@
                                             echo "<option value='$idKatVesti'>$nazivKat</option>";
                                         }
                                     ?>
-                                </select>
-                                    foreach ($kategorija as $k) {
-
-                                        $idKatVesti = $k['idKatVesti'];
-                                        $nazivKat = $k['naziv'];
-                                        echo "<option value='$idKatVesti'>$nazivKat</option>";
-                                    }
-                                    ?>
+                                
                                 </select>
 
 
