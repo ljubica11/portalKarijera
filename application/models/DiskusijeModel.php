@@ -42,7 +42,7 @@ class DiskusijeModel extends CI_Model {
                 ->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
         
-        if($tipKorisnika == NULL) {
+        if($tipKorisnika == NULL OR $tipKorisnika = 's' OR $tipKorisnika = 'k') {
         $this->db->from('diskusija');
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
@@ -98,7 +98,7 @@ class DiskusijeModel extends CI_Model {
                 ->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
         
-    if($tipKorisnika == NULL) {
+    if($tipKorisnika == NULL OR $tipKorisnika = 's' OR $tipKorisnika = 'k') {
         $this->db->from('diskusija');
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
