@@ -138,7 +138,7 @@ class GrupeModel extends CI_Model {
      * dodavanje grupe u bazu podataka
      * @param type $naziv
      * @param type $opis
-     * @return type array
+     * @return type 
      */
     public function dodajNovuGrupu($naziv, $opis) {
 
