@@ -10,12 +10,9 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light" id="header">
-<<<<<<< HEAD
-            <a class="navbar-brand" href="<?php echo base_url()?>"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>
-=======
-            <a class="navbar-brand" href="#"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>
->>>>>>> zajednickaBackUp
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           
+
+            <a class="navbar-brand" href="<?php echo site_url()?>"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
