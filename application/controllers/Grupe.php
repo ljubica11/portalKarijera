@@ -42,15 +42,6 @@ class Grupe extends CI_Controller {
         $this->load->view('grupe/clanovi', ["clanovi" => $clanovi, 'brojClanova' => $brojClanova, 'idGru' => $idGru]);
     }
 
-    public function napraviGrupu() {
-
-        $naziv = $this->input->post('nazivGrupe');
-        $opis = $this->input->post('opisGrupe');
-        $this->GrupeModel->dodajNovuGrupu($naziv, $opis);
-        $this->session->set_flashdata('grpmsg', 'Uspesno ste napravili grupu. Izberite kategorije i dodajte clanove');
-        $this->index();
-    }
-
     /**
      * metoda za ispisivanje razlicitih parametara po kojima dohvatamo korisnike 
      */
@@ -155,13 +146,18 @@ class Grupe extends CI_Controller {
     }
     
     /**
+     * kreiranje grupe i
      * upiti kojima pravimo grupe studenata po razlicitim parametrima
      */
     
     
     public function upiti(){
         
-        $idGru = $this->input->post("idGru"); 
+        $naziv = $this->input->post('nazivGrupe');
+        $opis = $this->input->post('opisGrupe');
+      
+        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis); 
+        
         $idKurs = $this->input->post("kurs");
         $idGra = $this->input->post("grad");
         $idVes = $this->input->post("vestine");
