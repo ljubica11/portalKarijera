@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-sm">
             <?php
-//var_dump($diskusije);
+
             if (isset($diskusija)) {
                 foreach ($diskusija as $d) {
                     ?>
