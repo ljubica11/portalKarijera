@@ -132,6 +132,8 @@ class Registracija extends MY_Controller {
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
         $this->RegistrationModel->dodajKompaniju($naziv, $sediste, $pib, $telefoni, $opis, $oblast, $brojzap, $sajt, $idKor);
+        $this->session->set_flashdata('msg', 'Uspesno ste se registrovali! Ulogujte se i zapocnite nezaboravno iskustvo na portalu Karijera!');
+        redirect('Login');
         
      }
     }

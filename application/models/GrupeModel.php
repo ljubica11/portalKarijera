@@ -58,13 +58,12 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
     /**
      * metoda za dohvatanje studenata po interesovanjima
      * @param type $idInt
      * @return type array
      */
-
     public function dohvatiStudenteInteresovanja($idInt) {
 
         $this->db->select('student.*');
@@ -75,15 +74,14 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-    
+
     /**
      * metoda za dohvatanje studenata po zavrsenim studijama
      * @param type $idFak
      * @return type array
      */
-    
-    public function dohvatiStudenteFakultet($idFak){
-        
+    public function dohvatiStudenteFakultet($idFak) {
+
         $this->db->select('student.*');
         $this->db->from('student');
         $this->db->join('diploma', 'diploma.idKor = student.idKor');
@@ -149,22 +147,22 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get('grupe');
         return $query->result_array();
     }
-/**
- * dodavanje studenta u grupu uz proveru da li je vec clan grupe
- * @param type $idGru
- * @param type $idKor
- */
-    public function dodajStudente($idGru, $idKor){ 
-       
+
+    /**
+     * dodavanje studenta u grupu uz proveru da li je vec clan grupe
+     * @param type $idGru
+     * @param type $idKor
+     */
+    public function dodajStudente($idGru, $idKor) {
+
         $query = $this->db->get_where('clanovigrupe', ['idGru' => $idGru, 'idKor' => $idKor]);
         $count = $query->num_rows();
-        if($count == 0){
-        $data = ['idGru' => $idGru, 
-                 'idKor' => $idKor];
-        
-            
-        $this->db->insert('clanovigrupe', $data);
-        
+        if ($count == 0) {
+            $data = ['idGru' => $idGru,
+                'idKor' => $idKor];
+
+
+            $this->db->insert('clanovigrupe', $data);
         }
     }
 
@@ -173,24 +171,66 @@ class GrupeModel extends CI_Model {
      * @param type $idGru
      * @param type $idKor
      */
-    
     public function obrisiStudente($idGru, $idKor) {
-        
+
         $data = ['idGru' => $idGru, 'idKor' => $idKor];
         $this->db->delete('clanovigrupe', $data);
-      
     }
-    
-    public function dohvatiStudenta($idKor){
-        
+
+    public function dohvatiStudenta($idKor) {
+
         $this->db->select('student.*')
                 ->from('student')
                 ->where('idKor', $idKor);
         $query = $this->db->get();
         return $query->result_array();
-        
-                
-                
     }
+     
+    public function status(){
+        
+        $this->db->select('status')
+                          ->from('student');
+        $query = $this->db->get();
+        return $query ->result_array;
+        
+        
+    }
+    
+    public function upiti($grad, $kurs, $fakultet, $vestine, $interesovanja, $status){
+        
+        $this->db->select('ime, prezime, student.idKor as idKor');
+        $this->db->from('student');
+    
+        if(!empty($grad)){
+            $this->db->where('mesto', $grad);   
+        }
+        if(!empty($fakultet)){
+            $this->db->from('diploma');
+            $this->db->where("diploma.idFak", $fakultet);
+            $this->db->where("student.idKor = diploma.idKor");
+        }
+        if(!empty($kurs)){
+            $this->db->where('idKurs', $kurs);
+        }
+   
+        if(!empty($vestine)){
+            $this->db->from('imavestine');
+            $this->db->where('imavestine.idVes', $vestine);
+            $this->db->where("student.idKor = imavestine.idKor");
+        }
+        if(!empty($interesovanja)){
+           $this->db->from('imainteresovanja');
+           $this->db->where('imainteresovanja.idInt', $interesovanja);
+           $this->db->where("student.idKor = imainteresovanja.idKor");
+        }
+        if(!empty($status)){
+            $this->db->where('status', $status);
+        }
+        
+        $query=$this->db->get();
+        return $query->result_array ();
+    }
+    
+    
 
 }

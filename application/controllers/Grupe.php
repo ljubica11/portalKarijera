@@ -66,73 +66,7 @@ class Grupe extends CI_Controller {
             'interesovanja' => $interesovanja, 'vestine' => $vestine, 'diploma' => $diploma, 'idGru' => $idGru]);
     }
 
-    /**
-     * 
-     * metode za dohvatanje studenata po konkretnom parametru (kurs, prebivaliste, vestine,
-     * interesovanja, zavrseni fakultet...)
-     */
-    public function poKursu() {
-
-        $idGru = $this->input->post('idGru');
-        $idKurs = $this->input->post('idKurs');
-        $studentiKurs = $this->GrupeModel->dohvatiStudenteKurs($idKurs);
-        foreach ($studentiKurs as $s) {
-            $idKor = $s['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
-    public function poGradu() {
-
-        $idGru = $this->input->post('idGru');
-        $idGra = $this->input->post('idGra');
-        $studentiGrad = $this->GrupeModel->dohvatiStudenteGrad($idGra);
-        foreach ($studentiGrad as $s) {
-            $idKor = $s['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
-    public function poInteresovanjima() {
-
-        $idGru = $this->input->post('idGru');
-        $idInt = $this->input->post('idInt');
-        $studentiInt = $this->GrupeModel->dohvatiStudenteInteresovanja($idInt);
-        foreach ($studentiInt as $si) {
-            $idKor = $si['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
-    public function poVestinama() {
-
-        $idGru = $this->input->post('idGru');
-        $idVes = $this->input->post('idVes');
-        $studentiVestine = $this->GrupeModel->dohvatiStudenteVestine($idVes);
-
-        foreach ($studentiVestine as $sv) {
-            $idKor = $sv['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
-    public function poFakultetu() {
-
-        $idGru = $this->input->post('idGru');
-        $idFak = $this->input->post('idFak');
-        $studentiFakultet = $this->GrupeModel->dohvatiStudenteFakultet($idFak);
-
-        foreach ($studentiFakultet as $sf) {
-            $idKor = $sf['idKor'];
-            $this->GrupeModel->DodajStudente($idGru, $idKor);
-        }
-        redirect('Grupe/index');
-    }
-
+   
     /**
      * 
      * metoda za ubacivanje u grupu ulogovanog korisnika
@@ -194,5 +128,54 @@ class Grupe extends CI_Controller {
             'katVesti' => $katVesti];
         $this->load->view('viewTemplate', $data);
     }
+    
+    /**
+     * metoda za ispisivanje opcija u padajucim listama za parametre po kojima dohvatamo studente
+     */
 
+    public function ispisiOpcije() {
+
+        $tip = $this->input->post("tip");
+        if ($tip == 'kursgrupe') {
+            $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
+        } else if ($tip == 'gradgrupe') {
+            $data = ['grad' => $this->SifrarniciModel->dohvatiMesto()];
+        } else if ($tip == 'vestinegrupe') {
+            $data = ['vestine' => $this->SifrarniciModel->dohvatiVestine()];
+        } else if ($tip == 'fakultetgrupe') {
+            $data = ['fakultet' => $this->SifrarniciModel->dohvatiFakultete()];
+        } else if ($tip == 'interesovanjagrupe'){
+            $data = ['interesovanja' => $this->SifrarniciModel->dohvatiInteresovanja()];
+        } else if ($tip == 'statusgrupe'){
+            $data = ['status' => $this->GrupeModel->status()];
+        }
+
+
+        $this->load->view('grupe/opcije', $data);
+    }
+    
+    /**
+     * upiti kojima pravimo grupe studenata po razlicitim parametrima
+     */
+    
+    
+    public function upiti(){
+        
+        $idGru = $this->input->post("idGru"); 
+        $idKurs = $this->input->post("kurs");
+        $idGra = $this->input->post("grad");
+        $idVes = $this->input->post("vestine");
+        $idFak = $this->input->post("fakultet");
+        $idInter = $this->input->post('interesovanja');
+        $status = $this->input->post('status');
+        
+        $studentiUpit = $this->GrupeModel->upiti($idGra, $idKurs, $idFak, $idVes, $idInter, $status);
+        
+        foreach ($studentiUpit as $su) {
+                    $idKor = $su['idKor'];
+                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+        }
+       redirect('Grupe/index');
+        
+    }
 }

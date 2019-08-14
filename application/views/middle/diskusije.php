@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php   
+    if($this->session->has_userdata('user')){
+        $tipKorisnika = $this->session->userdata('user')['tip'];
+        }else{
+            $tipKorisnika = "gost";         
+        }
+ 
+        ?>
 
         <div class="container-fluid" style="margin-bottom: 90px">
             <div class="row">
@@ -14,17 +22,33 @@
 
        
                     } ?>
-                     <div>
-                    <input type="button" onclick='prikaziFormuKat()' value="Dodaj kategoriju" class="btn btn-primary btn-lg btn-block">
+                    
+                    
+                    <?php 
+                    if($tipKorisnika != 'gost'){
+                        echo ' 
+                    
+                    
+                    <div>
+                    <input type="button" onclick="prikaziFormuKat()" value="Dodaj kategoriju" class="btn btn-primary btn-lg btn-block">
                     </div>
                     
-                    <div id='formaDivKat'>
-                        <form name='dodajKat' method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju') ?>">
-                            <input type="text" name='naziv' placeholder="Naziv kategorije">
+                       ';}?>
+                    
+                    <?php if($tipKorisnika != 'gost'){?>
+                         
+                            
+                    <div id="formaDivKat">
+                        <form name="dodajKat" method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju')?>" >
+                            <input type="text" name="naziv" placeholder="Naziv kategorije">
                             <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary  btn-lg btn-block">
                             
                         </form>
-                    </div>
+                    
+                    
+                   
+                </div>
+                    <?php  } ?>
                 </div>
                
                 <div class="col-6">
@@ -43,13 +67,17 @@
         <b>Datum pokretanja: </b><?php echo $s['datum'] ?><br/> 
          <?php $id = $s['idDis'] ?>
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
-        <?php if($s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
+        <?php if($s['vidljivost'] != 'autor' && $tipKorisnika != 'gost'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
         <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;}?>
                     </div> 
                         
                      <?php  }  ?>
-                   <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value='Zapocni novu diskusiju'>
+                        <?php if($tipKorisnika != 'gost'){
+                            echo '  
+                        }
+                   <div class="centar"> <input type="button" class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value="Zapocni novu diskusiju">
                    </div>
+                        ';}  ?>
 
                 </div>
                     
@@ -59,7 +87,11 @@
     $ulogovani = $this->session->userdata('user')['korisnicko'];
     $kategorije = $this->DiskusijeModel->dohvatiKategorije();
     ?>
-    <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju") ?>">
+    <?php if($tipKorisnika != 'gost') { ?>
+        
+       
+    
+    <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju")?> " >
         <table>
             <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
             <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
@@ -67,13 +99,18 @@
             <tr><td><b>Kategorija: </td><td></b>
                     <select name="kategorija">
                         <option disabled selected value="">Izaberi kategoriju</option>
-                        <?php
+  
+    <?php } if($tipKorisnika != 'gost'){
                         foreach ($kategorije as $k) {
                             $idKat = $k['idKatDis'];
                             $nazivKat = $k['naziv'];
                             echo "<option value='$idKat'>$nazivKat</option>";
                         }
-                        ?></select></td></tr>
+                        } ?></select></td></tr>
+                    <?php if($tipKorisnika != 'gost'){?>
+                       
+                    
+                    
             <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
         <tr><td></td><td>
         
@@ -89,8 +126,8 @@
             <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
         </table>
     </form>
-
-
+                   
+                    <?php }?>
 </div>
                     
                 </div>      
