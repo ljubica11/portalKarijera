@@ -42,6 +42,16 @@ class DiskusijeModel extends CI_Model {
                 ->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
         
+        if($tipKorisnika == NULL) {
+        $this->db->from('diskusija');
+        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
+        $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
+        $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
+        $this->db->where('vidljivost', NULL);
+        $this->db->order_by('diskusija.idDis', 'DESC');
+            
+    } else {
+        
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik')
                 ->from('diskusija')
                 ->join('korisnik', 'korisnik.idKor = diskusija.autor')
@@ -62,6 +72,7 @@ class DiskusijeModel extends CI_Model {
                     ->where('autor', $idKor)
                     ->order_by('diskusija.idDis', 'DESC')
                     ->group_end();
+        }
         }
         $query = $this->db->get();
         return $query->result_array();
@@ -86,6 +97,16 @@ class DiskusijeModel extends CI_Model {
                 ->from('clanovigrupe')
                 ->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
+        
+    if($tipKorisnika == NULL) {
+        $this->db->from('diskusija');
+        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
+        $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
+        $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
+        $this->db->where('vidljivost', NULL);
+        $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
+            
+    } else {
         
         $this->db->from('diskusija');
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
@@ -115,6 +136,7 @@ class DiskusijeModel extends CI_Model {
                     ->order_by('diskusija.idDis', 'DESC')
                     ->group_end();
         }
+    }  
         $query = $this->db->get();
         return $query->result_array();
     }
