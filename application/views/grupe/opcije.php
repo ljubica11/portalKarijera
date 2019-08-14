@@ -44,4 +44,22 @@
              echo "<option value='$idFak'>$naziv</option>";
          }?>
 </select>
-<?php } 
+<?php } else if(isset ($interesovanja)){ ?>
+<select name="interesovanja" class="form-control">  
+    <option disabled selected value="">Odaberite interesovanja</option>
+    <?php
+         foreach ($interesovanja as $inter){
+             $idInt = $inter['idInt'];
+             $naziv = $inter['naziv'];
+             echo "<option value='$idInt'>$naziv</option>";
+         }?>
+</select>
+<?php } else if(isset($status)){ ?> 
+<select name="status" class="form-control">
+    <option disabled selected value="">Odaberite status</option>
+    <option value="zaposleni">Zaposlen</option>
+    <option value ="nezaposleni">Nezaposlen</option>
+    <option value ="student">Student</option>
+   
+</select>
+<?php }

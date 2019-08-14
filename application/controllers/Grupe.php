@@ -144,6 +144,10 @@ class Grupe extends CI_Controller {
             $data = ['vestine' => $this->SifrarniciModel->dohvatiVestine()];
         } else if ($tip == 'fakultetgrupe') {
             $data = ['fakultet' => $this->SifrarniciModel->dohvatiFakultete()];
+        } else if ($tip == 'interesovanjagrupe'){
+            $data = ['interesovanja' => $this->SifrarniciModel->dohvatiInteresovanja()];
+        } else if ($tip == 'statusgrupe'){
+            $data = ['status' => $this->GrupeModel->status()];
         }
 
 
@@ -151,138 +155,27 @@ class Grupe extends CI_Controller {
     }
     
     /**
-     * upiti kojima pravimo grupe studenata po cetiri razlicita parametra
+     * upiti kojima pravimo grupe studenata po razlicitim parametrima
      */
-
-    public function upiti() {
-
-        $idGru = $this->input->post("idGru"); //439;
+    
+    
+    public function upiti(){
+        
+        $idGru = $this->input->post("idGru"); 
         $idKurs = $this->input->post("kurs");
         $idGra = $this->input->post("grad");
         $idVes = $this->input->post("vestine");
         $idFak = $this->input->post("fakultet");
-
-
-        if (isset($idGra) && isset($idKurs) && isset($idVes) && isset($idFak)) {
-
-            $studentiUpit = $this->GrupeModel->upiti($idGra, $idKurs, $idVes, $idFak);
-
-
-            foreach ($studentiUpit as $su) {
-                $idKor = $su['idKor'];
-                $this->GrupeModel->DodajStudente($idGru, $idKor);
-            }
-        } else {
-            if (empty($idGra)) {
-
-                $studentiUpit = $this->GrupeModel->upitiBezGrada($idKurs, $idVes, $idFak);
-
-                foreach ($studentiUpit as $su) {
+        $idInter = $this->input->post('interesovanja');
+        $status = $this->input->post('status');
+        
+        $studentiUpit = $this->GrupeModel->upiti($idGra, $idKurs, $idFak, $idVes, $idInter, $status);
+        
+        foreach ($studentiUpit as $su) {
                     $idKor = $su['idKor'];
                     $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (empty($idKurs)) {
-                $studentiUpit = $this->GrupeModel->upitiBezKursa($idGra, $idVes, $idFak);
-
-                foreach ($studentiUpit as $su) {
-                    $idKor = $su['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (empty($idVes)) {
-
-
-                $studentiUpit = $this->GrupeModel->upitiBezVestina($idGra, $idKurs, $idFak);
-                foreach ($studentiUpit as $su) {
-                    $idKor = $su['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (empty($idFak)) {
-
-                $studentiUpit = $this->GrupeModel->upitiBezFakulteta($idGra, $idKurs, $idVes);
-                foreach ($studentiUpit as $su) {
-                    $idKor = $su['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            }
-        } if (isset($idGra) && empty($idKurs) && empty($idVes) && empty($idFak)) {
-
-
-            $studentiGrad = $this->GrupeModel->dohvatiStudenteGrad($idGra);
-            foreach ($studentiGrad as $s) {
-                $idKor = $s['idKor'];
-                $this->GrupeModel->DodajStudente($idGru, $idKor);
-            }
-        } else {
-            if (isset($idKurs) && empty($idGra) && empty($idVes) && empty($idFak)) {
-                $studentiKurs = $this->GrupeModel->dohvatiStudenteKurs($idKurs);
-                foreach ($studentiKurs as $s) {
-                    $idKor = $s['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (isset($idVes) && empty($idKurs) && empty($idGra) && empty($idFak)) {
-                $studentiVestine = $this->GrupeModel->dohvatiStudenteVestine($idVes);
-
-                foreach ($studentiVestine as $sv) {
-                    $idKor = $sv['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (isset($idFak) && empty($idKurs) && empty($idGra) && empty($idVes)) {
-                $studentiFakultet = $this->GrupeModel->dohvatiStudenteFakultet($idFak);
-
-                foreach ($studentiFakultet as $sf) {
-                    $idKor = $sf['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-                   
-            } else if (isset($idVes) && isset($idFak)) {
-                $studentiVF = $this->GrupeModel->VestineFakultet($idVes, $idFak);
-
-                foreach ($studentiVF as $svf) {
-                    $idKor = $svf['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (isset($idKurs) && isset($idFak) && empty($idGra) && empty($idVes)) {
-                $studentiKF = $this->GrupeModel->KursFakultet($idKurs, $idFak);
-
-                foreach ($studentiKF as $skf) {
-                    $idKor = $skf['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (isset($idKurs) && isset($idVes) && empty($idGra) && empty($idFak)) {
-                $studentiKV = $this->GrupeModel->KursVestine($idKurs, $idVes);
-
-                foreach ($studentiKV as $skv) {
-                    $idKor = $skv['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if (isset($idGra) && isset($idFak) && empty($idKurs) && empty($idVes)) {
-                $studentiGf = $this->GrupeModel->GradFakultet($idGra, $idFak);
-
-                foreach ($studentiGf as $sgf) {
-                    $idKor = $sgf['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                }
-            } else if(isset($idGra) && isset ($idVes) && empty ($idFak) && empty ($idKurs)){
-                $studentiGV = $this->GrupeModel->GradVestine($idGra, $idVes);
-                
-                 foreach ($studentiGV as $sgv) {
-                    $idKor = $sgv['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-            }
-            
-            } else if(isset($idGra) && isset ($idKurs)  && empty ($idVes) && empty($idFak)){
-                $studentiGK = $this->GrupeModel->GradKurs($idGra, $idKurs);
-                
-                foreach ($studentiGK as $sgk) {
-                    $idKor = $sgk['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
-                
-                }
-            }
-
- }
-            redirect('Grupe/index');
+        }
+       redirect('Grupe/index');
         
     }
-
 }
