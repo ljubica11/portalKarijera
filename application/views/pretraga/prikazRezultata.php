@@ -2,6 +2,11 @@
 
 <?php
 
+
+
+$res = array('res' => $podaci);
+$this->session->set_userdata($res);
+
 foreach ($podaci as $user){ 
     $idKor = $user['idKor'];?>
         <div class="pretraga-rezultat-student">
@@ -34,3 +39,12 @@ foreach ($podaci as $user){
 
 
 <?php } ?>
+
+
+Kreiraj grupu<br>
+<form name="kreiraj" method="POST" action="<?php echo site_url('Pretraga/dodajClanove') ?>">
+<input type="text" name="nazivGrupe">
+<input type="text" name="opisGrupe">
+<input type="submit" value='napravi'>
+</form>
+

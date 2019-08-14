@@ -144,8 +144,8 @@ class GrupeModel extends CI_Model {
 
         $data = ['naziv' => $naziv, 'opis' => $opis];
         $this->db->insert('grupe', $data);
-        $query = $this->db->get('grupe');
-        return $query->result_array();
+       
+        return $maxIdGrupe = $this->db->insert_id();
     }
 
     /**
