@@ -58,12 +58,13 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-
+    
     /**
      * metoda za dohvatanje studenata po interesovanjima
      * @param type $idInt
      * @return type array
      */
+
     public function dohvatiStudenteInteresovanja($idInt) {
 
         $this->db->select('student.*');
@@ -74,14 +75,15 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-
+    
     /**
      * metoda za dohvatanje studenata po zavrsenim studijama
      * @param type $idFak
      * @return type array
      */
-    public function dohvatiStudenteFakultet($idFak) {
-
+    
+    public function dohvatiStudenteFakultet($idFak){
+        
         $this->db->select('student.*');
         $this->db->from('student');
         $this->db->join('diploma', 'diploma.idKor = student.idKor');
@@ -147,22 +149,22 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get('grupe');
         return $query->result_array();
     }
-
-    /**
-     * dodavanje studenta u grupu uz proveru da li je vec clan grupe
-     * @param type $idGru
-     * @param type $idKor
-     */
-    public function dodajStudente($idGru, $idKor) {
-
+/**
+ * dodavanje studenta u grupu uz proveru da li je vec clan grupe
+ * @param type $idGru
+ * @param type $idKor
+ */
+    public function dodajStudente($idGru, $idKor){ 
+       
         $query = $this->db->get_where('clanovigrupe', ['idGru' => $idGru, 'idKor' => $idKor]);
         $count = $query->num_rows();
-        if ($count == 0) {
-            $data = ['idGru' => $idGru,
-                'idKor' => $idKor];
-
-
-            $this->db->insert('clanovigrupe', $data);
+        if($count == 0){
+        $data = ['idGru' => $idGru, 
+                 'idKor' => $idKor];
+        
+            
+        $this->db->insert('clanovigrupe', $data);
+        
         }
     }
 
@@ -171,33 +173,29 @@ class GrupeModel extends CI_Model {
      * @param type $idGru
      * @param type $idKor
      */
+    
     public function obrisiStudente($idGru, $idKor) {
-
+        
         $data = ['idGru' => $idGru, 'idKor' => $idKor];
         $this->db->delete('clanovigrupe', $data);
+      
     }
-
-    public function dohvatiStudenta($idKor) {
-
+    
+    public function dohvatiStudenta($idKor){
+        
         $this->db->select('student.*')
                 ->from('student')
                 ->where('idKor', $idKor);
         $query = $this->db->get();
         return $query->result_array();
+        
+                
+                
     }
     
-    /**
-     * metode za dohvatanje stuudenta po cetiri parametra uz and uslov
-     * @param type $idGra
-     * @param type $idKurs
-     * @param type $idVes
-     * @param type $idFak
-     * @return type array
-     */
-
-    public function upiti($idGra, $idKurs, $idVes, $idFak) {
-
-
+    public function upiti($idGra, $idKurs, $idVes, $idFak, $idInt){
+        
+       
         $this->db->select('student.*')
                 ->from('student')
                 ->join('sifgradovi', 'sifgradovi.idGra = student.mesto')
@@ -206,19 +204,26 @@ class GrupeModel extends CI_Model {
                 ->join('sifvestine', 'imavestine.idVes = sifvestine.idVes')
                 ->join('diploma', 'diploma.idKor = student.idKor')
                 ->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak')
+                ->join('imainteresovanja', 'imainteresovanja.idKor = student.idKor')
+                ->join('sifinteresovanja', 'sifinteresovanja.idInt = imainteresovanja.idInt')
+               
                 ->where('imavestine.idVes', $idVes)
                 ->where('student.mesto', $idGra)
                 ->where('student.idKurs', $idKurs)
-                ->where('siffakulteti.idFak', $idFak);
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function upitiBezGrada($idVes, $idKurs, $idFak) {
-
-
-
+                ->where('siffakulteti.idFak', $idFak)
+                ->where('imainteresovanja.idInt', $idInt);
+       
+         
+          $query = $this->db->get();
+          return $query->result_array();
+         
+        }
+        
+        
+    public function upitiBezGrada($idVes, $idKurs, $idFak, $idInt){
+        
+        
+        
         $this->db->select('student.*')
                 ->from('student')
                 ->join('sifkurs', 'sifkurs.idKurs = student.idKurs')
@@ -226,148 +231,66 @@ class GrupeModel extends CI_Model {
                 ->join('sifvestine', 'imavestine.idVes = sifvestine.idVes')
                 ->join('diploma', 'diploma.idKor = student.idKor')
                 ->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak')
+                ->join('imainteresovanja', 'imainteresovanja.idKor = student.idKor')
+                ->join('sifinteresovanja', 'sifinteresovanja.idInt = imainteresovanja.idInt')
+               
                 ->where('imavestine.idVes', $idVes)
                 ->where('student.idKurs', $idKurs)
-                ->where('siffakulteti.idFak', $idFak);
-
-        $query = $this->db->get();
-        return $query->result_array();
+                ->where('siffakulteti.idFak', $idFak)
+                ->where('imainteresovanja.idInt', $idInt);
+         $query = $this->db->get();
+                   
+         return $query->result_array();
     }
-
-    public function upitiBezKursa($idGra, $idVes, $idFak) {
-
-        $this->db->select('student.*')
+    
+    public function upitiBezKursa($idGra, $idVes, $idFak, $idInt){
+        
+         $this->db->select('student.*')
                 ->from('student')
                 ->join('sifgradovi', 'sifgradovi.idGra = student.mesto')
+               
                 ->join('imavestine', 'imavestine.idKor = student.idKor')
                 ->join('sifvestine', 'imavestine.idVes = sifvestine.idVes')
+                 
                 ->join('diploma', 'diploma.idKor = student.idKor')
                 ->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak')
+                 
+                ->join('imainteresovanja', 'imainteresovanja.idKor = student.idKor')
+                ->join('sifinteresovanja', 'sifinteresovanja.idInt = imainteresovanja.idInt')
+                 
                 ->where('imavestine.idVes', $idVes)
                 ->where('student.mesto', $idGra)
-                ->where('siffakulteti.idFak', $idFak);
-
-
-        $query = $this->db->get();
-        return $query->result_array();
+                ->where('siffakulteti.idFak', $idFak)
+                ->where('imainteresovanja.idInt', $idInt);
+              
+       
+         
+          $query = $this->db->get();
+          return $query->result_array();
     }
-
-    public function upitiBezVestina($idGra, $idKurs, $idFak) {
-
-        $this->db->select('student.*')
+    
+    public function upitiBezVestina($idGra, $idKurs, $idFak, $idInt){
+        
+         $this->db->select('student.*')
                 ->from('student')
                 ->join('sifgradovi', 'sifgradovi.idGra = student.mesto')
                 ->join('sifkurs', 'sifkurs.idKurs = student.idKurs')
                 ->join('diploma', 'diploma.idKor = student.idKor')
                 ->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak')
+                ->join('imainteresovanja', 'imainteresovanja.idKor = student.idKor')
+                ->join('sifinteresovanja', 'sifinteresovanja.idInt = imainteresovanja.idInt')
+                 
                 ->where('student.mesto', $idGra)
                 ->where('student.idKurs', $idKurs)
-                ->where('siffakulteti.idFak', $idFak);
-
-
-        $query = $this->db->get();
-        return $query->result_array();
+                ->where('siffakulteti.idFak', $idFak)
+                ->where('imainteresovanja.idInt', $idInt);
+         
+       
+         
+          $query = $this->db->get();
+          return $query->result_array();
     }
-
-    public function upitiBezFakulteta($idGra, $idKurs, $idVes) {
-
-        $this->db->select('student.*')
-                ->from('student')
-                ->join('sifgradovi', 'sifgradovi.idGra = student.mesto')
-                ->join('sifkurs', 'sifkurs.idKurs = student.idKurs')
-                ->join('imavestine', 'imavestine.idKor = student.idKor')
-                ->join('sifvestine', 'imavestine.idVes = sifvestine.idVes')
-                ->where('student.mesto', $idGra)
-                ->where('student.idKurs', $idKurs)
-                ->where('imavestine.idVes', $idVes);
-
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function VestineFakultet($idVes, $idFak) {
-
-        $this->db->select('student.*')
-                ->from('student')
-                ->join('imavestine', 'imavestine.idKor = student.idKor')
-                ->join('sifvestine', 'imavestine.idVes = sifvestine.idVes')
-                ->join('diploma', 'diploma.idKor = student.idKor')
-                ->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak')
-                ->where('imavestine.idVes', $idVes)
-                ->where('siffakulteti.idFak', $idFak);
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function KursFakultet($idKurs, $idFak) {
-
-        $this->db->select('student.*')
-                ->from('student')
-                ->join('sifkurs', 'sifkurs.idKurs = student.idKurs')
-                ->join('diploma', 'diploma.idKor = student.idKor')
-                ->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak')
-                ->where('student.idKurs', $idKurs)
-                ->where('siffakulteti.idFak', $idFak);
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function KursVestine($idKurs, $idVes) {
-
-        $this->db->select('student.*')
-        ->from('student')
-        ->join('sifkurs', 'sifkurs.idKurs = student.idKurs')
-        ->join('imavestine', 'imavestine.idKor = student.idKor')
-        ->join('sifvestine', 'imavestine.idVes = sifvestine.idVes')
-        ->where('student.idKurs', $idKurs)
-        ->where('imavestine.idVes', $idVes);
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function GradFakultet($idGra, $idFak) {
-
-        $this->db->select('student.*')
-                ->from('student')
-                ->join('sifgradovi', 'sifgradovi.idGra = student.mesto')
-                ->join('diploma', 'diploma.idKor = student.idKor')
-                ->join('siffakulteti', 'siffakulteti.idFak = diploma.idFak')
-                ->where('student.mesto', $idGra)
-                ->where('siffakulteti.idFak', $idFak);
-
-
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function GradVestine($idGra, $idVes) {
-
-        $this->db->select('student.*')
-                ->from('student')
-                ->join('sifgradovi', 'sifgradovi.idGra = student.mesto')
-                ->join('imavestine', 'imavestine.idKor = student.idKor')
-                ->join('sifvestine', 'imavestine.idVes = sifvestine.idVes')
-                ->where('student.mesto', $idGra)
-                ->where('imavestine.idVes', $idVes);
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
-
-    public function GradKurs($idGra, $idKurs) {
-
-        $this->db->select('student.*')
-                ->from('student')
-                ->join('sifgradovi', 'sifgradovi.idGra = student.mesto')
-                ->join('sifkurs', 'sifkurs.idKurs = student.idKurs')
-                ->where('student.mesto', $idGra)
-                ->where('student.idKurs', $idKurs);
-
-        $query = $this->db->get();
-        return $query->result_array();
-    }
+            
+    
 
 }
