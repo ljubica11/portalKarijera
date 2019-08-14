@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller{
-    
+
     public function __construct() {
         parent::__construct();
         if ($this->session->has_userdata('user')) {
@@ -13,11 +13,14 @@ class Login extends CI_Controller{
     
   
     public function index(){
-         $data["middle"] = "middle/login_stranica";
-         $this->load->view('viewTemplate', $data);
-        
-        
-       // $this->load->view('login_stranica');  
+         $data["middle"] = "middle/login_stranica";               
+         $this->load->model('GuestModel');      
+         $data['middle_data']=['vest'=>$this->GuestModel->najnovijaVest(),
+             'obavestenje'=>$this->GuestModel->najnovijeObavestenje(),
+             'oglas'=>$this->GuestModel->najnovijiOglas(), 
+             'diskusija'=>$this->GuestModel->najnovijaDiskusija()];      
+         $this->load->view('viewTemplate', $data); 
+         // $this->load->view('login_stranica');  
     }
 
         public function logovanje(){
@@ -29,7 +32,8 @@ class Login extends CI_Controller{
             $users= $this->UserModel->login($username, $pass);
             
             if(count($users)==0){
-                echo "Nekorektni podaci!";
+               echo 'Pogresno korisnicko ime ili lozinka';
+               echo '<br><a href="../middle/zaboravljenaLozinka">Zaboravili ste lozinku??</a>';
             }else{
                 $user = $users[0];
                 $this->session->set_userdata('user', $user);
@@ -37,5 +41,13 @@ class Login extends CI_Controller{
             }
         
     }
-    
+    public function usloviKoriscenja(){
+        $this->load->view('middle/usloviKoriscenja');
+    }
+
+    public function oNama(){
+        $this->load->view('middle/oNama');
+    }
 }
+    
+   

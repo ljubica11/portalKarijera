@@ -5,7 +5,6 @@
  * @author gordan
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Diskusije extends CI_Controller {
     
     public function __construct() {
@@ -76,8 +75,6 @@ class Diskusije extends CI_Controller {
                   "<input type='button' class='btn btn-outline-primary btn-sm' value='svidjanje' onclick='lajk($idPos)'>".
                   '<span><div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'].'</span></div></div>';
 }
-
-
     }
        
              
@@ -144,8 +141,6 @@ class Diskusije extends CI_Controller {
         $this->DiskusijeModel->arhivirajDiskusiju($idDis);
         echo 'arhivirana';
         }
-
-
     public function lajkPost(){
         
         $idPos = $this->input->get('idPos');

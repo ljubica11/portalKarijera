@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <?php   
     if($this->session->has_userdata('user')){
@@ -100,7 +99,6 @@
   
     <?php } if($tipKorisnika != 'gost'){
                         foreach ($kategorije as $k) {
-
                             $idKat = $k['idKatDis'];
                             $nazivKat = $k['naziv'];
                             echo "<option value='$idKat'>$nazivKat</option>";
@@ -150,12 +148,10 @@
 
         <script>
             function diskusije(id) {
-
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         document.getElementById("diskusijePoKategoriji").innerHTML = this.responseText;
-
                     }
                 }
                 xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiDiskusije') ?>?id=" + id, true);
@@ -181,30 +177,22 @@
             
        
             function postovi(id) {
-
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         document.getElementById("postovi").innerHTML = this.responseText;
-
                     }
                 }
                 xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiPostove') ?>?id=" + id, true);
                 xmlhttp.send();
             }
-
-
             function dodajdiv(id) {
                 document.getElementById('wrapper').innerHTML += '<div class="postdesno" id="wrapper">\n\
               <input type="text" id="novipost" class="form-control" width="90%">\n\
               <input type="button" class="btn btn-outline-primary btn-sm" name="Posalji" value="Posalji" onclick="dodajpost(' + id + '); cleartext()" id="idDis" class="btn btn-primary"></div>';
-
             }
-
             function prikaziFormu() {
-
                 document.getElementById("formaDiv").style.display = "block";
-
             }
             
             function prikaziFormuKat(){
@@ -216,13 +204,9 @@
                 
                 document.getElementById("diskusije").style.display = "none";
             }
-
             function dodajpost(id) {
-
                 var tekst = document.getElementById('novipost').value;
                 var idDis = id;
-
-
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
@@ -230,12 +214,10 @@
                         document.getElementById("postovi").innerHTML = this.responseText;
                     }
                 };
-
                 xhttp.open("POST", "<?php echo site_url('Diskusije/dodajPost'); ?>", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send("idDis=" + idDis + "&tekst=" + tekst);
             }
-
             function cleartext() {
                 document.getElementById("novipost").value = '';
             }
@@ -253,7 +235,6 @@
                 
     }
             
-
          function lajk(idPos){
      
      
@@ -268,15 +249,9 @@
           xmlhttp.send();
      
      
+    
  }
-
         </script>
-
-
-
-
-
-
 
 
 

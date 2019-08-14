@@ -1,17 +1,12 @@
-<html>
-    <head>
+
+            
         <meta charset="UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <meta name="viewport" 
-        content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
-    </head>
-    <body>
-        <?php if ($this->session->flashdata('msg') !== null) { 
-            $msg = $this->session->flashdata('msg');
-            echo "<script type='text/javascript'>alert('$msg');</script>";
-        }?>
-        <div class="container" id="container1">
+    
+    
+                <div class="container" id="container1">
             <div class="row">
                 <div class="offset-sm-12" style="height: 50px"></div>
             </div>
@@ -31,9 +26,9 @@
                 <div class="offset-sm-12" style="height: 50px"></div>
             </div>
             <div class="row">
-                <div class="offset-sm-1 col-sm-3 btn btn-outline-success btn-lg" type="submit">
-                   <a class="nav-link" href="<?php echo site_url('registracija')?>">Registracija</a>
-                </div>
+                <form class="offset-sm-1 form-inline my-2 my-lg-0" name="loginForma" method="POST" action="http://localhost/portalKarijera/index.php/registracija">
+                    <button class="btn btn-outline-primary my-2 my-sm-0 btn-lg" type="submit">Registracija</button>
+                </form>
                 <div class="offset-sm-8"></div>
             </div>
             <div class="row">
@@ -42,19 +37,36 @@
         </div>
         <div class="container" id="container2">
             <div class="row">
-                <div class="offset-sm-12" style="height: 20px"></div>
+                <div class="offset-sm-12" style="height: 15px"></div>
             </div>
             <div class="row" style="align-top">
-                <div class="col-sm-2"><img src="<?php echo base_url('/images/firma1.png')?>" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-1"><img src="<?php echo base_url('/images/firma2.png')?>" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma1.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-1"><img src="http://localhost/portalKarijera/images/firma2.png" class="img-fluid" alt="Responsive image"></div>
                 <div class="col-sm-1"><h1>ETF</h1></div>
-                <div class="col-sm-2"><img src="<?php echo base_url('/images/firma3.png')?>" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-2"><img src="<?php echo base_url('/images/firma4.png')?>" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-2"><img src="<?php echo base_url('/images/firma5.png')?>" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-2"><img src="<?php echo base_url('/images/firma6.png')?>" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma3.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma4.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma5.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma6.png" class="img-fluid" alt="Responsive image"></div>
             </div>
         </div>
         <div class="container" id="container3">
+            <div class="row">
+                <div class="col-sm-12"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4" id="iskustvaNaslov">Iskustva polaznika: </div>
+                <div class="col-sm-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12"></div>
+            </div>
+            <div class="row" id="iskustva">
+                <div class="col-sm-6">Tamara Sekularac: "Da nisam otkrila ovaj portal verovatno se nikad ne bih povezala sa danasnjim kolegama, niti bih radila na Elektrotehnickom fakultetu. Svaka cast kreatorima na izumu."</div>
+                <div class="col-sm-6">Jovan Djukic: "Portal je fenomenalan. Jako koristan za mlade generacije, lakse se uspostavlja komunikacija sa poslodavcima koji umeju da prepoznaju talenat."</div>
+            </div>
+            </div>
+        <div class="container" id="container4">
             <div class="row">
                 <div class="offset-sm-12" style="height: 60px"></div>
             </div>
@@ -81,45 +93,33 @@
                 </p>
             </div>
         </div>
-        <div class="container" id="container4">
+        <div class="container" id="container5">
             <div class="row">
-                <div class="main slide-right col-sm-12">
-                    <p>Posle dvadesetak sekundi menja se poruka.</p>
-                </div>
+                <div id="najnovije" class="slide-right col-sm-12"></div>
             </div>
         </div>
         <script>
-            var title = ['<p>Kada zavrsimo vesti diskusije i oglase.</p>','<p>Ovde ce se ispisivati i menjati poruke</p>','<p>Za sad je ovo samo proba.</p>'];
+             
+            var title = ['<p>Najnovija vest:<br><br>  <?php foreach ($vest as $v){ echo ($v['tekst']); } ?></p>', 
+                '<p>Najnovije obavestenje:<br><br>  <?php foreach ($obavestenje as $ob){ echo ($ob['tekst']); } ?></p>',
+                '<p>Najnoviji oglas:<br><br>  <?php foreach ($oglas as $og){ echo ($og['opis']); } ?></p>',
+                '<p>Najnovija diskusija:<br><br>  <?php foreach ($diskusija as $d){ echo ($d['opis']); } ?></p>'];
             var index = 0;
 
             function change_title() {
                 var x = title[index];
-                $('.main').html(x);
+                $('#najnovije').html(x);
                 index++;
                 if (index >= title.length) { index = 0; }
             };
 
-            function change_left() {
-                $('div').removeClass('slide-right').addClass('slide-left');
-            }
-
-            function change_right() {
-                $('div').removeClass('slide-left').addClass('slide-right');
+            function to_change_title() {
                 change_title();
-            }
-
-            function to_left() {
-            setInterval(change_left, 10000);
+                setInterval(change_title, 2000);
             };
 
-            function to_right() {
-                setInterval(change_right, 20000);
-            };
-
-            to_left();
-            to_right();
+            to_change_title();
+            
         </script>
-
     </body>
 </html>
-   

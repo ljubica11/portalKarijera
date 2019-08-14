@@ -49,6 +49,9 @@
        var rec = document.getElementById("pretragaPoslova").value;
        var selectLista = document.getElementById("grad");
        var grad = selectLista.options[selectLista.selectedIndex].value;
+       if((grad == "")&&(rec == "")){
+           return;
+       }
        xmlhttp=new XMLHttpRequest();
              xmlhttp.onreadystatechange=function(){
                    if(this.readyState==4&&this.status==200){ 
