@@ -11,18 +11,19 @@
         <div class="container-fluid" style="margin-bottom: 90px">
             <div class="row">
                 <div class="col-3 levo">
-                    <b>Kategorije: </b>
+                    
+                    <b> Kategorije </b>
                     <br/>
                     <?php
                     foreach ($kategorije as $k) {
                         $idKatDis = $k['idKatDis'];
                         $naziv = $k['naziv'];
                        
-                        echo "<div class='list-group' id='myList' role='tablist'><a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a></div><br/>";
+                        echo "<div class='list-group formaGrupe' id='myList' role='tablist'><a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a></div><br/>";
        
                     } ?>
                     
-                    
+              
                     <?php 
                     if($tipKorisnika != 'gost'){
                         echo ' 
