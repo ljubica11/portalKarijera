@@ -92,6 +92,8 @@
                 <input type="number" name="godZavrsetka" placeholder="Godina zavrsetka">
                 <br/>
                 <input type="text" name="zvanje" placeholder="Steceno zvanje">
+                <br/>
+                <input type="checkbox" name="vidDipl" value="1">Ne zelim da ovaj podatak bude javan
                 <br/><br/>
                 <input type="submit" name="dalje" value="Dalje" class='nextButton'>
              </form>
@@ -101,7 +103,7 @@
                  }else if(isset($kompanije)){
              ?>
              
-             
+         
              <h4>Radno iskustvo</h4>
             <br/><br/>
             <form name="iskustvoForma" method="POST" action="<?php echo site_url('Registracija/dodajIskustvoZaKorisnika')?>">
@@ -157,6 +159,8 @@
             Pocetak radnog odnosa: <input type="date" name="od">
             <br/>
             Kraj radnog odnosa: <input type="date" name="do">
+            <br/><br/>
+            <input type="checkbox" name="vidRad" value="1">Ne zelim da ovaj podatak bude javan          
             <br/><br/>
             <input type="submit" name="dalje" value="Zavrsi registraciju" class="nextButton">
             </form> 
@@ -225,5 +229,5 @@
             xmlhttp.open("POST", "<?php echo site_url('Registracija/izmeniSifrarnik'); ?>", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xmlhttp.send("dodatak="+dodatakZaSifrarnik+"&tip="+tip);
-   }
+   }  
     </script>

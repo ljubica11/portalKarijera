@@ -43,8 +43,10 @@
             }
             ?>
         </select><br/> <?php echo form_error('drzavljanstvo');?>
-        <input name="telefon" type="text" value="<?php echo set_value('telefon') ?>" placeholder="broj telefona"><?php echo form_error('telefon') ?> <br/>
-        <input name="adresa" type="text" value="<?php echo set_value('adresa') ?>" placeholder="Adresa"><?php echo form_error('adresa') ?> <br/>
+        <input name="telefon" type="text" value="<?php echo set_value('telefon') ?>" placeholder="broj telefona"><?php echo form_error('telefon') ?><br/>
+        <input type="checkbox" name="vidTel" value="1"><small> Ne zelim da mi broj telefona bude javan </small><br/>
+        <input name="adresa" type="text" value="<?php echo set_value('adresa') ?>" placeholder="Adresa"><?php echo form_error('adresa') ?><br/>
+        <input type="checkbox" name="vidAdresa" value="1"><small> Ne zelim da mi adresabude javna </small><br/>
         <div id="selectmesto">
         <select name="mesto" onchange="dodajInput('mesto')" id="listamesto"> 
             <option disabled selected value="">Mesto</option>
@@ -73,6 +75,7 @@
         <input name="lozinka" type="password"  placeholder="Lozinka"><?php echo form_error('lozinka') ?> <br/>
         <input name="ponLozinka" type="password"  placeholder="Ponovi lozinku"><?php echo form_error('ponLozinka') ?> <br/>
         <input type="email" name="email"  placeholder="E-mail" value="<?php echo set_value('email') ?>"><?php echo form_error('email') ?> <br/>
+        <input type="checkbox" name="vidEmail" value="1"><small> Ne zelim da mi mejl bude javan </small><br/>
         <input type="date" name="datum"  placeholder="datum rodjenja" value="<?php echo set_value('datum') ?>"> <?php echo form_error('datum') ?>  <br/>
         <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">  
         </form>

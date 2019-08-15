@@ -19,6 +19,7 @@ class PretragaModel extends CI_Model{
             $this->db->from('diploma');
             $this->db->where("diploma.idFak", $faks);
             $this->db->where("student.idKor = diploma.idKor");
+            $this->db->where("diploma.vidljivost", null);
         }
         if(!empty($kurs)){
             $this->db->where('idKurs', $kurs);

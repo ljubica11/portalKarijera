@@ -18,7 +18,7 @@ class UserModel extends CI_Model{
     }
     
     public function podaciZaStudenta($id){
-        $this->db->select('ime, prezime, datum, telefon, adresa, status, sifgradovi.naziv as grad, sifdrzavljanstvo.naziv as drzavljanstvo, sifkurs.naziv as kurs');
+        $this->db->select('ime, prezime, datum, telefon, vidljivostTelefon, adresa, vidljivostAdresa, status, sifgradovi.naziv as grad, sifdrzavljanstvo.naziv as drzavljanstvo, sifkurs.naziv as kurs');
         $this->db->from('student');
         $this->db->join('sifgradovi', 'student.mesto = sifgradovi.idGra');
         $this->db->join('sifdrzavljanstvo', 'student.drzavljanstvo = sifdrzavljanstvo.idDrz');
@@ -51,6 +51,7 @@ class UserModel extends CI_Model{
         $this->db->from('diploma');
         $this->db->join('siffakulteti', 'diploma.idFak = siffakulteti.idFak');
         $this->db->where('idKor', $id);
+        $this->db->where('diploma.vidljivost', null);
         $query=$this->db->get();
         return $query->result_array ();
     }
@@ -62,6 +63,7 @@ class UserModel extends CI_Model{
         $this->db->join('sifgradovi', 'zaposlenje.mesto = sifgradovi.idGra');
         $this->db->join('sifpozicija', 'zaposlenje.pozicija = sifpozicija.idPoz');
         $this->db->where('idKor', $id);
+        $this->db->where('zaposlenje.vidljivost', null);
         $query=$this->db->get();
         return $query->result_array ();
         
