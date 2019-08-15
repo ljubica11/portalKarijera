@@ -26,7 +26,19 @@
             </div>
         </div>
         <div class="col-6">
-            <div id="vesti"> </div>
+            <div id="vesti">
+                <?php foreach ($sveVesti as $sv) { ?>
+
+                    <div class="centar">
+                        <b>Naziv: <?php echo $sv['naziv']; ?></b><br>
+                        <b>Autor: <?php echo $sv['korisnik']; ?></b><br>
+                        <b>Tekst: <?php echo $sv['tekst']; ?></b><br>
+                        <b>Datum: <?php echo $sv['datum']; ?></b><br>
+                        <br>
+                    </div>
+                <?php } ?>
+
+            </div>
 
 
         </div>

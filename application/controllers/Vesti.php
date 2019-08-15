@@ -17,9 +17,10 @@ class Vesti extends CI_Controller {
 
     public function index() {
         $kategorijeVesti = $this->VestiModel->dohvatiKategorijeVesti();
+        $sveVesti = $this->VestiModel->dohvatiSveVesti();
         $data = [];
         $data['middle'] = 'middle/vesti';  // strana vesti u view-u - napraviti
-        $data['middle_data'] = ['kategorije' => $kategorijeVesti];
+        $data['middle_data'] = ['kategorije' => $kategorijeVesti, 'sveVesti' => $sveVesti];
         $this->load->view('viewTemplate', $data);
     }
 
