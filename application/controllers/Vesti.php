@@ -16,8 +16,15 @@ class Vesti extends CI_Controller {
 
 
     public function index() {
+        
+        if($this->session->has_userdata('user')){
+        $tipKorisnika = $this->session->userdata('user')['tip'];
+        }else{
+            $tipKorisnika = "gost";
+        }
+              
         $kategorijeVesti = $this->VestiModel->dohvatiKategorijeVesti();
-        $sveVesti = $this->VestiModel->dohvatiSveVesti();
+        $sveVesti = $this->VestiModel->dohvatiSveVesti($tipKorisnika);
         $data = [];
         $data['middle'] = 'middle/vesti';  // strana vesti u view-u - napraviti
         $data['middle_data'] = ['kategorije' => $kategorijeVesti, 'sveVesti' => $sveVesti];
@@ -26,8 +33,13 @@ class Vesti extends CI_Controller {
 
     public function ispisiVesti() {
 
+        if($this->session->has_userdata('user')){
+        $tipKorisnika = $this->session->userdata('user')['tip'];
+        }else{
+            $tipKorisnika = "gost";
+        }
         $idKatVesti = $this->input->get('id');
-        $vesti = $this->VestiModel->dohvatiVesti($idKatVesti);
+        $vesti = $this->VestiModel->dohvatiVesti($idKatVesti, $tipKorisnika);
         $this->load->view("vesti/prikazVesti", ["vesti" => $vesti]);
     }
 
@@ -36,7 +48,13 @@ class Vesti extends CI_Controller {
         $kategorija = $this->input->post('kategorija');
         $naziv = $this->input->post('naziv');
         $tekst = $this->input->post('tekst');
-        $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naziv, $tekst);
+        $vidljivost = $this->input->post('vidljivost');
+        $vidljivostKurs = $this->input->post('odabraniKurs');
+        $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        $idVes = $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naziv, $tekst, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
+        if($vidljivost == "pretraga"){
+            $this->dodajVestZaPretragu($idVes);
+        }
         $this->index();
     }
 
@@ -61,6 +79,15 @@ class Vesti extends CI_Controller {
         $nova_kategorija = $this->input->post('novakatvesti');
         $this->VestiModel->dodajKategorijuVesti($nova_kategorija);
         $this->index();
+    }
+    
+    public function dodajVestZaPretragu($idVes){
+         $res = $this->session->userdata('res');
+            foreach ($res as $user){
+                
+                $this->VestiModel->dodajVestZaPretragu($idVes, $user['idKor']);
+               
+            }
     }
 
 }
