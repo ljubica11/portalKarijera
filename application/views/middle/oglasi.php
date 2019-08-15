@@ -49,7 +49,7 @@
        var rec = document.getElementById("pretragaPoslova").value;
        var selectLista = document.getElementById("grad");
        var grad = selectLista.options[selectLista.selectedIndex].value;
-       if((grad == "")&&(rec == "")){
+       if((grad == "")&&(rec =="")){
            return;
        }
        xmlhttp=new XMLHttpRequest();
@@ -61,7 +61,7 @@
                };
             xmlhttp.open("POST", "<?php echo site_url('Oglasi/pretragaOglasa'); ?>", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("pretraga="+rec+"&grad="+grad+"&tip="+tip);
+            xmlhttp.send("pretraga="+rec+"&grad="+grad+"&tip="+tip); 
    }
    
     function mojiOglasi(idKor){ 
@@ -134,11 +134,21 @@ var btn = document.getElementById("dodajOglas");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+<?php if($this->input->get('ogl')!== null){?>
+    
+if(<?php echo $this->input->get('ogl')?> == 1){
+    modal.style.display = "block";
+    document.getElementById("1").disabled=true;
+    document.getElementById("2").disabled=true;
+    document.getElementById("3").disabled=true;
+    document.getElementById("4").disabled=true;
+    }
+<?php } ?>
+
 btn.onclick = function() {
   modal.style.display = "block";
 }
-
+//
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
