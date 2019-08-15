@@ -60,6 +60,7 @@ class Registracija extends MY_Controller {
         $korisnicko= $this->input->post('korisnicko');
         $lozinka = $this->input->post('lozinka');
         $email= $this->input->post('email');
+        $vidEmail = $this->input->post('vidEmail');
         $tip= "s";
         
         $ime= $this->input->post('ime');
@@ -69,7 +70,9 @@ class Registracija extends MY_Controller {
         $pol = $this->input->post('pol');
         $drzavljanstvo = $this->input->post('drzavljanstvo');
         $telefon = $this->input->post('telefon');
+        $vidTel = $this->input->post('vidTel');
         $adresa = $this->input->post('adresa');
+        $vidAdresa = $this->input->post('vidAdresa');
         $mesto = $this->input->post('mesto');
         $pin = $this->input->post('pin');
         $status = $this->input->post('status');
@@ -82,10 +85,10 @@ class Registracija extends MY_Controller {
         $godinaStu = $this->input->post('godinaStudija');
         
         $this->load->model('RegistrationModel');
-        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $tip);
+        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip);
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
-        $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor);
+        $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor, $vidAdresa, $vidTel);
         if($fakultet !== null){
         $this->RegistrationModel->dodajStudije($idKor, $univerzitet, $fakultet, $sedisteFak, $nivo, $godinaStu);
         }
@@ -252,8 +255,9 @@ class Registracija extends MY_Controller {
          $nivo = $this->input->post('nivo');
          $godUpisa = $this->input->post('godUpisa');
          $godZavrsetka = $this->input->post('godZavrsetka');
+         $vidljivost = $this->input->post('vidDipl');
          if($idFak !== null){
-         $this->RegistrationModel->dodajDiplomuZaKorisnika($idKor, $idFak, $odsek, $zvanje, $nivo, $godUpisa, $godZavrsetka);
+         $this->RegistrationModel->dodajDiplomuZaKorisnika($idKor, $idFak, $odsek, $zvanje, $nivo, $godUpisa, $godZavrsetka, $vidljivost);
          }
          $this->dodatneInfo($idKor, "rad");
     }
@@ -265,13 +269,14 @@ class Registracija extends MY_Controller {
         $pozicija = $this->input->post('pozicija');
         $od = $this->input->post('od');
         $do = $this->input->post('do');
+        $vidljivost = $this->input->post('vidRad');
         if($kompanija !== null){
-            $this->RegistrationModel->dodajIskustvoZaKorisnika($idKor, $kompanija, $mesto, $pozicija, $od, $do);
+            $this->RegistrationModel->dodajIskustvoZaKorisnika($idKor, $kompanija, $mesto, $pozicija, $od, $do, $vidljivost);
         }
         $this->session->set_flashdata('msg', 'Uspesno ste se registrovali! Ulogujte se i zapocnite nezaboravno iskustvo na portalu Karijera!');
-        redirect('Login');    
+        redirect('Login'); 
     }
-
+    
     public function dodajNoveVestineReg(){
         $this->dodajNoveVestine();
         
@@ -299,6 +304,6 @@ class Registracija extends MY_Controller {
             $this->dodajNovuPoziciju();
         }
     }
-
+    
 }
     

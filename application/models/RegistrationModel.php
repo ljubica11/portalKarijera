@@ -2,11 +2,12 @@
 
 class RegistrationModel extends CI_Model{
     
-    public function dodajKorisnika($korisnicko, $lozinka, $email, $tip){
+    public function dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip){
         $data = [
             "korisnicko" => $korisnicko,
             "lozinka" => $lozinka,
             "email" => $email,
+            "vidljivostEmail" => $vidEmail,
             "tip" => $tip 
         ];
         
@@ -22,7 +23,7 @@ class RegistrationModel extends CI_Model{
         return $query->result_array();
     }
     
-    public function dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor){
+    public function dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor, $vidAdresa, $vidTel){
         $data = [
             "ime" => $ime,
             "srednjeIme" => $srednjeIme,
@@ -36,7 +37,9 @@ class RegistrationModel extends CI_Model{
             "pin" => $pin,
             "status" => $status,
             "idKor" => $idKor,
-            "idKurs" => $kurs
+            "idKurs" => $kurs,
+            "vidljivostTelefon" => $vidTel,
+            "vidljivostAdresa" => $vidAdresa
         ];
         
         $this->db->insert("student", $data);
@@ -84,7 +87,7 @@ class RegistrationModel extends CI_Model{
         $this->db->insert("studije", $data);
     }
     
-    public function dodajDiplomuZaKorisnika($idKor, $idFak, $odsek, $zvanje, $nivo, $godUpisa, $godZavrsetka){
+    public function dodajDiplomuZaKorisnika($idKor, $idFak, $odsek, $zvanje, $nivo, $godUpisa, $godZavrsetka, $vidljivost){
         $data= [
             "idKor" => $idKor,
             "odsek" => $odsek,
@@ -92,20 +95,22 @@ class RegistrationModel extends CI_Model{
             "godinaUpisa" => $godUpisa,
             "godinaZavrsetka" => $godZavrsetka,
             "zvanje" => $zvanje,
-            "idFak" => $idFak    
+            "idFak" => $idFak,
+            "vidljivost" => $vidljivost
         ];
         
         $this->db->insert("diploma", $data);
     }
     
-    public function dodajIskustvoZaKorisnika($idKor, $kompanija, $mesto, $pozicija, $od, $do){
+    public function dodajIskustvoZaKorisnika($idKor, $kompanija, $mesto, $pozicija, $od, $do, $vidljivost){
         $data =[
             "idKor" => $idKor,
             "kompanija" => $kompanija,
             "mesto" => $mesto,
             "pozicija" => $pozicija,
             "od" => $od,
-            "do" => $do   
+            "do" => $do,
+            "vidljivost" => $vidljivost
         ];
         
         $this->db->insert("zaposlenje", $data);
