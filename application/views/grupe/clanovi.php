@@ -18,14 +18,15 @@
            $ime = $c['ime'];
            $prezime = $c['prezime'];
            $idKor = $c['idKor'];
-       
-               echo
-   "<tr>
+            ?>
+               
+   <tr>
         <th scope='row'><input type='checkbox' name='idKor[]' value='$idKor'></th>
-        <td>$ime</td>
-        <td>$prezime</td>
-    </tr>";
-       }?>
+        <td><a href="<?php echo site_url('User/index')?>?id=<?php echo $idKor ?>" target="_blank"><?php echo $ime ?></td></a>
+        <td><a href="<?php echo site_url('User/index')?>?id=<?php echo $idKor ?>" target="_blank"><?php echo $prezime?></td></a>
+
+    </tr>
+ <?php       }?>
     <tr>
         <th scope='row'></th>
         <td></td>
@@ -38,5 +39,5 @@
     </form>            
    
         
- 
+
 

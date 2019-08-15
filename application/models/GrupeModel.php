@@ -138,14 +138,14 @@ class GrupeModel extends CI_Model {
      * dodavanje grupe u bazu podataka
      * @param type $naziv
      * @param type $opis
-     * @return type array
+     * @return type 
      */
     public function dodajNovuGrupu($naziv, $opis) {
 
         $data = ['naziv' => $naziv, 'opis' => $opis];
         $this->db->insert('grupe', $data);
-        $query = $this->db->get('grupe');
-        return $query->result_array();
+       
+        return $maxIdGrupe = $this->db->insert_id();
     }
 
     /**

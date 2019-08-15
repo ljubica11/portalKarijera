@@ -102,4 +102,9 @@ function pretraziKompanije(){
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xmlhttp.send("naziv="+naziv+"&oblast="+oblast+"&mesto="+grad);
 }
+
+
+function prikaziDodavanjeGrupe(){
+    document.getElementById("dodavanjeGrupeDiv").style.display = "block";
+}
     </script>

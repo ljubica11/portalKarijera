@@ -59,9 +59,7 @@
  
     <form name='ispisClanova' method="POST" action="<?php echo site_url('Grupe/ispisiClanove')?>">
         <?php echo 
-        "<input type='hidden' name='idGru' id='idGru' value='$idGru'>".
-        "<input type='button' onclick='prikaziParametre($idGru)' class='btn btn-outline-primary btn-sm' value='prikazi parametre'>".
-               
+        "<input type='hidden' name='idGru' id='idGru' value='$idGru'>".        
         "<input type='button'  onclick='ispis($idGru)' class='btn btn-outline-primary btn-sm' value='prikazi clanove'>";
        
                 ?>

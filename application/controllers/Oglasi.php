@@ -75,8 +75,12 @@ class Oglasi extends MY_Controller{
         $vidljivost = $this->input->post('vidljivost');
         $vidljivostKurs = $this->input->post('odabraniKurs');
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        
 
         $idOgl = $this->OglasiModel->dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
+        if($vidljivost == "pretraga"){
+            $this->dodajOglasZaPretragu($idOgl);
+        }
         $this->pogledajOglas($idOgl);
     }
     }else{
@@ -100,9 +104,22 @@ class Oglasi extends MY_Controller{
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
 
         $idOgl = $this->OglasiModel->dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
+        if($vidljivost == "pretraga"){
+            $this->dodajOglasZaPretragu($idOgl);
+        }
         $this->pogledajOglas($idOgl);
     }
     }
+    
+    public function dodajOglasZaPretragu($idOgl){
+        $res = $this->session->userdata('res');
+            foreach ($res as $user){
+                
+                $this->OglasiModel->dodajOglasZaPretragu($idOgl, $user['idKor']);
+               
+            }
+    }
+
     public function pogledajOglas($idOgl){
        $oglasi = $this->OglasiModel->dohvatiJedanOglas($idOgl);
        $data["middle_data"] = ["oglasi" => $oglasi];

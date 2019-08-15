@@ -8,7 +8,8 @@ class Pretraga extends MY_Controller{
         
         $this->load->model("PretragaModel");
         $this->load->model("SifrarniciModel");
-        }
+        $this->load->model("GrupeModel");
+    }
 
     public function index(){
         
@@ -39,7 +40,7 @@ class Pretraga extends MY_Controller{
             echo "<h5>Nema rezultata</h5>";
         }else{
             $podaci = ["podaci" => $rezultat,
-                        "tip" => 'student'];
+                       "tip" => 'student'];
             $this->load->view('pretraga/prikazRezultata', $podaci);
         }
     }
@@ -56,6 +57,20 @@ class Pretraga extends MY_Controller{
                         "tip" => 'kompanija'];
             $this->load->view('pretraga/prikazRezultata', $podaci);
         }
+    }
+
+    
+    public function dodajClanove(){
+        
+        $naziv = $this->input->post('nazivGrupe');
+        $opis = $this->input->post('opisGrupe');
+        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis);
+        $student = $this->session->userdata('res');
+        foreach($student as $s){
+            $this->GrupeModel->dodajStudente($idGru, $s['idKor']);
+            }
+            
+            redirect('Grupe/index');
     }
    
 }
