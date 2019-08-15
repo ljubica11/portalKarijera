@@ -11,18 +11,19 @@
         <div class="container-fluid" style="margin-bottom: 90px">
             <div class="row">
                 <div class="col-3 levo">
-                    
+                    <div class=" formaGrupe">
                     <b> Kategorije </b>
                     <br/>
+                    
                     <?php
                     foreach ($kategorije as $k) {
                         $idKatDis = $k['idKatDis'];
                         $naziv = $k['naziv'];
                        
-                        echo "<div class='list-group formaGrupe' id='myList' role='tablist'><a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a></div><br/>";
+                        echo "<div class='list-group' id='myList' role='tablist'><a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a></div><br/>";
        
                     } ?>
-                    
+                    </div>
               
                     <?php 
                     if($tipKorisnika != 'gost'){
@@ -30,7 +31,7 @@
                     
                     
                     <div>
-                    <input type="button" onclick="prikaziFormuKat()" value="Dodaj kategoriju" class="btn btn-primary btn-lg btn-block">
+                    <input type="button" onclick="prikaziFormuKat()" value="Dodaj kategoriju" class="formaGrupe btn btn-primary btn-lg btn-block">
                     </div>
                     
                        ';}?>
@@ -38,10 +39,10 @@
                     <?php if($tipKorisnika != 'gost'){?>
                          
                             
-                    <div id="formaDivKat">
+                    <div id="formaDivKat" class="formaGrupe">
                         <form name="dodajKat" method="POST" action="<?php echo site_url('Diskusije/dodajKategoriju')?>" >
-                            <input type="text" name="naziv" placeholder="Naziv kategorije">
-                            <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary  btn-lg btn-block">
+                            <input type="text" name="naziv" placeholder="Naziv kategorije" class="form-control">
+                            <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary">
                             
                         </form>
                     
@@ -89,7 +90,7 @@
         
        
     
-    <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju")?> " >
+                        <form name="dodajDsk" method="POST" action="<?php echo site_url("Diskusije/dodajDiskusiju")?> " >
         <table>
             <tr><td><b>Autor: </b></td><td><?php echo $ulogovani ?></td></tr>
             <tr><td><b>Naziv diskusije: </b></td><td><input type="text" name="naziv"></td></tr>
