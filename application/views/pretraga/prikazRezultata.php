@@ -1,15 +1,29 @@
 <!DOCTYPE html>
-<?php if($tip == 'student'){?>
-<a href="<?php echo site_url('Oglasi/index')?>?ogl=1">Dodaj oglas</a>
+<?php if($this->session->userdata('user')['tip'] == 'k' and $tip == "student"){ ?>
+<a href="<?php echo site_url('Oglasi/index')?>?ogl=1">Dodaj oglas</a>&nbsp;&nbsp;
+<?php } ?>
+<a href="<?php echo site_url('Vesti/index')?>?vesPret=1">Dodaj vest</a>&nbsp;&nbsp;
+<a href="#" onclick="prikaziDodavanjeGrupe()">Dodaj grupu</a>&nbsp;&nbsp;
+<div id="dodavanjeGrupeDiv">
+    <form name="kreiraj" method="POST" action="<?php echo site_url('Pretraga/dodajClanove') ?>">
+         <div class="form-row">
+              <div class="col">
+                <input type="text" name="nazivGrupe" placeholder="Naziv grupe" class="form-control">
+              </div>
+              <div class="col">
+                <input type="text" name="opisGrupe" placeholder="Opis grupe" class="form-control">
+             </div>
+             <div class="col">
+                <input type="submit" value='Napravi' class="btn btn-primary">
+             </div>
+         </div>
+    </form>  
+</div>
 <?php
-}
-$res = array('res' => $podaci);
-$this->session->set_userdata($res);
-
-
 
 $res = array('res' => $podaci);
 $this->session->set_userdata($res);
+
 
 foreach ($podaci as $user){ 
     $idKor = $user['idKor'];?>
@@ -44,11 +58,4 @@ foreach ($podaci as $user){
 
 <?php } ?>
 
-
-Kreiraj grupu<br>
-<form name="kreiraj" method="POST" action="<?php echo site_url('Pretraga/dodajClanove') ?>">
-<input type="text" name="nazivGrupe">
-<input type="text" name="opisGrupe">
-<input type="submit" value='napravi'>
-</form>
 
