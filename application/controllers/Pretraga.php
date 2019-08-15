@@ -39,7 +39,7 @@ class Pretraga extends MY_Controller{
             echo "<h5>Nema rezultata</h5>";
         }else{
             $podaci = ["podaci" => $rezultat,
-                        "tip" => 'student'];
+                       "tip" => 'student'];
             $this->load->view('pretraga/prikazRezultata', $podaci);
         }
     }

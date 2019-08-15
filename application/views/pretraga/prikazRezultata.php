@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-
+<?php if($tip == 'student'){?>
+<a href="<?php echo site_url('Oglasi/index')?>?ogl=1">Dodaj oglas</a>
 <?php
+}
+$res = array('res' => $podaci);
+$this->session->set_userdata($res);
 
 foreach ($podaci as $user){ 
     $idKor = $user['idKor'];?>
