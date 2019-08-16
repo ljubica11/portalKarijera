@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light" id="header">
-            <a class="navbar-brand" href="#"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>
+            <a class="navbar-brand" href="<?php echo site_url('Login')?>"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -36,11 +36,11 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="http://localhost/portalKarijera/index.php/registracija">Registracija</a>
-                </li>
+                </li> 
               </ul>
                 <form class="form-inline my-2 my-lg-0" name="loginForma" method="POST" action="http://localhost/portalKarijera/index.php/Login/logovanje">
                     <input class="form-control mr-sm-2" type="text" name="username" placeholder="Korisnicko ime">
-                    <input class="form-control mr-sm-2" type="text" name="pass" placeholder="Lozinka">
+                    <input class="form-control mr-sm-2" type="password" name="pass" placeholder="Lozinka">
                     <button class="btn btn-outline-primary my-2 my-sm-0 btn-lg" type="submit">Login</button>
                 </form>
             </div> 
