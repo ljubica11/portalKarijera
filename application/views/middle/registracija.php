@@ -6,8 +6,8 @@
   <button class="tablinks" onclick="openReg(event, 'Student')" id="defaultOpen">Student</button>
   <button class="tablinks" onclick="openReg(event, 'Kompanija')">Kompanija</button>
 </div>   
-    <div id="Student" class="tabcontent overflow-auto">
-        <span class="naslovReg"> <h4>Povezite se sa drugim studentima i inovativnim kompanijama</h4></span>
+    <div id="Student" class="tabcontent overflow-auto scroll">
+        <div class="naslovReg"> <h4>Povezite se sa drugim studentima i inovativnim kompanijama</h4></div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -86,15 +86,22 @@
                      <input class="form-control" name="ponLozinka" type="password"  placeholder="Ponovi lozinku"><?php echo form_error('ponLozinka') ?> <br/>
                      <input class="form-control" type="email" name="email"  placeholder="E-mail" value="<?php echo set_value('email') ?>"><?php echo form_error('email') ?>
                      <input class="form-check-input" type="checkbox" name="vidEmail" value="1">Ne zelim da mi mejl bude javan <br/><br/>
-                     <input class="form-control" type="date" name="datum"  placeholder="datum rodjenja" value="<?php echo set_value('datum') ?>"> <?php echo form_error('datum') ?>  <br/>
-                     <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">  
+                     
+                     <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="basic-addon4">Datum rodjenja</span>
+                        </div>
+                        <input class="form-control" type="date" name="datum"  value="<?php echo set_value('datum') ?>"> 
+                    </div>
+                     <?php echo form_error('datum') ?>  <br/>
+                     <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary btn-lg">  
                      </form>
                 </div>
             </div>
         </div>
     </div>
-    <div id="Kompanija" class="tabcontent overflow-auto">
-        <span class="naslovReg"> <h4>Pronadjite najbolje studente za vas posao</h4></span>
+    <div id="Kompanija" class="tabcontent overflow-auto scroll">
+        <div class="naslovReg"> <h4>Pronadjite najbolje studente za vas posao</h4></div>
          <div class="container-fluid">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -132,7 +139,7 @@
             <br/>
             <input class="form-control" type="password" name="ponlozinka" placeholder="Potvrdite sifru"><?php echo form_error('ponlozinka') ?>
             <br/>
-            <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary">
+            <input type="submit"  name="reg" value="Registruj se" class="btn btn-primary btn-lg">
     </form>
                 </div>
             </div>

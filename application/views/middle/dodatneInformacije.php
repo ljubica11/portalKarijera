@@ -2,18 +2,32 @@
 
 <div class="wrapper">
     <div class="regwrapper">
-        <div class="tabcontentInfo overflow-auto">
+        <div class="tabInfo">
+            <?php 
+            if(isset($interesovanja)){
+                echo "<h4> Vasa interesovanja </h4>";
+            }else if(isset($vestine)){
+                echo "<h4> Vase vestine </h4>";
+            }else if(isset ($fakulteti)){
+                echo "<h4> Podaci o zavrsenim studijama </h4>";
+            }else if(isset ($kompanije)){
+                echo "<h4>Radno iskustvo</h4>";
+            }
+            ?>
+        </div>
+        <div class="tabcontentInfo overflow-auto scroll">
             
             <?php if(isset($interesovanja)){?>
             
             
-            <h4> Vasa interesovanja: </h4>
-            <form name="formaInteresovanja" method="POST" action="<?php echo site_url('Registracija/dodajInteresovanjaZaKorisnika');?>">
+<!--            <div class="naslovReg"><h4> Vasa interesovanja </h4></div>-->
+            <form class="dodatneInfoForma" name="formaInteresovanja" method="POST" action="<?php echo site_url('Registracija/dodajInteresovanjaZaKorisnika');?>">
                 <input type="hidden" name='idKor' value="<?php echo $idKor; ?>">
                 <?php foreach ($interesovanja as $interesovanje){
                     $idInt = $interesovanje['idInt'];
-                    $nazivInt = $interesovanje['naziv'];
-                    echo "<input type='checkbox' name='int[]' value='$idInt'>$nazivInt<br/>";
+                    $nazivInt = $interesovanje['naziv'];              
+                   echo "<label for='$idInt' class='btn btn-primary'>$nazivInt <input type='checkbox' name='int[]' value='$idInt' id='$idInt' class='badgebox'><span class='badge'>&check;</span></label><br/>";
+                
                 }
                 ?>
                 <div id="dodataInteresovanja">
@@ -21,23 +35,34 @@
                 <br/><br/>
                 Vasa interesovanja nisu na listi? Dodajte ih!
                 <br>
-                <input type='text' name='novoInt' id="novoInteresovanje" placeholder="Dodaj interesovanje">
-                <input type="button" name='dodajNovoInt' value="Dodaj" onclick="dodajInt()">
+                <div class='form-row'>
+                    <div class='col-6 offset-3'>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Dodaj interesovanje" aria-label="Recipient's username" aria-describedby="basic-addon2" name='novoInt' id="novoInteresovanje">
+                            <div class="input-group-append">
+                              <button class="btn btn-primary" name='dodajNovoInt' onclick="dodajInt()" type="button">Dodaj</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <br/><br/>
-                <input type="submit" name='dalje' value="Dalje" class='nextButton'>
+                <input type="submit" name='dalje' value="Dalje" class='nextButton btn btn-primary btn-lg'>
             </form>
             
             
             <?php } else if(isset ($vestine)){ ?>
             
             
-             <h4> Vase vestine: </h4>
-            <form name="formaVestine" method="POST" action="<?php echo site_url('Registracija/dodajVestineZaKorisnika');?>">
+<!--            <div class="naslovReg"><h4> Vase vestine: </h4></div>-->
+            <form class="dodatneInfoForma" name="formaVestine" method="POST" action="<?php echo site_url('Registracija/dodajVestineZaKorisnika');?>">
                 <input type="hidden" name='idKor' value="<?php echo $idKor; ?>">
                 <?php foreach ($vestine as $vestina){
                     $idVes = $vestina['idVes'];
                     $nazivVes = $vestina['naziv'];
-                    echo "<input type='checkbox' name='ves[]' value='$idVes'>$nazivVes<br/>";
+//                    echo "<input type='checkbox' name='ves[]' value='$idVes'>$nazivVes<br/>";
+                    
+                     echo "<label for='$idVes' class='btn btn-primary'>$nazivVes <input type='checkbox' name='ves[]' value='$idVes' id='$idVes' class='badgebox'><span class='badge'>&check;</span></label><br/>";
                 }
                 ?>
                 <div id="dodateVestine">
@@ -45,10 +70,23 @@
                 <br/><br/>
                 Vase vestine nisu na listi? Dodajte ih!
                 <br>
-                <input type='text' name='novaVes' id="novaVestina" placeholder="Dodaj vestine">
-                <input type="button" name='dodajNovuVes' value="Dodaj" onclick="dodajVes()">
+                
+                <div class='form-row'>
+                    <div class='col-6 offset-3'>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name='novaVes' id="novaVestina" placeholder="Dodaj vestine">
+                            <div class="input-group-append">
+                              <button class="btn btn-primary" name='dodajNovuVes' onclick="dodajVes()" type="button">Dodaj</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+<!--                <input type='text' name='novaVes' id="novaVestina" placeholder="Dodaj vestine">
+                <input type="button" name='dodajNovuVes' value="Dodaj" onclick="dodajVes()">-->
                 <br/><br/>
-                <input type="submit" name='dalje' value="Dalje" class='nextButton'>
+                <input type="submit" name='dalje' value="Dalje" class='nextButton btn btn-primary btn-lg'>
             </form>
              
              
@@ -56,15 +94,14 @@
                  }else if(isset($fakulteti)){
             ?>
              
-             
-             <h4> Podaci o zavrsenim studijama </h4>
-             Ovde mozete da ostavite podatke o stecenoj diplomi. Ukoliko nemate diplomu ili jos uvek studirate, predjite na sledeci korak.
-             <br/><br/>
-             <form name="diplomaForma" method="POST" action="<?php echo site_url('Registracija/dodajDiplomuZaKorisnika') ?>">
+           Ovde mozete da ostavite podatke o stecenoj diplomi. Ukoliko nemate diplomu ili jos uvek studirate, predjite na sledeci korak.
+             <br/>
+             <div class="form-row">
+                 <div class="col-6 offset-3">
+             <form class="dodatneInfoForma" name="diplomaForma" method="POST" action="<?php echo site_url('Registracija/dodajDiplomuZaKorisnika') ?>">
                  <input type="hidden" name='idKor' value="<?php echo $idKor; ?>">
-                 Fakultet koji ste zavrsili: <br/>
                  <div id="selectfakultet"> 
-                 <select name="fakultet" id="listafakultet" onchange="dodajInput('fakultet')">
+                 <select class="form-control" name="fakultet" id="listafakultet" onchange="dodajInput('fakultet')">
                     <option disabled selected value="">Odaberite fakultet</option>
                     <?php 
                             foreach ($fakulteti as $fakultet){
@@ -78,39 +115,44 @@
                 </div>
                 <div id="fakultet">   
                 </div>
-                 <input type="text" name="odsek" placeholder="Odsek">
+                 <br/><input class="form-control" type="text" name="odsek" placeholder="Odsek">
                  <br/>
-                 Nivo studija: 
+                 <div class="text-left">
+                     <b>Nivo studija: </b>
                 <br/>
-                <input type="radio" name="nivo" value="osnovne">Osnovne akademske studije<br>
-                <input type="radio" name="nivo" value="master">Master akademske studije<br>
-                <input type="radio" name="nivo" value="specijalisticke">Specijalisticke akademske studije<br>
-                <input type="radio" name="nivo" value="doktorske">Doktorske akademske studije<br>
-                <input type="radio" name="nivo" value="strukovne">Strukovne studije<br>
-                <input type="number" name="godUpisa" placeholder="Godina upisa">
+                <input type="radio" name="nivo" value="osnovne"> Osnovne akademske studije<br>
+                <input type="radio" name="nivo" value="master"> Master akademske studije<br>
+                <input type="radio" name="nivo" value="specijalisticke"> Specijalisticke akademske studije<br>
+                <input type="radio" name="nivo" value="doktorske"> Doktorske akademske studije<br>
+                <input type="radio" name="nivo" value="strukovne"> Strukovne studije<br><br/>
+                 </div>
+                <input class="form-control" type="number" name="godUpisa" placeholder="Godina upisa">
                 <br/>
-                <input type="number" name="godZavrsetka" placeholder="Godina zavrsetka">
+                <input class="form-control" type="number" name="godZavrsetka" placeholder="Godina zavrsetka">
                 <br/>
-                <input type="text" name="zvanje" placeholder="Steceno zvanje">
+                <input class="form-control" type="text" name="zvanje" placeholder="Steceno zvanje">
                 <br/>
                 <input type="checkbox" name="vidDipl" value="1">Ne zelim da ovaj podatak bude javan
                 <br/><br/>
-                <input type="submit" name="dalje" value="Dalje" class='nextButton'>
+                <input type="submit" name="dalje" value="Dalje" class='nextButton btn btn-primary btn-lg'>
              </form>
+             </div>
+             </div>
              
              
              <?php
                  }else if(isset($kompanije)){
              ?>
              
-         
-             <h4>Radno iskustvo</h4>
-            <br/><br/>
-            <form name="iskustvoForma" method="POST" action="<?php echo site_url('Registracija/dodajIskustvoZaKorisnika')?>">
+         Ovde mozete ostaviti podatke o ranijem ili trenutnom radnom angazmanu. 
+         <br/>
+         *Sajt prihvata samo <b>JEDNO</b> radno iskustvo, tako da - birajte pazljivo sta cete napisati. 
+         <div class="form-row">
+                 <div class="col-6 offset-3">
+            <form class="dodatneInfoForma" name="iskustvoForma" method="POST" action="<?php echo site_url('Registracija/dodajIskustvoZaKorisnika')?>">
                 <input type="hidden" name='idKor' value="<?php echo $idKor; ?>">
-            Kompanija:<br/>
             <div id="selectkompanija"> 
-                 <select name="kompanija" id="listakompanija" onchange="dodajInput('kompanija')">
+                 <select class="form-control" name="kompanija" id="listakompanija" onchange="dodajInput('kompanija')">
                     <option disabled selected value="">Odaberite kompaniju</option>
                     <?php 
                             foreach ($kompanije as $kompanija){
@@ -124,9 +166,9 @@
                 </div>
                 <div id="kompanija">   
                 </div>
-            Pozicija:<br/>
+                <br/>
             <div id="selectpozicija"> 
-                 <select name="pozicija" id="listapozicija" onchange="dodajInput('pozicija')">
+                 <select class="form-control" name="pozicija" id="listapozicija" onchange="dodajInput('pozicija')">
                     <option disabled selected value="">Odaberite poziciju</option>
                     <?php 
                             foreach ($pozicije as $pozicija){
@@ -140,9 +182,9 @@
                 </div>
                 <div id="pozicija">   
                 </div>
-            Sediste kompanije:
+                <br/>
             <div id="selectsediste">
-            <select name="sediste" id="listasediste" onchange="dodajInput('sediste')">
+            <select class="form-control" name="sediste" id="listasediste" onchange="dodajInput('sediste')">
                 <option disabled selected value="">Sediste</option>
                 <?php 
                         foreach ($gradovi as $grad){
@@ -156,18 +198,38 @@
             </div>
             <div id="sediste">  
             </div>
-            Pocetak radnog odnosa: <input type="date" name="od">
             <br/>
-            Kraj radnog odnosa: <input type="date" name="do">
-            <br/><br/>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon2">Pocetak radnog odnosa:</span>
+                </div>
+                <input type="date" class="form-control" name="od">
+            </div>
+            
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon3">Kraj radnog odnosa:</span>
+                </div>
+                <input class="form-control" type="date" name="do">
+            </div>
+            
+            
+            
+<!--            Pocetak radnog odnosa: <input class="form-control" type="date" name="od">
+            <br/>
+            Kraj radnog odnosa: <input class="form-control" type="date" name="do">-->
+           
             <input type="checkbox" name="vidRad" value="1">Ne zelim da ovaj podatak bude javan          
             <br/><br/>
-            <input type="submit" name="dalje" value="Zavrsi registraciju" class="nextButton">
+            <input type="submit" name="dalje" value="Zavrsi registraciju" class='nextButton btn btn-primary btn-lg'>
             </form> 
+                 </div>
+         </div>
              
                  <?php }?>
             
     </div>
+</div>
 </div>
 
     <script>
@@ -211,7 +273,7 @@
        var selectLista = document.getElementById("lista"+inputDiv);
        var odabranaOpcija = selectLista.options[selectLista.selectedIndex].value;
              if(odabranaOpcija == "dodaj"){
-           document.getElementById(inputDiv).innerHTML = "<div class='addInput'><input type='text' id='dodatakZaSifrarnik' placeholder='Dodaj novo'><input type='button' class='btn btn-sm' value='Dodaj' onclick=\"dodajUSifrarnik(\'" + inputDiv + "\')\"></div>";
+           document.getElementById(inputDiv).innerHTML = "<div class='addInput'><input type='text' class='form-control' id='dodatakZaSifrarnik' placeholder='Dodaj novo'><input type='button' class='btn btn-primary btn-sm' value='Dodaj' onclick=\"dodajUSifrarnik(\'" + inputDiv + "\')\"></div>";
        }  else{
            document.getElementById(inputDiv).innerHTML="";
        }
