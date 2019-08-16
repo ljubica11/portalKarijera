@@ -3,7 +3,7 @@
 Podaci o fakultetu
 <br/>
 
-<select name="univerzitet">
+<select class="form-control" name="univerzitet">
      <option disabled selected value="">Odaberite univerzitet</option>
      <?php 
             foreach ($univerziteti as $uni){
@@ -16,7 +16,7 @@ Podaci o fakultetu
 
 <br/>
 <div id="selectfakultet">
-<select name="fakultet" id="listafakultet" onchange="dodajInput('fakultet')">
+<select class="form-control" name="fakultet" id="listafakultet" onchange="dodajInput('fakultet')">
     <option disabled selected value="">Odaberite fakultet</option>
     <?php 
             foreach ($fakulteti as $fakultet){
@@ -30,8 +30,9 @@ Podaci o fakultetu
 </div>
 <div id="fakultet">   
 </div>
+<br/>
 <div id="selectsediste">
-<select name="sediste" id="listasediste" onchange="dodajInput('sediste')">
+<select class="form-control" name="sediste" id="listasediste" onchange="dodajInput('sediste')">
     <option disabled selected value="">Sediste fakulteta</option>
     <?php 
             foreach ($gradovi as $grad){
@@ -45,15 +46,17 @@ Podaci o fakultetu
 </div>
 <div id="sediste">  
 </div>
-Nivo studija: 
 <br/>
+<div class="text-left">
+<b>Nivo studija: </b><br/>
 <input type="radio" name="nivo" value="osnovne">Osnovne akademske studije<br>
 <input type="radio" name="nivo" value="master">Master akademske studije<br>
 <input type="radio" name="nivo" value="specijalisticke">Specijalisticke akademske studije<br>
 <input type="radio" name="nivo" value="doktorske">Doktorske akademske studije<br>
 <input type="radio" name="nivo" value="strukovne">Strukovne studije<br>
-
-<input type="number" name="godinaStudija" placeholder="Godina studija">
+</div>
+<br/>
+<input class="form-control" type="number" name="godinaStudija" placeholder="Godina studija">
 <br/>
 </div>
 

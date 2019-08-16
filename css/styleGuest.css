@@ -97,7 +97,7 @@ nav .navbar-nav li a {
 
 .tabcontent {
   display: none;
-  padding: 6px 12px;
+  padding: 30px 12px;
   border: 1px solid #ccc;
   border-top: none;
   height: 75vh;
@@ -205,19 +205,26 @@ max-width: 100%;
 
 .infoStudije{
     border: 2px solid lightblue;
-    width: 50%;
-    margin-left: 25%;
+    width: 80%;
+    margin-left: 10%;
     margin-top: 10px;
     margin-bottom: 10px;
-    padding: 10px 0;
+    padding: 10px;
 }
 
 .addInput{
     border: 2px solid lightblue;
-    width: 50%;
-    margin-left: 25%;
-    padding: 3px;
+    width: 80%;
+    margin-left: 10%;
+    margin-top:10px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
+
+#polZenski, #polMuski{
+    margin-left: 10px;
+}
+
 
 #regStuForm{
     margin-bottom: 50px;
@@ -385,3 +392,12 @@ button, input {
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
 }
+
+.naslovReg{
+  
+}
+
+.formaReg{
+    margin-top: 20px;
+}
+
