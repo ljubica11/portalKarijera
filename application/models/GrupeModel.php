@@ -142,7 +142,7 @@ class GrupeModel extends CI_Model {
      */
     public function dodajNovuGrupu($naziv, $opis) {
 
-        $data = ['naziv' => $naziv, 'opis' => $opis];
+        $data = ['naziv' => $naziv, 'opis' => $opis, 'datum' => date('Y-m-d H:m:i')];
         $this->db->insert('grupe', $data);
        
         return $maxIdGrupe = $this->db->insert_id();
