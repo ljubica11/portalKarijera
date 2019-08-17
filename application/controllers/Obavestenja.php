@@ -13,24 +13,26 @@ class Obavestenja extends CI_Controller {
         public function index(){
             //$this->load->model('ObavModel');
             //$id= $this->session->userdata('obavestenja')['idOba'];
-            $data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiObavestenja()];         
+            $data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiObavestenja()
+                    
+                                    ];         
             $data["middle"] = "middle/obavestenje";
             $this->load->view('viewTemplate', $data);
     }
     
     public function ispisiObavestenja() {
             $idOba = $this->input->get('id');
-            $obavestenja = $this->ObavModel->dohvatiObavestenje($idOba);
+            $obavestenja = ['obavestenja' => $this->ObavModel->dohvatiObavestenje($idOba)];
+            echo $this->load->view('obavestenja/ispisObavestenja', $obavestenja, true);
+            /*$obavestenja = $this->ObavModel->dohvatiObavestenje($idOba);
             foreach ($obavestenja as $obavestenje){
                 echo "<div class='centar'>";
-                echo "<b>".$obavestenje['naslov']."<br>";
-                echo $obavestenje['tekst']."<br>";
-                echo "<div align=right>".$obavestenje['datum'];
+                echo "<b> Naslov: </b>".$obavestenje['naslov']."<br>";
+                echo "<b> Tekst: </b>".$obavestenje['tekst']."<br>";
+                echo "<b> Datum: </b>".$obavestenje['datum']."<br>";
+                echo "<b> Autor: </b>".$obavestenje['autor'];
                 echo "</div>";
-                echo "<div align=right>".$obavestenje['autor'];
-                echo "</div>";
-                echo "</div>";
-            }
+            }*/
         }  
         
         public function dodajObavestenje(){

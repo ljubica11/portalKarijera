@@ -3,62 +3,63 @@
 <div class="container-fluid">
     <div class="row">
         <div id="obav" class="col-3" >
-           <?php foreach ($obavestenja as $obavestenje){
-               $idOba = $obavestenje['idOba'];
-               
-               echo "<a href='#' onclick='obavAjax($idOba)'>" .$obavestenje['naslov'] . "</a><br/>";
+            <?php
+            foreach ($obavestenja as $obavestenje) {
+                $idOba = $obavestenje['idOba'];
+
+                echo "<a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a><br/>";
             }
             ?>
+
+            <!-- <div class="centar" >
+                <h4 class="modal-title"><?php echo $obavestenje['naslov'] ?></h4>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#z<?php echo $obavestenje['idOba'] ?>">Detaljnije</button>
+                
+                 <div class="modal fade" id="z<?php echo $obavestenje['idOba'] ?>" role="dialog">
+                     <div class="modal-dialog">
+                         
+            <!-- Modal content-->
+            <!-- <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title"><?php echo $obavestenje['naslov'] ?></h4> 
+                 </div>
+                 
+                 <div class="modal-body">
+                     <p><?php echo $obavestenje['tekst'] ?></p>
+                 </div>
+                 
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                 </div>
+             </div>
             
-           <!-- <div class="centar" >
-               <h4 class="modal-title"><?php echo $obavestenje['naslov']?></h4>
-               <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#z<?php echo $obavestenje['idOba'] ?>">Detaljnije</button>
-               
-                <div class="modal fade" id="z<?php echo $obavestenje['idOba'] ?>" role="dialog">
-                    <div class="modal-dialog">
-                        
-                        <!-- Modal content-->
-                       <!-- <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title"><?php echo $obavestenje['naslov']?></h4> 
-                            </div>
-                            
-                            <div class="modal-body">
-                                <p><?php echo $obavestenje['tekst']?></p>
-                            </div>
-                            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                       
-                    </div>
-                </div>
-                  
-            </div> -->
-             <!-- <?php  ?> -->
-            
+         </div>
+     </div>
+       
+ </div> -->
+            <!-- <?php ?> -->
+
             <!--<b  class="p-0 bg-info">Obavestenja: </b>
             <br>
-             <?php foreach ($obavestenja as $obavestenje){?>
-                 <div class="card">
-                     <div class="card-header">
-                         <a class="collapsed card-link" data-toggle="collapse" data-parent="#obav" href="#<?php echo $obavestenje['idOba'] ?>">
-                             <?php echo $obavestenje['naslov']?>
-                         </a>
-                     </div>
-                     <div id="<?php echo $obavestenje['idOba'] ?>" class="collapse show">
-                         <div class="card-body">
-                             <?php echo $obavestenje['tekst']?>
+            <?php foreach ($obavestenja as $obavestenje) { ?>
+                     <div class="card">
+                         <div class="card-header">
+                             <a class="collapsed card-link" data-toggle="collapse" data-parent="#obav" href="#<?php echo $obavestenje['idOba'] ?>">
+                <?php echo $obavestenje['naslov'] ?>
+                             </a>
+                         </div>
+                         <div id="<?php echo $obavestenje['idOba'] ?>" class="collapse show">
+                             <div class="card-body">
+                <?php echo $obavestenje['tekst'] ?>
+                             </div>
                          </div>
                      </div>
-                 </div>
-             <?php } ?>-->
+            <?php } ?>-->
         </div>
         <div class="col-6">
             <div id="obavDiv"> 
-            
+
             </div>
         </div>
         <div class="col-3">
@@ -95,13 +96,13 @@
                         </tr>
                         <tr>
                             <td>
-                                
+
                             </td>
                             <td>
                                 <select id="idKur" name="kursevi" disabled="">
                                     <?php
                                     $kursevi = $this->ObavModel->dohvatiKurseve();
-                                    foreach ($kursevi as $kurs) {                                       
+                                    foreach ($kursevi as $kurs) {
                                         $idKurs = $kurs['idKurs'];
                                         $naziv = $kurs['naziv'];
                                         echo "<option value='$idKurs'>$naziv</option>";
@@ -115,13 +116,13 @@
                         </tr>
                         <tr>
                             <td>
-                                
+
                             </td>
                             <td>
                                 <select id="idGru" name="grupe" disabled="">
                                     <?php
                                     $grupe = $this->ObavModel->dohvatiGrupe();
-                                    foreach ($grupe as $grupa) {                                       
+                                    foreach ($grupe as $grupa) {
                                         $idGru = $grupa['idGru'];
                                         $naziv = $grupa['naziv'];
                                         echo "<option value='$idGru'>$naziv</option>";
@@ -150,7 +151,7 @@
                     <input type="text" name="aut" value="" placeholder="Ime i prezime autora"><br>
                     <input type="submit" name="sub" value="Oglasi">       
                 </form>
-               -->
+        -->
     </div>    
 </div>
 <!--<script>
@@ -168,32 +169,32 @@ $("#kurs").change(prilagodi);
 </script>-->
 
 <script>
-        function omoguci() {
-            $i = document.getElementById("idVid").value;
-            document.getElementById("idKur").disabled=true;
-            document.getElementById("idGru").disabled=true;
-            if ($i == 1) {
-                document.getElementById("idKur").disabled=false;
-            }
-            if ($i == 2) {
-                document.getElementById("idGru").disabled=false;
+    function omoguci() {
+        $i = document.getElementById("idVid").value;
+        document.getElementById("idKur").disabled = true;
+        document.getElementById("idGru").disabled = true;
+        if ($i == 1) {
+            document.getElementById("idKur").disabled = false;
+        }
+        if ($i == 2) {
+            document.getElementById("idGru").disabled = false;
+        }
+    }
+    function obavAjax(id) {
+
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("obavDiv").innerHTML = this.responseText;
+
             }
         }
-        function obavAjax(id) {
-
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("obavDiv").innerHTML = this.responseText;
-
-                }
-            }
-            xmlhttp.open("GET", "<?php echo site_url('Obavestenja/ispisiObavestenja') ?>?id=" + id, true);
-            xmlhttp.send();
-        }
+        xmlhttp.open("GET", "<?php echo site_url('Obavestenja/ispisiObavestenja') ?>?id=" + id, true);
+        xmlhttp.send();
+    }
 
 </script>
 
-        
-    
+
+
 

@@ -16,7 +16,7 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
     }
 
     public function dohvatiObavestenja(){
-        return $this->dohvati('obavestenja');
+        return $this->dohvati('obavestenja');// dohvatamo tabelu obavestenja
     }
     public function dohvatiKurseve(){
         return $this->dohvati('sifkurs');
