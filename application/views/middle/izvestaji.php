@@ -21,7 +21,7 @@
                 </form>
                 <table class="table table-striped table-bordered shadow-lg p-3 mb-5">
                     <thead>
-                    <h5>  Izveštaj za period:  <?php echo $datumOd . ' do ' . $datumDo ?></h5>
+                    <h5>  Izveštaj za period:  <?php if(isset($datumOd) AND isset($datumDo)){echo ' od ' .$datumOd . ' do ' . $datumDo; }?></h5>
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Ukupno</th>
@@ -85,7 +85,7 @@
 
 <script>
 form=document.getElementById("formaIzv");
-function askForSave() {
+function uradiSve() {
         form.action="<?php echo site_url('Izvestaji/izvestajDiskusije')?>";
         form.action="<?php echo site_url('Izvestaji/izvestajPostovi')?>";
         form.action="<?php echo site_url('Izvestaji/izvestajGrupe')?>";

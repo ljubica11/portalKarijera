@@ -51,3 +51,11 @@
 .sifrarniciNaziv:hover{
      background-color: #E0E0E0;
 }
+
+/*stats, izvestaji */
+.stats {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    
+}
