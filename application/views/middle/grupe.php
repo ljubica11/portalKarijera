@@ -2,7 +2,7 @@
 
 <div class="container-fluid" >
     <div class="row">
-        <div class="col-3 levo"> 
+        <div class="col-3 levo col-sm-3"> 
             <div class='formaGrupe form-check'>
             <h3>Napravi grupu</h3>
             <br>
@@ -37,14 +37,14 @@
 
 
         </div>
-        <div class="col-6" style="margin-bottom: 90px">  
+        <div class="col-6 col-sm-6" style="margin-bottom: 90px">  
 
             <?php
             echo $grupe;
             ?>
         </div>
 
-        <div class="col-3">
+        <div class="col-3 col-sm-3">
             <div id="clanoviGrupe"> </div>
 
         </div>
