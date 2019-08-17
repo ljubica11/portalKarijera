@@ -46,10 +46,14 @@
                     echo "<br/>";
                     echo "Datum rodjenja: ".$podaciStudent[0]['datum'];
                     echo "<br/>";
+                    if($podaciStudent[0]['vidljivostTelefon'] == null){
                     echo "Telefon: ".$podaciStudent[0]['telefon'];
                     echo "<br/>";
+                    }
+                    if($podaciStudent[0]['vidljivostAdresa'] == null){
                     echo "Adresa: ".$podaciStudent[0]['adresa'];
                     echo "<br/>";
+                    }
                     echo "Grad: ".$podaciStudent[0]['grad'];
                     echo "<br/>";
                     echo "Drzavljanstvo: ".$podaciStudent[0]['drzavljanstvo'];
@@ -72,6 +76,9 @@
                     echo "<br/>";
                     echo "Sajt: <a href='http://".$podaciKompanija[0]['sajt']."'>".$podaciKompanija[0]['sajt']."</a>";
                 }
+                if($this->session->userdata('user')['vidljivostEmail'] == null){
+                        echo "<br/>E-mail: ".$this->session->userdata('user')['email'];
+                    }
                 ?>
 
             </div>
@@ -208,6 +215,6 @@
 
               </div>
             </div>
-              
+        <a href="<?php echo site_url('Statistika/index')?>">Statistika</a>
         </div> 
 
