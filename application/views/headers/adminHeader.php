@@ -18,19 +18,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Vesti</a>
+                  <a class="nav-link" href="<?php echo site_url("Vesti/index") ?>">Vesti</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Obaveštenja</a>
+                  <a class="nav-link" href="<?php echo site_url("Obavestenja/index");?>">Obaveštenja</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Diskusije</a>
+                  <a class="nav-link" href="<?php echo site_url("Diskusije/index")?>">Diskusije</a>
                 </li> 
                 <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url('Oglasi');?>">Oglasi</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Grupe</a>
+                  <a class="nav-link" href="<?php echo site_url("Grupe/index")?>">Grupe</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Statistika</a>
