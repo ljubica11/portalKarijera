@@ -1,5 +1,5 @@
 
-        <div class="<?php if($tip == "student") echo "sfooter"; else if ($tip == "kompanija") echo "kfooter"?>">
+        <div class="<?php if($tip == "student") echo "sfooter"; else if ($tip == "kompanija") echo "kfooter"; else if ($tip == "admin") echo "afooter"?>">
             <a href="#">O nama</a>
             <a href="#">Kontakt</a>
             <a href="#">Uslovi korišćenja</a>

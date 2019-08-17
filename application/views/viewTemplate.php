@@ -8,6 +8,9 @@ if($this->session->user == null){
 } else if($this->session->userdata('user')['tip']== "k"){
     $this->load->view("headers/kompHeader");
     $this->load->view("footers/userFooter",["tip" => "kompanija"]);
+}else if($this->session->userdata('user')['tip']== "a"){
+    $this->load->view("headers/adminHeader");
+    $this->load->view("footers/userFooter", ["tip" => "admin"]);
 }
 
 $this->load->view($middle, $middle_data ?? []);

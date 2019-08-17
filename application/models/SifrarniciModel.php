@@ -90,4 +90,15 @@ class SifrarniciModel extends CI_Model{
         $query = $this->db->get("sifpozicija");
         return $query->result_array();
     }
+    
+    
+    public function dohvatiKategorijeVesti(){
+        $query = $this->db->get('sifkategorijavesti');
+        return $query->result_array();
+    }
+    
+    public function dohvatiKategorijeDiskusija(){
+      $query = $this->db->get('sifkategorijadiskusija');
+      return $query->result_array();
+    }
 }
