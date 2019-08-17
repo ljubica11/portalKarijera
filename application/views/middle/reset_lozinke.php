@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <meta charset="UTF-8">
@@ -10,21 +9,35 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body>
-       <div>
-                <h1>reset_lozinke</h1>
-                <h3>Upišite vaš email da biste primili link za resetovanjee u inbox</h3>
-                <br/>
-
-                <div class="form-group">
-                    <input type="text" name="email" required="required">
-
+        <div class="row justify-content-center">
+		
+            <div class="col-sm-5">
+                <?php
+                    if($forma){
+                        echo form_open("Reset_lozinke/send");
+                        echo form_fieldset("Reset lozinke");
+                ?>
+                <div class="form-group row">
+                    <?php
+                        echo form_label("Korisnicko ime", "korisnicko", array("class"=>"control-label"));
+                        echo form_input(array("name"=> "korisnicko", "class"=>"form-control", "value"=> set_value("korisnicko")));
+                        echo form_error("korisnicko");
+                    ?>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Send" class="btn-success btn" >
+                <div class="form-group row">
+                    <?php
+                        echo form_submit("reset", "Resetuj");
+                    ?>
                 </div>
-                <?php echo form_close()?>
-     <br/><br/><br/>
-
-
+                <?php
+                    } else {
+                        if($mail_ok){
+                            echo "<p>Nova lozinka vam je poslata na mail. Vazi 1 sat.</p>";
+                        } else{
+                            echo "<p>Doslo je do greske pri slanju mail-a. Molimo vas pokusajte kasnije. Hvala</p>";
+                        }
+                    }
+                ?>
             </div>
+	</div>
        
