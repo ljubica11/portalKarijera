@@ -1,8 +1,7 @@
 <?php 
-$vid = count($diskVidljivost);
-$vidOgl = count($oglasiVidljivost);
-$vidVesti = count($vestiVidljivost);
-$vidObav = count($obavestenjaVidljivost);
+
+
+
 ?>
 
 <div class="container">
@@ -34,9 +33,9 @@ $vidObav = count($obavestenjaVidljivost);
                         <tr>
                             <th scope="row">Diskusije</th>
                             <td><?php if (isset($brojDisk)){ echo count($brojDisk); }?></td>
-                              <td><?php if (isset($diskVidljivost)) {
-                              echo $procVid = round(($vid/count($brojDisk))*100, 2) ;} ?></td>
-                            <td><?php echo 100 - $procVid ?></td>
+                            <td><?php if (isset($diskVidljivost)) { if(count($brojDisk) !=0 or count($diskVidljivost) !=0){
+                            echo $procVid = round((count($diskVidljivost)/count($brojDisk))*100, 2) ; ?></td>
+                            <td><?php echo 100 - $procVid;}}?></td>
                         </tr>
                         <tr>
                             <th scope="row">Postovi</th>                           
@@ -53,23 +52,23 @@ $vidObav = count($obavestenjaVidljivost);
                         <tr>
                             <th scope="row">Oglasi</th>                           
                             <td><?php if (isset($brojOglasa)) {echo count($brojOglasa);} ?></td>
-                            <td><?php if (isset($oglasiVidljivost)) {
-                              echo $procVidOgl = round(($vidOgl/count($brojOglasa))*100, 2) ;} ?></td>
-                            <td><?php echo 100 - $procVidOgl ?></td>
+                            <td><?php if (isset($oglasiVidljivost)) { if(count($oglasiVidljivost) != 0 or count($brojOglasa) != 0){
+                            echo $procVidOgl = round((count($oglasiVidljivost)/count($brojOglasa))*100, 2) ; ?></td>
+                            <td><?php echo 100 - $procVidOgl; }}?></td>
                         </tr>
                         <tr>
                             <th scope="row">Vesti</th>                           
                             <td><?php if (isset($brojVesti)){ echo count($brojVesti);} ?></td>
-                            <td><?php if (isset($vestiVidljivost)) {
-                              echo $procVidVesti = round(($vidVesti/count($brojVesti))*100, 2) ;} ?></td>
-                            <td><?php echo 100 - $procVidVesti ?></td>
+                            <td><?php if (isset($vestiVidljivost)) {if(!empty($vestiVidljivost) or !empty($brojVesti)){
+                            echo $procVidVesti = round((count($vestiVidljivost)/count($brojVesti))*100, 2) ;?></td>
+                            <td><?php echo 100 - $procVidVesti; }} ?></td>
                         </tr>
                         <tr>
                             <th scope="row">Obaveštenja</th>                           
                             <td><?php if (isset($brojObavestenja)) {echo count($brojObavestenja);} ?></td>
-                            <td><?php if (isset($obavestenjaVidljivost)) {
-                              echo $procVidObav = round(($vidObav/count($brojObavestenja))*100, 2) ;} ?></td>
-                            <td><?php echo 100 - $procVidObav ?></td>
+                            <td><?php if (isset($obavestenjaVidljivost)) {if(!empty($brojObavestenja)or!empty($obavestenjaVidljivost)){
+                            echo $procVidObav = round((count($obavestenjaVidljivost)/count($brojObavestenja))*100, 2);  ?></td>
+                            <td><?php echo 100 - $procVidObav; }}?></td>
                         </tr>
 
 
