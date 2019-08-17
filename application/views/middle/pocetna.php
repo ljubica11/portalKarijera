@@ -215,6 +215,6 @@
 
               </div>
             </div>
-              
+        <a href="<?php echo site_url('Statistika/index')?>">Statistika</a>
         </div> 
 
