@@ -11,6 +11,9 @@ if($this->session->user == null){
     $this->load->view("headers/kompHeader");
     $this->load->view($middle, $middle_data ?? []);
     $this->load->view("footers/userFooter",["tip" => "kompanija"]);
+}else if($this->session->userdata('user')['tip']== "a"){
+    $this->load->view("headers/adminHeader");
+    $this->load->view("footers/userFooter", ["tip" => "admin"]);
 }
 
 

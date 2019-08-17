@@ -16,6 +16,7 @@ class User extends CI_Controller{
         $tipKor = $this->input->get('tip');
         $this->load->model('UserModel');
         $this->load->model('OglasiModel');
+        $this->load->model('SifrarniciModel');
         if($idKor){
             $id = $idKor;
         }else{
@@ -48,6 +49,19 @@ class User extends CI_Controller{
             $data["middle"] = "middle/pocetna";
             $this->load->view('viewTemplate', $data);
             
+        }else if($tip == 'a'){
+//           $sifrarnici = ["mesta" => $this->SifrarniciModel->dohvatiMesto(),
+//                          "drzavljanstva" => $this->SifrarniciModel->dohvatiDrz(),
+//                           "fakulteti" => $this->SifrarniciModel->dohvatiFakultete(),
+//                           "kompanije" => $this->SifrarniciModel->dohvatiKompanije(),
+//                           "pozicije" => $this->SifrarniciModel->dohvatiPozicije(),
+//                           "interesovanja" => $this->SifrarniciModel->dohvatiInteresovanja(),
+//                           "vestine" => $this->SifrarniciModel->dohvatiVestine(),
+//                           "katvesti" => $this->SifrarniciModel->dohvatiKategorijeVesti(),
+//                           "katdiskusija" => $this->SifrarniciModel->dohvatiKategorijeDiskusija()];
+//            $data["middle_data"] = ["izmenaSifrarnika" => $this->load->view('admin/prikazSifrarnika'), $sifrarnici, true];   
+            $data["middle"] = "middle/adminPocetna";
+            $this->load->view('viewTemplate', $data);
         }
     }
     
