@@ -33,7 +33,10 @@
                   <a class="nav-link" href="<?php echo site_url("Grupe/index")?>">Grupe</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Statistika</a>
+                  <a class="nav-link" href="<?php echo site_url("Izvestaji/index")?>">Izvestaji</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?php echo site_url("Statistika/index")?>">Statistika</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?php echo site_url('Pretraga');?>">Pretraga sajta</a>
