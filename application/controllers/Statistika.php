@@ -36,7 +36,7 @@ class Statistika extends CI_Controller {
         $data['middle_data'] = ['studenti' => $studenti, 'zaposleni' => $zaposleniStudenti, 'nezaposleni' => $nezaposleniStudenti,
                                 'phpkurs' => $phpkurs, 'javakurs' => $javakurs, 'linuxkurs' => $linuxkurs, 'diploma' => $diploma,
                                 'fakulteti' => $fakulteti, 'zbirDiploma' => $zbirDiploma];
-        $data['middle'] = 'middle/izvestaji';
+        $data['middle'] = 'middle/stats';
         $this->load->view('viewTemplate', $data);
     }
     
