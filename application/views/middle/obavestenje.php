@@ -86,7 +86,7 @@
             <div class="centar" id="obav_Forma">
                 <?php
                 $id = $this->session->userdata('obavestenja')['idOba'];
-                $data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiObavestenja()];
+                //$data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiSvaObavestenja()];
                 ?>
                 <form name="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
                     <table>
@@ -106,10 +106,10 @@
                             <td><b>Vidljivost: </b></td>
                             <td>
                                 <select id="idVid" name="vidljivost" onchange="omoguci()">
-                                    <option value="0" >Svi studenti</option>
-                                    <option value="1" id="kurs">Studenti određenog kursa</option>
-                                    <option value="2">Formirana grupa studenata</option>
-                                    <option value="3">Svi korisnici</option>
+                                    <option value="korisnici">Svi korisnici</option>
+                                    <option value="studenti">Svi studenti</option>
+                                    <option value="kurs">Studenti odredjenog kursa</option>
+                                    <option value="grupa">Formirana grupa studenata</option>
                                 </select>
                             </td>
                         </tr>
@@ -118,9 +118,9 @@
 
                             </td>
                             <td>
-                                <select id="idKur" name="kursevi" disabled="">
+                                <select id="idKur" name="kurs" disabled="">
                                     <?php
-                                    $kursevi = $this->ObavModel->dohvatiKurseve();
+                                    $kursevi = $this->ObavModel->dohvatiSveKurseve();
                                     foreach ($kursevi as $kurs) {
                                         $idKurs = $kurs['idKurs'];
                                         $naziv = $kurs['naziv'];
@@ -138,9 +138,9 @@
 
                             </td>
                             <td>
-                                <select id="idGru" name="grupe" disabled="">
+                                <select id="idGru" name="grupa" disabled="">
                                     <?php
-                                    $grupe = $this->ObavModel->dohvatiGrupe();
+                                    $grupe = $this->ObavModel->dohvatiSveGrupe();
                                     foreach ($grupe as $grupa) {
                                         $idGru = $grupa['idGru'];
                                         $naziv = $grupa['naziv'];
@@ -189,13 +189,13 @@ $("#kurs").change(prilagodi);
 
 <script>
     function omoguci() {
-        $i = document.getElementById("idVid").value;
+        $v = document.getElementById("idVid").value;
         document.getElementById("idKur").disabled = true;
         document.getElementById("idGru").disabled = true;
-        if ($i == 1) {
+        if ($v == "kurs") {
             document.getElementById("idKur").disabled = false;
         }
-        if ($i == 2) {
+        if ($v == "grupa") {
             document.getElementById("idGru").disabled = false;
         }
     }
