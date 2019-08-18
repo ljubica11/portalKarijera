@@ -3,14 +3,33 @@
 <div class="container-fluid">
     <div class="row">
         <div id="obav" class="col-3" >
+            <h3 class="font-italic"> Obaveštenja: </h3>       
+            <?php            
+            foreach ($obavestenja as $obavestenje) { 
+                $idOba = $obavestenje['idOba']; ?>
+            <div class="centar">
             <?php
-            foreach ($obavestenja as $obavestenje) {
-                $idOba = $obavestenje['idOba'];
-
-                echo "<a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a><br/>";
-            }
+                echo "<b><a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a></b><br/>";
+                echo "<div style='text-align:right'>" . substr($obavestenje['datum'], 0, 10) . "</div>";
             ?>
-
+              
+             </div>   
+            <?php }
+            ?>
+            
+            
+                
+            <!--<?php            
+            foreach ($obavestenja as $obavestenje) { 
+                $idOba = $obavestenje['idOba']; ?>
+             <div class="centar">
+            <?php
+                echo "<a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a><br/>";
+            ?>
+            </div>
+            <?php }
+            ?>-->
+            
             <!-- <div class="centar" >
                 <h4 class="modal-title"><?php echo $obavestenje['naslov'] ?></h4>
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#z<?php echo $obavestenje['idOba'] ?>">Detaljnije</button>
