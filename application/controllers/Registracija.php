@@ -120,6 +120,7 @@ class Registracija extends MY_Controller {
         $korisnicko= $this->input->post('korisnicko');
         $lozinka = $this->input->post('lozinka');
         $email= $this->input->post('email');
+        $vidEmail = null;
         $tip= "k";
         
         $naziv = $this->input->post('naziv');
@@ -131,7 +132,7 @@ class Registracija extends MY_Controller {
         $brojzap = $this->input->post('brzaposlenih');
         $sajt = $this->input->post('sajt');
         
-        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $tip);
+        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip);
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
         $this->RegistrationModel->dodajKompaniju($naziv, $sediste, $pib, $telefoni, $opis, $oblast, $brojzap, $sajt, $idKor);
@@ -218,7 +219,7 @@ class Registracija extends MY_Controller {
         $this->load->view('viewTemplate', $data); 
     }
     
-    public function dodajInteresovanjaZaKorisnika(){
+        public function dodajInteresovanjaZaKorisnika(){
         $idKor = $this->input->post('idKor');
         if($this->input->post('int')!== null){
         $listaInteresovanja = $this->input->post('int');

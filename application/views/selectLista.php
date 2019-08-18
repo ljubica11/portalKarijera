@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php if(isset($tip) and $tip == "mesto"){ ?>
-<select name="mesto" onchange="dodajInput('mesto')" id="listamesto"> 
+<select class="form-control" name="mesto" onchange="dodajInput('mesto')" id="listamesto"> 
             <option disabled value="">Mesto</option>
               <?php 
             foreach ($mesta as $mesto){
@@ -16,7 +16,7 @@
            <option class="dodaj" value="dodaj">Dodaj novo mesto</option>
 </select>
 <?php } else if(isset($tip) and $tip == "sediste"){ ?>
-<select name="sediste" id="listasediste" onchange="dodajInput('sediste')">
+<select class="form-control" name="sediste" id="listasediste" onchange="dodajInput('sediste')">
     <option disabled value="">Sediste</option>
     <?php 
            foreach ($mesta as $mesto){
@@ -34,7 +34,7 @@
             
     
 <?php } else if(isset($fakulteti)){ ?>
-<select name="fakultet" id="listafakultet" onchange="dodajInput('fakultet')">
+<select class="form-control" name="fakultet" id="listafakultet" onchange="dodajInput('fakultet')">
     <option disabled value="">Odaberite fakultet</option>
     <?php 
             foreach ($fakulteti as $fakultet){
@@ -50,7 +50,7 @@
     <option value="dodaj">Dodaj fakultet</option>
 </select>
 <?php } else if(isset($kompanije)){ ?>
-<select name="kompanija" id="listakompanija" onchange="dodajInput('kompanija')">
+<select class="form-control" name="kompanija" id="listakompanija" onchange="dodajInput('kompanija')">
     <option disabled value="">Odaberite kompaniju</option>
     <?php 
             foreach ($kompanije as $kompanija){
@@ -67,7 +67,7 @@
 </select>
 
 <?php } else if(isset ($pozicije)){ ?>
-<select name="pozicija" id="listapozicija" onchange="dodajInput('pozicija')">
+<select class="form-control" name="pozicija" id="listapozicija" onchange="dodajInput('pozicija')">
     <option disabled value="">Odaberite poziciju</option>
                     <?php 
                             foreach ($pozicije as $pozicija){

@@ -1,8 +1,10 @@
+﻿
 
-        <div class="<?php if($tip == "student") echo "sfooter"; else if ($tip == "kompanija") echo "kfooter"?>">
+        <div class="<?php if($tip == "student") echo "sfooter"; else if ($tip == "kompanija") echo "kfooter"; else if ($tip == "admin") echo "afooter"?>">
             <a href="http://localhost/portalKarijera/index.php/Login/oNama">O nama</a>
             <a href="http://localhost/portalKarijera/index.php/Login/oNama#target"">Kontakt</a>
             <a href="http://localhost/portalKarijera/index.php/Login/usloviKoriscenja">Uslovi korišćenja</a>
+
             <span class="copy"> copyright Karijera.rs </span>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

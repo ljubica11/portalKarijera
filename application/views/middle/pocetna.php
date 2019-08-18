@@ -216,5 +216,6 @@
               </div>
             </div>
         <a href="<?php echo site_url('Statistika/index')?>">Statistika</a>
+        <a href="<?php echo site_url('Izvestaji/index')?>">Izvestaji</a>
         </div> 
 

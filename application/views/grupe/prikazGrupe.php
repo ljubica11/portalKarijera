@@ -10,11 +10,13 @@
            
 <div class="centar" >    
     <h5><a href="<?php echo site_url("Grupe/grupa/$idGru")?>"><?php echo $g["naziv"]?></a></h5>
-    <b>ID Grupe:</b> <?php echo $idGru;?>
-    <br/>
+    
+    
     <b>Naziv:</b> <?php echo $g["naziv"];?>
     <br/>
     <b>Opis:</b> <?php echo $g['opis'];?>
+    <br/>
+    <b>Kreirana:</b> <?php echo $g['datum'];?>
     <br/>
     <b>Broj clanova:</b><?php
     $brojClanova = $this->db->where('idGru', $idGru)->count_all_results('clanovigrupe'); 

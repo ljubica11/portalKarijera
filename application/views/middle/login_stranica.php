@@ -98,6 +98,10 @@
                 <div id="najnovije" class="slide-right col-sm-12"></div>
             </div>
         </div>
+        <?php if ($this->session->flashdata('msg')){
+        $msg = $this->session->flashdata('msg');
+        echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+        } ?>
         <script>
              
             var title = ['<p>Najnovija vest:<br><br>  <?php foreach ($vest as $v){ echo ($v['tekst']); } ?></p>', 
