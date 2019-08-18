@@ -119,6 +119,9 @@ class Admin extends MY_Controller{
     }
     
     public function dodajStavku(){
+        $this->load->model('VestiModel');
+        $this->load->model('DiskusijeModel');
+        
         $tip = $this->input->post('tip');
         $dodatak = $this->input->post('dodatak');
         
@@ -137,9 +140,9 @@ class Admin extends MY_Controller{
         } else if($tip == "ves"){
             $this->SifrarniciModel->dodajNoveVestine($dodatak);
         } else if($tip == "katves"){
-            $this->SifrarniciModel->izmeniKatVesti($id, $izmena);
+            $this->VestiModel->dodajKategorijuVesti($dodatak);
         } else if($tip == "katdis"){
-             $this->SifrarniciModel->izmeniKatDiskusije($id, $izmena);
+             $this->DiskusijeModel->dodajKategoriju($dodatak);
         }
         
         $this->prikaziSifrarnik($tip);
