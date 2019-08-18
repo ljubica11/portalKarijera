@@ -132,5 +132,56 @@ class IzvestajiModel extends CI_Model {
             return $query->result_array();
         }
     }
+    public function arhiviraneDiskusije($datumOd, $datumDo){
+        
+         $this->db->select('idDis')
+                ->from('diskusija');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('datum >=', $datumOd);
+            $this->db->where('datum <=', $datumDo);
+            $this->db->where('vidljivost', 'autor');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+    
+    public function kursDiskusije($datumOd, $datumDo){
+        
+         $this->db->select('idDis')
+                ->from('diskusija');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('datum >=', $datumOd);
+            $this->db->where('datum <=', $datumDo);
+            $this->db->where('vidljivostKurs is NOT NULL', NULL, FALSE);
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+    
+    public function grupeDiskusije($datumOd, $datumDo){
+        
+         $this->db->select('idDis')
+                ->from('diskusija');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('datum >=', $datumOd);
+            $this->db->where('datum <=', $datumDo);
+            $this->db->where('vidljivostGrupa is NOT NULL', NULL, FALSE);
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+     public function korisniciDiskusije($datumOd, $datumDo){
+        
+         $this->db->select('idDis')
+                ->from('diskusija');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('datum >=', $datumOd);
+            $this->db->where('datum <=', $datumDo);
+            $this->db->where('vidljivost', 'korisnici');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+
 
 }
