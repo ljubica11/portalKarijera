@@ -182,6 +182,84 @@ class IzvestajiModel extends CI_Model {
             return $query->result_array();
         }
     }
+    
+    public function kursOglasi($datumOd, $datumDo){
+        
+        $this->db->select('oglasi.idOgl')
+                ->from('oglasi');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('vremePostavljanja >=', $datumOd);
+            $this->db->where('vremePostavljanja >=', $datumOd);
+            $this->db->where('oglasi.vidljivost', 'kurs');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+    
+    public function grupaOglasi($datumOd, $datumDo){
+        
+        $this->db->select('oglasi.idOgl')
+                ->from('oglasi');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('vremePostavljanja >=', $datumOd);
+            $this->db->where('vremePostavljanja >=', $datumOd);
+            $this->db->where('oglasi.vidljivost', 'grupa');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+    
+     public function sviOglasi($datumOd, $datumDo){
+        
+        $this->db->select('oglasi.idOgl')
+                ->from('oglasi');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('vremePostavljanja >=', $datumOd);
+            $this->db->where('vremePostavljanja >=', $datumOd);
+            $this->db->where('oglasi.vidljivost');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+     public function kursVesti($datumOd, $datumDo) {
+
+        $this->db->select('vesti.idVes')
+                ->from('vesti');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('datum >=', $datumOd);
+            $this->db->where('datum <=', $datumDo);
+            $this->db->where('vesti.vidljivostKurs is NOT NULL', NULL, FALSE);
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+    
+     public function grupaVesti($datumOd, $datumDo) {
+
+        $this->db->select('vesti.idVes')
+                ->from('vesti');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('datum >=', $datumOd);
+            $this->db->where('datum <=', $datumDo);
+            $this->db->where('vesti.vidljivostGrupa is NOT NULL', NULL, FALSE);
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+    
+    public function pretragaVesti($datumOd, $datumDo) {
+
+        $this->db->select('vesti.idVes')
+                ->from('vesti');
+        if (!empty($datumOd) AND ! empty($datumDo)) {
+            $this->db->where('datum >=', $datumOd);
+            $this->db->where('datum <=', $datumDo);
+            $this->db->where('vesti.vidljivost', 'pretraga');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+    }
+
 
 
 }

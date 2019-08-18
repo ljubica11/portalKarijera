@@ -1,8 +1,8 @@
-<?php ?>
+<?php //var_dump($vidKursOgl);?>
 <div class="container">
 
     <div class="row">
-        <div class="col-12 stats">
+        <div class="col-9 offset-3 stats">
             <form class="form-inline" name="izvDisk" id="formaIzv" method="POST" action="">
 
                     Od &nbsp; <input type="date" name="datumOd" class="form-control" > 
@@ -98,13 +98,17 @@
       <td><?php if(isset($grupeDiskusije)){echo count($grupeDiskusije);}?></td>
       <td><?php if(isset($kursDiskusije)) {echo count($kursDiskusije);}?></td>
       <td><?php if(isset($korisniciDiskusije)){echo count($korisniciDiskusije);}?></td>
-      <td><?php if(isset($arhivraneDiskusije)){echo count($arhiviraneDiskusije);}?></td>
+      <td><?php if(isset($arhiviraneDiskusije)){echo count($arhiviraneDiskusije);}?></td>
       <td><?php if(isset($brojDisk)){echo count($brojDisk);} ?></td>
     </tr>
     <tr>
   </tbody>
         </table>
-        </div>
+        
+            <?php echo $detaljiOglasi; 
+                  echo $detaljiVesti;
+            ?>
+            </div>
     </div>
 </div>
 </div>
@@ -112,7 +116,8 @@
 <script>
 form=document.getElementById("formaIzv");
 function uradiSve() {
-        form.action="<?php echo site_url('Izvestaji/izvestajDiskusije')?>";
+        form.action="<?php echo site_url('Izvestaji/index')?>";
+       // form.action="<?php echo site_url('Izvestaji/kursOglasi')?>";
        
         form.submit();
 }
