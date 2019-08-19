@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid" id="pret">
     <div class="row">
         <div class="col-10 offset-1 pretraga-container">
             <div class="row">

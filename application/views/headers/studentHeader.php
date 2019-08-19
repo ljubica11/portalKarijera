@@ -11,11 +11,13 @@
         <script src="https://kit.fontawesome.com/2dd4f4a4ca.js"></script>
         <title></title>
     </head>
-    <body>
+    <body style="background-color: #e6e6e6">
 
         <nav class="navbar navbar-expand-lg navbar-dark">
 
-            <a class="navbar-brand" href="<?php echo site_url("User/index") ?>"><img src="http://localhost/portalKarijera//images/logo.png" width="90" height="60" title="Logo" alt="Logo" />Portal Karijera</a>
+
+            <a class="navbar-brand" href="<?php echo site_url("User/index") ?>"><img src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo" />Portal Karijera</a>
+
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

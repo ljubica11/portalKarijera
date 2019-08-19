@@ -32,8 +32,7 @@ class Login extends CI_Controller{
             $users= $this->UserModel->login($username, $pass);
             
             if(count($users)==0){
-               echo 'Pogresno korisnicko ime ili lozinka';
-               echo '<br><a href="../middle/zaboravljenaLozinka">Zaboravili ste lozinku??</a>';
+                redirect("Reset_lozinke");
             }else{
                 $user = $users[0];
                 $this->session->set_userdata('user', $user);
@@ -48,6 +47,7 @@ class Login extends CI_Controller{
     public function oNama(){
         $this->load->view('middle/oNama');
     }
-}
-    
    
+}
+
+

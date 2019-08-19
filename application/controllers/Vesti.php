@@ -1,6 +1,5 @@
 <?php
 
-
 defined('BASEPATH') or exit('no direct access');
 
 class Vesti extends CI_Controller {

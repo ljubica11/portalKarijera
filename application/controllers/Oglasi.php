@@ -18,6 +18,7 @@ class Oglasi extends MY_Controller{
             $tipKorisnika = "gost";
 
         }
+        $tipKorisnika=[];
         $oglasi = ["oglasi" => $this->OglasiModel->dohvatiSveOglase($tipKorisnika)];
         $gradovi = ["mesta" => $this->SifrarniciModel->dohvatiMesto()];        
         $data["middle_data"] = ["pretraga" => $this->load->view('oglasi/pretragaOglasa', $gradovi, true),

@@ -1,6 +1,6 @@
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="obav">
     <div class="row">
         <div id="obav" class="col-3" >
             <h3 class="font-italic"> Obaveštenja: </h3>       

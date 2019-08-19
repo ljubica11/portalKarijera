@@ -347,7 +347,6 @@ button, input {
     color: darkgreen;
 }
 
-
 .poruka {
     overflow: auto;
     overflow-wrap: normal;
@@ -392,6 +391,7 @@ button, input {
     padding: 10px;
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color:white;
 }
 
 
@@ -400,6 +400,35 @@ button, input {
     padding: 10px;
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+
+}
+
+#strelicaLevo{
+   height: 80px;
+   width: 80px;
+   margin-bottom: 40px;
+}
+
+#strelicaDesno{
+   height: 80px;
+   width: 80px;
+   margin-top: 33px;
+   
+}
+
+#uslkor{
+   margin-left: 210px;
+}
+
+#onam{
+    margin-left: 50px;
+}
+
+#kont{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    color: darkblue;
 }
 
 .naslovReg{
@@ -477,7 +506,15 @@ button, input {
     margin-top: 20px; 
 }
 
+#obav{
+    margin-bottom: 224px;
+    
+}
 
+#ogl{
+    margin-bottom: 204px;
+}
 
-
-
+#ves{
+    margin-bottom: 27px;
+}

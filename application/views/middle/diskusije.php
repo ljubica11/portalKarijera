@@ -8,7 +8,7 @@
  
         ?>
 
-        <div class="container-fluid" style="margin-bottom: 90px">
+<div class="container-fluid" style="margin-bottom: 90px" id="dis">
             <div class="row">
                 <div class="col-3 levo">
                     <div class=" formaGrupe">
@@ -19,8 +19,10 @@
                     foreach ($kategorije as $k) {
                         $idKatDis = $k['idKatDis'];
                         $naziv = $k['naziv'];
+
                        
                         echo "<div class='list-group' id='myList' role='tablist'><a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a></div><br/>";
+
        
                     } ?>
                     </div>
@@ -53,6 +55,7 @@
                 </div>
                
                 <div class="col-6">
+
                     <div id="diskusijePoKategoriji"></div>
                     <div id="diskusije"> 
                     <?php  foreach($sveDiskusije as $s){
@@ -78,6 +81,8 @@
                    <div class="centar"> <input type="button" class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value="Zapocni novu diskusiju">
                    </div>
                         ';}  ?>
+
+
                 </div>
                     
                     

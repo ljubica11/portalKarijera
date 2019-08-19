@@ -48,6 +48,7 @@
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
     overflow:hidden;
     text-overflow: ellipsis;
+    background-color: white;
 }
 
 .container-fluid{
@@ -346,3 +347,15 @@ input[type="number"] {
     
 }
 
+#obav{
+    margin-bottom: 196px;
+    
+}
+
+#ogl{
+    margin-bottom: 196px;
+}
+
+#pret{
+    margin-bottom: 65px;
+}

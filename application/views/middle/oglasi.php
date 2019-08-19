@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid" id="ogl">
     <div class="row">
         <div class="col-3 levo"> 
           <?php echo $pretraga; ?>
@@ -152,7 +152,7 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

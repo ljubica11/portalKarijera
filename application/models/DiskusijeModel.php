@@ -72,7 +72,7 @@ class DiskusijeModel extends CI_Model {
         return $query->result_array();
     }
  /**
-  * metoda za dovatanje diskusija iz baze podataka po parametru katgorija
+  * metoda za dovatanje diskusija iz baze podataka po parametru kategorija
   * @param type $idKat
   * @param type $tipKorisnika
   * @return type array
@@ -128,7 +128,11 @@ class DiskusijeModel extends CI_Model {
                     ->order_by('diskusija.idDis', 'DESC')
                     ->group_end();
         }
+
     }  
+
+    
+
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -149,6 +153,7 @@ class DiskusijeModel extends CI_Model {
     * @param type $tipKorisnika
     * @return type
     */
+    
     public function dohvatiDiskusijeGrupe($idGru, $tipKorisnika) {
         
         $idKor = $this->session->userdata('user')['idKor'];
@@ -156,7 +161,6 @@ class DiskusijeModel extends CI_Model {
                 ->from('student')
                 ->where('idKor', $idKor);
         $whereKurs = $this->db->get_compiled_select();
-        
         $this->db->select('idGru')
                 ->from('clanovigrupe')
                 ->where('idKor', $idKor);
@@ -181,9 +185,6 @@ class DiskusijeModel extends CI_Model {
                     ->where('sadrzidiskusije.idGrupe', $idGru)
                     ->group_end();
         }
-        
-        
-        
         $query = $this->db->get();
         return $query->result_array();
     }

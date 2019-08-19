@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid" id="ves">
     <div class="row">
         <div class="col-3" >
             <b class="p-0 bg-info">Vesti: </b>
@@ -81,6 +81,7 @@
                                             echo "<option value='$idKatVesti'>$nazivKat</option>";
                                         }
                                     ?>
+
                                 </select>
 
 

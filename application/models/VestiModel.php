@@ -92,7 +92,6 @@ class VestiModel extends CI_Model {
         return $idVes = $this->db->insert_id();
     }
 
-
     /**
      *
      * metoda za dodavanje vesti u okviru odredjene grupe korisnika
