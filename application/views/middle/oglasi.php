@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid" id="ogl">
     <div class="row">
         <div class="col-3 levo"> 
           <?php echo $pretraga; ?>
