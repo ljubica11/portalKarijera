@@ -11,7 +11,7 @@
         <script src="https://kit.fontawesome.com/2dd4f4a4ca.js"></script>
         <title></title>
     </head>
-    <body>
+    <body style="background-color: #e6e6e6">
 
         <nav class="navbar navbar-expand-lg navbar-dark">
 
