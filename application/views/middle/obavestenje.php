@@ -82,6 +82,7 @@
             </div>
         </div>
         <div class="col-3">
+            <?php if($this->session->userdata('user')['tip'] == "k"){?>
             <div class="centar" >DODAJ OBAVESTENJE:</div>
             <div class="centar" id="obav_Forma">
                 <?php
@@ -164,6 +165,7 @@
                     </table>
                 </form>
             </div>
+            <?php } ?>
         </div>
                <!-- <form name="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
                     <input type="text" name="naslov" value="" placeholder="Naslov obavestenja"><br>
