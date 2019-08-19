@@ -55,7 +55,7 @@
                                 <?php if($this->input->get('ogl') == 1){
                                     echo "<input type='radio' name='vidljivost' value='pretraga' checked>Rezultat pretrage";
                                 }?>
-                            <h5>Ponudjena platan u dinarima (opciono) </h5>
+                            <h5>Ponudjena plata u dinarima (opciono) </h5>
                             <div class="input-group plata-input">
                                 <div class="input-group-prepend">
                                   <span class="input-group-text" id="">Od</span>

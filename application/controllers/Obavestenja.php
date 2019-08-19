@@ -1,59 +1,72 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Obavestenja extends CI_Controller {
-    
+
     public function __construct() {
         parent::__construct();
-        
-         $this->load->model('ObavModel');
-    }
-    
-        public function index(){
-            //$this->load->model('ObavModel');
-            $id= $this->session->userdata('obavestenja')['idOba'];
-            $data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiObavestenje()]; 
-                                
-            $data["middle"] = "middle/obavestenje";
-            $this->load->view('viewTemplate', $data);
-    }
-    
-        public function dodajObavestenje(){
-          /*  if($this->session->has_userdata('korisnik')){ //ukoliko je neko ko se ulogovao kompanija, tj. ima povlastice koje se odnose na kompaniju 
-            
-                $tip=$this->session->userdata('korisnik')->tip; 
-            
-                if ($tip == 's') {
-                    echo "Nije moguce postaviti obavestenje";
-                }
-                else {*/
-                
-                    $naslov = $this->input->post ("naslov");
-                    $obavest = $this->input->post ("obavest");
-                    //$dat = $this->input->post ("dat");
-                    $vidljivost = $this->input->post ("vidljivost");                    
 
-                    $this->ObavModel->dodajObavestenje ($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost);
-                    $this->index();
-                    
-           /* else {//slucaj da lice nije ulogovano
-                $this->load->view( 'login_stranica' ); 
-            }*/
-            
-                    
-                    
-                    
-                    
-          /**
-           * metoda za dodavanje obavestenja u okviru funkcionalnosti Grupe
-           */                    
+        $this->load->model('ObavModel');
+    }
+
+    public function index() {
+        //$this->load->model('ObavModel');
+        //$id= $this->session->userdata('obavestenja')['idOba'];
+        if ($this->session->has_userdata('user')) {
+            $tipKorisnika = $this->session->userdata('user')['tip'];
+        } else {
+            $tipKorisnika = "gost";
         }
-        
-        
-        public function dodajObavestenjaGrupe(){
-        
-        
+        $data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiObavestenja($tipKorisnika)];
+        $data["middle"] = "middle/obavestenje";
+        $this->load->view('viewTemplate', $data);
+    }
+
+    public function ispisiObavestenja() {
+        $idOba = $this->input->get('id');
+        $obavestenja = ['obavestenja' => $this->ObavModel->dohvatiObavestenje($idOba)];
+        echo $this->load->view('obavestenja/ispisObavestenja', $obavestenja, true);
+        /* $obavestenja = $this->ObavModel->dohvatiObavestenje($idOba);
+          foreach ($obavestenja as $obavestenje){
+          echo "<div class='centar'>";
+          echo "<b> Naslov: </b>".$obavestenje['naslov']."<br>";
+          echo "<b> Tekst: </b>".$obavestenje['tekst']."<br>";
+          echo "<b> Datum: </b>".$obavestenje['datum']."<br>";
+          echo "<b> Autor: </b>".$obavestenje['autor'];
+          echo "</div>";
+          } */
+    }
+
+    public function dodajObavestenje() {
+        if ($this->session->has_userdata('user')) { //ukoliko postoji neki ulogovan korisnik 
+            if ($this->session->userdata('user')['tip'] == 'k') { // i ukoliko njegova promenljiva 'tip' ima vrednost 'k',
+                //Ocitaj obavestenje iz forme
+                $naslov = $this->input->post("naslov");
+                $obav = $this->input->post("obavest");
+                $vid = $this->input->post("vidljivost");
+                $vidKursa = $this->input->post("kurs");
+                $vidGrupe = $this->input->post("grupa");
+                
+                //Dodaj obavestenje u bazu:
+                $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obav, $vid, $vidKursa, $vidGrupe);
+                $this->index();
+            } else {
+                echo "Nije moguce postaviti obavestenje";
+            }
+        }
+
+        /* else {//slucaj da lice nije ulogovano
+          $this->load->view( 'login_stranica' );
+          } */
+
+        /**
+         * metoda za dodavanje obavestenja u okviru funkcionalnosti Grupe
+         */
+    }
+
+    public function dodajObavestenjaGrupe() {
+
         $idGru = $this->input->post('idGru');
         $naslov = $this->input->post('naslov');
         $obavest = $this->input->post('tekst');
@@ -64,10 +77,5 @@ class Obavestenja extends CI_Controller {
         $this->ObavModel->dodajObavestenjaGrupe($idOba, $idGru);
         redirect("Grupe/grupa/$idGru");
     }
-    }   
-        
-   
-    
-    
-    
 
+}
