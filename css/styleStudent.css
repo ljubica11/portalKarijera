@@ -47,6 +47,7 @@
     padding: 10px;
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color: white;
 }
 
 
@@ -267,3 +268,15 @@
     
 }
 
+#obav{
+    margin-bottom: 196px;
+    
+}
+
+#ogl{
+    margin-bottom: 180px;
+}
+
+#pret{
+    margin-bottom: 65px;
+}
