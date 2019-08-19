@@ -31,7 +31,7 @@
 .navbar{
     border-bottom: 1px solid lightgray;
     background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);;
-
+    
 }
 
 .levo{
@@ -269,14 +269,14 @@
 }
 
 #obav{
-    margin-bottom: 196px;
+    height: 67vh;
     
 }
 
 #ogl{
-    margin-bottom: 180px;
+    height: 67vh;
 }
 
 #pret{
-    margin-bottom: 65px;
+    height: 67vh;
 }
