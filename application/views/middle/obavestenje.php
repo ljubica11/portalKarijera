@@ -106,6 +106,7 @@
                             <td><b>Vidljivost: </b></td>
                             <td>
                                 <select id="idVid" name="vidljivost" onchange="omoguci()">
+                                    <option value="gost">Svi i gosti</option>
                                     <option value="korisnici">Svi korisnici</option>
                                     <option value="studenti">Svi studenti</option>
                                     <option value="kurs">Studenti odredjenog kursa</option>
