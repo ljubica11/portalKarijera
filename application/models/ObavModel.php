@@ -96,7 +96,7 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
             "vidljivostGrupa" => $vidGrupa
         ];
         $this->db->insert('obavestenja', $podaci);    //u tabelu obavestenja unosimo podatke koje smo uneli po ovim kriterijumima
-        redirect('obavestenja');
+        return $idObav = $this->db->insert_id();
     }
 
     /**
@@ -125,6 +125,15 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->set('idObav', $idOba);
         $this->db->set('idGrupe', $idGru);
         $this->db->insert('sadrziobavestenje');
+    }
+    
+    public function dodajObavestenjeZaPretragu($idObav, $idKor){
+        $data = [
+            "idObav" => $idObav,
+            "idKor" => $idKor
+        ];
+        
+        $this->db->insert("vidiobavestenje", $data);
     }
 
 }

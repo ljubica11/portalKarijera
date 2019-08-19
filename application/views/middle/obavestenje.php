@@ -103,6 +103,14 @@
                             <td><b>Autor:</b></td>
                             <td><?php echo $this->session->userdata('user')['korisnicko'] ?></td>
                         </tr>
+                            <?php if($this->input->get('obavPret') == 1){ ?>
+                        <tr>
+                             <td><b>Vidljivost: </b></td>
+                             <td> &nbsp; <input type="checkbox" name="vidljivost" value="pretraga" checked>Rezultat vase pretrage</td>
+                            
+                        </tr>
+                        
+                            <?php } else {?>
                         <tr>
                             <td><b>Vidljivost: </b></td>
                             <td>
@@ -112,7 +120,7 @@
                                     <option value="studenti">Svi studenti</option>
                                     <option value="kurs">Studenti odredjenog kursa</option>
                                     <option value="grupa">Formirana grupa studenata</option>
-                                </select>
+                                </select> 
                             </td>
                         </tr>
                         <tr>
@@ -155,6 +163,7 @@
                                 </select>
                             </td>
                         </tr>
+                            <?php } ?>
                         <tr>
                             <td>
                                 <br>
@@ -176,6 +185,11 @@
         -->
     </div>    
 </div>
+ <?php if ($this->session->flashdata('obavestenjePostavljeno')){
+        $msg = $this->session->flashdata('obavestenjePostavljeno');
+        echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+        } ?>
+
 <!--<script>
 var prilagodi = function () {
     if ($("#kurs").is(":selected")) {

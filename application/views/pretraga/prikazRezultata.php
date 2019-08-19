@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php if($this->session->userdata('user')['tip'] == 'k' and $tip == "student"){ ?>
 <a href="<?php echo site_url('Oglasi/index')?>?ogl=1">Dodaj oglas</a>&nbsp;&nbsp;
+<a href="<?php echo site_url('Obavestenja/index')?>?obavPret=1">Dodaj obavestenje</a>&nbsp;&nbsp;
 <?php } ?>
 <a href="<?php echo site_url('Vesti/index')?>?vesPret=1">Dodaj vest</a>&nbsp;&nbsp;
 <a href="#" onclick="prikaziDodavanjeGrupe()">Dodaj grupu</a>&nbsp;&nbsp;

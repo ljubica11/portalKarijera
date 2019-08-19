@@ -39,9 +39,8 @@ class Obavestenja extends CI_Controller {
     }
 
     public function dodajObavestenje() {
-        if ($this->session->has_userdata('user')) { //ukoliko postoji neki ulogovan korisnik 
-            if ($this->session->userdata('user')['tip'] == 'k') { // i ukoliko njegova promenljiva 'tip' ima vrednost 'k',
-                //Ocitaj obavestenje iz forme
+ 
+                
                 $naslov = $this->input->post("naslov");
                 $obav = $this->input->post("obavest");
                 $vid = $this->input->post("vidljivost");
@@ -49,12 +48,15 @@ class Obavestenja extends CI_Controller {
                 $vidGrupe = $this->input->post("grupa");
                 
                 //Dodaj obavestenje u bazu:
-                $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obav, $vid, $vidKursa, $vidGrupe);
+                $idObav = $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obav, $vid, $vidKursa, $vidGrupe);
+                if($vid == "pretraga"){
+                    $this->dodajObavestenjeZaPretragu($idObav);
+                    
+                }
+                $this->session->set_flashdata('obavestenjePostavljeno', 'Uspesno ste postavili obavestenje!');
                 $this->index();
-            } else {
-                echo "Nije moguce postaviti obavestenje";
-            }
-        }
+
+            
 
         /* else {//slucaj da lice nije ulogovano
           $this->load->view( 'login_stranica' );
@@ -76,6 +78,16 @@ class Obavestenja extends CI_Controller {
         $idOba = $last_id;
         $this->ObavModel->dodajObavestenjaGrupe($idOba, $idGru);
         redirect("Grupe/grupa/$idGru");
+    }
+    
+    public function dodajObavestenjeZaPretragu($idObav){
+        $res = $this->session->userdata('res');
+            foreach ($res as $user){
+                
+                $this->ObavModel->dodajObavestenjeZaPretragu($idObav, $user['idKor']);
+               
+            }
+        
     }
 
 }
