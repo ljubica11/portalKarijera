@@ -62,6 +62,7 @@ class Registracija extends MY_Controller {
         $email= $this->input->post('email');
         $vidEmail = $this->input->post('vidEmail');
         $tip= "s";
+        $cekaOdobrenje = null;
         
         $ime= $this->input->post('ime');
         $srednjeIme = $this->input->post('srednjeIme');
@@ -85,7 +86,7 @@ class Registracija extends MY_Controller {
         $godinaStu = $this->input->post('godinaStudija');
         
         $this->load->model('RegistrationModel');
-        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip);
+        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip, $cekaOdobrenje);
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
         $this->RegistrationModel->dodajStudenta($ime, $srednjeIme, $prezime, $datum, $pol, $drzavljanstvo, $telefon, $adresa, $mesto, $pin, $status, $kurs, $idKor, $vidAdresa, $vidTel);
@@ -122,6 +123,7 @@ class Registracija extends MY_Controller {
         $email= $this->input->post('email');
         $vidEmail = null;
         $tip= "k";
+        $cekaOdobrenje = "da";
         
         $naziv = $this->input->post('naziv');
         $sediste = $this->input->post('sediste');
@@ -132,11 +134,11 @@ class Registracija extends MY_Controller {
         $brojzap = $this->input->post('brzaposlenih');
         $sajt = $this->input->post('sajt');
         
-        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip);
+        $this->RegistrationModel->dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip, $cekaOdobrenje);
         $Korisnik= $this->RegistrationModel->dohvatiId($korisnicko);
         $idKor = $Korisnik[0]['idKor'];
         $this->RegistrationModel->dodajKompaniju($naziv, $sediste, $pib, $telefoni, $opis, $oblast, $brojzap, $sajt, $idKor);
-        $this->session->set_flashdata('msg', 'Uspesno ste se registrovali! Ulogujte se i zapocnite nezaboravno iskustvo na portalu Karijera!');
+        $this->session->set_flashdata('msg', 'Zahtev za registraciju je poslat. Bicete obavesteni putem mejla kada vam registracija bude odobrena.');
         redirect('Login');
         
      }
