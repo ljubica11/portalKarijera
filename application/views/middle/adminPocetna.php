@@ -18,7 +18,7 @@
         <div class="col-6">
             <div class="row">
                 <div class="col-10 offset-1" id="resDiv">
-<!--                    <input type="button" value="Klik" onclick="dohvatiBrojZahtevaReg()">-->
+                    
                 </div>
             </div>
             
@@ -146,6 +146,10 @@
     }
     
     setInterval(dohvatiBrojZahtevaReg, 30000);
+    
+    window.onload = function() {
+        dohvatiBrojZahtevaReg();
+      };
     
     function dohvatiBrojZahtevaReg(){
         xmlhttp=new XMLHttpRequest();
