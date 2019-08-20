@@ -86,7 +86,7 @@ class Statistika extends CI_Controller {
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
 
-        $Mail->SMTPDebug = 2;
+        $Mail->SMTPDebug = 0;
         $Mail->Mailer = 'smtp';
         $Mail->isSMTP();
         $Mail->Host = "smtp.gmail.com";
