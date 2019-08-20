@@ -135,7 +135,7 @@ foreach($nezaposleni as $n){
     </tr>
        </table>       
        <?php 
-        if($this->session->userdata['korisnik']['tip'] == 'a'){
+        if($this->session->userdata['user']['tip'] == 'a'){
        ?>
       </div>
         <div class="mejlForma float-right">
