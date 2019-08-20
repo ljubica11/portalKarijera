@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3 levo">
+        <div class="col-3 levo-admin">
             <h4>Sifrarnici <i class="fa fa-book"></i></h4>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('mesto')">Mesta</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('drz')">Drzavljanstva</div>
@@ -24,7 +24,7 @@
             
         </div>
         
-        <div class="col-3 desno">
+        <div class="col-3 desno-admin">
             <h4>Zahtevi <i class="fa fa-folder-open"></i></h4>
             <div class="zahteviNaziv" onclick="prikaziRegZahteve()">Registracije 
                 <div class="notif" id="notifReg"></div>

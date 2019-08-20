@@ -38,7 +38,17 @@
     border: 1px solid lightgray;
     border-top: none !important;
     line-height: 3;
-    height: calc(100vh - 135px);
+    height: 100%;
+/*    height: calc(100vh - 135px);*/
+}
+
+.levo-admin, .desno-admin{
+    padding-top: 15px;
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
+    border-top: none !important;
+    line-height: 3;
+    height: calc(100vh - 135px)
 }
 
 .sifrarniciNaziv{
@@ -261,4 +271,54 @@
 .notif{
     display: inline-block;
 }
+
+/*OGLASI*/
+
+.btn-search-job{
+    margin-top: 20px;
+}
+
+.naslov-oglas{
+    text-align: center;
+}
+
+.kompanija-oglas{
+    border-top: 1px solid black;
+    text-align: center;
+    padding: 20px;
+}
+
+.aktivan-oglas{
+    background-color: #4169E1;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+
+.istekao-oglas{
+    background-color: red;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+.oglas-wrapper{
+    border: 1px solid black;
+    margin: 20px;
+    padding: 0 30px 30px 40px;
+
+}
+.centar{
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color: white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
 
