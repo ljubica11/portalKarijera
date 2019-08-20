@@ -259,7 +259,26 @@ class IzvestajiModel extends CI_Model {
             return $query->result_array();
         }
     }
-
+    
+    
+     public function mejlAdmini(){
+        
+        $this->db->select('email')
+                ->from('korisnik')
+                ->where('tip', 'a');       
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+ public function mejlLista(){
+        
+        $this->db->select('email','korisnicko')
+                ->from('korisnik')
+                ->where('tip', 'k');       
+        $query = $this->db->get();
+        return $query->result_array();
+        
+    }
 
 
 }
