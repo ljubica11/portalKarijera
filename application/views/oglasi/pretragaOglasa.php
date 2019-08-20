@@ -9,7 +9,13 @@
                 <select name="grad" class="form-control" id="grad">
                     <option disabled selected value="">Odaberite grad</option>
                     <?php
+                     if($this->session->has_userdata('user')){
                     $tip = $this->session->userdata('user')['tip'];
+
+                    }else{
+                        $tip = "gost";
+
+                    }
                        foreach ($mesta as $mesto){
                                         $naziv = $mesto["naziv"];
                                         $idG = $mesto["idGra"];

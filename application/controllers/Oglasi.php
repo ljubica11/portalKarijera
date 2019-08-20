@@ -18,7 +18,7 @@ class Oglasi extends MY_Controller{
             $tipKorisnika = "gost";
 
         }
-        $tipKorisnika=[];
+//        $tipKorisnika=[];
         $oglasi = ["oglasi" => $this->OglasiModel->dohvatiSveOglase($tipKorisnika)];
         $gradovi = ["mesta" => $this->SifrarniciModel->dohvatiMesto()];        
         $data["middle_data"] = ["pretraga" => $this->load->view('oglasi/pretragaOglasa', $gradovi, true),
@@ -137,6 +137,9 @@ class Oglasi extends MY_Controller{
             $oglasi = ["oglasi" => $this->OglasiModel->pretragaOglasa($rec, $grad, $tip)];
             $this->load->view('oglasi/prikazOglasa', $oglasi);
         }
+            
+//            $res = $this->OglasiModel->pretragaOglasa($rec, $grad, $tip);
+//            var_dump($res);
     }
 
     
