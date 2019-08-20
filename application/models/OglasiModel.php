@@ -1,10 +1,6 @@
 <?php
 
-// $whereVreme = "vremeIsticanja >= CURRENT_DATE()";
-//        $this->db->select('oglasi.*, kompanija.naziv, kompanija.sajt');
-//        $this->db->from('oglasi');
-//        $this->db->join('kompanija', 'oglasi.autor = kompanija.idKor');
-//        $this->db->where($whereVreme);
+
 
 class OglasiModel extends CI_Model{
     
@@ -181,8 +177,7 @@ class OglasiModel extends CI_Model{
                 $this->db->or_like('pozicija', $rec);  
                 $this->db->order_by('vremePostavljanja', 'DESC');
             }
-//            $bla = $this->db->get_compiled_select();
-//            return $bla;
+
 
         $query=$this->db->get();
         return $query->result_array ();
