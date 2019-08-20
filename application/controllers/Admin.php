@@ -209,5 +209,15 @@ class Admin extends MY_Controller{
             echo "GRESKA: " . $Mail->ErrorInfo;
         }
         
-    }   
+    }
+    
+    public function brojZahtevaReg(){
+        $broj = $this->AdminModel->dohvatiBrojZahtevaReg();
+        if($broj === 0){
+           return ""; 
+        } else{
+            $data = ["broj" => $broj];
+            $this->load->view('admin/notifikacije', $data);
+        }
+    }
 }

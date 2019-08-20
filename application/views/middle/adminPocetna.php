@@ -18,7 +18,7 @@
         <div class="col-6">
             <div class="row">
                 <div class="col-10 offset-1" id="resDiv">
-                    
+<!--                    <input type="button" value="Klik" onclick="dohvatiBrojZahtevaReg()">-->
                 </div>
             </div>
             
@@ -26,7 +26,9 @@
         
         <div class="col-3 desno">
             <h4>Zahtevi <i class="fa fa-folder-open"></i></h4>
-            <div class="zahteviNaziv" onclick="prikaziRegZahteve()">Registracije</div>
+            <div class="zahteviNaziv" onclick="prikaziRegZahteve()">Registracije 
+                <div class="notif" id="notifReg"></div>
+            </div>
             <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('oglasi')">Oglasi</div>
             <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('vesti')">Vesti</div>
             <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obavestenja</div>
@@ -142,5 +144,21 @@
             xmlhttp.send("id="+id+"&mejl="+mejl); 
         
     }
+    
+    setInterval(dohvatiBrojZahtevaReg, 30000);
+    
+    function dohvatiBrojZahtevaReg(){
+        xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("notifReg").innerHTML = this.responseText;  
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/brojZahtevaReg'); ?>", true);
+          xmlhttp.send();      
+    }
+   
+
+
    
     </script>

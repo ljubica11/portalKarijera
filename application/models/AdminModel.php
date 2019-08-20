@@ -26,4 +26,10 @@ class AdminModel extends CI_Model{
         $this->db->where('idKor', $id);
         $this->db->delete('korisnik');
     }
+    
+    public function dohvatiBrojZahtevaReg(){
+        $this->db->where('cekaOdobrenje', 'da');
+        $this->db->from('korisnik');
+        return $this->db->count_all_results();
+    }
 }
