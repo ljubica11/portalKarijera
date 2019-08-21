@@ -34,11 +34,17 @@
     
 }
 
-.levo{
+.levo {
     padding-top: 30px;
     padding-bottom: 30px;
     border: 1px solid lightgray;
     line-height: 3;
+}
+
+.desno{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
 }
 
 .centar{
@@ -49,6 +55,7 @@
     overflow:hidden;
     text-overflow: ellipsis;
     background-color: white;
+    white-space: nowrap; 
 }
 
 .container-fluid{

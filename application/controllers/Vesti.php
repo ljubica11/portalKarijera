@@ -88,6 +88,12 @@ class Vesti extends CI_Controller {
                
             }
     }
+    
+    public function dohvatiJednuVest($idVes){
+        $data = ["vest" => $this->VestiModel->dohvatiJednuVest($idVes)];
+        $this->load->view('vesti/jednaVest', $data);
+
+    }
 
 }
 

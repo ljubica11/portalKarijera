@@ -22,15 +22,35 @@
                     <input type="text" name="novakatvesti" placeholder="Polje za unos..." ><br>
                     <input type="submit" value="Dodaj Kategoriju" class="btn btn-outline-primary">
                 </form>
-
+                               
             </div>
         </div>
         <div class="col-6">
+            
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4>Vesti</h4>
+                        <span class="close">&times;</span>
+                    </div>
+                    
+                    <div class="modal-body" id="modal-body">
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <h5>Portal "Karijera"</h5>
+                    </div>
+
+                </div>
+            </div>
+            
             <div id="vesti">
                 <?php foreach ($sveVesti as $sv) { ?>
 
                     <div class="centar">
-                        <b>Naziv: <?php echo $sv['naziv']; ?></b><br>
+                        <b>Naziv:<a href="#" onclick="procitajVest(<?php echo $sv['idVes']?>)"> <?php echo $sv['naziv']; ?></a></b><br>
                         <b>Autor: <?php echo $sv['korisnik']; ?></b><br>
                         <b>Tekst: <?php echo $sv['tekst']; ?></b><br>
                         <b>Datum: <?php echo $sv['datum']; ?></b><br>
@@ -152,7 +172,44 @@ if(<?php echo $this->input->get('vesPret')?> == 1){
     document.getElementById("4").disabled=true;
     document.getElementById("5").disabled=true;
     }
-<?php } ?>
+    <?php } if($this->input->get('idVesti')!== null){?>
+      
+    window.onload = function() {
+        procitajVest(<?php echo $this->input->get('idVesti')?>);
+      };
+    <?php } ?>    
+    function procitajVest(id){
+        var modal = document.getElementById("myModal");  
+        modal.style.display = "block";
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("modal-body").innerHTML = this.responseText;
+                    
+                }
+            };
+            xmlhttp.open("GET", "<?php echo site_url('Vesti/dohvatiJednuVest') ?>/"+id, true);
+            xmlhttp.send();
+    }
+    
+    
+
+var span = document.getElementsByClassName("close")[0];
+
+var modal = document.getElementById("myModal");    
+
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+    
+
     </script>
 </div>
 

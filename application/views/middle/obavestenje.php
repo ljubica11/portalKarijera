@@ -80,6 +80,28 @@
             <div id="obavDiv"> 
 
             </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h4>Obavestenja</h4>
+                        <span class="close">&times;</span>
+                    </div>
+                    
+                    <div class="modal-body" id="modal-body">
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <h5>Portal "Karijera"</h5>
+                    </div>
+
+                </div>
+            </div>
+            
+            
+            
         </div>
         <div class="col-3">
             <?php if($this->session->userdata('user')['tip'] == "k"){?>
@@ -216,18 +238,46 @@ $("#kurs").change(prilagodi);
             document.getElementById("idGru").disabled = false;
         }
     }
+    
+     <?php if($this->input->get('idObavestenja')!== null){?>
+      
+    window.onload = function() {
+        obavAjax(<?php echo $this->input->get('idObavestenja')?>);
+      };
+      
+     <?php } ?>
+    
+    
+    
     function obavAjax(id) {
+        var modal = document.getElementById("myModal");  
+        modal.style.display = "block";
 
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("obavDiv").innerHTML = this.responseText;
+                document.getElementById("modal-body").innerHTML = this.responseText;
 
             }
-        }
+        };
         xmlhttp.open("GET", "<?php echo site_url('Obavestenja/ispisiObavestenja') ?>?id=" + id, true);
         xmlhttp.send();
     }
+    
+    
+    var span = document.getElementsByClassName("close")[0];
+
+    var modal = document.getElementById("myModal");    
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    };
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+};
 
 </script>
 

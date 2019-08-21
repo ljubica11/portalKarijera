@@ -82,7 +82,7 @@
                 ?>
 
             </div>
-            <div class="col-6">
+            <div class="col-5">
                 <?php if($this->session->flashdata('brisanje')){?>
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <?php echo $this->session->flashdata('brisanje');?>
@@ -208,14 +208,39 @@
                     ?>
                 
             </div>
-              <div class="col-3">
+              <div class="col-4 desno">
+                  <div id="feed-res">
 
+                  </div>
+                  
 
-                   <a class="btn" href="<?php echo site_url("User/logout")?>">Logout</a> 
-
+                
               </div>
             </div>
         <a href="<?php echo site_url('Statistika/index')?>">Statistika</a>
         <a href="<?php echo site_url('Izvestaji/index')?>">Izvestaji</a>
         </div> 
+    
+    <script>
+        setInterval(newsFeed, 100000);
+    
+        window.onload = function() {
+            newsFeed();
+          };
+
+        function newsFeed(){
+            var tip = <?php echo "'".$this->session->userdata('user')['tip']."'"; ?>;
+            xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("feed-res").innerHTML = this.responseText;  
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('User/dohvatiNoveStavke'); ?>/"+tip, true);
+          xmlhttp.send();    
+        }
+        
+        
+        
+        </script>
 
