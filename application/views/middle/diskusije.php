@@ -73,10 +73,10 @@
         <?php if($s['vidljivost'] != 'autor' && $tipKorisnika != 'gost'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
         <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor' && $s['zaBrisanje'] != 'da'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;
         } else if ($s['zaBrisanje'] == 'da'){
-           echo $msg = 'poslat zahtev za arhiviranje';
+           echo $msg = '<b class="float-right">' .'poslat zahtev za arhiviranje' . '</b>';
         } else if($s['vidljivost'] == 'autor'){
             delete($msg);
-            echo 'arhivirano';
+            echo '<p class="float-right">'.'arhivirano'.'</p>';
         }
         
         

@@ -148,8 +148,7 @@ class Diskusije extends CI_Controller {
             
         $idDis = $this->input->get('idDis');    
         $this->DiskusijeModel->zaBrisanje($idDis);
-        $this->session->set_flashdata('arhiviranje', 'Poslat je zahtev za arhiviranje');
-        redirect('index');
+        redirect('Diskusije/index');
         
     }
     
