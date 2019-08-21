@@ -46,11 +46,12 @@
                                 <textarea class="form-control opis" name="opis" required></textarea>
                             <h5>Ko moze da vidi vas oglas? *</h5>
                                 Odaberite nivo vidljivosti oglasa. <br/>
-                                <input type="radio" name="vidljivost" value="studenti" id="1">Svi studenti<br>
-                                <input type="radio" name="vidljivost" value="korisnici" id="2">Svi korisnici sajta (ukljucujuci i druge kompanije)<br>
-                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="3">Studenti odredjenog kursa<br>
+                                 <input type="radio" name="vidljivost" value="gost" id="1">Svi i gosti<br>
+                                <input type="radio" name="vidljivost" value="studenti" id="2">Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici" id="3">Svi korisnici sajta (ukljucujuci i druge kompanije)<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="4">Studenti odredjenog kursa<br>
                                 <div id="kurs"></div>
-                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)" id="4">Formirana grupa studenata<br>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)" id="5">Formirana grupa studenata<br>
                                 <div id="grupa"></div>
                                 <?php if($this->input->get('ogl') == 1){
                                     echo "<input type='radio' name='vidljivost' value='pretraga' checked>Rezultat pretrage";

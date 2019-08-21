@@ -142,6 +142,7 @@ if(<?php echo $this->input->get('ogl')?> == 1){
     document.getElementById("2").disabled=true;
     document.getElementById("3").disabled=true;
     document.getElementById("4").disabled=true;
+    document.getElementById("5").disabled=true;
     }
 <?php } ?>
 

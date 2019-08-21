@@ -2,13 +2,14 @@
 
 class RegistrationModel extends CI_Model{
     
-    public function dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip){
+    public function dodajKorisnika($korisnicko, $lozinka, $email, $vidEmail, $tip, $cekaOdobrenje){
         $data = [
             "korisnicko" => $korisnicko,
             "lozinka" => $lozinka,
             "email" => $email,
             "vidljivostEmail" => $vidEmail,
-            "tip" => $tip 
+            "tip" => $tip,
+            "cekaOdobrenje" => $cekaOdobrenje
         ];
         
         

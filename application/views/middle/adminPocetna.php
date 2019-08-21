@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3 levo">
+        <div class="col-3 levo-admin">
             <h4>Sifrarnici <i class="fa fa-book"></i></h4>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('mesto')">Mesta</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('drz')">Drzavljanstva</div>
@@ -24,9 +24,16 @@
             
         </div>
         
-        <div class="col-3">
-            
-            <a class="btn" href="<?php echo site_url("User/logout")?>">Logout</a>  
+        <div class="col-3 desno-admin">
+            <h4>Zahtevi <i class="fa fa-folder-open"></i></h4>
+            <div class="zahteviNaziv" onclick="prikaziRegZahteve()">Registracije 
+                <div class="notif" id="notifReg"></div>
+            </div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('oglasi')">Oglasi</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('vesti')">Vesti</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obavestenja</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('grupe')">Grupe</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('diskusije')">Diskusije</div>
         </div>
             
         
@@ -98,5 +105,64 @@
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xmlhttp.send("tip="+tip+"&dodatak="+dodatak); 
     }
+    
+    function prikaziRegZahteve(){
+        xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("resDiv").innerHTML = this.responseText;  
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/prikaziZahteveRegistracija'); ?>", true);
+          xmlhttp.send();      
+    }
+    
+    function odobriRegistraciju(id, mejl){
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("resDiv").innerHTML = this.responseText;
+                    alert("Registracija je odobrena");
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Admin/odobriRegistraciju'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("id="+id+"&mejl="+mejl); 
+        
+    }
+    
+       function zabraniRegistraciju(id, mejl){
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("resDiv").innerHTML = this.responseText;
+                    alert("Registracija je zabranjena");
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Admin/zabraniRegistraciju'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("id="+id+"&mejl="+mejl); 
+        
+    }
+    
+    setInterval(dohvatiBrojZahtevaReg, 30000);
+    
+    window.onload = function() {
+        dohvatiBrojZahtevaReg();
+      };
+    
+    function dohvatiBrojZahtevaReg(){
+        xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("notifReg").innerHTML = this.responseText;  
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/brojZahtevaReg'); ?>", true);
+          xmlhttp.send();      
+    }
+   
+
+
    
     </script>

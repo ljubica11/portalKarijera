@@ -1,5 +1,5 @@
 <?php
-
+             
 foreach($zaposleni as $z){
     $brojZaposlenih = $z['broj zaposlenih'];
 }
@@ -134,11 +134,26 @@ foreach($nezaposleni as $n){
         <td><?php echo '100';?></td>
     </tr>
        </table>       
-         
-      </div>      
+       <?php 
+        if($this->session->userdata['user']['tip'] == 'a'){
+       ?>
+      </div>
+        <div class="mejlForma float-right">
+            <form class="form-inline" name="listeMejlova" method="GET" action="<?php echo site_url('Statistika/saljiIzvestaj')?>"> 
+                <select class="form-control" name="listeMejlova">
+                    <option disabled value="" selected>Izaberi primaoce</option>
+                 <option value='1'>Kompanije</option>
+                 <option value='2'>Admini</option>
+                </select>
+                <input type="submit" class="btn btn-outline-primary" name="posalji" value="pošalji">
+            </form>
+            
+        </div>
+        <?php }?>
    
   
 </div>
-          
+     
+      
   </div>
   </div>

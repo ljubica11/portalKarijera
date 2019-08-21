@@ -54,7 +54,7 @@ class Obavestenja extends CI_Controller {
                     
                 }
                 $this->session->set_flashdata('obavestenjePostavljeno', 'Uspesno ste postavili obavestenje!');
-                $this->index();
+                redirect('Obavestenja');
 
             
 

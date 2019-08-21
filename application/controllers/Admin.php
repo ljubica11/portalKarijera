@@ -10,6 +10,7 @@ class Admin extends MY_Controller{
             redirect('User');
         }
         
+        $this->load->model('AdminModel');
     }
     
     
@@ -147,6 +148,76 @@ class Admin extends MY_Controller{
         
         $this->prikaziSifrarnik($tip);
     }
-
     
+    public function prikaziZahteveRegistracija(){
+
+        
+        $data = ["zahtevi" => $this->AdminModel->prikaziZahteveRegistracija()];
+        if(empty($data["zahtevi"])){
+            echo "<h4>Nema novih zahteva</h4>";
+        }else{
+        $this->load->view("admin/prikazZahtevaReg", $data);
+        }
+
+       
+    }
+    
+    public function odobriRegistraciju(){
+        $id = $this->input->post('id');
+        $mejl = $this->input->post('mejl');
+        $this->AdminModel->odobriRegistraciju($id);
+        $this->prikaziZahteveRegistracija();
+        $msg = "Poštovani, vaša registracija na portalu 'Karijera' je odobrena.";
+        $this->posaljiMejl($msg, $mejl);
+        
+    }
+    
+    public function zabraniRegistraciju(){
+       $id = $this->input->post('id');
+       $mejl = $this->input->post('mejl');
+       $this->AdminModel->zabraniRegistraciju($id);
+       $this->prikaziZahteveRegistracija();
+       $msg = "Poštovani, vaša registracija na portalu 'Karijera' nije odobrena.";
+       $poruka = $this->posaljiMejl($msg, $mejl); 
+       echo $poruka;
+    }
+    
+    public function posaljiMejl($msg, $mejl){
+        $this->load->library('Phpmailerlib');
+        $Mail = $this->phpmailerlib->load();
+
+        $Mail->SMTPDebug = 0;
+        $Mail->Mailer = 'smtp';
+        $Mail->isSMTP();
+        $Mail->Host = "smtp.gmail.com";
+        $Mail->Port = 587;
+        $Mail->SMTPSecure = "tls";
+        $Mail->SMTPAuth = true;
+        $Mail->Username = "karijera.online@gmail.com";
+        $Mail->Password = "A123A123*";
+        $Mail->SetFrom("admin-karijera.online@gmail.com");
+        $Mail->Subject = 'Statistika';
+        $Mail->Body = $msg;
+        $Mail->AddAddress($mejl);
+//        $Mail->Send();
+        
+        if ($Mail->Send(true)) {
+            $poruka = "Mejl je poslat.";
+            return $poruka;
+        } else {
+            echo "Poruka nije poslata<br/>";
+            echo "GRESKA: " . $Mail->ErrorInfo;
+        }
+        
+    }
+    
+    public function brojZahtevaReg(){
+        $broj = $this->AdminModel->dohvatiBrojZahtevaReg();
+        if($broj === 0){
+           return ""; 
+        } else{
+            $data = ["broj" => $broj];
+            $this->load->view('admin/notifikacije', $data);
+        }
+    }
 }
