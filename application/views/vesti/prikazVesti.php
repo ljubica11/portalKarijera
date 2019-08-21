@@ -21,9 +21,9 @@ if (isset($vesti)) {
         ?>
 
         <?php
-        if ($this->session->userdata('user')['korisnicko'] == $autor && $v['zaBrisanje'] != 'da') {
+        if ($this->session->userdata('user')['korisnicko'] == $autor && $v['zaBrisanje'] !== 'da') {
             ?>
-            <a class="btn btn-danger float-right" href="<?php echo site_url("Vesti/traziBrisanje/$id") ?>"><i class="fa fa-trash-o"></i>Obrisi vest</a>
+            <a class="btn btn-danger float-right" href="<?php echo site_url("Vesti/traziBrisanje/$id") ?>" onclick="return confirm('Da li ste sigurni da zelite da posaljete zahtev za brisanje ove vesti?')"><i class="fa fa-trash-o"></i>Obrisi vest</a>
         <?php } else if ($this->session->userdata('user')['korisnicko'] == $autor && $v['zaBrisanje'] == 'da') { ?>
             <span class="text-muted"> Poslat je zahtev za brisanje i vest ce uskoro biti obrisana</span>
             <?php

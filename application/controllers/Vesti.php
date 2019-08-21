@@ -88,8 +88,8 @@ class Vesti extends CI_Controller {
 
     public function arhivirajVest($idVes) {
 
-        //$idVes = $this->input->get('idVes');
         $this->VestiModel->arhivirajVest($idVes);
+        $this->session->set_flashdata("poruka", "Uspesno ste arhivirali vest. Sada je mozete videti samo vi u odeljku 'Moje vesti'");
         redirect("Vesti/index");
     }
     
@@ -102,8 +102,17 @@ class Vesti extends CI_Controller {
     public function traziBrisanje($idVes) {
 
         $this->VestiModel->traziBrisanje($idVes);
-        //$this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje vesti administratoru. Vasa vest ce uskoro biti obrisana sa sajta.');
+        $this->session->set_flashdata('poruka', 'Poslat je zahtev za brisanje vesti administratoru. Vasa vest ce uskoro biti obrisana sa sajta.');
         redirect("Vesti/index");
+    }
+    
+    public function dohvatiVestiAutora($idKor){
+        $vesti= $this->VestiModel->dohvatiVestiAutora($idKor);
+        if(empty($vesti)){
+            echo "<h4>Nema vesti</h4>";
+        }else{
+        $this->load->view("vesti/prikazVesti", ["vesti" => $vesti]);
+        }
     }
 
 }

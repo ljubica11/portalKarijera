@@ -175,5 +175,15 @@ class VestiModel extends CI_Model {
         $this->db->where("idVes", $idVes);
         $this->db->update("vesti", $data);
     }
+    
+    public function dohvatiVestiAutora($idKor){
+        $this->db->select('vesti.*, korisnik.korisnicko as korisnik');
+        $this->db->from('vesti');
+        $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
+        $this->db->where('autor', $idKor);
+        $this->db->order_by('datum', 'DESC');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }

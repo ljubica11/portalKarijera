@@ -13,7 +13,7 @@
                 echo "<a href='#' onclick='vesti($idKatVesti)'>" . $k['naziv'] . "</a><br/>";
             }
             ?>
-            <div class="centar">
+<!--            <div class="centar">
                 <h6>DODAVANJE NOVE KATEGORIJE VESTI:</h6>
             </div>
 
@@ -23,7 +23,11 @@
                     <input type="submit" value="Dodaj Kategoriju" class="btn btn-outline-primary">
                 </form>
                                
-            </div>
+            </div>-->
+        <?php if($this->session->has_userdata('user')){
+        $idKor = $this->session->userdata('user')['idKor']; ?>
+        <a href="#" class="btn btn-primary btn-lg btn-mojeVesti" onclick="mojeVesti(<?php echo $idKor ?>)">Moje vesti</a>
+        <?php } ?>
         </div>
         <div class="col-6">
             
@@ -64,7 +68,7 @@
         </div>
 
         <div class="col-3">
-
+            <?php if($this->session->has_userdata('user')){?>
             <div class="centar" >DODAVANJE VESTI:</div>
             <div class="centar" id="formavesti">
                 <?php
@@ -131,8 +135,15 @@
 
                 </form>
             </div>
+            <?php } ?>
         </div>
     </div>
+    
+     <?php if ($this->session->flashdata('poruka')){
+        $msg = $this->session->flashdata('poruka');
+        echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+        } ?>
+    
     <script>
         function vesti(id){
             xmlhttp=new XMLHttpRequest();
@@ -208,6 +219,17 @@ window.onclick = function(event) {
   }
 };
 
+function mojeVesti(idKor){
+   xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("vesti").innerHTML = this.responseText;
+                 
+                }
+            }
+            xmlhttp.open("GET", "<?php echo site_url('Vesti/dohvatiVestiAutora') ?>/"+idKor, true);
+            xmlhttp.send(); 
+}
     
 
     </script>
