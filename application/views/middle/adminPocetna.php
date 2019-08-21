@@ -145,7 +145,7 @@
         
     }
     
-    setInterval(dohvatiBrojZahtevaReg, 30000);
+    setInterval(dohvatiBrojZahtevaReg, 100000);
     
     window.onload = function() {
         dohvatiBrojZahtevaReg();

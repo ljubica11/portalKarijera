@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url('Pretraga');?>">Pretraga sajta</a>
                     </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="<?php echo site_url("User/logout")?>">Logout</a> 
+                    </li>
                 </ul>
             </div>
 

@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 
-<?php foreach ($obavestenja as $obavestenje) {?>
-    <div class='centar'>
-        <b> Naslov: </b> <?php echo $obavestenje['naslov']; ?> <br>
-        <b> Tekst: </b> <?php echo $obavestenje['tekst']; ?> <br>
-        <b> Datum: </b> <?php echo  substr($obavestenje['datum'], 0, 10); ?> <br>
-        <b> Autor: </b> <?php echo $obavestenje['naziv'] ?> <br>
-        <button type="submit" class="btn btn-outline-primary pull-right" >Arhiviraj</button>
-    </div>
-<?php }?>
+<div class="datum">
+ Datum postavljanja: <?php echo  substr($obavestenja[0]['datum'], 0, 10); ?>
+</div>
+<br>
+<h4><?php echo $obavestenja[0]['naslov']; ?></h4>
+<br/>
+<div class="sadrzaj">
+    <?php echo $obavestenja[0]['tekst']; ?>
+</div>
+<br/>
+<div class="autor">
+Autor: <?php echo $obavestenja[0]['naziv'] ?>
+</div>

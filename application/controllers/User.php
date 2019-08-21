@@ -144,4 +144,15 @@ class User extends CI_Controller{
                 }
         }
         
+        public function dohvatiNoveStavke($tip){
+            $this->load->model('OglasiModel');
+            $this->load->model('VestiModel');
+            $this->load->model('ObavModel');
+            
+            $data = ["oglasi" => $this->OglasiModel->dohvatiSveOglase($tip),
+                    "vesti" => $this->VestiModel->dohvatiSveVesti($tip),
+                    "obavestenja" => $this->ObavModel->dohvatiObavestenja($tip)];
+            $this->load->view('pocetna/newsFeed', $data);
+        }
+        
 }
