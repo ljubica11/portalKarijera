@@ -8,7 +8,7 @@ if ($this->session->has_userdata('user')) {
 ?>
 
 <?php
-//var_dump($diskusije);
+  var_dump($diskusije);
 if (isset($diskusije)) {
 
     foreach ($diskusije as $d) {
@@ -28,9 +28,19 @@ if (isset($diskusije)) {
         <?php if ($d['vidljivost'] != 'autor' && $tipKorisnika != 'gost') {
             echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>";
         } ?>
-        <?php if ($this->session->userdata('user')['korisnicko'] == $autor && $d['vidljivost'] != 'autor') {
-            echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>";
-        } ?>
+        <?php if($this->session->userdata('user')['korisnicko']== $autor && $d['vidljivost'] != 'autor' && $d['zaBrisanje'] != 'da')
+        { echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;
+        } else if ($d['zaBrisanje'] == 'da'){
+           echo $msg = '<b class="float-right">' .'poslat zahtev za arhiviranje' . '</b>';
+        } else if($d['vidljivost'] == 'autor'){
+            delete($msg);
+            echo '<p class="float-right">'.'arhivirano'.'</p>';
+        }
+        
+        
+         ?>
+        
+        
 
 
 
