@@ -10,18 +10,16 @@ class Vesti extends CI_Controller {
         $this->load->database();
         $this->load->model('UserModel');
         $this->load->model('VestiModel');
-
     }
 
-
     public function index() {
-        
-        if($this->session->has_userdata('user')){
-        $tipKorisnika = $this->session->userdata('user')['tip'];
-        }else{
+
+        if ($this->session->has_userdata('user')) {
+            $tipKorisnika = $this->session->userdata('user')['tip'];
+        } else {
             $tipKorisnika = "gost";
         }
-              
+
         $kategorijeVesti = $this->VestiModel->dohvatiKategorijeVesti();
         $sveVesti = $this->VestiModel->dohvatiSveVesti($tipKorisnika);
         $data = [];
@@ -32,9 +30,9 @@ class Vesti extends CI_Controller {
 
     public function ispisiVesti() {
 
-        if($this->session->has_userdata('user')){
-        $tipKorisnika = $this->session->userdata('user')['tip'];
-        }else{
+        if ($this->session->has_userdata('user')) {
+            $tipKorisnika = $this->session->userdata('user')['tip'];
+        } else {
             $tipKorisnika = "gost";
         }
         $idKatVesti = $this->input->get('id');
@@ -51,7 +49,7 @@ class Vesti extends CI_Controller {
         $vidljivostKurs = $this->input->post('odabraniKurs');
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
         $idVes = $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naziv, $tekst, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
-        if($vidljivost == "pretraga"){
+        if ($vidljivost == "pretraga") {
             $this->dodajVestZaPretragu($idVes);
         }
         redirect('Vesti');
@@ -79,14 +77,20 @@ class Vesti extends CI_Controller {
         $this->VestiModel->dodajKategorijuVesti($nova_kategorija);
         $this->index();
     }
-    
-    public function dodajVestZaPretragu($idVes){
-         $res = $this->session->userdata('res');
-            foreach ($res as $user){
-                
-                $this->VestiModel->dodajVestZaPretragu($idVes, $user['idKor']);
-               
-            }
+
+    public function dodajVestZaPretragu($idVes) {
+        $res = $this->session->userdata('res');
+        foreach ($res as $user) {
+
+            $this->VestiModel->dodajVestZaPretragu($idVes, $user['idKor']);
+        }
+    }
+
+    public function arhivirajVest($idVes) {
+
+        //$idVes = $this->input->get('idVes');
+        $this->VestiModel->arhivirajVest($idVes);
+        redirect("Vesti/index");
     }
     
     public function dohvatiJednuVest($idVes){
@@ -95,5 +99,11 @@ class Vesti extends CI_Controller {
 
     }
 
-}
+    public function traziBrisanje($idVes) {
 
+        $this->VestiModel->traziBrisanje($idVes);
+        //$this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje vesti administratoru. Vasa vest ce uskoro biti obrisana sa sajta.');
+        redirect("Vesti/index");
+    }
+
+}
