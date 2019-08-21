@@ -348,12 +348,12 @@ input[type="number"] {
 }
 
 #obav{
-    height: 67vh;
+    height: 150vh;
     
 }
 
 #ogl{
-    height: 67vh;
+    height: 150vh;
 }
 
 #pret{
@@ -519,3 +519,4 @@ input[type="number"] {
     transform: perspective(200px) rotateY(-45deg);
     padding-right: 5%;
 }
+
