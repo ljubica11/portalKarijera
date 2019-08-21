@@ -12,7 +12,7 @@ class VestiModel extends CI_Model {
     }
 
     public function dohvatiVesti($idKatVesti, $tipKorisnika) {
-        
+
         $idKor = $this->session->userdata('user')['idKor'];
         $this->db->select('idKurs')->from('student')->where('idKor', $idKor);
         $whereKurs = $this->db->get_compiled_select();
@@ -20,7 +20,7 @@ class VestiModel extends CI_Model {
         $whereGrupe = $this->db->get_compiled_select();
         $this->db->select('idVes')->from('vidivest')->where('idKor', $idKor);
         $wherePretraga = $this->db->get_compiled_select();
-        
+
         $this->db->from('vesti');
         $this->db->select('vesti.*, korisnik.korisnicko as korisnik, sifkategorijavesti.idKatVesti as idKat, sifkategorijavesti.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
@@ -28,16 +28,19 @@ class VestiModel extends CI_Model {
         $this->db->where('sifkategorijavesti.idKatVesti', $idKatVesti);
         $this->db->group_start();
         $this->db->where('vidljivost', 'gost');
-        if($tipKorisnika == "k"){
-            $this->db->or_where('vidljivost', 'korisnici');  
+        $this->db->select('autor')->from('vesti');
+
+        if ($tipKorisnika == "k") {
+            $this->db->or_where('vidljivost', 'korisnici');
         }
-        if($tipKorisnika == "s"){
-            $this->db->or_where('vidljivost', 'korisnici'); 
-            $this->db->or_where('vidljivost', 'studenti'); 
+
+        if ($tipKorisnika == "s") {
+            $this->db->or_where('vidljivost', 'korisnici');
+            $this->db->or_where('vidljivost', 'studenti');
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'kurs');
-            $this->db->where("vidljivostKurs in ($whereKurs)",  NULL, FALSE);
-            $this->db->group_end();  
+            $this->db->where("vidljivostKurs in ($whereKurs)", NULL, FALSE);
+            $this->db->group_end();
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'grupa');
             $this->db->where("vidljivostGrupa in ($whereGrupe)", NULL, FALSE);
@@ -105,7 +108,6 @@ class VestiModel extends CI_Model {
         $this->db->insert('sadrzivesti');
     }
 
-
     public function dodajKategorijuVesti($nova_kategorija) {
 
         $this->db->set('naziv', $nova_kategorija);
@@ -113,7 +115,7 @@ class VestiModel extends CI_Model {
     }
 
     public function dohvatiSveVesti($tipKorisnika) {
-        
+
         $idKor = $this->session->userdata('user')['idKor'];
         $this->db->select('idKurs')->from('student')->where('idKor', $idKor);
         $whereKurs = $this->db->get_compiled_select();
@@ -121,21 +123,21 @@ class VestiModel extends CI_Model {
         $whereGrupe = $this->db->get_compiled_select();
         $this->db->select('idVes')->from('vidivest')->where('idKor', $idKor);
         $wherePretraga = $this->db->get_compiled_select();
-        
+
         $this->db->select('vesti.*, korisnik.korisnicko as korisnik');
         $this->db->from('vesti');
         $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
         $this->db->where('vidljivost', 'gost');
-        if($tipKorisnika == "k"){
-            $this->db->or_where('vidljivost', 'korisnici');  
+        if ($tipKorisnika == "k") {
+            $this->db->or_where('vidljivost', 'korisnici');
         }
-        if($tipKorisnika == "s"){
-            $this->db->or_where('vidljivost', 'korisnici'); 
-            $this->db->or_where('vidljivost', 'studenti'); 
+        if ($tipKorisnika == "s") {
+            $this->db->or_where('vidljivost', 'korisnici');
+            $this->db->or_where('vidljivost', 'studenti');
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'kurs');
-            $this->db->where("vidljivostKurs in ($whereKurs)",  NULL, FALSE);
-            $this->db->group_end();  
+            $this->db->where("vidljivostKurs in ($whereKurs)", NULL, FALSE);
+            $this->db->group_end();
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'grupa');
             $this->db->where("vidljivostGrupa in ($whereGrupe)", NULL, FALSE);
@@ -145,20 +147,34 @@ class VestiModel extends CI_Model {
             $this->db->where("idVes in ($wherePretraga)", NULL, FALSE);
             $this->db->group_end();
         }
-        
+
         $this->db->order_by('idVes', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
-    
-    public function dodajVestZaPretragu($idVes, $idKor){
+
+    public function dodajVestZaPretragu($idVes, $idKor) {
         $data = [
             "idVes" => $idVes,
             "idKor" => $idKor
         ];
-        
+
         $this->db->insert("vidivest", $data);
     }
 
-}
+    public function arhivirajVest($idVes) {
 
+        $this->db->set('vidljivost', 'autor')
+                ->set('vidljivostGrupa', NULL)
+                ->set('vidljivostKurs', NULL)
+                ->where('idVes', $idVes)
+                ->update('vesti');
+    }
+
+    public function traziBrisanje($idVes) {
+        $data = ["zaBrisanje" => "da"];
+        $this->db->where("idVes", $idVes);
+        $this->db->update("vesti", $data);
+    }
+
+}
