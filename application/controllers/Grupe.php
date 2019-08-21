@@ -12,11 +12,11 @@ class Grupe extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->database();
         $this->load->model('UserModel');
         $this->load->model('GrupeModel');
         $this->load->model('SifrarniciModel');
         $this->load->model('DiskusijeModel');
+        
     }
 
     public function index() {
@@ -127,9 +127,8 @@ class Grupe extends CI_Controller {
     public function ispisiOpcije() {
 
         $tip = $this->input->post("tip");
-        if ($tip == 'kursgrupe') {
-            $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
-        } else if ($tip == 'gradgrupe') {
+        
+         if ($tip == 'gradgrupe') {
             $data = ['grad' => $this->SifrarniciModel->dohvatiMesto()];
         } else if ($tip == 'vestinegrupe') {
             $data = ['vestine' => $this->SifrarniciModel->dohvatiVestine()];
@@ -139,8 +138,11 @@ class Grupe extends CI_Controller {
             $data = ['interesovanja' => $this->SifrarniciModel->dohvatiInteresovanja()];
         } else if ($tip == 'statusgrupe'){
             $data = ['status' => $this->GrupeModel->status()];
+        } else if ($tip == 'grupedisk' || $tip == 'grupev' || $tip == 'grupeo'){
+            $data = ['grupe' => $this->GrupeModel->dohvatiGrupe()];
+        } else if ($tip == 'kursgrupe' || $tip == 'kurs' || $tip == 'kursv' || $tip = 'kurso') {
+            $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
         }
-
 
         $this->load->view('grupe/opcije', $data);
     }

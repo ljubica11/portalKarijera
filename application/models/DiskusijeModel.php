@@ -252,7 +252,7 @@ class DiskusijeModel extends CI_Model {
     * @param type $vidljivostKurs
     * @param type $vidljivostGrupa
     */
-    public function dodajDiskusiju($idKor, $kategorija, $naziv, $opis, $vidljivost, $vidljivostKurs, $vidljivostGrupa) {
+    public function dodajDiskusiju($idKor, $kategorija, $naziv, $opis, $vidljivost, $vidljivostKurs, $vidljivostGrupa, $zaBrisanje) {
         $this->db->set('autor', $idKor);
         $this->db->set('kategorija', $kategorija);
         $this->db->set('naziv', $naziv);
@@ -261,6 +261,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('vidljivost', $vidljivost);
         $this->db->set('vidljivostKurs', $vidljivostKurs);
         $this->db->set('vidljivostGrupa', $vidljivostGrupa);
+        $this->db->set('zaBrisanje', $zaBrisanje);
         $this->db->insert('diskusija');
     }
     /**
@@ -282,11 +283,21 @@ class DiskusijeModel extends CI_Model {
         $this->db->insert('sifkategorijadiskusija');
     }
     
-        public function arhivirajDiskusiju($idDis){
+    public function zaBrisanje($idDis){
+        
+        $data = ["zaBrisanje" => "da"];
+        $this->db->where("idDis", $idDis);
+        $this->db->update("diskusija", $data);
+        
+    }
+
+
+    public function arhivirajDiskusiju($idDis){
         
             $this->db->set('vidljivost', 'autor')
                     ->set('vidljivostGrupa', NULL)
                     ->set('vidljivostKurs', NULL)
+                    ->set('zaBrisanje', NULL)
                     ->where('idDis', $idDis)
                     ->update('diskusija');
         

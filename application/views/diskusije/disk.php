@@ -8,7 +8,7 @@ if ($this->session->has_userdata('user')) {
 ?>
 
 <?php
-//var_dump($diskusije);
+  var_dump($diskusije);
 if (isset($diskusije)) {
 
     foreach ($diskusije as $d) {
@@ -30,7 +30,11 @@ if (isset($diskusije)) {
         } ?>
         <?php if ($this->session->userdata('user')['korisnicko'] == $autor && $d['vidljivost'] != 'autor') {
             echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>";
-        } ?>
+        } if ($d['zaBrisanje'] == 'da'){
+            echo 'poslat zahtev za arhiviranje';
+        }
+        
+        ?>
 
 
 
