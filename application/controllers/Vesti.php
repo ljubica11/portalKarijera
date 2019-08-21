@@ -54,7 +54,7 @@ class Vesti extends CI_Controller {
         if($vidljivost == "pretraga"){
             $this->dodajVestZaPretragu($idVes);
         }
-        $this->index();
+        redirect('Vesti');
     }
 
     /**
