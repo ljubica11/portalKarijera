@@ -28,7 +28,6 @@ class VestiModel extends CI_Model {
         $this->db->where('sifkategorijavesti.idKatVesti', $idKatVesti);
         $this->db->group_start();
         $this->db->where('vidljivost', 'gost');
-        $this->db->select('autor')->from('vesti');
 
         if ($tipKorisnika == "k") {
             $this->db->or_where('vidljivost', 'korisnici');
