@@ -95,7 +95,7 @@ class User extends CI_Controller{
           if (!$this->upload->do_upload('image')){
             echo $this->upload->display_errors();
         }else{
-            $this->index();
+            redirect('User');
       }
     
     }
@@ -116,7 +116,7 @@ class User extends CI_Controller{
           }else{
               $upload_data = $this->upload->data();
               echo $upload_data["file_type"];
-               $this->index();
+               redirect('User');
           }
 
         }
