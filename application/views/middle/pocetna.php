@@ -76,6 +76,22 @@ function dohvatiPutanjuFajla(){
     document.getElementById("btn-sacuvaj").style.display = "block";
 
 }
+
+document.getElementById("file-select-cv").onchange = function() {
+
+    dohvatiPutanjuCV();
+
+};
+
+function dohvatiPutanjuCV(){
+
+    var celaPutanjaCV = document.getElementById("file-select-cv").value;
+    var imeFajlaCV = celaPutanjaCV.split("\\").pop();
+   
+    document.getElementById("file-label-cv").innerHTML = imeFajlaCV;
+    document.getElementById("btn-sacuvaj-cv").style.display = "block";
+
+}
         
         
         

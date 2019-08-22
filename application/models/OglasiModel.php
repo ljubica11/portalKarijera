@@ -47,6 +47,7 @@ class OglasiModel extends CI_Model{
             $this->db->group_end();
             $this->db->group_end();
         }
+        $this->db->order_by('idOgl', 'DESC');
         $query=$this->db->get();
         return $query->result_array ();
     }

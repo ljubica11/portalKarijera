@@ -34,6 +34,7 @@ class User extends CI_Controller{
             
             $dataCentar = ["interesovanja" => $this->UserModel->imaInteresovanja($id),
                            "vestine" => $this->UserModel->imaVestine($id),
+                           "studije" => $this->UserModel->trenutnoStudira($id),
                            "diploma" => $this->UserModel->imaDiplomu($id),
                            "iskustvo" => $this->UserModel->radnoIskustvo($id),
                            "idKor" => $id,
@@ -54,7 +55,8 @@ class User extends CI_Controller{
                         "idKor" => $id,
                         "tip" => $tip];
             
-            $dataCentar = ["oglasi" => $this->OglasiModel->dohvatiOglaseKorisnika($id),
+            $dataCentar = ["podaciKompanija" => $this->UserModel->podaciZaKompaniju($id),
+                           "oglasi" => $this->OglasiModel->dohvatiOglaseKorisnika($id),
                            "obavestenja" => $this->UserModel->imaObavestenja($id),
                            "idKor" => $id,
                            "tip" => $tip];
@@ -131,20 +133,8 @@ class User extends CI_Controller{
 
         }
         
-//        public function dohvatiCV(){
-//            $idKor= $this->session->userdata('user')['idKor'];
-//            $dir = './CV/'.$idKor;
-//            $this->load->helper('download');
-//            $allCV= scandir($dir);
-//                $onlyCV = array_diff($allCV, array('.', '..'));
-//                foreach($onlyCV as $oneCV){
-//                    force_download($dir.'/'.$oneCV, null);
-//                }
-//            
-//        }
         
-        public function procitajCV(){
-            $idKor= $this->session->userdata('user')['idKor'];
+        public function procitajCV($idKor){
             $dir = './CV/'.$idKor;
             $allCV= scandir($dir);
                 $onlyCV = array_diff($allCV, array('.', '..'));

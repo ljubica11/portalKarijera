@@ -7,12 +7,25 @@
         </div>
         
         <div class="col-6">  
-            <?php  if($this->session->userdata('user')['tip'] == "k"){
+            <?php  
+            if($this->session->flashdata('brisanje')){ ?>
+            
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <?php echo $this->session->flashdata('brisanje');?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            
+            
+            <?php
+            }
+            if($this->session->userdata('user')['tip'] == "k"){
                     $idKor = $this->session->userdata('user')['idKor'];
                     
                     echo $dodaj;
             ?>
-
+            <br/>
             
                 <input type="button" id="mojiOglasi" value="Moji oglasi" class="btn btn-primary" onclick="mojiOglasi(<?php echo $idKor ?>)">
                 <input type="button" id="dodajOglas" value="Dodaj oglas" class="btn btn-primary" onclick="dodajOglas(<?php echo $idKor ?>)"> 

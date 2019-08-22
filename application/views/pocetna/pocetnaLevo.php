@@ -55,6 +55,33 @@
                 if(isset($podaciStudent)){
                     echo "<div class='imeKorisnik'><h4>".$podaciStudent[0]['ime']." ".$podaciStudent[0]['prezime']."</h4></div>";
                     echo "<br/>";
+                    
+//                    ako je ulogovan korisnik student
+//                    i ako nema ubacen CV
+//                    i ako je ulogovan korisnik na svom profilu
+//                    prikazuje mu se opcija za unos CV-a;
+
+                    
+                    if(is_dir('./CV/'.$idKor)== false or 
+                       empty(array_diff(scandir('./CV/'.$idKor), array('.', '..')))){
+                        if($idKor == $this->session->userdata('user')['idKor']){
+                    ?>
+                     <form name="cvForm" method="POST" action="<?php echo site_url('User/dodajCV')?>" enctype="multipart/form-data">
+                          <input type="file" name="cv" id="file-select-cv" class="inputfile-cv">
+                          <label for="file-select-cv" id="file-label-cv">Dodaj CV (PDF)</label> 
+                          <input type="submit" name="dodaj" value="Sacuvaj CV" class="btn btn-sm btn-danger" id="btn-sacuvaj-cv">
+                     </form>    
+                    <?php 
+                            
+                        }
+                    }else{
+                    ?>
+<!--                    u suprotnom se nudi opcija za citanje CV-a, svog ili tudjeg -->
+                    <a href="<?php echo site_url("User/procitajCV/$idKor")?>">Moj CV</a>
+                    <br/>
+                <?php
+                    }   
+
                     echo "Datum rodjenja: ".$podaciStudent[0]['datum'];
                     echo "<br/>";
                     if($podaciStudent[0]['vidljivostTelefon'] == null){

@@ -71,6 +71,7 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
             $this->db->where("idOba in ($wherePretraga)", NULL, FALSE);
             $this->db->group_end();
         }
+        $this->db->order_by('idOba', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }

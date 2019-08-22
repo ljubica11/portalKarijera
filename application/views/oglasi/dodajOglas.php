@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
-                <div id="myModal" class="modal">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div id="myModal" class="modal-ogl">
+                  <div class="modal-content-ogl">
+                    <div class="modal-header-ogl">
                         <h2>Postavite oglas u nekoliko lakih koraka!</h2>
                         <span class="close">&times;</span>
                       
                     </div>
-                      <div class="modal-body" id="dodavanjeOglasa">
+                      <div class="modal-body-ogl" id="dodavanjeOglasa">
                           <form name="dodajOglasForma" method="POST" action="<?php echo site_url('Oglasi/dodajNoviOglas')?>" class="regForm" enctype="multipart/form-data">
                             <h5> Naslov oglasa * </h5>
                             <input placeholder="Primer: Junior PHP developer" class="form-control naslov" name="naslov" required>
@@ -102,7 +102,7 @@
                          
                       </div>  
                                         
-                    <div class="modal-footer">
+                    <div class="modal-footer-ogl">
                         <h5>Portal "Karijera"</h5>
                     </div>
                   </div>
