@@ -1,4 +1,4 @@
-    
+  
 <?php
 /**
  * Description of DiskusijeModel
@@ -41,7 +41,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
-        $this->db->where('vidljivost', NULL);
+        $this->db->where('vidljivost');
         $this->db->order_by('diskusija.idDis', 'DESC');
             
     } else {

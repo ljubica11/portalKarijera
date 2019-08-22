@@ -8,7 +8,7 @@ if ($this->session->has_userdata('user')) {
 ?>
 
 <?php
-  var_dump($diskusije);
+ // var_dump($diskusije);
 if (isset($diskusije)) {
 
     foreach ($diskusije as $d) {

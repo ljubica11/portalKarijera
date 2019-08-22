@@ -60,36 +60,36 @@
                     <div id="diskusije"> 
                     <?php  foreach($sveDiskusije as $s){
                         $autor = $s['korisnik'];
+                        $vidljivost = $s['vidljivost'];
+                        $zaBrisanje = $s['zaBrisanje'];
                         ?>
                     
                         <div class="centar">
 
         <b>Naziv diskusije: </b><?php echo $s['naziv'] ?></b><br/>
         <b>Opis: </b><?php echo $s['opis'] ?><br/>
-        <b>Autor: </b><?php echo $s['korisnik'] ?><br/>
+        <b>Autor: </b><?php echo $autor ?><br/>
         <b>Datum pokretanja: </b><?php echo $s['datum'] ?><br/> 
          <?php $id = $s['idDis'] ?>
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
-        <?php if($s['vidljivost'] != 'autor' && $tipKorisnika != 'gost'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
-        <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor' && $s['zaBrisanje'] != 'da'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;
-        } else if ($s['zaBrisanje'] == 'da'){
-           echo $msg = '<b class="float-right">' .'poslat zahtev za arhiviranje' . '</b>';
-        } else if($s['vidljivost'] == 'autor'){
-            delete($msg);
+        <?php if($vidljivost != 'autor' && $tipKorisnika != 'gost'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
+        <?php if($this->session->userdata('user')['korisnicko'] == $autor && $vidljivost != 'autor' && $zaBrisanje != 'da')
+        { echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;
+        } else if ( $zaBrisanje == 'da'){
+           echo $msg = '<b class="float-right">' .'poslat zahtev za brisanje' . '</b>';
+        } else if( $vidljivost == 'autor'){
+            
             echo '<p class="float-right">'.'arhivirano'.'</p>';
-        }
-        
-        
-         ?>
+        }?>
                     </div> 
                         
-                     <?php  }  ?>
-                        <?php if($tipKorisnika != 'gost'){
-                            echo '  
-                        }
+                    
+                        <?php }   if($tipKorisnika != 'gost'){
+                            
+                        ?>
                    <div class="centar"> <input type="button" class="btn btn-primary btn-lg btn-block" onclick="prikaziFormu()" value="Zapocni novu diskusiju">
                    </div>
-                        ';}  ?>
+                        <?php }  ?>
 
 
                 </div>
