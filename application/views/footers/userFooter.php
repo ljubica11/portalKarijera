@@ -1,9 +1,9 @@
 ﻿
 
         <div class="<?php if($tip == "student") echo "sfooter"; else if ($tip == "kompanija") echo "kfooter"; else if ($tip == "admin") echo "afooter"?>">
-            <a href="http://localhost/portalKarijera/index.php/Login/oNama">O nama</a>
-            <a href="http://localhost/portalKarijera/index.php/Login/oNama#target"">Kontakt</a>
-            <a href="http://localhost/portalKarijera/index.php/Login/usloviKoriscenja">Uslovi korišćenja</a>
+            <a href="<?php echo base_url() ?>/index.php/Login/oNama">O nama</a>
+            <a href="<?php echo base_url() ?>/index.php/Login/oNama#target">Kontakt</a>
+            <a href="<?php echo base_url() ?>/index.php/Login/usloviKoriscenja">Uslovi korišćenja</a>
 
             <span class="copy"> copyright Karijera.rs </span>
         </div>
