@@ -280,3 +280,10 @@
 #pret{
     margin-bottom: 65px;
 }
+
+.diskusije {
+    
+    overflow: auto;
+    overflow-wrap: normal;
+
+}

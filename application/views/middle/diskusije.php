@@ -65,6 +65,7 @@
                         ?>
                     
                         <div class="centar">
+                            <div class="diskusije">
 
         <b>Naziv diskusije: </b><?php echo $s['naziv'] ?></b><br/>
         <b>Opis: </b><?php echo $s['opis'] ?><br/>
@@ -78,9 +79,11 @@
         } else if ( $zaBrisanje == 'da'){
            echo $msg = '<b class="float-right">' .'poslat zahtev za brisanje' . '</b>';
         } else if( $vidljivost == 'autor'){
-            
-            echo '<p class="float-right">'.'arhivirano'.'</p>';
+            echo "<a href='#' class='badge badge-primary' onclick ='traziBrisanje($id)'> <b>Zahtevaj brisanje</b></a><br/>";
+            echo '<b class="float-right">'.'arhivirano'.'</b>';
         }?>
+        
+        </div>
                     </div> 
                         
                     
@@ -245,12 +248,27 @@
      xmlhttp.onreadystatechange = function(){
        
      }
-          xmlhttp.open('GET', "<?php echo site_url('Diskusije/traziBrisanje') ?>?idDis=" + id, true);
+          xmlhttp.open('GET', "<?php echo site_url('Diskusije/arhivirajDiskusiju') ?>?idDis=" + id, true);
           xmlhttp.send();
                 
                 
     }
             
+            
+             function traziBrisanje(id){
+                
+       
+     xmlhttp = new XMLHttpRequest();
+     xmlhttp.onreadystatechange = function(){
+       
+     }
+          xmlhttp.open('GET', "<?php echo site_url('Diskusije/traziBrisanje') ?>?idDis=" + id, true);
+          xmlhttp.send();
+                
+                
+    }
+    
+    
          function lajk(idPos){
      
      
