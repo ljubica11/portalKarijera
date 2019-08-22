@@ -8,18 +8,20 @@ if ($this->session->has_userdata('user')) {
 ?>
 
 <?php
-  var_dump($diskusije);
+ // var_dump($diskusije);
 if (isset($diskusije)) {
 
     foreach ($diskusije as $d) {
 
         $autor = $d['korisnik'];
+        $vidljivost = $d['vidljivost'];
+        $zaBrisanje = $d['zaBrisanje'];
 
         ?>
 
         <div class="centar">
-
-            <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
+            <div class="diskusije">
+        <b>Naziv diskusije: </b><?php echo $d['naziv'] ?></b><br/>
         <b>Opis: </b><?php echo $d['opis'] ?><br/>
         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
@@ -28,21 +30,21 @@ if (isset($diskusije)) {
         <?php if ($d['vidljivost'] != 'autor' && $tipKorisnika != 'gost') {
             echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>";
         } ?>
-        <?php if($this->session->userdata('user')['korisnicko']== $autor && $d['vidljivost'] != 'autor' && $d['zaBrisanje'] != 'da')
+       <?php if($this->session->userdata('user')['korisnicko'] == $autor && $vidljivost != 'autor' && $zaBrisanje != 'da')
         { echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;
-        } else if ($d['zaBrisanje'] == 'da'){
-           echo $msg = '<b class="float-right">' .'poslat zahtev za arhiviranje' . '</b>';
-        } else if($d['vidljivost'] == 'autor'){
-            delete($msg);
-            echo '<p class="float-right">'.'arhivirano'.'</p>';
-        }
+        } else if ( $zaBrisanje == 'da'){
+           echo $msg = '<b class="float-right">' .'poslat zahtev za brisanje' . '</b>';
+        } else if( $vidljivost == 'autor'){
+            echo "<a href='#' class='badge badge-primary' onclick ='traziBrisanje($id)'> <b>Zahtevaj brisanje</b></a><br/>";
+            echo '<b class="float-right">'.'arhivirano'.'</b>';
+        }?>
         
         
-         ?>
+       
         
         
 
-
+            </div>
 
         </div>
         <?php

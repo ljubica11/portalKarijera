@@ -10,7 +10,7 @@ class Diskusije extends CI_Controller {
     public function __construct() {
         parent::__construct();
         
-        $this->load->database();
+      
         $this->load->model('UserModel');
         $this->load->model('DiskusijeModel');
         $this->load->model('SifrarniciModel');
