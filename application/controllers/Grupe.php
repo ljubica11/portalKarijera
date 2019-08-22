@@ -82,12 +82,13 @@ class Grupe extends CI_Controller {
     }
 
     public function obrisiClanaGrupe() {
-
+         
         $idGru = $this->input->post('idGru');
-        $idKorNiz = $this->input->post('idKor');
-        foreach ($idKorNiz as $idKor) {
+        $idKorArr = $this->input->post('idKor');
+        foreach ($idKorArr as $idKor) {
             $this->GrupeModel->obrisiStudente($idGru, $idKor);
-        }
+    }
+    //$this->output->enable_profiler(TRUE);
         redirect('Grupe/index');
     }
 
