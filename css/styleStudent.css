@@ -586,3 +586,34 @@
     margin-top: 20px;
 }
 
+.imeKorisnik{
+ 
+    background-color: blue;
+    background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
+    padding: 10px;
+    max-width: 350px;
+    border-radius: 0 0 10px 10px;
+    color: white;
+    
+}
+
+.izmenaPodatakaForma{
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #fcfcfc;
+    border: 1px solid silver;
+    border-radius: 10px;
+
+}
+
+.izmenaSlike{
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #fcfcfc;
+    border: 1px solid silver;
+    border-radius: 10px;
+}
+
+.img-fluid{
+    width: 400px !important;
+}

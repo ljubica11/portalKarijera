@@ -10,7 +10,7 @@ class Diskusije extends CI_Controller {
     public function __construct() {
         parent::__construct();
         
-        $this->load->database();
+      
         $this->load->model('UserModel');
         $this->load->model('DiskusijeModel');
         $this->load->model('SifrarniciModel');
@@ -88,8 +88,9 @@ class Diskusije extends CI_Controller {
         $vidljivost = $this->input->post('vidljivost');
         $vidljivostKurs = $this->input->post('odabraniKurs');
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        $zaBrisanje = null;
         $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis,
-                $vidljivost, $vidljivostKurs, $vidljivostGrupa);
+                $vidljivost, $vidljivostKurs, $vidljivostGrupa, $zaBrisanje);
         $this->index();
         
         
@@ -104,8 +105,9 @@ class Diskusije extends CI_Controller {
         $vidljivost = $this->input->post('vidljivost');
         $vidljivostKurs = $this->input->post('odabraniKurs');
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        $zaBrisanje = null;
         $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis,
-                $vidljivost, $vidljivostKurs, $vidljivostGrupa);
+                $vidljivost, $vidljivostKurs, $vidljivostGrupa, $zaBrisanje);
         $last_id = $this->db->insert_id();
         $idDis = $last_id;
         $this->DiskusijeModel->dodajDiskusijuGrupe($idDis, $idGru);
@@ -141,6 +143,15 @@ class Diskusije extends CI_Controller {
         $this->DiskusijeModel->arhivirajDiskusiju($idDis);
         echo 'arhivirana';
         }
+        
+        public function traziBrisanje(){
+            
+        $idDis = $this->input->get('idDis');    
+        $this->DiskusijeModel->zaBrisanje($idDis);
+        redirect('Diskusije/index');
+        
+    }
+    
     public function lajkPost(){
         
         $idPos = $this->input->get('idPos');
