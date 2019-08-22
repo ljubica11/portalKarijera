@@ -70,7 +70,7 @@
         xhttp.send("idGru=" + idGru);
     }
 
-    function prikaziParametre(id) {
+    /*function prikaziParametre(id) {
 
         var idGru = id;
 
@@ -84,7 +84,7 @@
 
         xmlhttp.open("GET", "<?php echo site_url('Grupe/parametri') ?>?idGru=" + idGru, true);
         xmlhttp.send();
-    }
+    }*/
 
     function ispisiOpcije(value) {
 
@@ -111,5 +111,21 @@
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send("tip=" + value);
 
+    }
+    
+    
+    function traziBrisanje(id) {
+
+
+        var idGru = id;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            
+        };
+
+        xhttp.open("POST", "<?php echo site_url('Grupe/traziBrisanje'); ?>", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("idGru=" + idGru);
     }
 </script>

@@ -47,7 +47,7 @@
                                         ?></select></td></tr>
                              <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
         <tr><td></td><td>
-        
+                                <input type="radio" name="vidljivost" value="gost">Svi posetioci sajta<br>
                                 <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
                                 <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
                                 <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
