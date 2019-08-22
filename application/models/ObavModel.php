@@ -86,6 +86,12 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->insert('obavestenja', $podaci);    //u tabelu obavestenja unosimo podatke koje smo uneli po ovim kriterijumima
         redirect('obavestenja');
     }
+    public function arhivirajObavestenje($idObav) {
+        //$this->db->set('zaBrisanje','da');
+        $data = ['zaBrisanje' => 'da'];
+        $this->db->where('idOba',$idObav);
+        $this->db->update('obavestenja', $data);
+    }
 
     /**
      *  metoda za dohvatanje obavestenja u okviru konkretne grupe

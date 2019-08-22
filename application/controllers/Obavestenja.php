@@ -27,6 +27,7 @@ class Obavestenja extends CI_Controller {
         $idOba = $this->input->get('id');
         $obavestenja = ['obavestenja' => $this->ObavModel->dohvatiObavestenje($idOba)];
         echo $this->load->view('obavestenja/ispisObavestenja', $obavestenja, true);
+        
         /* $obavestenja = $this->ObavModel->dohvatiObavestenje($idOba);
           foreach ($obavestenja as $obavestenje){
           echo "<div class='centar'>";
@@ -55,16 +56,20 @@ class Obavestenja extends CI_Controller {
                 echo "Nije moguce postaviti obavestenje";
             }
         }
-
         /* else {//slucaj da lice nije ulogovano
           $this->load->view( 'login_stranica' );
           } */
-
-        /**
-         * metoda za dodavanje obavestenja u okviru funkcionalnosti Grupe
-         */
+    }
+    public function arhivirajObavestenje($idObav) {
+        $this->ObavModel->arhivirajObavestenje($idObav);
+        $this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje oglasa administratoru. Vas oglas ce uskoro biti obrisan sa sajta.');
+        redirect("User");
     }
 
+
+    /**
+     * metoda za dodavanje obavestenja u okviru funkcionalnosti Grupe
+     */
     public function dodajObavestenjaGrupe() {
 
         $idGru = $this->input->post('idGru');
