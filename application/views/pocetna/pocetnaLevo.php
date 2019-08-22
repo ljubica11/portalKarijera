@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<div class="izmenaSlike">
                 <?php 
                 
 //                provera da li korisnik ima fotku, ako nema izlazi mu difoltna;
@@ -9,28 +9,16 @@
                        empty(array_diff(scandir('./userImg/'.$idKor), array('.', '..')))){
                     if($tip == "s"){?>
                     
-                        <img src="<?php echo base_url();?>/userImg/basicUser.png" class="img-fluid">
+                        <img src="<?php echo base_url();?>/userImg/basicUser.png" class="img-fluid user-img <?php if($idKor == $this->session->userdata('user')['idKor']) echo 'user-img-change'?>">
                     
                     <?php
                    }else if($tip == "k"){?>
                    
-                        <img src="<?php echo base_url();?>/userImg/basicLogo.png" class="img-fluid">
+                        <img src="<?php echo base_url();?>/userImg/basicLogo.png" class="img-fluid user-img <?php if($idKor == $this->session->userdata('user')['idKor']) echo 'user-img-change'?>">
                    
                        <?php
                        
-//                       provera da li je je ulogovani korisnik na svom profilu ili na tudjem;
-//                       ako je na svom, a nema ubacenu fotku, nudi mu se opcija za dodavanje slike;
-                       
-                   } if($idKor == $this->session->userdata('user')['idKor']){
-                   ?>
-                     
-                     <form name="imageForm" method="POST" action="<?php echo site_url('User/novaSlika')?>" enctype="multipart/form-data">
-                          <input type="file" name="image">
-                          <input type="submit" value="Dodaj sliku" name="dodaj">
-                     </form>
-                  
-            <?php
-                   }
+                   }                  
             }else{
                 
 //                ako ima sliku,onda se prikazuje njegova slika;
@@ -44,13 +32,25 @@
                 foreach($onlyPhotos as $onePhoto){ 
             ?>
             
-                <img class="img img-fluid" src="<?php echo base_url().'/'.$dir.'/'.$onePhoto?>">       
+                <img class="img img-fluid user-img <?php if($idKor == $this->session->userdata('user')['idKor']) echo 'user-img-change'?>" src="<?php echo base_url().'/'.$dir.'/'.$onePhoto?>">       
                     
             <?php
                 }
-            }
+            } if($idKor == $this->session->userdata('user')['idKor']){
             ?>
                 
+                <div class="middle">
+                    <form name="imageForm" method="POST" action="<?php echo site_url("User/promeniSliku/$idKor")?>" enctype="multipart/form-data">
+                          <input type="file" name="image" id="file-select" class="inputfile"  />
+                            <label for="file-select" id="file-label">Promeni sliku</label>  
+                            <br/>
+                            <input type="submit" name="izmeni" value="Sacuvaj izmenu" class="btn btn-sm btn-danger" id="btn-sacuvaj">
+                     </form>
+                </div>
+                
+                
+            <?php } ?>
+</div>    
                 <?php
                 if(isset($podaciStudent)){
                     echo "<div class='imeKorisnik'><h4>".$podaciStudent[0]['ime']." ".$podaciStudent[0]['prezime']."</h4></div>";
