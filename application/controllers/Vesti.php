@@ -65,7 +65,10 @@ class Vesti extends CI_Controller {
         $kategorija = $this->input->post('kategorija');
         $naslov = $this->input->post('naslov');
         $tekst = $this->input->post('tekst');
-        $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naslov, $tekst);
+        $vidljivost = $this->input->post('vidljivost');
+        $vidljivostKurs = $this->input->post("kurs");
+        $vidljivostGrupa = $this->input->post('grupe');
+        $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naslov, $tekst, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
         $last_id = $this->db->insert_id();
         $idVes = $last_id;
         $this->VestiModel->dodajVestGrupe($idVes, $idGru);

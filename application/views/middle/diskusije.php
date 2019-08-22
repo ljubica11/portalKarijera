@@ -71,7 +71,16 @@
          <?php $id = $s['idDis'] ?>
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
         <?php if($s['vidljivost'] != 'autor' && $tipKorisnika != 'gost'){ echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>" ;}?>
-        <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;}?>
+        <?php if($this->session->userdata('user')['korisnicko']== $autor && $s['vidljivost'] != 'autor' && $s['zaBrisanje'] != 'da'){ echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;
+        } else if ($s['zaBrisanje'] == 'da'){
+           echo $msg = '<b class="float-right">' .'poslat zahtev za arhiviranje' . '</b>';
+        } else if($s['vidljivost'] == 'autor'){
+            delete($msg);
+            echo '<p class="float-right">'.'arhivirano'.'</p>';
+        }
+        
+        
+         ?>
                     </div> 
                         
                      <?php  }  ?>
@@ -236,7 +245,7 @@
      xmlhttp.onreadystatechange = function(){
        
      }
-          xmlhttp.open('GET', "<?php echo site_url('Diskusije/arhivirajDiskusiju') ?>?idDis=" + id, true);
+          xmlhttp.open('GET', "<?php echo site_url('Diskusije/traziBrisanje') ?>?idDis=" + id, true);
           xmlhttp.send();
                 
                 
