@@ -140,9 +140,9 @@ class GrupeModel extends CI_Model {
      * @param type $opis
      * @return type 
      */
-    public function dodajNovuGrupu($naziv, $opis) {
+    public function dodajNovuGrupu($naziv, $opis, $zaBrisanje) {
 
-        $data = ['naziv' => $naziv, 'opis' => $opis, 'datum' => date('Y-m-d H:m:i')];
+        $data = ['naziv' => $naziv, 'opis' => $opis, 'datum' => date('Y-m-d H:m:i'), 'zaBrisanje' => $zaBrisanje];
         $this->db->insert('grupe', $data);
        
         return $maxIdGrupe = $this->db->insert_id();
@@ -232,6 +232,13 @@ class GrupeModel extends CI_Model {
         return $query->result_array ();
     }
     
+      public function zaBrisanje($idGru) {
+
+        $data = ["zaBrisanje" => "da"];
+        $this->db->where("idGru", $idGru);
+        $this->db->update("grupe", $data);
+    }
+
     
 
 }
