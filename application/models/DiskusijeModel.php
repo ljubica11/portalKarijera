@@ -25,49 +25,57 @@ class DiskusijeModel extends CI_Model {
      * @return type array
      */
     public function dohvatiSveDiskusije($tipKorisnika) {
+        
         $idKor = $this->session->userdata('user')['idKor'];
-        $this->db->select('idKurs')
-                ->from('student')
-                ->where('idKor', $idKor);
+        
+        
+        $this->db->select('idKurs')->from('student')->where('idKor', $idKor);
         $whereKurs = $this->db->get_compiled_select();
         
-        $this->db->select('idGru')
-                ->from('clanovigrupe')
-                ->where('idKor', $idKor);
+        $this->db->select('idGru')->from('clanovigrupe')->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
-        
-        if($tipKorisnika == NULL OR $tipKorisnika = 's' OR $tipKorisnika = 'k') {
+       
+            
+        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik');
         $this->db->from('diskusija');
-        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik, sifkategorijadiskusija.idKatDis as idKat, sifkategorijadiskusija.naziv as kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
-        $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
+      
+        
+        if($tipKorisnika == NULL){
         $this->db->where('vidljivost');
         $this->db->order_by('diskusija.idDis', 'DESC');
             
-    } else {
+     }  if($tipKorisnika == 'k'){
+        $this->db->group_start();       
+        $this->db->where('vidljivost');
+        $this->db->or_where('vidljivost', 'korisnici');
+        $this->db->group_end();
+        $this->db->or_group_start()
+                    ->where('vidljivost', 'autor')
+                    ->where('autor', $idKor)
+                    ->order_by('diskusija.idDis', 'DESC')
+                    ->group_end();
+        $this->db->order_by('diskusija.idDis', 'DESC');
         
-        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik')
-                ->from('diskusija')
-                ->join('korisnik', 'korisnik.idKor = diskusija.autor')
-                ->where('vidljivost', 'korisnici')
-                ->order_by('diskusija.idDis', 'DESC');
+     }
         if ($tipKorisnika == 's') {
-            $this->db->or_where('vidljivost', 'studenti')
-                    ->or_group_start()
-                    ->where('vidljivost', 'kurs')
-                    ->where("vidljivostKurs in ($whereKurs)", null, false)
-                    ->group_end();
-            $this->db->or_group_start()
-                    ->where('vidljivost', 'grupa')
-                    ->where("vidljivostGrupa in ($whereGrupa)", null, false)
-                    ->group_end();
+            $this->db->group_start();
+            $this->db->where('vidljivost');
+            $this->db->or_where('vidljivost', 'studenti');
+            $this->db->or_where('vidljivost', 'kurs');
+            $this->db->or_where("vidljivostKurs in ($whereKurs)", null, false);
+            $this->db->group_end();
+            $this->db->or_group_start();
+            $this->db->where('vidljivost', 'grupa');
+            $this->db->where("vidljivostGrupa in ($whereGrupa)", null, false);
+            $this->db->group_end();
             $this->db->or_group_start()
                     ->where('vidljivost', 'autor')
                     ->where('autor', $idKor)
                     ->order_by('diskusija.idDis', 'DESC')
                     ->group_end();
         }
-        }
+        
         $query = $this->db->get();
         return $query->result_array();
     }
