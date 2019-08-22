@@ -33,7 +33,7 @@ if (isset($diskusije)) {
         } else if ($d['zaBrisanje'] == 'da'){
            echo $msg = '<b class="float-right">' .'poslat zahtev za arhiviranje' . '</b>';
         } else if($d['vidljivost'] == 'autor'){
-            delete($msg);
+           
             echo '<p class="float-right">'.'arhivirano'.'</p>';
         }
         
