@@ -157,8 +157,10 @@ class Grupe extends CI_Controller {
         
         $naziv = $this->input->post('nazivGrupe');
         $opis = $this->input->post('opisGrupe');
+        $zaBrisanje = null;
+       
       
-        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis); 
+        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis, $zaBrisanje); 
         
         $idKurs = $this->input->post("kurs");
         $idGra = $this->input->post("grad");
@@ -176,4 +178,13 @@ class Grupe extends CI_Controller {
        redirect('Grupe/index');
         
     }
+    
+     public function traziBrisanje(){
+            
+        $idGru = $this->input->post('idGru');    
+        $this->GrupeModel->zaBrisanje($idGru);
+       
+        
+}
+
 }

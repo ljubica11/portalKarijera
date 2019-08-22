@@ -64,7 +64,8 @@ class Pretraga extends MY_Controller{
         
         $naziv = $this->input->post('nazivGrupe');
         $opis = $this->input->post('opisGrupe');
-        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis);
+        $zaBrisanje = null;
+        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis, $zaBrisanje);
         $student = $this->session->userdata('res');
         foreach($student as $s){
             $this->GrupeModel->dodajStudente($idGru, $s['idKor']);

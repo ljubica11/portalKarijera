@@ -81,7 +81,7 @@ class Oglasi extends MY_Controller{
         if($vidljivost == "pretraga"){
             $this->dodajOglasZaPretragu($idOgl);
         }
-        $this->pogledajOglas($idOgl);
+        redirect("Oglasi/pogledajOglas/$idOgl");
     }
     }else{
     
@@ -107,7 +107,8 @@ class Oglasi extends MY_Controller{
         if($vidljivost == "pretraga"){
             $this->dodajOglasZaPretragu($idOgl);
         }
-        $this->pogledajOglas($idOgl);
+        redirect("Oglasi/pogledajOglas/$idOgl");
+
     }
     }
     
@@ -150,7 +151,7 @@ class Oglasi extends MY_Controller{
     public function traziBrisanje($idOgl){
         $this->OglasiModel->traziBrisanje($idOgl);
         $this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje oglasa administratoru. Vas oglas ce uskoro biti obrisan sa sajta.');
-        redirect("User");
+        redirect("Oglasi");
     }
     
     public function dohvatiOpcije(){

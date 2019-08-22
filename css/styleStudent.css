@@ -688,4 +688,62 @@
     overflow-wrap: normal;
 }
 
+/*CENTRALNI DEO POCETNE*/
 
+.centar-pocetna{
+    margin-top: 20px;
+    border: none;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+
+
+.naslov-stavka-pocetna{
+   height: 40px;
+   background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
+   color: white;
+   border-radius: 10px 10px 0 0;
+   padding-left: 10px;
+   padding-top: 10px;
+}
+
+.sadrzaj-pocetna{
+    padding: 10px;
+}
+
+.inputfile-cv{
+    
+}
+
+.inputfile-cv {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile-cv + label {
+
+    color: white;
+    background-color: blue;
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+    line-height: 1 !important;
+}
+
+.inputfile-cv:focus + label,
+.inputfile-cv + label:hover {
+    background-color: darkblue;
+}
+
+#btn-sacuvaj-cv{
+    display: none;
+
+}
+ 
