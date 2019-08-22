@@ -507,7 +507,12 @@ input[type="number"] {
     background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
     padding: 10px;
     border-radius: 0 0 10px 10px;
+    max-width: 350px;
     color: white;
     
+}
+
+.img-fluid{
+    width: 400px !important;
 }
 
