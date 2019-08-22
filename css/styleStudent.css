@@ -683,3 +683,9 @@
 
 }
 
+.diskusije {
+    overflow: auto;
+    overflow-wrap: normal;
+}
+
+

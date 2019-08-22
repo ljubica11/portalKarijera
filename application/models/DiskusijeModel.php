@@ -45,15 +45,15 @@ class DiskusijeModel extends CI_Model {
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
 
 
-        if ($tipKorisnika == NULL) {
-            $this->db->where('vidljivost');
+        if ($tipKorisnika == 'gost') {
+            $this->db->where('vidljivost', 'gost');
             $this->db->order_by('diskusija.idDis', 'DESC');
         } if ($tipKorisnika == 'k') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'korisnici');
             $this->db->group_end();
             $this->db->or_group_start();
-            $this->db->where('vidljivost');
+            $this->db->where('vidljivost', 'gost');
             $this->db->group_end();
             $this->db->or_group_start()
                     ->where('vidljivost', 'autor')
@@ -63,7 +63,7 @@ class DiskusijeModel extends CI_Model {
         }
         if ($tipKorisnika == 's') {
              $this->db->group_start();
-            $this->db->where('vidljivost');
+            $this->db->where('vidljivost', 'gost');
             $this->db->group_end();
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'korisnici');
@@ -114,8 +114,8 @@ class DiskusijeModel extends CI_Model {
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
 
-        if ($tipKorisnika == NULL) {
-            $this->db->where('vidljivost');
+        if ($tipKorisnika == 'gost') {
+            $this->db->where('vidljivost', 'gost');
             $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
         }
         if ($tipKorisnika == 'k') {
@@ -124,7 +124,7 @@ class DiskusijeModel extends CI_Model {
             $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
             $this->db->group_end();
             $this->db->or_group_start();
-            $this->db->where('vidljivost');
+            $this->db->where('vidljivost', 'gost');
             $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
             $this->db->group_end();
             $this->db->or_group_start()
@@ -135,7 +135,7 @@ class DiskusijeModel extends CI_Model {
         }
         if ($tipKorisnika == 's') {
             $this->db->group_start();
-            $this->db->where('vidljivost');
+            $this->db->where('vidljivost', 'gost');
             $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
             $this->db->group_end();
             $this->db->or_group_start();

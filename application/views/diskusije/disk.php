@@ -31,11 +31,11 @@ if (isset($diskusije)) {
             echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>";
         } ?>
        <?php if($this->session->userdata('user')['korisnicko'] == $autor && $vidljivost != 'autor' && $zaBrisanje != 'da')
-        { echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id)'> <b>Arhiviraj</b></a><br/>" ;
+        { echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id) window.location.reload()'> <b>Arhiviraj</b></a><br/>" ;
         } else if ( $zaBrisanje == 'da'){
            echo $msg = '<b class="float-right">' .'poslat zahtev za brisanje' . '</b>';
         } else if( $vidljivost == 'autor'){
-            echo "<a href='#' class='badge badge-primary' onclick ='traziBrisanje($id)'> <b>Zahtevaj brisanje</b></a><br/>";
+            echo "<a href='#' class='badge badge-primary' onclick ='traziBrisanje($id) window.location.reload()'> <b>Zahtevaj brisanje</b></a><br/>";
             echo '<b class="float-right">'.'arhivirano'.'</b>';
         }?>
         
@@ -95,27 +95,33 @@ if ($tipKorisnika != 'gost') {
 }
 ?></select></td></tr>
 <?php if ($tipKorisnika != 'gost') {
-    echo ' 
+     ?>
                     
                     
             <tr><td><b>Nivo vidljivosti:<br> </b>   </tr></td>
-        <tr><td></td><td>
-        
+        <tr><td></td><td>    
+                <?php if($tipKorisnika != 'k' AND $tipKorisnika == 's'){?>
+                                <input type="radio" name="vidljivost" value="gost">Svi posetioci sajta<br>
                                 <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
                                 <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
                                 <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)">Studenti odredjenog kursa<br>
                                 <div id="kurs"></div>
                                 <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)">Formirana grupa studenata<br>
                                 <div id="grupa"></div>
+                <?php } else if($tipKorisnika == 'k'){ ?>
+                    
+                                <input type="radio" name="vidljivost" value="gost" >Svi posetioci sajta<br>
+                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
+                
+                <?php }?>
             </td>
      
 
             <tr><td></td><td><input type="submit" value="dodaj" class="btn btn-outline-primary"></td></tr>
         </table>
     </form>
-                    ';
-}
-?>
+                   
+  <?php  }?>
 
 
 </div>
