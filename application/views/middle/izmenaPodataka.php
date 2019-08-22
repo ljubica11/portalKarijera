@@ -1,47 +1,8 @@
 <!DOCTYPE html>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-4">
-            <div class="izmenaSlike">
-                
-                    <?php 
-                    $idKor = $this->session->userdata('user')['idKor'];
-                    $tip = $this->session->userdata('user')['tip'];
-                       if(is_dir('./userImg/'.$idKor)== false or 
-                       empty(array_diff(scandir('./userImg/'.$idKor), array('.', '..')))){
-                    if($tip == "s"){?>
-                        <img src="<?php echo base_url();?>/userImg/basicUser.png" class="img-fluid">
-                    <?php
-                    }else if($tip == "k"){?>
-                        <img src="<?php echo base_url();?>/userImg/basicLogo.png" class="img-fluid">
-                   
-                       <?php 
-                   } 
-                   ?>
-                     <form name="imageForm" method="POST" action="<?php echo site_url('User/novaSlika')?>" enctype="multipart/form-data">
-                          <input type="file" name="image">
-                          <input type="submit" value="Dodaj sliku" name="dodaj">
-                     </form>
-                  
-            <?php
-                   
-            }else{
-                $dir= './userImg/'.$idKor;
-                $allPhotos= scandir($dir);
-                $onlyPhotos = array_diff($allPhotos, array('.', '..'));
-                foreach($onlyPhotos as $onePhoto){ 
-            ?>
-            
-                <img class="img img-fluid" src="<?php echo base_url().'/'.$dir.'/'.$onePhoto?>">       
-                    
-            <?php
-                }
-            }
-            ?>    
-            </div>
-<!--            <input type="button" value="IZmeni fotografiju" class="btn btn-primary btn-lg">-->
-        </div>
-        <div class="col-6">
+
+        <div class="col-6 offset-3">
         <div class="izmenaPodatakaForma">
         <?php foreach ($podaci as $podatak){ ?>
             <form method="POST" action="<?php echo site_url('User/izmeniPodatke')?>" class="formaReg">

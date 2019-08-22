@@ -60,6 +60,22 @@
            document.getElementById(inputDiv).innerHTML="";
        }
    }
+   
+   document.getElementById("file-select").onchange = function() {
+
+    dohvatiPutanjuFajla();
+
+};
+
+function dohvatiPutanjuFajla(){
+
+    var celaPutanja = document.getElementById("file-select").value;
+    var imeFajla = celaPutanja.split("\\").pop();
+   
+    document.getElementById("file-label").innerHTML = imeFajla;
+    document.getElementById("btn-sacuvaj").style.display = "block";
+
+}
         
         
         

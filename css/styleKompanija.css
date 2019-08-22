@@ -672,7 +672,75 @@ input[type="number"] {
     
 }
 
-.img-fluid{
+.izmenaSlike{
+    position: relative;
+/*    margin-top: 20px;
+    margin-left: 20px;*/
+    
+}
+
+.user-img{
     width: 400px !important;
 }
+
+.user-img-change{
+    opacity: 1;
+    display: block;
+/*    width: 100%;*/
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.izmenaSlike:hover .user-img-change {
+  opacity: 0.3;
+}
+
+.izmenaSlike:hover .middle {
+  opacity: 1;
+}
+
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+
+    color: white;
+    background-color: blue;
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+    line-height: 1 !important;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #dc3545;
+}
+
+#btn-sacuvaj{
+    display: none;
+
+}
+
+ 
+
 

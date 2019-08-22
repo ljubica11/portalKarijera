@@ -100,6 +100,16 @@ class User extends CI_Controller{
     
     }
     
+    public function promeniSliku($idKor){
+        if(is_dir('./userImg/'.$idKor)== false or empty(array_diff(scandir('./userImg/'.$idKor), array('.', '..')))){
+            $this->novaSlika();
+        }else{
+           $this->load->helper('file');
+           delete_files('./userImg/'.$idKor);
+           $this->novaSlika();
+        }
+    }
+
         public function dodajCV(){
             $idKor= $this->session->userdata('user')['idKor'];
             $config['allowed_types'] = 'pdf';
