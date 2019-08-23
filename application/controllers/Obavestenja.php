@@ -50,8 +50,9 @@ class Obavestenja extends CI_Controller {
                 //Dodaj obavestenje u bazu:
                 $idObav = $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obav, $vid, $vidKursa, $vidGrupe);
                 if($vid == "pretraga"){
-                    $this->dodajObavestenjeZaPretragu($idObav);
-                    
+                    $this->dodajObavestenjeZaPretragu($idObav);  
+                }else if($vid == "grupa"){
+                    $this->ObavModel->dodajObavestenjaGrupe($idObav, $vidGrupe);
                 }
                 $this->session->set_flashdata('obavestenjePostavljeno', 'Uspesno ste postavili obavestenje!');
                 redirect('Obavestenja');

@@ -51,6 +51,8 @@ class Vesti extends CI_Controller {
         $idVes = $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naziv, $tekst, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
         if ($vidljivost == "pretraga") {
             $this->dodajVestZaPretragu($idVes);
+        }else if($vidljivost == "grupa"){
+            $this->VestiModel->dodajVestGrupe($idVes, $vidljivostGrupa);
         }
         redirect('Vesti');
     }

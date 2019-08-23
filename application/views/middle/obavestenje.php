@@ -104,7 +104,7 @@
             
         </div>
         <div class="col-3">
-            <?php if($this->session->userdata('user')['tip'] == "k"){?>
+            <?php if($this->session->userdata('user')['tip'] == "k" or $this->session->userdata('user')['tip'] == "a"){?>
             <div class="centar" >DODAJ OBAVESTENJE:</div>
             <div class="centar" id="obav_Forma">
                 <?php
