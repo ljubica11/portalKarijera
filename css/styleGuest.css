@@ -518,3 +518,13 @@ button, input {
 #ves{
     margin-bottom: 27px;
 }
+
+
+.formaGrupe {
+    
+    
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+}
