@@ -26,14 +26,19 @@ class VestiModel extends CI_Model {
         $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
         $this->db->join('sifkategorijavesti', 'sifkategorijavesti.idKatVesti = vesti.kategorija');
         $this->db->where('sifkategorijavesti.idKatVesti', $idKatVesti);
-        $this->db->group_start();
+        if($tipKorisnika == "gost"){
         $this->db->where('vidljivost', 'gost');
-
+        }
         if ($tipKorisnika == "k") {
+            $this->db->group_start();
+            $this->db->where('vidljivost', 'gost');
             $this->db->or_where('vidljivost', 'korisnici');
+            $this->db->group_end();
         }
 
         if ($tipKorisnika == "s") {
+            $this->db->group_start();
+            $this->db->where('vidljivost', 'gost');
             $this->db->or_where('vidljivost', 'korisnici');
             $this->db->or_where('vidljivost', 'studenti');
             $this->db->or_group_start();
@@ -48,8 +53,8 @@ class VestiModel extends CI_Model {
             $this->db->where('vidljivost', 'pretraga');
             $this->db->where("idVes in ($wherePretraga)", NULL, FALSE);
             $this->db->group_end();
+            $this->db->group_end();
         }
-        $this->db->group_end();
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -126,13 +131,20 @@ class VestiModel extends CI_Model {
         $this->db->select('vesti.*, korisnik.korisnicko as korisnik');
         $this->db->from('vesti');
         $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
+        if($tipKorisnika == "gost"){
         $this->db->where('vidljivost', 'gost');
+        }
         if ($tipKorisnika == "k") {
+            $this->db->group_start();
+            $this->db->where('vidljivost', 'gost');
             $this->db->or_where('vidljivost', 'korisnici');
+            $this->db->group_end();
         }
         if ($tipKorisnika == "s") {
+            $this->db->group_start(); 
+            $this->db->where('vidljivost', 'gost');
             $this->db->or_where('vidljivost', 'korisnici');
-            $this->db->or_where('vidljivost', 'studenti');
+            $this->db->or_where('vidljivost', 'studenti');  
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'kurs');
             $this->db->where("vidljivostKurs in ($whereKurs)", NULL, FALSE);
@@ -144,6 +156,7 @@ class VestiModel extends CI_Model {
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'pretraga');
             $this->db->where("idVes in ($wherePretraga)", NULL, FALSE);
+            $this->db->group_end();
             $this->db->group_end();
         }
 

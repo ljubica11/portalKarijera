@@ -50,8 +50,9 @@ class Obavestenja extends CI_Controller {
                 //Dodaj obavestenje u bazu:
                 $idObav = $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obav, $vid, $vidKursa, $vidGrupe);
                 if($vid == "pretraga"){
-                    $this->dodajObavestenjeZaPretragu($idObav);
-                    
+                    $this->dodajObavestenjeZaPretragu($idObav);  
+                }else if($vid == "grupa"){
+                    $this->ObavModel->dodajObavestenjaGrupe($idObav, $vidGrupe);
                 }
                 $this->session->set_flashdata('obavestenjePostavljeno', 'Uspesno ste postavili obavestenje!');
                 redirect('Obavestenja');
@@ -72,8 +73,10 @@ class Obavestenja extends CI_Controller {
         $idGru = $this->input->post('idGru');
         $naslov = $this->input->post('naslov');
         $obavest = $this->input->post('tekst');
-        $vidljivost = 3;
-        $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost);
+       $vidljivost = $this->input->post('vidljivost');
+        $vidljivostKurs = $this->input->post("odabraniKurs");
+        $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost, $vidljivostKurs, $vidljivostGrupa);
         $last_id = $this->db->insert_id();
         $idOba = $last_id;
         $this->ObavModel->dodajObavestenjaGrupe($idOba, $idGru);

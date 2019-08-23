@@ -62,4 +62,14 @@
     <option value ="student">Student</option>
    
 </select>
+<?php } else if(isset($grupa)){ ?>
+<select name="odabranaGrupa" class="form-control">  
+    <option disabled selected value="">Odaberite grupu</option>
+    <?php
+         foreach ($grupa as $g){
+             $idGru = $g['idGra'];
+             $naziv = $g['naziv'];
+             echo "<option value='$idGru'>$naziv</option>";
+         }?>
+</select>
 <?php }

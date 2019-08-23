@@ -197,4 +197,12 @@ class OglasiModel extends CI_Model{
         return $query->result_array();
     }
     
+    public function dodajOglasZaGrupu($idOgl, $idGru){
+        $data = [
+            "idOgl" => $idOgl,
+            "idGru" => $idGru
+        ];
+        
+        $this->db->insert("sadrzioglas", $data);
+    }
 }

@@ -55,6 +55,7 @@ class Diskusije extends CI_Controller {
         
         $diskusija = $this->input->get('id');
         $postovi = $this->DiskusijeModel->dohvatiPostove($diskusija);
+         $this->output->enable_profiler(false);
         $this->load->view('diskusije/postovi', ['postovi' => $postovi]);
     }
     
@@ -89,8 +90,10 @@ class Diskusije extends CI_Controller {
         $vidljivostKurs = $this->input->post('odabraniKurs');
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
         $zaBrisanje = null;
+        
         $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis,
                 $vidljivost, $vidljivostKurs, $vidljivostGrupa, $zaBrisanje);
+       // $this->output->enable_profiler(TRUE);
         $this->index();
         
         
@@ -98,7 +101,7 @@ class Diskusije extends CI_Controller {
      public function dodajDiskusijuGrupe(){
         
         
-        $idGru = $this->input->post('idGru');
+        
         $kategorija = $this->input->post('kategorija');
         $naziv = $this->input->post('naziv');
         $opis = $this->input->post('opis');
@@ -110,6 +113,7 @@ class Diskusije extends CI_Controller {
                 $vidljivost, $vidljivostKurs, $vidljivostGrupa, $zaBrisanje);
         $last_id = $this->db->insert_id();
         $idDis = $last_id;
+        $idGru = $this->input->post('idGru');
         $this->DiskusijeModel->dodajDiskusijuGrupe($idDis, $idGru);
         $this->jednaDiskusija($idDis);
     }

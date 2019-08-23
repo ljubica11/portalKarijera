@@ -80,6 +80,8 @@ class Oglasi extends MY_Controller{
         $idOgl = $this->OglasiModel->dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
         if($vidljivost == "pretraga"){
             $this->dodajOglasZaPretragu($idOgl);
+        }else if($vidljivost == "grupa"){
+            $this->OglasiModel->dodajOglasZaGrupu($idOgl, $vidljivostGrupa);
         }
         redirect("Oglasi/pogledajOglas/$idOgl");
     }
@@ -106,6 +108,8 @@ class Oglasi extends MY_Controller{
         $idOgl = $this->OglasiModel->dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
         if($vidljivost == "pretraga"){
             $this->dodajOglasZaPretragu($idOgl);
+        }else if($vidljivost == "grupa"){
+             $this->OglasiModel->dodajOglasZaGrupu($idOgl, $vidljivostGrupa);
         }
         redirect("Oglasi/pogledajOglas/$idOgl");
 
