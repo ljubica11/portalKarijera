@@ -53,7 +53,7 @@ class VestiModel extends CI_Model {
             $this->db->where('vidljivost', 'pretraga');
             $this->db->where("idVes in ($wherePretraga)", NULL, FALSE);
             $this->db->group_end();
-            $this->db->group_start();
+            $this->db->group_end();
         }
         $query = $this->db->get();
         return $query->result_array();
