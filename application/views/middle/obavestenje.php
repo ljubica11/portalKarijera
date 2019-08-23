@@ -23,13 +23,13 @@
             foreach ($obavestenja as $obavestenje) {
                 $idOba = $obavestenje['idOba'];
                 ?>
-                 <div class="centar">
+                     <div class="centar">
                 <?php
                 echo "<a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a><br/>";
                 ?>
-                </div>
-<?php }
-?>-->
+                    </div>
+            <?php }
+            ?>-->
 
             <!-- <div class="centar" >
                 <h4 class="modal-title"><?php echo $obavestenje['naslov'] ?></h4>
@@ -62,20 +62,20 @@
 
             <!--<b  class="p-0 bg-info">Obavestenja: </b>
             <br>
-<?php foreach ($obavestenja as $obavestenje) { ?>
-                         <div class="card">
-                             <div class="card-header">
-                                 <a class="collapsed card-link" data-toggle="collapse" data-parent="#obav" href="#<?php echo $obavestenje['idOba'] ?>">
-    <?php echo $obavestenje['naslov'] ?>
-                                 </a>
-                             </div>
-                             <div id="<?php echo $obavestenje['idOba'] ?>" class="collapse show">
-                                 <div class="card-body">
-    <?php echo $obavestenje['tekst'] ?>
+            <?php foreach ($obavestenja as $obavestenje) { ?>
+                             <div class="card">
+                                 <div class="card-header">
+                                     <a class="collapsed card-link" data-toggle="collapse" data-parent="#obav" href="#<?php echo $obavestenje['idOba'] ?>">
+                <?php echo $obavestenje['naslov'] ?>
+                                     </a>
+                                 </div>
+                                 <div id="<?php echo $obavestenje['idOba'] ?>" class="collapse show">
+                                     <div class="card-body">
+                <?php echo $obavestenje['tekst'] ?>
+                                     </div>
                                  </div>
                              </div>
-                         </div>
-<?php } ?>-->
+            <?php } ?>-->
         </div>
         <div class="col-6">
             <div id="obavDiv"> 
@@ -83,96 +83,19 @@
             </div>
         </div>
         <div class="col-3">
-            <div class="centar" >DODAJ OBAVESTENJE:</div>
-            <div class="centar" id="obav_Forma">
-                <?php
-                $id = $this->session->userdata('obavestenja')['idOba'];
-                //$data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiSvaObavestenja()];
-                ?>
-                <form name="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
-                    <table>
-                        <tr>
-                            <td><b>Naslov:</b></td>
-                            <td><input type="text" name="naslov" value="" placeholder="Naslov obavestenja" required=""></td>
-                        </tr>
-                        <tr>
-                            <td><b>Tekst:</b></td>
-                            <td><textarea name="obavest" value="" placeholder="Unesi obavestenje" required=""></textarea></td>
-                        </tr>
-                        <tr>
-                            <td><b>Autor:</b></td>
-                            <td><?php echo $this->session->userdata('user')['korisnicko'] ?></td>
-                        </tr>
-                        <tr>
-                            <td><b>Vidljivost: </b></td>
-                            <td>
-                                <select id="idVid" name="vidljivost" onchange="omoguci()">
-                                    <option value="korisnici">Svi korisnici</option>
-                                    <option value="studenti">Svi studenti</option>
-                                    <option value="kurs">Studenti odredjenog kursa</option>
-                                    <option value="grupa">Formirana grupa studenata</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <select id="idKur" name="kurs" disabled="">
-                                    <?php
-                                    $kursevi = $this->ObavModel->dohvatiSveKurseve();
-                                    foreach ($kursevi as $kurs) {
-                                        $idKurs = $kurs['idKurs'];
-                                        $naziv = $kurs['naziv'];
-                                        echo "<option value='$idKurs'>$naziv</option>";
-                                    }
-                                    ?>
-                                    <!--<option value="php">PHP</option>
-                                    <option value="java">JAVA</option>
-                                    <option value="linux">LINUX</option>-->
-                                </select>
-                            </td>                            
-                        </tr>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <select id="idGru" name="grupa" disabled="">
-                                    <?php
-                                    $grupe = $this->ObavModel->dohvatiSveGrupe();
-                                    foreach ($grupe as $grupa) {
-                                        $idGru = $grupa['idGru'];
-                                        $naziv = $grupa['naziv'];
-                                        echo "<option value='$idGru'>$naziv</option>";
-                                    }
-                                    ?>
-                                    <!--<option value="prva">Prva grupa</option>
-                                    <option value="druga">Druga grupa</option>
-                                    <option value="treca">Treca grupa</option>-->
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>
-                                <input type="submit" value="Oglasi" class="btn btn-outline-primary">
-                            </td>
-                        </tr>
-
-                    </table>
-                </form>
-            </div>
+            <!--<?php $middle_data["dodavanjeObavestenja"]; ?>-->
+            <?php
+                if ($this->session->has_userdata('user')) {
+                    $tipKorisnika = $this->session->userdata('user')['tip'];
+                } else {
+                    $tipKorisnika = "gost";
+                }
+                if ($tipKorisnika == 'k') {
+                    $this->view("obavestenja/dodavanjeObavestenja");
+                }
+            ?>
         </div>
-               <!-- <form name="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
-                    <input type="text" name="naslov" value="" placeholder="Naslov obavestenja"><br>
-                    <textarea name="obavest" value="" placeholder="Unesi obavestenje"></textarea><br>
-                    <input type="text" name="aut" value="" placeholder="Ime i prezime autora"><br>
-                    <input type="submit" name="sub" value="Oglasi">       
-                </form>
-        -->
-    </div>    
+    </div>
 </div>
 <!--<script>
 var prilagodi = function () {
@@ -203,7 +126,7 @@ $("#kurs").change(prilagodi);
     function arhiObav() {
         alert("cavo!");
         //$this->Obavestenja->arhivirajObavestenje($idOba);
-    }    
+    }
     function obavAjax(id) {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -215,24 +138,24 @@ $("#kurs").change(prilagodi);
         xmlhttp.send();
     }
     /*
-    function arhiObav(idObav) {
-    echo "hejhej";
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("obavDiv").innerHTML = "aloo";//this.responseText;
-    }
-    };
-    xmlhttp.open("GET", "<?php echo site_url('Obavestenja/arhivirajObavestenja') ?>?idObav=" + idObav, true);
-    xmlhttp.send();
-    }
-    function arhiObav($idOba) {
-        echo 'alo!'
-        $this->Obavestenja->arhivirajObavestenje($idOba);
-    }
+     function arhiObav(idObav) {
+     echo "hejhej";
+     xmlhttp = new XMLHttpRequest();
+     xmlhttp.onreadystatechange = function () {
+     if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("obavDiv").innerHTML = "aloo";//this.responseText;
+     }
+     };
+     xmlhttp.open("GET", "<?php echo site_url('Obavestenja/arhivirajObavestenja') ?>?idObav=" + idObav, true);
+     xmlhttp.send();
+     }
+     function arhiObav($idOba) {
+     echo 'alo!'
+     $this->Obavestenja->arhivirajObavestenje($idOba);
+     }
      */
-     
-     
+
+
 </script>
 
 

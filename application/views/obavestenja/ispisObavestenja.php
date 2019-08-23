@@ -6,8 +6,20 @@
         <b> Tekst: </b> <?php echo $obavestenje['tekst']; ?> <br>
         <b> Datum: </b> <?php echo  substr($obavestenje['datum'], 0, 10); ?> <br>
         <b> Autor: </b> <?php echo $this->session->userdata('user')['korisnicko']; ?> <br>
-        <?php $idOba = $obavestenje['idOba']; ?>
-        <a class="btn btn-outline-primary pull-right" href="<?php echo site_url('Obavestenja/arhivirajObavestenje/'.$idOba); ?>"> Arhiviraj </a>
+        <?php
+        $idKor = $this->session->userdata('user')['idKor'];
+        if ($idKor == $obavestenje['autor']) {
+            $idOba = $obavestenje['idOba'];
+            $btnDisable = "";
+            if ($obavestenje['zaBrisanje'] == 'da') { ?>
+                <a class="btn btn-outline-primary pull-right disabled" href="<?php echo site_url('Obavestenja/arhivirajObavestenje/'.$idOba); ?>"> Arhivirano </a>
+            <?php }
+            else { ?>
+                <a class="btn btn-outline-primary pull-right" href="<?php echo site_url('Obavestenja/arhivirajObavestenje/'.$idOba); ?>"> Arhiviraj </a>
+            <?php }
+        } ?>
+        
+        <!--Neuspeli pokusaji arhiviranja-->
         <!--<a href='#' onclick='arhiObav(8)'> Arhiviraj </a>-->
         <!--<button class="btn btn-outline-primary pull-right" onclick="<?php echo site_url('Obavestenja/arhivirajObavestenje(8)'); ?>">Arhiviraj</button>-->
         <!--<button class="btn btn-outline-primary pull-right" onclick="arhiObav">Arhiviraj</button>-->

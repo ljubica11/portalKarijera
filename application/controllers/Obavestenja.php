@@ -18,6 +18,12 @@ class Obavestenja extends CI_Controller {
         } else {
             $tipKorisnika = "gost";
         }
+        /*$dodavanjeObav = "";
+        if ($tipKorisnika == 'k') {
+            $dodavanjeObav = $this->load->view("obavestenja/dodavanjeObavestenja", null, true);
+        }
+        $data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiObavestenja($tipKorisnika),
+                                "dodavanjeObavestenja" => $dodavanjeObav];*/
         $data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiObavestenja($tipKorisnika)];
         $data["middle"] = "middle/obavestenje";
         $this->load->view('viewTemplate', $data);

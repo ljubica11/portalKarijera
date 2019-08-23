@@ -59,6 +59,12 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
             $this->db->where("vidljivostGrupa in ($whereGrupe)", NULL, FALSE);
             $this->db->group_end();
         }
+        if ($tipKorisnika == "k") {
+            $this->db->or_where('obavestenja.autor', $idKor);
+        }
+        else {
+            $this->db->having('zaBrisanje', NULL);
+        }
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -68,7 +74,7 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->from('obavestenja');
         $this->db->join('kompanija', 'obavestenja.autor = kompanija.idKor');
         $this->db->where('obavestenja.autor', $idKor);
-        $this->db->order_by('vremePostavljanja', 'DESC');
+        $this->db->order_by('datum', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
