@@ -51,10 +51,10 @@
                                <tr><td></td><td>
                                 <input type="radio" name="vidljivost" value="gost">Svi posetioci sajta<br>
                                 <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
-                                <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
-                                <input type="radio" name="vidljivost" value="kurs">Studenti odredjenog kursa<br>
+                                <input type="radio" name="vidljivost" value="korisnici" >Svi korisnici sajta<br>
+                                <input type="radio" name="vidljivost" onclick="selectk()" value="kurs">Studenti odredjenog kursa<br>
                                        
-                                             <select name="odabraniKurs" class="form-control">  
+                                <select name="odabraniKurs" id='vk'  class="form-control" style="display: none">  
                                                 <option disabled selected value="">Odaberite kurs</option>
                                                 <?php
                                                  foreach ($kursevi as $k){
@@ -64,9 +64,9 @@
                                                  }
                                                  ?>
                                              </select>
-                                <input type="radio" name="vidljivost" value="grupa">Formirana grupa studenata<br>
+                                <input type="radio" name="vidljivost" onclick="selectg()" value="grupa" >Formirana grupa studenata<br>
                                 </div>
-                                              <select name="odabranaGrupa" class="form-control"> 
+                <select name="odabranaGrupa" id="vg" class="form-control" style="display: none"> 
                                                 <option disabled selected value="">Odaberite grupu</option>
                                                 <?php
                                                      foreach ($grupa as $g){
@@ -125,7 +125,7 @@
 
                 <?php }
                 ?>
-                <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block" onclick="prikaziFormuV()" value='Postavi vest'></div>
+                <div class="centar"> <input type='button' class="btn btn-primary btn-lg btn-block " onclick="prikaziFormuV()" value='Postavi vest'></div>
 
                 <div class="centar" id="formaDivV">
                     <form name="dodajVest" method="POST" action="<?php echo site_url("Vesti/dodajVestGrupe") ?>">
@@ -148,9 +148,9 @@
                                 <input type="radio" name="vidljivost" value="gost">Svi posetioci sajta<br>
                                 <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
                                 <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
-                                <input type="radio" name="vidljivost" value="kurs">Studenti odredjenog kursa<br>
+                                <input type="radio" name="vidljivost" onclick="selectvek()"value="kurs">Studenti odredjenog kursa<br>
                                        
-                                             <select name="odabraniKurs" class="form-control">  
+                                <select name="odabraniKurs" id="vek" class="form-control" style="display: none">  
                                                 <option disabled selected value="">Odaberite kurs</option>
                                                 <?php
                                                  foreach ($kursevi as $k){
@@ -160,9 +160,9 @@
                                                  }
                                                  ?>
                                              </select>
-                                <input type="radio" name="vidljivost" value="grupa">Formirana grupa studenata<br>
+                                <input type="radio" name="vidljivost" onclick="selectveg() "value="grupa">Formirana grupa studenata<br>
                                 </div>
-                                              <select name="odabranaGrupa" class="form-control"> 
+                <select name="odabranaGrupa" id="veg" class="form-control" style="display: none"> 
                                                 <option disabled selected value="">Odaberite grupu</option>
                                                 <?php
                                                      foreach ($grupa as $g){
@@ -212,10 +212,10 @@
                                 <input type="radio" name="vidljivost" value="gost">Svi posetioci sajta<br>
                                 <input type="radio" name="vidljivost" value="studenti">Svi studenti<br>
                                 <input type="radio" name="vidljivost" value="korisnici">Svi korisnici sajta<br>
-                                <input type="radio" name="vidljivost" value="kurs">Studenti odredjenog kursa<br>
+                                <input type="radio" name="vidljivost" onclick="selectok()" value="kurs">Studenti odredjenog kursa<br>
                                        
-                                             <select name="odabraniKurs" class="form-control">  
-                                                <option disabled selected value="">Odaberite kurs</option>
+                                <select name="odabraniKurs" id="ok"class="form-control" style="display: none">  
+                                    <option disabled selected value="">Odaberite kurs</option>
                                                 <?php
                                                  foreach ($kursevi as $k){
                                                      $idKurs = $k['idKurs'];
@@ -224,10 +224,10 @@
                                                  }
                                                  ?>
                                              </select>
-                                <input type="radio" name="vidljivost" value="grupa">Formirana grupa studenata<br>
+                                <input type="radio" name="vidljivost" onclick="selectog()"value="grupa">Formirana grupa studenata<br>
                                 </div>
-                                              <select name="odabranaGrupa" class="form-control"> 
-                                                <option disabled selected value="">Odaberite grupu</option>
+                <select name="odabranaGrupa" id="og" class="form-control" style="display: none"> 
+                    <option disabled selected value="" >Odaberite grupu</option>
                                                 <?php
                                                      foreach ($grupa as $g){
                                                          $idGrupe = $g['idGru'];
@@ -273,4 +273,28 @@
         document.getElementById("formaDivO").style.display = "block";
 
     }
+    
+    function selectk() {
+        document.getElementById("vk").style.display = "block";
+    }
+    
+     function selectg() {
+        document.getElementById("vg").style.display = "block";
+    }
+    
+    function selectvek() {
+        document.getElementById("vek").style.display = "block";
+    }
+    
+     function selectveg() {
+        document.getElementById("veg").style.display = "block";
+    }
+    function selectok() {
+        document.getElementById("ok").style.display = "block";
+    }
+    
+     function selectog() {
+        document.getElementById("og").style.display = "block";
+    }
+    
 </script>

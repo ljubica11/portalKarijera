@@ -118,7 +118,7 @@ class DiskusijeModel extends CI_Model {
             $this->db->where('vidljivost', 'gost');
             $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
         }
-        if ($tipKorisnika == 'k' OR $tipKorisnika = 'a') {
+        if ($tipKorisnika == 'k') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'korisnici');
             $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
@@ -133,7 +133,7 @@ class DiskusijeModel extends CI_Model {
                     ->group_end();
             $this->db->order_by('diskusija.idDis', 'DESC');
         }
-        if ($tipKorisnika == 's' OR $tipKorisnika = 'a') {
+        if ($tipKorisnika == 's') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'gost');
             $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
@@ -161,10 +161,8 @@ class DiskusijeModel extends CI_Model {
                     ->where('sifkategorijadiskusija.idKatDis', $idKat)
                     ->where('autor', $idKor)
                     ->group_end();
-            $this->db->order_by('diskusija.idDis', 'DESC');
-        
-           
-        }
+           }
+        $this->db->order_by('diskusija.idDis', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -205,7 +203,7 @@ class DiskusijeModel extends CI_Model {
       
         
 
-        if ($tipKorisnika == 's' OR $tipKorisnika == 'a') {
+        if ($tipKorisnika == 's') {
            
             $this->db->group_start();
             $this->db->where('vidljivost', 'gost');
@@ -233,11 +231,10 @@ class DiskusijeModel extends CI_Model {
                     ->where('vidljivost', 'autor')
                     ->where('grupe.idGru', $idGru)
                     ->where('autor', $idKor)
-                    ->group_end();
-            $this->db->order_by('diskusija.idDis', 'DESC');
-        
-           
+                    ->group_end();   
         }
+        
+        $this->db->order_by('diskusija.idDis', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
