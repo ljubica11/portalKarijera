@@ -31,19 +31,19 @@
         </div>
         <div class="col-6">
             
-            <div id="myModal" class="modal">
-                <div class="modal-content">
+            <div id="myModal" class="modal modal-vesti">
+                <div class="modal-content modal-content-vesti">
 
-                    <div class="modal-header">
+                    <div class="modal-header modal-header-vesti">
                         <h4>Vesti</h4>
                         <span class="close">&times;</span>
                     </div>
                     
-                    <div class="modal-body" id="modal-body">
+                    <div class="modal-body modal-body-vesti" id="modal-body">
                     </div>
 
 
-                    <div class="modal-footer">
+                    <div class="modal-footer modal-footer-vesti">
                         <h5>Portal "Karijera"</h5>
                     </div>
 
