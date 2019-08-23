@@ -80,9 +80,9 @@ if ($tipKorisnika != 'gost') {
                             <?php
                             if ($this->session->userdata('user')['korisnicko'] == $autor && $vidljivost != 'autor' && $zaBrisanje != 'da') {
                                 echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id); window.location.reload();'> <b>Arhiviraj</b></a><br/>";
-                            } else if ($zaBrisanje == 'da') {
+                            } else if ($zaBrisanje == 'da' && $tipKorisnika != 'gost') {
                                 echo $msg = '<b class="float-right">' . 'poslat zahtev za brisanje' . '</b>';
-                            } else if ($vidljivost == 'autor') {
+                            } else if ($vidljivost == 'autor'&& $tipKorisnika != 'gost') {
                                 echo "<a href='#' class='badge badge-primary' onclick ='traziBrisanje($id); window.location.reload();'> <b>Zahtevaj brisanje</b></a><br/>";
                                 echo '<b class="float-right">' . 'arhivirano' . '</b>';
                             }

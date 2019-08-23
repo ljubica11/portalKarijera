@@ -43,12 +43,10 @@ class DiskusijeModel extends CI_Model {
         $this->db->select('diskusija.*, korisnik.korisnicko as korisnik');
         $this->db->from('diskusija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
+        $this->db->where('vidljivost', 'gost');
 
-
-        if ($tipKorisnika == 'gost') {
-            $this->db->where('vidljivost', 'gost');
-            $this->db->order_by('diskusija.idDis', 'DESC');
-        } if ($tipKorisnika == 'k') {
+       
+        if ($tipKorisnika == 'k') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'korisnici');
             $this->db->group_end();
@@ -61,7 +59,7 @@ class DiskusijeModel extends CI_Model {
                     ->group_end();
             $this->db->order_by('diskusija.idDis', 'DESC');
         }
-        if ($tipKorisnika == 's' OR $tipKorisnika == 'a') {
+        if ($tipKorisnika == 's') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'gost');
             $this->db->group_end();
@@ -83,11 +81,12 @@ class DiskusijeModel extends CI_Model {
                     ->where('vidljivost', 'autor')
                     ->where('autor', $idKor)
                     ->group_end();
-            $this->db->order_by('diskusija.idDis', 'DESC');
+            
         
            
         }
-
+   
+$this->db->order_by('diskusija.idDis', 'DESC');
         $query = $this->db->get();
          return $query->result_array();
     }
@@ -113,11 +112,10 @@ class DiskusijeModel extends CI_Model {
         $this->db->from('diskusija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
-
-        if ($tipKorisnika == 'gost') {
-            $this->db->where('vidljivost', 'gost');
-            $this->db->where('sifkategorijadiskusija.idKatDis', $idKat);
-        }
+        $this->db->where('vidljivost', 'gost');
+        
+           
+          
         if ($tipKorisnika == 'k') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'korisnici');
