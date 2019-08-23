@@ -66,7 +66,10 @@ class Grupe extends CI_Controller {
 
         $idGru = $this->input->get('idGru');
         $idKor = $this->session->userdata('user')['idKor'];
-        $this->GrupeModel->DodajStudente($idGru, $idKor);
+        if($idKor == null){
+            redirect('Registracija/index');
+        } else {
+        $this->GrupeModel->DodajStudente($idGru, $idKor);}
         redirect('Grupe/index');
     }
 
@@ -88,6 +91,7 @@ class Grupe extends CI_Controller {
         foreach ($idKorNiz as $idKor) {
             $this->GrupeModel->obrisiStudente($idGru, $idKor);
         }
+        //$this->output->enable_profiler(TRUE);
         redirect('Grupe/index');
     }
 
@@ -103,20 +107,23 @@ class Grupe extends CI_Controller {
         $this->load->model('ObavModel');
 
         $tipKorisnika = $this->session->userdata('user')['tip'];
+      
 
         $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
-        $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru, $tipKorisnika);
+        $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru,$tipKorisnika);
         $oglasiGrupe = $this->OglasiModel->dohvatiOglaseGrupe($idGru);
         $vestiGrupe = $this->VestiModel->dohvatiVestiGrupe($idGru);
         $obavestenjaGrupe = $this->ObavModel->dohvatiObavestenjaGrupe($idGru);
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
         $katVesti = $this->VestiModel->dohvatiKategorijeVesti();
+        $kursevi = $this->SifrarniciModel->dohvatiKurs();
+        $grupa = $this->GrupeModel->dohvatiGrupe();
 
         $data['middle'] = 'grupe/grupa';
         $data['middle_data'] = ['clanovi' => $clanovi, 'diskusijeGrupe' => $diskusijeGrupe,
             'oglasiGrupe' => $oglasiGrupe, 'vestiGrupe' => $vestiGrupe,
             'obavestenjaGrupe' => $obavestenjaGrupe, 'kategorije' => $kategorije,
-            'katVesti' => $katVesti];
+            'katVesti' => $katVesti, 'kursevi' => $kursevi, 'grupa' => $grupa ];
         $this->load->view('viewTemplate', $data);
     }
     
@@ -138,9 +145,9 @@ class Grupe extends CI_Controller {
             $data = ['interesovanja' => $this->SifrarniciModel->dohvatiInteresovanja()];
         } else if ($tip == 'statusgrupe'){
             $data = ['status' => $this->GrupeModel->status()];
-        } else if ($tip == 'grupedisk' || $tip == 'grupev' || $tip == 'grupeo'){
-            $data = ['grupe' => $this->GrupeModel->dohvatiGrupe()];
-        } else if ($tip == 'kursgrupe' || $tip == 'kurs' || $tip == 'kursv' || $tip = 'kurso') {
+        } else if ($tip == 'grupag'){
+            $data = ['grupa' => $this->GrupeModel->dohvatiGrupe()];
+        } else if ($tip == 'kursgrupe' OR $tip == 'kursg') {
             $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
         }
 
@@ -175,7 +182,8 @@ class Grupe extends CI_Controller {
                     $idKor = $su['idKor'];
                     $this->GrupeModel->DodajStudente($idGru, $idKor);
         }
-       redirect('Grupe/index');
+        $this->output->enable_profiler(TRUE);
+     //  redirect('Grupe/index');
         
     }
     

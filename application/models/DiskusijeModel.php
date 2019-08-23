@@ -61,8 +61,8 @@ class DiskusijeModel extends CI_Model {
                     ->group_end();
             $this->db->order_by('diskusija.idDis', 'DESC');
         }
-        if ($tipKorisnika == 's') {
-             $this->db->group_start();
+        if ($tipKorisnika == 's' OR $tipKorisnika == 'a') {
+            $this->db->group_start();
             $this->db->where('vidljivost', 'gost');
             $this->db->group_end();
             $this->db->or_group_start();
@@ -89,7 +89,7 @@ class DiskusijeModel extends CI_Model {
         }
 
         $query = $this->db->get();
-        return $query->result_array();
+         return $query->result_array();
     }
 
     /**
@@ -189,33 +189,54 @@ class DiskusijeModel extends CI_Model {
     public function dohvatiDiskusijeGrupe($idGru, $tipKorisnika) {
 
         $idKor = $this->session->userdata('user')['idKor'];
-        $this->db->select('idKurs')
-                ->from('student')
-                ->where('idKor', $idKor);
+        
+        $this->db->select('idKurs')->from('student')->where('idKor', $idKor);
         $whereKurs = $this->db->get_compiled_select();
-        $this->db->select('idGru')
-                ->from('clanovigrupe')
-                ->where('idKor', $idKor);
+        
+        $this->db->select('idGru')->from('clanovigrupe')->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
 
-        $this->db->select('diskusija.*, korisnik.korisnicko');
+        $this->db->select('diskusija.*, korisnik.korisnicko as korisnik');
         $this->db->from('diskusija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sadrzidiskusije', 'sadrzidiskusije.idDisk = diskusija.idDis');
-        $this->db->where('vidljivost', 'korisnici');
+        $this->db->join('grupe', 'grupe.idGru = sadrzidiskusije.idGrupe' );
+         $this->db->where('grupe.idGru', $idGru);
+      
+        
 
         if ($tipKorisnika == 's' OR $tipKorisnika == 'a') {
-            $this->db->or_where('vidljivost', 'studenti')
-                    ->or_group_start()
-                    ->where('vidljivost', 'kurs')
-                    ->where("vidljivostKurs in ($whereKurs)", null, false)
-                    ->where('sadrzidiskusije.idGrupe', $idGru)
-                    ->group_end();
+           
+            $this->db->group_start();
+            $this->db->where('vidljivost', 'gost');
+            $this->db->where('grupe.idGru', $idGru);
+            $this->db->group_end();
+            $this->db->or_group_start();
+            $this->db->where('vidljivost', 'korisnici');
+            $this->db->where('grupe.idGru', $idGru);
+            $this->db->group_end();
+            $this->db->or_group_start();
+            $this->db->where('vidljivost', 'studenti');
+            $this->db->where('grupe.idGru', $idGru);
+            $this->db->group_end();
+            $this->db->or_group_start();
+            $this->db->where('vidljivost', 'kurs');
+            $this->db->where('grupe.idGru', $idGru);
+            $this->db->where("vidljivostKurs in ($whereKurs)", null, false);
+            $this->db->group_end();
+            $this->db->or_group_start();
+            $this->db->where('vidljivost', 'grupa');
+            $this->db->where('grupe.idGru', $idGru);
+            $this->db->where("vidljivostGrupa in ($whereGrupa)", null, false);
+            $this->db->group_end();
             $this->db->or_group_start()
-                    ->where('vidljivost', 'grupa')
-                    ->where("vidljivostGrupa in ($whereGrupa)", null, false)
-                    ->where('sadrzidiskusije.idGrupe', $idGru)
+                    ->where('vidljivost', 'autor')
+                    ->where('grupe.idGru', $idGru)
+                    ->where('autor', $idKor)
                     ->group_end();
+            $this->db->order_by('diskusija.idDis', 'DESC');
+        
+           
         }
         $query = $this->db->get();
         return $query->result_array();
@@ -299,6 +320,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('vidljivostGrupa', $vidljivostGrupa);
         $this->db->set('zaBrisanje', $zaBrisanje);
         $this->db->insert('diskusija');
+     
     }
 
     /**
@@ -310,6 +332,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('idDisk', $idDis);
         $this->db->set('idGrupe', $idGru);
         $this->db->insert('sadrzidiskusije');
+        
     }
 
     /**
