@@ -220,4 +220,38 @@ class Admin extends MY_Controller{
             $this->load->view('admin/notifikacije', $data);
         }
     }
+    
+    public function zahteviZaBrisanje($tip){
+        if($tip == "oglasi"){
+            $data = ["oglasi" => $this->AdminModel->zahteviZaBrisanjeOglasa()];
+        }else if($tip == "vesti"){
+            $data = ["vesti" => $this->AdminModel->zahteviZaBrisanjeVesti()];
+        }else if($tip == "obavestenja"){
+            $data = ["obav" => $this->AdminModel->zahteviZaBrisanjeObav()];
+        }else if ($tip == "grupe"){
+            $data = ["grupe" => $this->AdminModel->zahteviZaBrisanjeGrupa()];
+        }else if($tip == "diskusije"){
+            $data = ["disk" => $this->AdminModel->zahteviZaBrisanjeDisk()];
+        }
+         $this->load->view("admin/prikazZahtevaZaBrisanje", $data);
+        
+    }
+    
+    public function obrisiZahtev(){
+        $tip = $this->input->post('tip');
+        $id = $this->input->post('id');
+        
+        if($tip == "oglasi"){
+            $this->AdminModel->obrisiOglas($id);
+        }else if($tip == "vesti"){
+            $this->AdminModel->obrisiVest($id);
+        }else if($tip == "obavestenja"){
+            $this->AdminModel->obrisiObav($id);
+        }else if ($tip == "grupe"){
+            $this->AdminModel->obrisiGrupu($id);
+        }else if($tip == "diskusije"){
+            $this->AdminModel->obrisiDisk($id);
+        }
+        redirect("Admin/zahteviZaBrisanje/$tip");    
+    }
 }

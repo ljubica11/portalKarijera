@@ -16,6 +16,27 @@
         </div>
         
         <div class="col-6">
+            
+            <div id="myModal" class="modal modal-disk">
+                <div class="modal-content modal-content-disk">
+
+                    <div class="modal-header modal-header-disk">
+                        <h4>Postovi diskusije</h4>
+                        <span class="close">&times;</span>
+                    </div>
+                    
+                    <div class="modal-body modal-body-disk" id="modal-body">
+                    </div>
+
+
+                    <div class="modal-footer modal-footer-disk">
+                        <h5>Portal "Karijera"</h5>
+                    </div>
+
+                </div>
+            </div>
+            
+
             <div class="row">
                 <div class="col-10 offset-1" id="resDiv">
                     
@@ -156,13 +177,66 @@
                xmlhttp.onreadystatechange=function(){
                    if(this.readyState==4&&this.status==200){
                       document.getElementById("notifReg").innerHTML = this.responseText;  
+                      console.log(this.responseText);
                    }
                };
           xmlhttp.open("GET", "<?php echo site_url('Admin/brojZahtevaReg'); ?>", true);
           xmlhttp.send();      
     }
+    
+    function prikaziZahteveZaBrisanje(tip){
+        xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("resDiv").innerHTML = this.responseText; 
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/zahteviZaBrisanje'); ?>/"+tip, true);
+          xmlhttp.send();     
+    }
    
+      function prikaziPostoveDisk(id){
+        var modal = document.getElementById("myModal");  
+        modal.style.display = "block";
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("modal-body").innerHTML = this.responseText;
+                    
+                }
+            };
+            xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiPostove') ?>?id=" + id, true);
+            xmlhttp.send();
+    }
+    
+var span = document.getElementsByClassName("close")[0];
 
+var modal = document.getElementById("myModal");    
 
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+    function obrisiZahtev(tip, id){
+        var del = confirm('Da li ste sigurni da zelite da obrisete ovu stavku?');
+         if(del){
+            xmlhttp=new XMLHttpRequest();
+                   xmlhttp.onreadystatechange=function(){
+                       if(this.readyState==4&&this.status==200){
+                           document.getElementById("resDiv").innerHTML = this.responseText;
+                           alert("Obrisano.");
+                       }
+                   };
+                   xmlhttp.open("POST", "<?php echo site_url('Admin/obrisiZahtev'); ?>", true);
+                   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                   xmlhttp.send("tip="+tip+"&id="+id); 
+        }
+    }
    
     </script>
