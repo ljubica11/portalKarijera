@@ -73,8 +73,10 @@ class Obavestenja extends CI_Controller {
         $idGru = $this->input->post('idGru');
         $naslov = $this->input->post('naslov');
         $obavest = $this->input->post('tekst');
-        $vidljivost = 3;
-        $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost);
+       $vidljivost = $this->input->post('vidljivost');
+        $vidljivostKurs = $this->input->post("odabraniKurs");
+        $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obavest, $vidljivost, $vidljivostKurs, $vidljivostGrupa);
         $last_id = $this->db->insert_id();
         $idOba = $last_id;
         $this->ObavModel->dodajObavestenjaGrupe($idOba, $idGru);
