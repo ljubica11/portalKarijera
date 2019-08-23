@@ -261,7 +261,6 @@ class DiskusijeModel extends CI_Model {
         $this->db->select('postdiskusija.tekst, korisnik.korisnicko as "korisnik", postdiskusija.poslatoDatum as "datum", postdiskusija.brLajkova, postdiskusija.idPos');
         $this->db->from('postdiskusija');
         $this->db->join('diskusija', 'diskusija.idDis = postdiskusija.diskusija');
-        $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
         $this->db->join('korisnik', 'korisnik.idKor = postdiskusija.posiljalac');
         $this->db->where('postdiskusija.diskusija', $diskusija);
         $this->db->order_by('postdiskusija.poslatoDatum', 'DESC');

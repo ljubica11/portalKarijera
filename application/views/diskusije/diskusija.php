@@ -15,7 +15,7 @@
                         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
                         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
                         <?php $id = $d['idDis'] ?>
-                        <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
+                        <?php echo "<a href='#' class='badge badge-primary' onclick ='postovigrupa($id)'> <b>Pogledaj postove</b></a>" ?>
                         <?php echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a><br/>" ?>
 
 
@@ -28,18 +28,18 @@
         </div>
         <div class="col-sm">
              <div id='wrapper'></div>
-                    <div id="postovi"></div>
+                    <div id="postovigrupa"></div>
         </div>
     </div>
 </div> 
 
 <script>
-    function postovi(id) {
+    function postovigrupa(id) {
 
                 xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("postovi").innerHTML = this.responseText;
+                        document.getElementById("postovigrupa").innerHTML = this.responseText;
 
                     }
                 }
@@ -56,8 +56,8 @@
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("novipost").value ="";
-                        document.getElementById("postovi").innerHTML = this.responseText;
+                       document.getElementById("novipost").value ="";
+                        document.getElementById("postovigrupa").innerHTML = this.responseText;
                     }
                 };
 

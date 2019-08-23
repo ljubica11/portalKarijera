@@ -55,6 +55,7 @@ class Diskusije extends CI_Controller {
         
         $diskusija = $this->input->get('id');
         $postovi = $this->DiskusijeModel->dohvatiPostove($diskusija);
+         $this->output->enable_profiler(false);
         $this->load->view('diskusije/postovi', ['postovi' => $postovi]);
     }
     
