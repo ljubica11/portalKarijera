@@ -51,11 +51,15 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->select('obavestenja.*, kompanija.naziv, kompanija.sajt');
         $this->db->from('obavestenja');
         $this->db->join('kompanija', 'obavestenja.autor = kompanija.idKor');
+        if($tipKorisnika == "gost"){
         $this->db->where('vidljivost', 'gost');
+        }
         if($tipKorisnika == "k"){
+            $this->db->where('vidljivost', 'gost');
             $this->db->or_where('vidljivost', 'korisnici');
         }
         if ($tipKorisnika == "s") {
+            $this->db->where('vidljivost', 'gost');
             $this->db->or_where('vidljivost', 'korisnici');
             $this->db->or_where('vidljivost', 'studenti');
             $this->db->or_group_start();
