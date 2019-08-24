@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid" id="pret">
     <div class="row">
         <div class="col-10 offset-1 pretraga-container">
             <div class="row">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-7 offset-1">
+                <div class="col-7 offset-1 pret">
                                <div id="pretraga-stud-div">
                                 <?php echo $pretragaStud?>
                                </div>

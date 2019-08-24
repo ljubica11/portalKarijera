@@ -12,6 +12,7 @@ class UserModel extends CI_Model{
      public function login($username, $pass){
         $this->db->where('korisnicko', $username);
         $this->db->where('lozinka', $pass);
+        $this->db->where('cekaOdobrenje', null);
         $this->db->from('korisnik');
         $query=$this->db->get();
         return $query->result_array ();
@@ -94,4 +95,27 @@ class UserModel extends CI_Model{
         return $query->result_array ();
     }
     
+    public function izmeniKorisnika($idKor, $korisnicko, $email){
+        $this->db->set('korisnicko', $korisnicko);
+        $this->db->set('email', $email);
+        $this->db->where('idKor', $idKor);
+        $this->db->update('korisnik');
+    }
+    
+    public function izmeniStudenta($idKor, $ime, $prezime, $datum, $drzavljanstvo, $telefon, $adresa, $mesto, $status, $kurs){
+        $data = array(
+            'ime' => $ime,
+            'prezime' => $prezime,
+            'datum' => $datum,
+            'drzavljanstvo' => $drzavljanstvo,
+            'telefon' => $telefon,
+            'adresa' => $adresa,
+            'mesto' => $mesto,
+            'status' => $status,
+            'idKurs' => $kurs);
+
+            $this->db->where('idKor', $idKor);
+            $this->db->update('student', $data);
+    }
+      
 }

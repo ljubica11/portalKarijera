@@ -126,9 +126,10 @@ class GrupeModel extends CI_Model {
      */
     public function dohvatiClanove($idGru) {
 
-        $this->db->select('clanovigrupe.idKor, student.ime, student.prezime');
+        $this->db->select('clanovigrupe.idKor, student.ime, student.prezime, korisnik.korisnicko as korisnik');
         $this->db->from('clanovigrupe');
         $this->db->join('student', 'student.idKor = clanovigrupe.idKor');
+        $this->db->join('korisnik', 'korisnik.idKor = student.idKor');
         $this->db->where('clanovigrupe.idGru', $idGru);
         $query = $this->db->get();
         return $query->result_array();
@@ -140,9 +141,9 @@ class GrupeModel extends CI_Model {
      * @param type $opis
      * @return type 
      */
-    public function dodajNovuGrupu($naziv, $opis) {
+    public function dodajNovuGrupu($naziv, $opis, $zaBrisanje) {
 
-        $data = ['naziv' => $naziv, 'opis' => $opis];
+        $data = ['naziv' => $naziv, 'opis' => $opis, 'datum' => date('Y-m-d H:m:i'), 'zaBrisanje' => $zaBrisanje];
         $this->db->insert('grupe', $data);
        
         return $maxIdGrupe = $this->db->insert_id();
@@ -232,6 +233,13 @@ class GrupeModel extends CI_Model {
         return $query->result_array ();
     }
     
+      public function zaBrisanje($idGru) {
+
+        $data = ["zaBrisanje" => "da"];
+        $this->db->where("idGru", $idGru);
+        $this->db->update("grupe", $data);
+    }
+
     
 
 }

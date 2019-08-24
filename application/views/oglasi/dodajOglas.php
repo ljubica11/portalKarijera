@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
-                <div id="myModal" class="modal">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div id="myModal" class="modal modal-ogl">
+                  <div class="modal-content modal-content-ogl">
+                    <div class="modal-header modal-header-ogl">
                         <h2>Postavite oglas u nekoliko lakih koraka!</h2>
                         <span class="close">&times;</span>
                       
                     </div>
-                      <div class="modal-body" id="dodavanjeOglasa">
+                      <div class="modal-body modal-body-ogl" id="dodavanjeOglasa">
                           <form name="dodajOglasForma" method="POST" action="<?php echo site_url('Oglasi/dodajNoviOglas')?>" class="regForm" enctype="multipart/form-data">
                             <h5> Naslov oglasa * </h5>
                             <input placeholder="Primer: Junior PHP developer" class="form-control naslov" name="naslov" required>
@@ -46,11 +46,12 @@
                                 <textarea class="form-control opis" name="opis" required></textarea>
                             <h5>Ko moze da vidi vas oglas? *</h5>
                                 Odaberite nivo vidljivosti oglasa. <br/>
-                                <input type="radio" name="vidljivost" value="studenti" id="1">Svi studenti<br>
-                                <input type="radio" name="vidljivost" value="korisnici" id="2">Svi korisnici sajta (ukljucujuci i druge kompanije)<br>
-                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="3">Studenti odredjenog kursa<br>
+                                 <input type="radio" name="vidljivost" value="gost" id="1">Svi i gosti<br>
+                                <input type="radio" name="vidljivost" value="studenti" id="2">Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici" id="3">Svi korisnici sajta (ukljucujuci i druge kompanije)<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="4">Studenti odredjenog kursa<br>
                                 <div id="kurs"></div>
-                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)" id="4">Formirana grupa studenata<br>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)" id="5">Formirana grupa studenata<br>
                                 <div id="grupa"></div>
                                 <?php if($this->input->get('ogl') == 1){
                                     echo "<input type='radio' name='vidljivost' value='pretraga' checked>Rezultat pretrage";
@@ -101,7 +102,7 @@
                          
                       </div>  
                                         
-                    <div class="modal-footer">
+                    <div class="modal-footer modal-footer-ogl">
                         <h5>Portal "Karijera"</h5>
                     </div>
                   </div>

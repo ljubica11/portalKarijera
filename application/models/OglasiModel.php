@@ -1,6 +1,7 @@
 <?php
 
 
+
 class OglasiModel extends CI_Model{
     
        public function dohvatiSveOglase($tipKorisnika){
@@ -11,12 +12,26 @@ class OglasiModel extends CI_Model{
         $whereGrupe = $this->db->get_compiled_select();
         $this->db->select('idOgl')->from('vidioglas')->where('idKor', $idKor);
         $wherePretraga = $this->db->get_compiled_select();
+        $whereVreme = "vremeIsticanja >= CURRENT_DATE()";
 
         $this->db->select('oglasi.*, kompanija.naziv, kompanija.sajt');
         $this->db->from('oglasi');
         $this->db->join('kompanija', 'oglasi.autor = kompanija.idKor');
-        $this->db->where('vidljivost', 'korisnici');
+        if($tipKorisnika !== "a"){
+            $this->db->where($whereVreme);
+        }
+        if($tipKorisnika == "gost"){
+            $this->db->where('vidljivost', 'gost');
+        }if($tipKorisnika == "k"){
+            $this->db->group_start();
+            $this->db->where('vidljivost', 'gost');
+            $this->db->or_where('vidljivost', 'korisnici');
+            $this->db->group_end();
+        }
             if($tipKorisnika == "s"){
+            $this->db->group_start();   
+            $this->db->where('vidljivost', 'gost');
+            $this->db->or_where('vidljivost', 'korisnici');
             $this->db->or_where('vidljivost', 'studenti');  
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'kurs');
@@ -30,7 +45,9 @@ class OglasiModel extends CI_Model{
             $this->db->where('vidljivost', 'pretraga');
             $this->db->where("idOgl in ($wherePretraga)", NULL, FALSE);
             $this->db->group_end();
+            $this->db->group_end();
         }
+        $this->db->order_by('idOgl', 'DESC');
         $query=$this->db->get();
         return $query->result_array ();
     }
@@ -112,15 +129,25 @@ class OglasiModel extends CI_Model{
         $whereKurs = $this->db->get_compiled_select();
         $this->db->select('idGru')->from('clanovigrupe')->where('idKor', $idKor);
         $whereGrupe = $this->db->get_compiled_select();
-//        $this->db->select('idOgl')->from('vidioglas')->where('idKor', $idKor);
-//        $wherePretraga = $this->db->get_compiled_select();
+        $this->db->select('idOgl')->from('vidioglas')->where('idKor', $idKor);
+        $wherePretraga = $this->db->get_compiled_select();
 
         $this->db->select('naslov, vremeIsticanja, idOgl, oglasi.opis, kompanija.naziv');
         $this->db->from('oglasi');
         $this->db->join('kompanija', 'oglasi.autor = kompanija.idKor');
-        $this->db->group_start();
-        $this->db->where('vidljivost', 'korisnici');
+//        $this->db->group_start();
+        if($tip == "gost"){
+            $this->db->where('vidljivost', 'gost');
+        }if($tip == "k"){
+            $this->db->group_start();
+            $this->db->where('vidljivost', 'gost');
+            $this->db->or_where('vidljivost', 'korisnici');
+            $this->db->group_end();
+        }
             if($tip == "s"){
+            $this->db->group_start();
+            $this->db->where('vidljivost', 'gost');
+            $this->db->or_where('vidljivost', 'korisnici');
             $this->db->or_where('vidljivost', 'studenti');  
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'kurs');
@@ -130,9 +157,14 @@ class OglasiModel extends CI_Model{
             $this->db->where('vidljivost', 'grupa');
             $this->db->where("vidljivostGrupa in ($whereGrupe)", NULL, FALSE);
             $this->db->group_end();
+            $this->db->or_group_start();
+            $this->db->where('vidljivost', 'pretraga');
+            $this->db->where("idOgl in ($wherePretraga)", NULL, FALSE);
+            $this->db->group_end();
+            $this->db->group_end();
             
             }
-            $this->db->group_end();
+//            $this->db->group_end();
             if(!empty($rec) and empty($grad)){
                 $this->db->like('kompanija.naziv', $rec);
                 $this->db->or_like('pozicija', $rec);  
@@ -146,6 +178,7 @@ class OglasiModel extends CI_Model{
                 $this->db->or_like('pozicija', $rec);  
                 $this->db->order_by('vremePostavljanja', 'DESC');
             }
+
 
         $query=$this->db->get();
         return $query->result_array ();
@@ -164,4 +197,12 @@ class OglasiModel extends CI_Model{
         return $query->result_array();
     }
     
+    public function dodajOglasZaGrupu($idOgl, $idGru){
+        $data = [
+            "idOgl" => $idOgl,
+            "idGru" => $idGru
+        ];
+        
+        $this->db->insert("sadrzioglas", $data);
+    }
 }

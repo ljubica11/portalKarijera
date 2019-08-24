@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 levo-admin">
+            <h4>Sifrarnici <i class="fa fa-book"></i></h4>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('mesto')">Mesta</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('drz')">Drzavljanstva</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('faks')">Fakulteti</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('komp')">Kompanije</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('poz')">Pozicije</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('inter')">Interesovanja</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('ves')">Vestine</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('katves')">Kategorije vesti</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('katdis')">Kategorije diskusija</div>
+        </div>
+        
+        <div class="col-6">
+            
+            <div id="myModal" class="modal modal-disk">
+                <div class="modal-content modal-content-disk">
+
+                    <div class="modal-header modal-header-disk">
+                        <h4>Postovi diskusije</h4>
+                        <span class="close">&times;</span>
+                    </div>
+                    
+                    <div class="modal-body modal-body-disk" id="modal-body">
+                    </div>
+
+
+                    <div class="modal-footer modal-footer-disk">
+                        <h5>Portal "Karijera"</h5>
+                    </div>
+
+                </div>
+            </div>
+            
+
+            <div class="row">
+                <div class="col-10 offset-1" id="resDiv">
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="col-3 desno-admin">
+            <h4>Zahtevi <i class="fa fa-folder-open"></i></h4>
+            <div class="zahteviNaziv" onclick="prikaziRegZahteve()">Registracije 
+                <div class="notif" id="notifReg"></div>
+            </div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('oglasi')">Oglasi</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('vesti')">Vesti</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obavestenja</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('grupe')">Grupe</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('diskusije')">Diskusije</div>
+        </div>
+            
+        
+    </div>
+</div>
+<script>
+    function prikaziSifrarnik(tip){
+         xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("resDiv").innerHTML = this.responseText;  
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/prikaziSifrarnik'); ?>/"+tip, true);
+          xmlhttp.send();      
+    }
+    
+    function obrisiStavku(id, tip){
+         var del = confirm('Da li ste sigurni da zelite da obrisete ovu stavku?');
+         if(del){
+         xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("resDiv").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Admin/obrisiStavku'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("id="+id+"&tip="+tip);
+        }       
+    }
+    
+    function izmeniStavku(id){
+        document.getElementById("izmenaSifrarnikaInput"+id).style.display = "inline-block";
+        document.getElementById(id).style.display = "none";
+
+    }
+    
+    function odustani(id){
+         document.getElementById("izmenaSifrarnikaInput"+id).style.display = "none";
+         document.getElementById(id).style.display = "inline-block";
+    }
+    
+    function sacuvajIzmenu(tip, id){
+        var izmena = document.getElementById("izmeni"+tip+id).value;
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("resDiv").innerHTML = this.responseText;
+                    alert("Izmena je sacuvana");
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Admin/izmeniStavku'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("id="+id+"&tip="+tip+"&izmena="+izmena);
+ 
+    }
+    
+    function dodajStavku(tip){
+       var dodatak = document.getElementById("dodatakStavka").value;
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("resDiv").innerHTML = this.responseText;
+                    alert("Stavka je dodata");
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Admin/dodajStavku'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("tip="+tip+"&dodatak="+dodatak); 
+    }
+    
+    function prikaziRegZahteve(){
+        xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("resDiv").innerHTML = this.responseText;  
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/prikaziZahteveRegistracija'); ?>", true);
+          xmlhttp.send();      
+    }
+    
+    function odobriRegistraciju(id, mejl){
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("resDiv").innerHTML = this.responseText;
+                    alert("Registracija je odobrena");
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Admin/odobriRegistraciju'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("id="+id+"&mejl="+mejl); 
+        
+    }
+    
+       function zabraniRegistraciju(id, mejl){
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("resDiv").innerHTML = this.responseText;
+                    alert("Registracija je zabranjena");
+                }
+            };
+            xmlhttp.open("POST", "<?php echo site_url('Admin/zabraniRegistraciju'); ?>", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("id="+id+"&mejl="+mejl); 
+        
+    }
+    
+    setInterval(dohvatiBrojZahtevaReg, 100000);
+    
+    window.onload = function() {
+        dohvatiBrojZahtevaReg();
+      };
+    
+    function dohvatiBrojZahtevaReg(){
+        xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("notifReg").innerHTML = this.responseText;  
+                      console.log(this.responseText);
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/brojZahtevaReg'); ?>", true);
+          xmlhttp.send();      
+    }
+    
+    function prikaziZahteveZaBrisanje(tip){
+        xmlhttp=new XMLHttpRequest();
+               xmlhttp.onreadystatechange=function(){
+                   if(this.readyState==4&&this.status==200){
+                      document.getElementById("resDiv").innerHTML = this.responseText; 
+                   }
+               };
+          xmlhttp.open("GET", "<?php echo site_url('Admin/zahteviZaBrisanje'); ?>/"+tip, true);
+          xmlhttp.send();     
+    }
+   
+      function prikaziPostoveDisk(id){
+        var modal = document.getElementById("myModal");  
+        modal.style.display = "block";
+        xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if(this.readyState==4&&this.status==200){
+                    document.getElementById("modal-body").innerHTML = this.responseText;
+                    
+                }
+            };
+            xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiPostove') ?>?id=" + id, true);
+            xmlhttp.send();
+    }
+    
+var span = document.getElementsByClassName("close")[0];
+
+var modal = document.getElementById("myModal");    
+
+span.onclick = function() {
+  modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
+    function obrisiZahtev(tip, id){
+        var del = confirm('Da li ste sigurni da zelite da obrisete ovu stavku?');
+         if(del){
+            xmlhttp=new XMLHttpRequest();
+                   xmlhttp.onreadystatechange=function(){
+                       if(this.readyState==4&&this.status==200){
+                           document.getElementById("resDiv").innerHTML = this.responseText;
+                           alert("Obrisano.");
+                       }
+                   };
+                   xmlhttp.open("POST", "<?php echo site_url('Admin/obrisiZahtev'); ?>", true);
+                   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                   xmlhttp.send("tip="+tip+"&id="+id); 
+        }
+    }
+   
+    </script>

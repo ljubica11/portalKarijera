@@ -1,18 +1,31 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid" id="ogl">
     <div class="row">
         <div class="col-3 levo"> 
           <?php echo $pretraga; ?>
         </div>
         
         <div class="col-6">  
-            <?php  if($this->session->userdata('user')['tip'] == "k"){
+            <?php  
+            if($this->session->flashdata('brisanje')){ ?>
+            
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <?php echo $this->session->flashdata('brisanje');?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            
+            
+            <?php
+            }
+            if($this->session->userdata('user')['tip'] == "k"){
                     $idKor = $this->session->userdata('user')['idKor'];
                     
                     echo $dodaj;
             ?>
-
+            <br/>
             
                 <input type="button" id="mojiOglasi" value="Moji oglasi" class="btn btn-primary" onclick="mojiOglasi(<?php echo $idKor ?>)">
                 <input type="button" id="dodajOglas" value="Dodaj oglas" class="btn btn-primary" onclick="dodajOglas(<?php echo $idKor ?>)"> 
@@ -142,6 +155,7 @@ if(<?php echo $this->input->get('ogl')?> == 1){
     document.getElementById("2").disabled=true;
     document.getElementById("3").disabled=true;
     document.getElementById("4").disabled=true;
+    document.getElementById("5").disabled=true;
     }
 <?php } ?>
 
@@ -152,7 +166,7 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
-}
+};
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

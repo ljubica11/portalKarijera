@@ -10,7 +10,7 @@ class Diskusije extends CI_Controller {
     public function __construct() {
         parent::__construct();
         
-        $this->load->database();
+      
         $this->load->model('UserModel');
         $this->load->model('DiskusijeModel');
         $this->load->model('SifrarniciModel');
@@ -24,7 +24,7 @@ class Diskusije extends CI_Controller {
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
         $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika)];
         $sveDiskusije = ['sveDiskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
-        $data['middle_data'] = ['kategorije' => $kategorije, 
+        $data['middle_data'] = ['kategorije' => $kategorije,
                                $this->load->view("diskusije/disk", $diskusije, true),
                                $this->load->view("diskusije/disk", $sveDiskusije, true)];
         $data['middle'] = 'middle/diskusije';
@@ -34,7 +34,7 @@ class Diskusije extends CI_Controller {
     
    public function ispisiDiskusije(){
     
-     $idKat = $this->input->get('id');
+     $idKat = $this->input->get('id');   
      $tipKorisnika = $this->session->userdata('user')['tip'];
      $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika);
      $this->load->view("diskusije/disk", ["diskusije" => $diskusije]);
@@ -55,6 +55,7 @@ class Diskusije extends CI_Controller {
         
         $diskusija = $this->input->get('id');
         $postovi = $this->DiskusijeModel->dohvatiPostove($diskusija);
+         $this->output->enable_profiler(false);
         $this->load->view('diskusije/postovi', ['postovi' => $postovi]);
     }
     
@@ -76,10 +77,7 @@ class Diskusije extends CI_Controller {
                   '<span><div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'].'</span></div></div>';
 }
     }
-       
-             
-    
-    
+
     public function dodajDiskusiju(){
         
         $kategorija = $this->input->post('kategorija');
@@ -88,8 +86,11 @@ class Diskusije extends CI_Controller {
         $vidljivost = $this->input->post('vidljivost');
         $vidljivostKurs = $this->input->post('odabraniKurs');
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        $zaBrisanje = null;
+        
         $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis,
-                $vidljivost, $vidljivostKurs, $vidljivostGrupa);
+                $vidljivost, $vidljivostKurs, $vidljivostGrupa, $zaBrisanje);
+       // $this->output->enable_profiler(TRUE);
         $this->index();
         
         
@@ -97,17 +98,19 @@ class Diskusije extends CI_Controller {
      public function dodajDiskusijuGrupe(){
         
         
-        $idGru = $this->input->post('idGru');
+        
         $kategorija = $this->input->post('kategorija');
         $naziv = $this->input->post('naziv');
         $opis = $this->input->post('opis');
         $vidljivost = $this->input->post('vidljivost');
         $vidljivostKurs = $this->input->post('odabraniKurs');
         $vidljivostGrupa = $this->input->post('odabranaGrupa');
+        $zaBrisanje = null;
         $this->DiskusijeModel->dodajDiskusiju($this->session->userdata('user')['idKor'], $kategorija, $naziv, $opis,
-                $vidljivost, $vidljivostKurs, $vidljivostGrupa);
+                $vidljivost, $vidljivostKurs, $vidljivostGrupa, $zaBrisanje);
         $last_id = $this->db->insert_id();
         $idDis = $last_id;
+        $idGru = $this->input->post('idGru');
         $this->DiskusijeModel->dodajDiskusijuGrupe($idDis, $idGru);
         $this->jednaDiskusija($idDis);
     }
@@ -141,6 +144,15 @@ class Diskusije extends CI_Controller {
         $this->DiskusijeModel->arhivirajDiskusiju($idDis);
         echo 'arhivirana';
         }
+        
+        public function traziBrisanje(){
+            
+        $idDis = $this->input->get('idDis');    
+        $this->DiskusijeModel->zaBrisanje($idDis);
+        redirect('Diskusije/index');
+        
+    }
+    
     public function lajkPost(){
         
         $idPos = $this->input->get('idPos');

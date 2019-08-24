@@ -1,0 +1,730 @@
+.afooter{ 
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #f8f9fa;
+  width: 100%;
+  height: 50px;
+  border-top: 1px solid lightgray;
+  padding-left:35%;
+  padding-top: 10px;
+  z-index: 999;
+}
+
+.afooter a{
+    font-size: 18px;
+    text-decoration: none;
+    color: #696969;
+    padding-left: 35px;
+}
+
+.copy{
+    float: right;
+    padding-right: 20px;
+    font-size: 18px;
+    color: #696969;
+}
+
+
+.navbar{
+    border-bottom: 1px solid lightgray;
+    
+}
+
+.levo{
+    padding-top: 15px;
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
+    border-top: none !important;
+    line-height: 3;
+    height: 100%;
+/*    height: calc(100vh - 135px);*/
+}
+
+.desno{
+    padding-top: 15px;
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
+    border-top: none !important;
+    height: 100%;
+/*    height: calc(100vh - 135px);*/
+}
+
+.levo-admin, .desno-admin{
+    padding-top: 15px;
+    padding-bottom: 30px;
+    border: 1px solid lightgray;
+    border-top: none !important;
+    line-height: 3;
+    height: calc(100vh - 135px)
+}
+
+.sifrarniciNaziv{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    text-align: center;
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+
+.sifrarniciNaziv:hover{
+     background-color: #E0E0E0;
+}
+
+.zahteviNaziv{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: #f8f9fa;
+    cursor: pointer; 
+}
+
+.zahteviNaziv:hover{
+     background-color: #E0E0E0;
+}
+
+
+/*stats, izvestaji */
+.stats {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    
+}
+
+.prikazResSifrarnici{
+    height: 70vh;
+    border: 1px solid lightgray; 
+    overflow: auto;
+    padding: 20px;
+    line-height: 3;
+}
+
+.sifrarnikStavka{
+    display: inline-block;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    padding: 5px 10px;
+    margin: 10px;
+}
+
+#resDiv{
+    padding-top: 15px;
+}
+
+#resDiv h4{
+    color: gray;
+}
+
+.scroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.scroll::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+	background-color: lightgray;
+	
+}
+
+.izmenaStavke{
+    text-align: center;
+    line-height: 1.5;
+    border: none;
+    border-radius: 10px;
+    background-color: #E0E0E0;
+}
+
+.izmenaStavke:focus{
+    outline: none;
+}
+
+.izmenaSifrarnikaInput{
+    display: none;
+}
+
+/*    css za pretraguuu*/
+    
+    .pretraga-container{
+        padding: 20px;
+        line-height: 2;
+    }
+    
+    .btn-pretraga{
+        margin-left: 10px;
+        width: 40%;
+        height: 100px;
+        color: white !important;
+        font-weight: bold !important;
+        font-size: 150% !important;
+    }
+    
+    #pretraga-stud-div, #pretraga-komp-div{
+        display: none;
+    }
+    
+    .btn-pretrazi{
+        width: 100%;
+        height: 100px;
+        color: white !important;
+        font-weight: bold !important;
+        font-size: 150% !important;
+    }
+    
+    .pretraga-wrapper{
+        padding: 15px;
+        box-shadow: 0px 0px 26px 4px rgba(39,115,245,0.34);
+        border-radius: .25rem;
+        
+    }
+    
+    .user-img-pretraga{
+        border-radius: 50%;
+        width:50px;
+        height: 50px;
+    }
+    
+    .pretraga-rezultat-student{
+        margin-top:20px;
+        margin-bottom: 20px;
+        border: 1px solid lightblue;
+        padding: 10px;
+    }
+    
+    #pretraga-res{
+        max-height: 500px;
+        overflow: auto;
+    }
+    
+    /*div za dodavanje grupe na nivou pretrage*/
+
+#dodavanjeGrupeDiv{
+    display: none;
+}
+
+/*    scroll da bude lep*/
+
+.pret .scroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.pret .scroll::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.pret .scroll::-webkit-scrollbar-thumb
+{
+	background-color: #0ae;
+	
+	background-image: -webkit-gradient(linear, 0 0, 0 100%,
+	                   color-stop(.5, rgba(255, 255, 255, .2)),
+					   color-stop(.5, transparent), to(transparent));
+}
+
+.div-group{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.div-group-opis{
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin: 5px;
+    min-height: 70px;
+}
+
+
+.labela-zahtev{
+    display: inline-block;
+    background-color: #f8f9fa;
+    border-radius: 10px 0px 0px 10px;
+    border-right: 1px solid lightgray;
+    padding: 5px;
+
+}
+
+.labela-zahtev-opis{
+    display: inline-block;
+    background-color: #f8f9fa;
+    border-radius: 10px 0px 0px 0px;
+    border-right: 1px solid lightgray;
+    border-bottom: 0.5px solid lightgray;
+    padding: 5px; 
+}
+
+
+.jedan-zahtev{
+    border: 5px ridge #E8E8E8;
+    border-radius: 10px;
+    margin:20px 0;
+    padding: 10px;
+}
+
+.notif{
+    display: inline-block;
+}
+
+/*OGLASI*/
+
+.btn-search-job{
+    margin-top: 20px;
+}
+
+.naslov-oglas{
+    text-align: center;
+}
+
+.kompanija-oglas{
+    border-top: 1px solid black;
+    text-align: center;
+    padding: 20px;
+}
+
+.aktivan-oglas{
+    background-color: #4169E1;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+
+.istekao-oglas{
+    background-color: red;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 15px;
+    width: 200px;
+}
+.oglas-wrapper{
+    border: 1px solid black;
+    margin: 20px;
+    padding: 0 30px 30px 40px;
+
+}
+.centar{
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color: white;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.btn-mojeVesti{
+    margin-top: 20px;
+}
+
+
+
+/*  diskusije */
+
+
+.poruka {
+    overflow: auto;
+    overflow-wrap: normal;
+}
+
+.lajk {
+    
+    float: right;
+}
+
+
+#formaDivKat{
+    display: none;
+}
+
+.container-fluid {
+    margin-bottom: 50px;
+}
+
+#formaDiv{
+    display: none;
+}
+#formaDivV{
+    display: none;
+}
+
+#formaDivO{
+    display: none;
+}
+
+
+.diskusije {
+    overflow: auto;
+    overflow-wrap: normal;
+}
+
+.postdesno{
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+}
+
+ /* grupe  */
+
+#parametri {
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
+
+
+#clanoviGrupe {
+    
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
+
+
+
+/* statistika */
+
+.stats {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    
+}
+
+/*modal za diskusiju*/
+
+.modal-disk {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  padding: 20px 200px 0;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-disk {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  height: 90vh;
+  overflow: auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header-disk {
+  padding: 2px 16px;
+  background-color: #E0E0E0;
+  color: gray;
+  border-bottom: 1px solid gray;
+}
+
+.modal-body-disk {
+    padding: 2px 150px !important;
+}
+
+.modal-footer-disk {
+  padding: 2px 16px;
+  background-color: #E0E0E0;
+  color: gray;
+  border-top: 1px solid gray;
+}
+
+.centar-pocetna{
+    margin-top: 20px;
+    border: none;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+
+
+.naslov-stavka-pocetna{
+   height: 40px;
+   background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
+   color: white;
+   border-radius: 10px 10px 0 0;
+   padding-left: 10px;
+   padding-top: 10px;
+}
+
+.sadrzaj-pocetna{
+    padding: 10px;
+}
+.diskusije {
+    overflow: auto;
+    overflow-wrap: normal;
+}
+
+.user-img{
+    width: 400px !important;
+}
+.imeKorisnik{
+ 
+    background-color: blue;
+    background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
+    padding: 10px;
+    max-width: 350px;
+    border-radius: 0 0 10px 10px;
+    color: white;
+    
+}
+
+.noveStavkeNewsFeed{
+    border: 1px solid blue;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    position: relative;
+    background-color: white;
+}
+
+.badge-news-feed{
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.jednaStavkaNewsFeed{
+    width: 80%;
+    height: 100px;;
+    margin: 25px;
+    border-radius: 3px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+    padding: 10px;
+    background-color: #e6ecff;
+    box-shadow: 7px 7px 20px 0px rgba(20,32,163,1);
+}
+
+#parametri {
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
+
+
+#clanoviGrupe {
+    
+    position: -webkit-sticky;
+    position: sticky;
+    top: 20px;
+}
+
+#usloviKor{
+    background-color: #D3D3D3;
+    color: black;
+    border: double;
+    border-color: black;
+    border-width: 20px;
+}
+
+#oNama{
+    background-color: #D3D3D3;
+    color: black;
+    border: double;
+    border-color: black;
+    border-width: 20px;
+    font-style: italic;
+    text-shadow: -1px -1px 1px #aaa,
+             0px 4px 1px rgba(0,0,0,0.5),
+             4px 4px 5px rgba(0,0,0,0.7),
+             0px 0px 7px rgba(0,0,0,0.4);
+}
+
+.poruka {
+    overflow: auto;
+    overflow-wrap: normal;
+}
+
+.lajk {
+    
+    float: right;
+}
+
+.formaGrupe {
+    
+    
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+}
+
+/*div za dodavanje grupe na nivou pretrage*/
+
+#dodavanjeGrupeDiv{
+    display: none;
+}
+
+#obav{
+    margin-bottom: 196px;
+    
+}
+
+#ogl{
+    margin-bottom: 180px;
+}
+
+#pret{
+    margin-bottom: 65px;
+}
+
+.modal-vesti {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  padding: 20px 200px 0;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content-vesti {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50% !important;
+  height: 70vh;
+  overflow: auto;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header-vesti {
+  padding: 2px 16px;
+  background-color: #4169E1;
+  color: white;
+}
+
+.modal-body-vesti {
+    padding: 2px 16px;
+    text-align: center;
+}
+
+.modal-footer-vesti {
+  padding: 2px 16px;
+  background-color: #4169E1;
+  color: white;
+}
+
+.sadrzaj{
+    padding: 30px;
+    border: 1px solid #4169E1;
+    border-radius: 5px;
+    margin: 0 50px;
+}
+
+.autor{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+}
+
+.datum{
+   position: absolute;
+   bottom: 10px;
+   left: 10px; 
+}
+
+
+/*SREDJIVANJE VESTI*/

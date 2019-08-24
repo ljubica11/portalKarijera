@@ -28,8 +28,10 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
     }
 
     public function dohvatiObavestenje($idOba) {
+        
+        $this->db->select('obavestenja.*, kompanija.naziv as naziv');
         $this->db->from('obavestenja');
-        $this->db->select('*');
+        $this->db->join('kompanija', 'obavestenja.autor = kompanija.idKor');
         //$this->db->join('');
         //$this->db->join('');
         $this->db->where('idOba', $idOba); // kolona 'idOba' iz baze da je jednaka prosledjenom argumentu $idOba
@@ -43,12 +45,22 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $whereKurs = $this->db->get_compiled_select();
         $this->db->select('idGru')->from('clanovigrupe')->where('idKor', $idKor);
         $whereGrupe = $this->db->get_compiled_select();
+        $this->db->select('idObav')->from('vidiobavestenje')->where('idKor', $idKor);
+        $wherePretraga = $this->db->get_compiled_select();
 
         $this->db->select('obavestenja.*, kompanija.naziv, kompanija.sajt');
         $this->db->from('obavestenja');
         $this->db->join('kompanija', 'obavestenja.autor = kompanija.idKor');
-        $this->db->where('vidljivost', 'korisnici');
+        if($tipKorisnika == "gost"){
+        $this->db->where('vidljivost', 'gost');
+        }
+        if($tipKorisnika == "k"){
+            $this->db->where('vidljivost', 'gost');
+            $this->db->or_where('vidljivost', 'korisnici');
+        }
         if ($tipKorisnika == "s") {
+            $this->db->where('vidljivost', 'gost');
+            $this->db->or_where('vidljivost', 'korisnici');
             $this->db->or_where('vidljivost', 'studenti');
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'kurs');
@@ -58,13 +70,13 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
             $this->db->where('vidljivost', 'grupa');
             $this->db->where("vidljivostGrupa in ($whereGrupe)", NULL, FALSE);
             $this->db->group_end();
+            $this->db->or_group_start();
+            $this->db->where('vidljivost', 'pretraga');
+            $this->db->where("idOba in ($wherePretraga)", NULL, FALSE);
+            $this->db->group_end();
         }
-        if ($tipKorisnika == "k") {
-            $this->db->or_where('obavestenja.autor', $idKor);
-        }
-        else {
-            $this->db->having('zaBrisanje', NULL);
-        }
+
+        $this->db->order_by('idOba', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -90,7 +102,7 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
             "vidljivostGrupa" => $vidGrupa
         ];
         $this->db->insert('obavestenja', $podaci);    //u tabelu obavestenja unosimo podatke koje smo uneli po ovim kriterijumima
-        redirect('obavestenja');
+        return $idObav = $this->db->insert_id();
     }
     public function arhivirajObavestenje($idObav) {
         //$this->db->set('zaBrisanje','da');
@@ -125,6 +137,15 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->set('idObav', $idOba);
         $this->db->set('idGrupe', $idGru);
         $this->db->insert('sadrziobavestenje');
+    }
+    
+    public function dodajObavestenjeZaPretragu($idObav, $idKor){
+        $data = [
+            "idObav" => $idObav,
+            "idKor" => $idKor
+        ];
+        
+        $this->db->insert("vidiobavestenje", $data);
     }
 
 }

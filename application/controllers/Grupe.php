@@ -12,11 +12,11 @@ class Grupe extends CI_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->database();
         $this->load->model('UserModel');
         $this->load->model('GrupeModel');
         $this->load->model('SifrarniciModel');
         $this->load->model('DiskusijeModel');
+        
     }
 
     public function index() {
@@ -66,7 +66,10 @@ class Grupe extends CI_Controller {
 
         $idGru = $this->input->get('idGru');
         $idKor = $this->session->userdata('user')['idKor'];
-        $this->GrupeModel->DodajStudente($idGru, $idKor);
+        if($idKor == null){
+            redirect('Registracija/index');
+        } else {
+        $this->GrupeModel->DodajStudente($idGru, $idKor);}
         redirect('Grupe/index');
     }
 
@@ -82,12 +85,15 @@ class Grupe extends CI_Controller {
     }
 
     public function obrisiClanaGrupe() {
-
+         
         $idGru = $this->input->post('idGru');
-        $idKorNiz = $this->input->post('idKor');
-        foreach ($idKorNiz as $idKor) {
+        $idKorArr = $this->input->post('idKor');
+        foreach ($idKorArr as $idKor) {
             $this->GrupeModel->obrisiStudente($idGru, $idKor);
-        }
+
+    }
+        //$this->output->enable_profiler(TRUE);
+
         redirect('Grupe/index');
     }
 
@@ -103,20 +109,23 @@ class Grupe extends CI_Controller {
         $this->load->model('ObavModel');
 
         $tipKorisnika = $this->session->userdata('user')['tip'];
+      
 
         $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
-        $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru, $tipKorisnika);
+        $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru,$tipKorisnika);
         $oglasiGrupe = $this->OglasiModel->dohvatiOglaseGrupe($idGru);
         $vestiGrupe = $this->VestiModel->dohvatiVestiGrupe($idGru);
         $obavestenjaGrupe = $this->ObavModel->dohvatiObavestenjaGrupe($idGru);
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
         $katVesti = $this->VestiModel->dohvatiKategorijeVesti();
+        $kursevi = $this->SifrarniciModel->dohvatiKurs();
+        $grupa = $this->GrupeModel->dohvatiGrupe();
 
         $data['middle'] = 'grupe/grupa';
         $data['middle_data'] = ['clanovi' => $clanovi, 'diskusijeGrupe' => $diskusijeGrupe,
             'oglasiGrupe' => $oglasiGrupe, 'vestiGrupe' => $vestiGrupe,
             'obavestenjaGrupe' => $obavestenjaGrupe, 'kategorije' => $kategorije,
-            'katVesti' => $katVesti];
+            'katVesti' => $katVesti, 'kursevi' => $kursevi, 'grupa' => $grupa ];
         $this->load->view('viewTemplate', $data);
     }
     
@@ -127,9 +136,8 @@ class Grupe extends CI_Controller {
     public function ispisiOpcije() {
 
         $tip = $this->input->post("tip");
-        if ($tip == 'kursgrupe') {
-            $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
-        } else if ($tip == 'gradgrupe') {
+        
+         if ($tip == 'gradgrupe') {
             $data = ['grad' => $this->SifrarniciModel->dohvatiMesto()];
         } else if ($tip == 'vestinegrupe') {
             $data = ['vestine' => $this->SifrarniciModel->dohvatiVestine()];
@@ -139,8 +147,11 @@ class Grupe extends CI_Controller {
             $data = ['interesovanja' => $this->SifrarniciModel->dohvatiInteresovanja()];
         } else if ($tip == 'statusgrupe'){
             $data = ['status' => $this->GrupeModel->status()];
+        } else if ($tip == 'grupag'){
+            $data = ['grupa' => $this->GrupeModel->dohvatiGrupe()];
+        } else if ($tip == 'kursgrupe' OR $tip == 'kursg') {
+            $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
         }
-
 
         $this->load->view('grupe/opcije', $data);
     }
@@ -155,8 +166,10 @@ class Grupe extends CI_Controller {
         
         $naziv = $this->input->post('nazivGrupe');
         $opis = $this->input->post('opisGrupe');
+        $zaBrisanje = null;
+       
       
-        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis); 
+        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis, $zaBrisanje); 
         
         $idKurs = $this->input->post("kurs");
         $idGra = $this->input->post("grad");
@@ -171,7 +184,17 @@ class Grupe extends CI_Controller {
                     $idKor = $su['idKor'];
                     $this->GrupeModel->DodajStudente($idGru, $idKor);
         }
-       redirect('Grupe/index');
+        $this->output->enable_profiler(TRUE);
+     //  redirect('Grupe/index');
         
     }
+    
+     public function traziBrisanje(){
+            
+        $idGru = $this->input->post('idGru');    
+        $this->GrupeModel->zaBrisanje($idGru);
+       
+        
+}
+
 }

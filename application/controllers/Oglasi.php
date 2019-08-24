@@ -18,6 +18,7 @@ class Oglasi extends MY_Controller{
             $tipKorisnika = "gost";
 
         }
+//        $tipKorisnika=[];
         $oglasi = ["oglasi" => $this->OglasiModel->dohvatiSveOglase($tipKorisnika)];
         $gradovi = ["mesta" => $this->SifrarniciModel->dohvatiMesto()];        
         $data["middle_data"] = ["pretraga" => $this->load->view('oglasi/pretragaOglasa', $gradovi, true),
@@ -79,8 +80,10 @@ class Oglasi extends MY_Controller{
         $idOgl = $this->OglasiModel->dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
         if($vidljivost == "pretraga"){
             $this->dodajOglasZaPretragu($idOgl);
+        }else if($vidljivost == "grupa"){
+            $this->OglasiModel->dodajOglasZaGrupu($idOgl, $vidljivostGrupa);
         }
-        $this->pogledajOglas($idOgl);
+        redirect("Oglasi/pogledajOglas/$idOgl");
     }
     }else{
     
@@ -105,8 +108,11 @@ class Oglasi extends MY_Controller{
         $idOgl = $this->OglasiModel->dodajNoviOglas($idKor, $naslov, $grad, $vremeIst, $opis, $plata, $placanje, $obaveze, $uslovi, $ponuda, $pozicija, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
         if($vidljivost == "pretraga"){
             $this->dodajOglasZaPretragu($idOgl);
+        }else if($vidljivost == "grupa"){
+             $this->OglasiModel->dodajOglasZaGrupu($idOgl, $vidljivostGrupa);
         }
-        $this->pogledajOglas($idOgl);
+        redirect("Oglasi/pogledajOglas/$idOgl");
+
     }
     }
     
@@ -136,6 +142,9 @@ class Oglasi extends MY_Controller{
             $oglasi = ["oglasi" => $this->OglasiModel->pretragaOglasa($rec, $grad, $tip)];
             $this->load->view('oglasi/prikazOglasa', $oglasi);
         }
+            
+//            $res = $this->OglasiModel->pretragaOglasa($rec, $grad, $tip);
+//            var_dump($res);
     }
 
     
@@ -146,7 +155,7 @@ class Oglasi extends MY_Controller{
     public function traziBrisanje($idOgl){
         $this->OglasiModel->traziBrisanje($idOgl);
         $this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje oglasa administratoru. Vas oglas ce uskoro biti obrisan sa sajta.');
-        redirect("User");
+        redirect("Oglasi");
     }
     
     public function dohvatiOpcije(){

@@ -1,7 +1,7 @@
 
 
-<div id='wrapper'></div>
 <?php
+
 foreach ($postovi as $p) {
     
    $idPos = $p['idPos'];

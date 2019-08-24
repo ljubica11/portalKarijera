@@ -4,21 +4,51 @@
            $idGru = $g['idGru'];
            $ulogovani = $this->session->userdata('user')['idKor'];
            $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
+           $zaBrisanje = $g['zaBrisanje'];
          
            
            ?>
            
 <div class="centar" >    
     <h5><a href="<?php echo site_url("Grupe/grupa/$idGru")?>"><?php echo $g["naziv"]?></a></h5>
-    <b>ID Grupe:</b> <?php echo $idGru;?>
-    <br/>
+    
+    
     <b>Naziv:</b> <?php echo $g["naziv"];?>
     <br/>
     <b>Opis:</b> <?php echo $g['opis'];?>
     <br/>
+    <b>Kreirana:</b> <?php echo $g['datum'];?>
+    <br/>
     <b>Broj clanova:</b><?php
     $brojClanova = $this->db->where('idGru', $idGru)->count_all_results('clanovigrupe'); 
             echo ' '.$brojClanova; ?>
+    
+    
+    <div class="form-inline mt-2"> 
+        
+        <div class="form-group col-md-7">
+    <form name='ispisClanova' method="POST" action="<?php echo site_url('Grupe/ispisiClanove')?>">
+        <?php echo 
+        "<input type='hidden' name='idGru' id='idGru' value='$idGru'>".        
+        "<input type='button'  onclick='ispis($idGru)' class='btn btn-outline-primary btn-sm mr-2' value='prikazi clanove'>";
+       
+                ?>
+    </form>
+       
+    <form name='brisanje' action="">
+        
+        <?php 
+        if($zaBrisanje != 'da'){
+        echo 
+        "<input type='hidden' name='idGru' id='idGru' value='$idGru'>".        
+        "<input type='button'  onclick='traziBrisanje($idGru); window.location.reload();' class='btn btn-outline-primary btn-sm' value='zahevaj brisanje'>";
+        } else if ($zaBrisanje == 'da') {
+                                echo $msg = '<b>' . 'poslat zahtev za brisanje' . '</b>';
+        }
+                ?>
+    </form>
+        </div>
+        <div class="form-group col-md-3 offset-2">
     <form name='uclaniLogovanog' method='GET' action="<?php echo site_url('Grupe/uclaniLogovanog')?>">
 
         <?php 
@@ -56,14 +86,9 @@
         ?>
 
     </form>
- 
-    <form name='ispisClanova' method="POST" action="<?php echo site_url('Grupe/ispisiClanove')?>">
-        <?php echo 
-        "<input type='hidden' name='idGru' id='idGru' value='$idGru'>".        
-        "<input type='button'  onclick='ispis($idGru)' class='btn btn-outline-primary btn-sm' value='prikazi clanove'>";
-       
-                ?>
-    </form>
+        </div>
+    
+    </div>
 </div>
 
 <?php } ?>
