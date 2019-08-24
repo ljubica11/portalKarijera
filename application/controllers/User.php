@@ -68,7 +68,8 @@ class User extends CI_Controller{
             $data["middle"] = "middle/pocetna";
             $this->load->view('viewTemplate', $data);
             
-        }else if($tip == 'a'){  
+        }else if($tip == 'a'){
+            
             $data["middle"] = "middle/adminPocetna";
             $this->load->view('viewTemplate', $data);
         }

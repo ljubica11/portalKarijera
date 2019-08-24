@@ -140,5 +140,13 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         
         $this->db->insert("vidiobavestenje", $data);
     }
+    
+        public function arhivirajObavestenje($idObav) {
+        //$this->db->set('zaBrisanje','da');
+        $data = ['zaBrisanje' => 'da',
+                'vidljivost' => 'autor'];
+        $this->db->where('idOba',$idObav);
+        $this->db->update('obavestenja', $data);
+    }
 
 }
