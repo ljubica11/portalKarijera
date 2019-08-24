@@ -66,6 +66,10 @@ if ($tipKorisnika != 'gost') {
                     $zaBrisanje = $s['zaBrisanje'];
                     $id = $s['idDis'];
                     $brojPostova = $this->DiskusijeModel->brojPostova($id);
+                    $poslednjiId = $this->DiskusijeModel->poslednjiId($id);
+                    foreach ($poslednjiId as $last){
+                        $lastOne = $last['poslatoDatum'];
+                    }
                       
                     ?>
 
@@ -77,6 +81,7 @@ if ($tipKorisnika != 'gost') {
                             <b>Autor: </b><?php echo $autor ?><br/>
                             <b>Datum pokretanja: </b><?php echo $s['datum'] ?><br/> 
                             <b>Broj postova: </b> <?php echo $brojPostova?><br>
+                            <b>Poslednji post: </b><?php if($brojPostova !=0){echo $lastOne;}?><br>
                             <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
                             <?php if ($vidljivost != 'autor' && $tipKorisnika != 'gost') {
                                 echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>";

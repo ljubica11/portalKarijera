@@ -284,6 +284,20 @@ class DiskusijeModel extends CI_Model {
                 ->where('postdiskusija.diskusija', $idDis);
         return $this->db->count_all_results();
     }
+    
+     public function poslednjiId($idDis) {
+
+        $this->db->select('postdiskusija.idPos, poslatoDatum')
+                ->from('postdiskusija')
+                ->join('diskusija', 'diskusija.idDis = postdiskusija.diskusija')
+                ->where('postdiskusija.diskusija', $idDis)
+                ->order_by('postdiskusija.idPos', 'DESC')
+                ->limit(1);
+        $query= $this->db->get();
+        return $query->result_array();
+                
+       
+    }
 
     /**
      * metoda za dodavanje posta korisnika u diskusiju

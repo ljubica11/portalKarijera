@@ -77,18 +77,6 @@ class Diskusije extends CI_Controller {
                   '<span><div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'].'</span></div></div>';
 }
     }
-    public function brojPostova($idDis){
-        
-     
-        $brojPostova = $this->DiskusijeModel->brojPostova($idDis);
-        return $brojPostova;
-    }
-
-    
-
-
-
-
 
     public function dodajDiskusiju(){
         
