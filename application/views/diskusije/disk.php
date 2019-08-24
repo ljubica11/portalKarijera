@@ -5,18 +5,22 @@ if ($this->session->has_userdata('user')) {
 } else {
     $tipKorisnika = "gost";
 }
+      
+       
+
 ?>
 
 <?php
  // var_dump($diskusije);
 if (isset($diskusije)) {
-
+    
     foreach ($diskusije as $d) {
-
+    
         $autor = $d['korisnik'];
         $vidljivost = $d['vidljivost'];
         $zaBrisanje = $d['zaBrisanje'];
-
+        $id = $d['idDis'];
+        $brojPostova = $this->DiskusijeModel->brojPostova($id);
         ?>
 
         <div class="centar">
@@ -25,7 +29,9 @@ if (isset($diskusije)) {
         <b>Opis: </b><?php echo $d['opis'] ?><br/>
         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
-        <?php $id = $d['idDis'] ?>
+        <b>Broj postova: </b><?php echo $brojPostova?></br>
+        
+        
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
         <?php if ($d['vidljivost'] != 'autor' && $tipKorisnika != 'gost') {
             echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>";
