@@ -92,5 +92,11 @@ class Obavestenja extends CI_Controller {
             }
         
     }
+    
+    public function arhivirajObavestenje($idObav) {
+        $this->ObavModel->arhivirajObavestenje($idObav);
+        $this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje obavestenja administratoru. Vase obavestenje ce uskoro biti obrisano sa sajta.');
+        redirect("User");
+    }
 
 }
