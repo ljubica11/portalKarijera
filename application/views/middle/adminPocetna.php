@@ -177,31 +177,16 @@
     };
     
     
+    setInterval(dohvatiBroj, 10000);
+    
+    
     function dohvatiBroj(){
         var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
         for(i = 0; i < nazivi.length; i++){
         sendGet(nazivi[i], "<?php echo site_url('Admin/brojZahteva');?>/"+nazivi[i], null);
         }
     }
-     
-
-//      var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
-//        for(i = 0; i < nazivi.length; i++){  
-//        sendGet(nazivi[i], "<?php //echo site_url('Admin/brojZahteva');?>/"+nazivi[i], null);
-//        }
-//    };
     
-
-    
-
-
-	
-    var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
-    for(i = 0; i < nazivi.length; i++){
-        setInterval (sendGet, 10000, nazivi[i], "<?php echo site_url('Admin/brojZahteva');?>/"+nazivi[i],
-	function ( ) { console.log(this.responseText); }
-);	
-    }
  
 var span = document.getElementsByClassName("close")[0];
 
@@ -216,14 +201,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 };
-
-
-//    window.onload = function(){
-//        sendGet("broj", "<?php// echo site_url('Admin/dohvatiBroj'); ?>", brojInterval());
-//
-//    };
-    
-  
 
 
    
