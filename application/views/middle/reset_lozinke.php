@@ -9,9 +9,9 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center ">
 		
-            <div class="col-sm-5">
+            <div class="col-sm-5" style="height: 75vh; width: 100%">
                 <?php
                     if($forma){
                         echo form_open("Reset_lozinke/send");

@@ -152,7 +152,7 @@ max-width: 100%;
     margin-bottom: 0px;
     background-color: #696969;
     max-width: 100%;
-    height: 100px;
+    height: 150px;
     color: lightcyan;
     font-style: italic;
     border-style: dashed;
@@ -507,16 +507,176 @@ button, input {
 }
 
 #obav{
-    margin-bottom: 224px;
+    height: 400vh;
     
 }
 
 #ogl{
-    margin-bottom: 204px;
+    height: 400vh;
 }
 
 #ves{
-    margin-bottom: 27px;
+    height: 400vh;
+}
+
+#list-0-list {
+    box-sizing: border-box;
+    width: 11em;
+    height: 3em;
+    font-size: 20px;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    box-shadow: 0 0 1em rgba(0,0,0,0.2);
+    color: white;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    line-height: 2em;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#list-0-list:nth-child(odd) {
+    background: linear-gradient(to right, blue, tomato);
+    text-align: left;
+    padding-left: 10%;
+    transform: perspective(500px) rotateY(45deg);
+}
+
+#list-0-list:nth-child(even) {
+    background: linear-gradient(to left, blue, tomato);
+    text-align: right;
+    padding-right: 10%;
+    transform: perspective(500px) rotateY(-45deg);
+}
+
+#list-0-list:nth-child(odd):hover {
+    transform: perspective(200px) rotateY(45deg);
+    padding-left: 5%;
+}
+
+#list-0-list:nth-child(even):hover {
+    transform: perspective(200px) rotateY(-45deg);
+    padding-right: 5%;
+}
+
+#list-1-list {
+    box-sizing: border-box;
+    width: 11em;
+    height: 3em;
+    font-size: 20px;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    box-shadow: 0 0 1em rgba(0,0,0,0.2);
+    color: white;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    line-height: 2em;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#list-1-list:nth-child(odd) {
+    background: linear-gradient(to right, blue, tomato);
+    text-align: left;
+    padding-left: 10%;
+    transform: perspective(500px) rotateY(45deg);
+}
+
+#list-1-list:nth-child(even) {
+    background: linear-gradient(to left, blue, tomato);
+    text-align: right;
+    padding-right: 10%;
+    transform: perspective(500px) rotateY(-45deg);
+}
+
+#list-1-list:nth-child(odd):hover {
+    transform: perspective(200px) rotateY(45deg);
+    padding-left: 5%;
+}
+
+#list-1-list:nth-child(even):hover {
+    transform: perspective(200px) rotateY(-45deg);
+    padding-right: 5%;
+}
+
+#list-2-list {
+    box-sizing: border-box;
+    width: 11em;
+    height: 3em;
+    font-size: 20px;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    box-shadow: 0 0 1em rgba(0,0,0,0.2);
+    color: white;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    line-height: 2em;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#list-2-list:nth-child(odd) {
+    background: linear-gradient(to right, blue, tomato);
+    text-align: left;
+    padding-left: 10%;
+    transform: perspective(500px) rotateY(45deg);
+}
+
+#list-2-list:nth-child(even) {
+    background: linear-gradient(to left, blue, tomato);
+    text-align: right;
+    padding-right: 10%;
+    transform: perspective(500px) rotateY(-45deg);
+}
+
+#list-2-list:nth-child(odd):hover {
+    transform: perspective(200px) rotateY(45deg);
+    padding-left: 5%;
+}
+
+#list-2-list:nth-child(even):hover {
+    transform: perspective(200px) rotateY(-45deg);
+    padding-right: 5%;
+}
+
+#list-3-list {
+    box-sizing: border-box;
+    width: 11em;
+    height: 3em;
+    font-size: 20px;
+    border-radius: 0.5em;
+    margin: 0.5em;
+    box-shadow: 0 0 1em rgba(0,0,0,0.2);
+    color: white;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    line-height: 2em;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#list-3-list:nth-child(odd) {
+    background: linear-gradient(to right, blue, tomato);
+    text-align: left;
+    padding-left: 10%;
+    transform: perspective(500px) rotateY(45deg);
+}
+
+#list-3-list:nth-child(even) {
+    background: linear-gradient(to left, blue, tomato);
+    text-align: right;
+    padding-right: 10%;
+    transform: perspective(500px) rotateY(-45deg);
+}
+
+#list-3-list:nth-child(odd):hover {
+    transform: perspective(200px) rotateY(45deg);
+    padding-left: 5%;
+}
+
+#list-3-list:nth-child(even):hover {
+    transform: perspective(200px) rotateY(-45deg);
+    padding-right: 5%;
 }
 
 
@@ -528,3 +688,4 @@ button, input {
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
 }
+

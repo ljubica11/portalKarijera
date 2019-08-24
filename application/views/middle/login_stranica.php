@@ -68,7 +68,7 @@
             </div>
         <div class="container" id="container4">
             <div class="row">
-                <div class="offset-sm-12" style="height: 60px"></div>
+                <div class="offset-sm-12" style="height: 40px"></div>
             </div>
             <div class="row">
                 <div class="offset-sm-2 col-sm-8">
@@ -104,10 +104,10 @@
         } ?>
         <script>
              
-            var title = ['<p>Najnovija vest:<br><br>  <?php foreach ($vest as $v){ echo ($v['tekst']); } ?></p>', 
-                '<p>Najnovije obavestenje:<br><br>  <?php foreach ($obavestenje as $ob){ echo ($ob['tekst']); } ?></p>',
-                '<p>Najnoviji oglas:<br><br>  <?php foreach ($oglas as $og){ echo ($og['opis']); } ?></p>',
-                '<p>Najnovija diskusija:<br><br>  <?php foreach ($diskusija as $d){ echo ($d['opis']); } ?></p>'];
+            var title = ['<p><u><b>Najnovija vest:</b></u><br>  <?php foreach ($vest as $v){ echo ($v['tekst']); } ?></p>', 
+                '<p><u><b>Najnovije obavestenje:</b></u><br>  <?php foreach ($obavestenje as $ob){ echo ($ob['tekst']); } ?></p>',
+                '<p><u><b>Najnoviji oglas:</b></u><br> <?php foreach ($oglas as $og){ echo ($og['opis']); } ?></p>',
+                '<p><u><b>Najnovija diskusija:</b></u><br> <?php foreach ($diskusija as $d){ echo ($d['opis']); } ?></p>'];
             var index = 0;
 
             function change_title() {
