@@ -6,6 +6,20 @@
 
             </div>
             <div class="col-5" id="centarPocetna">
+                  <?php  
+            if($this->session->flashdata('brisanjeObav')){ ?>
+            
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <?php echo $this->session->flashdata('brisanjeObav');?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            
+            
+            <?php
+            } ?>
+                
        <?php echo $dodatniPodaci; ?>       
   
             </div> 
@@ -17,6 +31,7 @@
             </div>
         </div> 
 </div>
+  
     
     <script>
         setInterval(newsFeed, 100000);  //funkcija se izvrsana na svakih 100 sekundi
