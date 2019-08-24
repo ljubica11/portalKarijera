@@ -91,8 +91,8 @@ class Grupe extends CI_Controller {
         foreach ($idKorNiz as $idKor) {
             $this->GrupeModel->obrisiStudente($idGru, $idKor);
         }
-        //$this->output->enable_profiler(TRUE);
-        redirect('Grupe/index');
+        $this->output->enable_profiler(TRUE);
+        //redirect('Grupe/index');
     }
 
     /**
@@ -182,8 +182,8 @@ class Grupe extends CI_Controller {
                     $idKor = $su['idKor'];
                     $this->GrupeModel->DodajStudente($idGru, $idKor);
         }
-        $this->output->enable_profiler(TRUE);
-     //  redirect('Grupe/index');
+        $this->output->enable_profiler(false);
+       redirect('Grupe/index');
         
     }
     

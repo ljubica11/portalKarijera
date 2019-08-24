@@ -57,14 +57,20 @@
                     echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UCLANI SE">';
                } else {
            if(isset($clanovi)){
-          
-           $idClana = $clanovi[0]['idKor'];
-                if($ulogovani != $idClana){
-                    echo " <input type='hidden' name='idGru' value='$idGru'>";
-                    echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UCLANI SE">';
-                }
-           } 
+        
+            $i = 0;
+            foreach ($clanovi as $c){
+                $idClana = $c['idKor'];
+             
                
+                if($ulogovani != $idClana){
+                  //var_dump($idClana);
+                  echo " <input type='hidden' name='idGru' value='$idGru'>";
+                  echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UCLANI SE">';
+              
+             } if(++$i > 0) break;
+           } 
+      }        
            
         ?>
 
@@ -76,7 +82,7 @@
             
             foreach ($clanovi as $c){
                 $idClana = $c['idKor'];
-            
+             
                 if($ulogovani === $idClana){
                     echo " <input type='hidden' name='idGru' value='$idGru'>";
                     echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="NAPUSTI GRUPU">';
