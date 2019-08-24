@@ -13,7 +13,9 @@
             
              <?php            
             foreach ($obavestenja as $obavestenje) { 
+               // var_dump($obavestenja);
                 $idOba = $obavestenje['idOba']; ?>
+            
             <div class="centar">
                 <b>Naslov:<a href="#" onclick="obavAjax(<?php echo $idOba ?>)"> <?php echo $obavestenje['naslov']; ?></a></b><br>
                 <b>Autor:</b> <?php echo $obavestenje['naziv']; ?><br>
@@ -21,10 +23,11 @@
                  <b>Datum: </b><?php echo substr($obavestenje['datum'], 0, 10); ?><br>
                 
                 
-                
+                 <input type="submit" value="Pošalji mejlom" onclick="mejl(<?php echo $idOba ?>)" class="btn btn-outline-primary float-right">'
             <?php
 //                echo "<b><a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a></b><br/>";
 //                echo "<div style='text-align:right'>" . substr($obavestenje['datum'], 0, 10) . "</div>";
+                
             ?>
               
              </div>   
@@ -63,7 +66,7 @@
                 $id = $this->session->userdata('obavestenja')['idOba'];
 
                 ?>
-                <form name="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
+                <form name="obavForma" id="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
                    <b>Autor:</b> <?php echo $this->session->userdata('user')['korisnicko'] ?>
                    <br/><br/>
                    <input type="text" name="naslov" placeholder="Naslov obavestenja" class="form-control" required>
@@ -119,8 +122,8 @@
                       
                                 <br>
                                 <input type="submit" value="Oglasi" class="btn btn-outline-primary">
-                            
-                </form>
+                                         
+                </form>             
             </div>
             <?php } ?>
         </div>
@@ -186,6 +189,19 @@
         modal.style.display = "none";
       }
 };
+       
+         function mejl(id) {
+       
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+
+        }
+        xmlhttp.open('GET', "<?php echo site_url('Obavestenja/saljiMejl') ?>?idOba=" + id, true);
+        xmlhttp.send();
+
+
+    }
+
 
 </script>
 

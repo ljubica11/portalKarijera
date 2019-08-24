@@ -1,5 +1,5 @@
 <?php
-
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Description of StatistikaModel
  *
@@ -74,7 +74,8 @@ class StatistikaModel extends CI_Model {
         
         $this->db->select('email','korisnicko')
                 ->from('korisnik')
-                ->where('tip', 'k');       
+                ->where('tip', 'k')
+                ->where('vidljivostEmail');
         $query = $this->db->get();
         return $query->result_array();
         
