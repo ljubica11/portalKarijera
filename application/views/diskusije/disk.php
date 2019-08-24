@@ -21,6 +21,10 @@ if (isset($diskusije)) {
         $zaBrisanje = $d['zaBrisanje'];
         $id = $d['idDis'];
         $brojPostova = $this->DiskusijeModel->brojPostova($id);
+        $poslednjiId = $this->DiskusijeModel->poslednjiId($id);
+                    foreach ($poslednjiId as $last){
+                        $lastOne = $last['poslatoDatum'];
+                    }
         ?>
 
         <div class="centar">
@@ -30,6 +34,7 @@ if (isset($diskusije)) {
         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
         <b>Broj postova: </b><?php echo $brojPostova?></br>
+        <b>Poslednji post: </b><?php if($brojPostova !=0){echo $lastOne;}?><br>
         
         
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
