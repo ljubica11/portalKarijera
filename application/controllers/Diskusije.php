@@ -24,7 +24,7 @@ class Diskusije extends CI_Controller {
         $kategorije = $this->DiskusijeModel->dohvatiKategorije();
         $diskusije = ['diskusije' => $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika)];
         $sveDiskusije = ['sveDiskusije' => $this->DiskusijeModel->dohvatiSveDiskusije($tipKorisnika)];
-        $data['middle_data'] = ['kategorije' => $kategorije, 
+        $data['middle_data'] = ['kategorije' => $kategorije,
                                $this->load->view("diskusije/disk", $diskusije, true),
                                $this->load->view("diskusije/disk", $sveDiskusije, true)];
         $data['middle'] = 'middle/diskusije';
@@ -34,7 +34,7 @@ class Diskusije extends CI_Controller {
     
    public function ispisiDiskusije(){
     
-     $idKat = $this->input->get('id');
+     $idKat = $this->input->get('id');   
      $tipKorisnika = $this->session->userdata('user')['tip'];
      $diskusije = $this->DiskusijeModel->dohvatiDiskusije($idKat, $tipKorisnika);
      $this->load->view("diskusije/disk", ["diskusije" => $diskusije]);
@@ -77,10 +77,19 @@ class Diskusije extends CI_Controller {
                   '<span><div id="brLajkova'.$idPos.'">'.'<i class="far fa-thumbs-up"></i>' .$p['brLajkova'].'</span></div></div>';
 }
     }
-       
-             
+    public function brojPostova($idDis){
+        
+     
+        $brojPostova = $this->DiskusijeModel->brojPostova($idDis);
+        return $brojPostova;
+    }
+
     
-    
+
+
+
+
+
     public function dodajDiskusiju(){
         
         $kategorija = $this->input->post('kategorija');

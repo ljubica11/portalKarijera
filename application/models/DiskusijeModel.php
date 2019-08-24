@@ -45,7 +45,7 @@ class DiskusijeModel extends CI_Model {
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->where('vidljivost', 'gost');
 
-       
+
         if ($tipKorisnika == 'k') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'korisnici');
@@ -81,14 +81,11 @@ class DiskusijeModel extends CI_Model {
                     ->where('vidljivost', 'autor')
                     ->where('autor', $idKor)
                     ->group_end();
-            
-        
-           
         }
-   
-$this->db->order_by('diskusija.idDis', 'DESC');
+
+        $this->db->order_by('diskusija.idDis', 'DESC');
         $query = $this->db->get();
-         return $query->result_array();
+        return $query->result_array();
     }
 
     /**
@@ -113,9 +110,9 @@ $this->db->order_by('diskusija.idDis', 'DESC');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sifkategorijadiskusija', 'sifkategorijadiskusija.idKatDis = diskusija.kategorija');
         $this->db->where('vidljivost', 'gost');
-        
-           
-          
+
+
+
         if ($tipKorisnika == 'k') {
             $this->db->group_start();
             $this->db->where('vidljivost', 'korisnici');
@@ -159,7 +156,7 @@ $this->db->order_by('diskusija.idDis', 'DESC');
                     ->where('sifkategorijadiskusija.idKatDis', $idKat)
                     ->where('autor', $idKor)
                     ->group_end();
-           }
+        }
         $this->db->order_by('diskusija.idDis', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
@@ -185,10 +182,10 @@ $this->db->order_by('diskusija.idDis', 'DESC');
     public function dohvatiDiskusijeGrupe($idGru, $tipKorisnika) {
 
         $idKor = $this->session->userdata('user')['idKor'];
-        
+
         $this->db->select('idKurs')->from('student')->where('idKor', $idKor);
         $whereKurs = $this->db->get_compiled_select();
-        
+
         $this->db->select('idGru')->from('clanovigrupe')->where('idKor', $idKor);
         $whereGrupa = $this->db->get_compiled_select();
 
@@ -196,13 +193,13 @@ $this->db->order_by('diskusija.idDis', 'DESC');
         $this->db->from('diskusija');
         $this->db->join('korisnik', 'korisnik.idKor = diskusija.autor');
         $this->db->join('sadrzidiskusije', 'sadrzidiskusije.idDisk = diskusija.idDis');
-        $this->db->join('grupe', 'grupe.idGru = sadrzidiskusije.idGrupe' );
-         $this->db->where('grupe.idGru', $idGru);
-      
-        
+        $this->db->join('grupe', 'grupe.idGru = sadrzidiskusije.idGrupe');
+        $this->db->where('grupe.idGru', $idGru);
+
+
 
         if ($tipKorisnika == 's') {
-           
+
             $this->db->group_start();
             $this->db->where('vidljivost', 'gost');
             $this->db->where('grupe.idGru', $idGru);
@@ -229,9 +226,9 @@ $this->db->order_by('diskusija.idDis', 'DESC');
                     ->where('vidljivost', 'autor')
                     ->where('grupe.idGru', $idGru)
                     ->where('autor', $idKor)
-                    ->group_end();   
+                    ->group_end();
         }
-        
+
         $this->db->order_by('diskusija.idDis', 'DESC');
         $query = $this->db->get();
         return $query->result_array();
@@ -279,6 +276,15 @@ $this->db->order_by('diskusija.idDis', 'DESC');
         return $query->result_array();
     }
 
+    public function brojPostova($idDis) {
+
+        $this->db->select('postdiskusija.*')
+                ->from('postdiskusija')
+                ->join('diskusija', 'diskusija.idDis = postdiskusija.diskusija')
+                ->where('postdiskusija.diskusija', $idDis);
+        return $this->db->count_all_results();
+    }
+
     /**
      * metoda za dodavanje posta korisnika u diskusiju
      * @param type $idKor
@@ -314,7 +320,6 @@ $this->db->order_by('diskusija.idDis', 'DESC');
         $this->db->set('vidljivostGrupa', $vidljivostGrupa);
         $this->db->set('zaBrisanje', $zaBrisanje);
         $this->db->insert('diskusija');
-     
     }
 
     /**
@@ -326,7 +331,6 @@ $this->db->order_by('diskusija.idDis', 'DESC');
         $this->db->set('idDisk', $idDis);
         $this->db->set('idGrupe', $idGru);
         $this->db->insert('sadrzidiskusije');
-        
     }
 
     /**
