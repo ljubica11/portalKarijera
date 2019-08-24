@@ -728,3 +728,19 @@
 
 
 /*SREDJIVANJE VESTI*/
+
+.kat-vesti:hover{
+    background-color: whitesmoke;
+    cursor: pointer; 
+}
+
+.kat-vesti-naslov{
+    margin-top: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: whitesmoke;
+    border: 1px solid lightgray;
+}
+
+
+/*SREDJIVANJE OBAVESTENJA*/

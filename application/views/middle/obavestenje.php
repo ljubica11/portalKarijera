@@ -3,14 +3,28 @@
 <div class="container-fluid" id="obav">
     <div class="row">
         <div id="obav" class="col-3" >
-            <h3 class="font-italic"> Obaveštenja: </h3>       
-            <?php            
+             <img src="<?php echo base_url();?>/images/mail.png" class="img-fluid">
+
+        </div>
+        <div class="col-5 <?php if(!$this->session->has_userdata('user') or $this->session->userdata('user')['tip'] =="s" ) echo 'offset-1'?>">
+            <div id="obavDiv"> 
+
+            </div>
+            
+             <?php            
             foreach ($obavestenja as $obavestenje) { 
                 $idOba = $obavestenje['idOba']; ?>
             <div class="centar">
+                <b>Naslov:<a href="#" onclick="obavAjax(<?php echo $idOba ?>)"> <?php echo $obavestenje['naslov']; ?></a></b><br>
+                <b>Autor:</b> <?php echo $obavestenje['naziv']; ?><br>
+                <b>Tekst:</b> <?php echo $obavestenje['tekst']; ?><br>
+                 <b>Datum: </b><?php echo substr($obavestenje['datum'], 0, 10); ?><br>
+                
+                
+                
             <?php
-                echo "<b><a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a></b><br/>";
-                echo "<div style='text-align:right'>" . substr($obavestenje['datum'], 0, 10) . "</div>";
+//                echo "<b><a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a></b><br/>";
+//                echo "<div style='text-align:right'>" . substr($obavestenje['datum'], 0, 10) . "</div>";
             ?>
               
              </div>   
@@ -18,68 +32,6 @@
             ?>
             
             
-                
-            <!--<?php            
-            foreach ($obavestenja as $obavestenje) { 
-                $idOba = $obavestenje['idOba']; ?>
-             <div class="centar">
-            <?php
-                echo "<a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a><br/>";
-            ?>
-            </div>
-            <?php }
-            ?>-->
-            
-            <!-- <div class="centar" >
-                <h4 class="modal-title"><?php echo $obavestenje['naslov'] ?></h4>
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#z<?php echo $obavestenje['idOba'] ?>">Detaljnije</button>
-                
-                 <div class="modal fade" id="z<?php echo $obavestenje['idOba'] ?>" role="dialog">
-                     <div class="modal-dialog">
-                         
-            <!-- Modal content-->
-            <!-- <div class="modal-content">
-                 <div class="modal-header">
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                     <h4 class="modal-title"><?php echo $obavestenje['naslov'] ?></h4> 
-                 </div>
-                 
-                 <div class="modal-body">
-                     <p><?php echo $obavestenje['tekst'] ?></p>
-                 </div>
-                 
-                 <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                 </div>
-             </div>
-            
-         </div>
-     </div>
-       
- </div> -->
-            <!-- <?php ?> -->
-
-            <!--<b  class="p-0 bg-info">Obavestenja: </b>
-            <br>
-            <?php foreach ($obavestenja as $obavestenje) { ?>
-                     <div class="card">
-                         <div class="card-header">
-                             <a class="collapsed card-link" data-toggle="collapse" data-parent="#obav" href="#<?php echo $obavestenje['idOba'] ?>">
-                <?php echo $obavestenje['naslov'] ?>
-                             </a>
-                         </div>
-                         <div id="<?php echo $obavestenje['idOba'] ?>" class="collapse show">
-                             <div class="card-body">
-                <?php echo $obavestenje['tekst'] ?>
-                             </div>
-                         </div>
-                     </div>
-            <?php } ?>-->
-        </div>
-        <div class="col-6">
-            <div id="obavDiv"> 
-
-            </div>
 
             <div id="myModal" class="modal modal-vesti">
                 <div class="modal-content modal-content-vesti">
@@ -103,54 +55,42 @@
             
             
         </div>
-        <div class="col-3">
+        <div class="<?php if(!$this->session->has_userdata('user') or $this->session->userdata('user')['tip'] =="s" ) echo 'col-3'; else echo 'col-4';?>">
             <?php if($this->session->userdata('user')['tip'] == "k" or $this->session->userdata('user')['tip'] == "a"){?>
-            <div class="centar" >DODAJ OBAVESTENJE:</div>
+            <div class="kat-vesti-naslov centar"><h5>Dodaj obavestenje</h5></div>
             <div class="centar" id="obav_Forma">
                 <?php
                 $id = $this->session->userdata('obavestenja')['idOba'];
-                //$data["middle_data"] = ["obavestenja" => $this->ObavModel->dohvatiSvaObavestenja()];
+
                 ?>
                 <form name="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
-                    <table>
-                        <tr>
-                            <td><b>Naslov:</b></td>
-                            <td><input type="text" name="naslov" value="" placeholder="Naslov obavestenja" required=""></td>
-                        </tr>
-                        <tr>
-                            <td><b>Tekst:</b></td>
-                            <td><textarea name="obavest" value="" placeholder="Unesi obavestenje" required=""></textarea></td>
-                        </tr>
-                        <tr>
-                            <td><b>Autor:</b></td>
-                            <td><?php echo $this->session->userdata('user')['korisnicko'] ?></td>
-                        </tr>
+                   <b>Autor:</b> <?php echo $this->session->userdata('user')['korisnicko'] ?>
+                   <br/><br/>
+                   <input type="text" name="naslov" placeholder="Naslov obavestenja" class="form-control" required>
+                   <br/>
+                   <textarea name="obavest" placeholder="Unesi obavestenje" required class="form-control"></textarea>
+                   <br/>
+                   
+                       
                             <?php if($this->input->get('obavPret') == 1){ ?>
-                        <tr>
-                             <td><b>Vidljivost: </b></td>
-                             <td> &nbsp; <input type="checkbox" name="vidljivost" value="pretraga" checked>Rezultat vase pretrage</td>
+                      
+                            <b>Vidljivost: </b>
+                              &nbsp; <input type="checkbox" name="vidljivost" value="pretraga" checked>Rezultat vase pretrage
                             
-                        </tr>
+                     
                         
                             <?php } else {?>
-                        <tr>
-                            <td><b>Vidljivost: </b></td>
-                            <td>
-                                <select id="idVid" name="vidljivost" onchange="omoguci()">
+
+                              <select id="idVid" name="vidljivost" onchange="omoguci()" class="form-control" required>
+                                  <option value="" selected disabled>Odaberite nivo vidljivosti</option>
                                     <option value="gost">Svi i gosti</option>
                                     <option value="korisnici">Svi korisnici</option>
                                     <option value="studenti">Svi studenti</option>
                                     <option value="kurs">Studenti odredjenog kursa</option>
                                     <option value="grupa">Formirana grupa studenata</option>
                                 </select> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <select id="idKur" name="kurs" disabled="">
+                            <br/>
+                                <select id="idKur" name="kurs" disabled="" class="form-control">
                                     <?php
                                     $kursevi = $this->ObavModel->dohvatiSveKurseve();
                                     foreach ($kursevi as $kurs) {
@@ -159,18 +99,10 @@
                                         echo "<option value='$idKurs'>$naziv</option>";
                                     }
                                     ?>
-                                    <!--<option value="php">PHP</option>
-                                    <option value="java">JAVA</option>
-                                    <option value="linux">LINUX</option>-->
+                                   
                                 </select>
-                            </td>                            
-                        </tr>
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-                                <select id="idGru" name="grupa" disabled="">
+                            
+                                <select id="idGru" name="grupa" disabled="" class="form-control">
                                     <?php
                                     $grupe = $this->ObavModel->dohvatiSveGrupe();
                                     foreach ($grupe as $grupa) {
@@ -179,32 +111,20 @@
                                         echo "<option value='$idGru'>$naziv</option>";
                                     }
                                     ?>
-                                    <!--<option value="prva">Prva grupa</option>
-                                    <option value="druga">Druga grupa</option>
-                                    <option value="treca">Treca grupa</option>-->
+
                                 </select>
-                            </td>
-                        </tr>
+                            
+                      
                             <?php } ?>
-                        <tr>
-                            <td>
+                      
                                 <br>
                                 <input type="submit" value="Oglasi" class="btn btn-outline-primary">
-                            </td>
-                        </tr>
-
-                    </table>
+                            
                 </form>
             </div>
             <?php } ?>
         </div>
-               <!-- <form name="obavForma" method="POST" action="<?php echo site_url('Obavestenja/dodajObavestenje') ?>">
-                    <input type="text" name="naslov" value="" placeholder="Naslov obavestenja"><br>
-                    <textarea name="obavest" value="" placeholder="Unesi obavestenje"></textarea><br>
-                    <input type="text" name="aut" value="" placeholder="Ime i prezime autora"><br>
-                    <input type="submit" name="sub" value="Oglasi">       
-                </form>
-        -->
+     
     </div>    
 </div>
  <?php if ($this->session->flashdata('obavestenjePostavljeno')){
@@ -212,19 +132,7 @@
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
         } ?>
 
-<!--<script>
-var prilagodi = function () {
-    if ($("#kurs").is(":selected")) {
-        $("#kursevi").removeAttr("disabled");
-    }
-    else {
-        $("#kursevi").prop('disabled', 'disabled');
-    }
-};
 
-$(prilagodi);
-$("#kurs").change(prilagodi);
-</script>-->
 
 <script>
     function omoguci() {

@@ -746,4 +746,22 @@
     display: none;
 
 }
- 
+
+
+/*SREDJIVANJE VESTI*/
+
+.kat-vesti:hover{
+    background-color: whitesmoke;
+    cursor: pointer; 
+}
+
+.kat-vesti-naslov{
+    margin-top: 10px;
+    padding: 20px;
+    text-align: center;
+    background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);;
+    color: white;
+    border: none !important;
+}
+
+

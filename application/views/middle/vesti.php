@@ -4,14 +4,15 @@
 <div class="container-fluid" id="ves">
     <div class="row">
         <div class="col-3" >
-            <b class="p-0 bg-info">Vesti: </b>
-            <br/>
+            <div class="kat-vesti-naslov centar"><h5>Kategorije vesti</h5> </div>
             <?php
             foreach ($kategorije as $k) {
-                $idKatVesti = $k['idKatVesti'];
-
-                echo "<a href='#' onclick='vesti($idKatVesti)'>" . $k['naziv'] . "</a><br/>";
-            }
+                $idKatVesti = $k['idKatVesti']; ?>
+            <div class="centar kat-vesti" onclick="vesti(<?php echo $idKatVesti ?>)">
+                <?php echo "<b>".$k['naziv']."</b>" ?>
+            </div>
+           <?php
+             }
             ?>
 <!--            <div class="centar">
                 <h6>DODAVANJE NOVE KATEGORIJE VESTI:</h6>
@@ -29,7 +30,7 @@
         <a href="#" class="btn btn-primary btn-lg btn-mojeVesti" onclick="mojeVesti(<?php echo $idKor ?>)">Moje vesti</a>
         <?php } ?>
         </div>
-        <div class="col-6">
+        <div class="col-5">
             
             <div id="myModal" class="modal modal-vesti">
                 <div class="modal-content modal-content-vesti">
@@ -54,7 +55,7 @@
                 <?php foreach ($sveVesti as $sv) { ?>
 
                     <div class="centar">
-                        <b>Naziv:<a href="#" onclick="procitajVest(<?php echo $sv['idVes']?>)"> <?php echo $sv['naziv']; ?></a></b><br>
+                        <b>Naslov:<a href="#" onclick="procitajVest(<?php echo $sv['idVes']?>)"> <?php echo $sv['naziv']; ?></a></b><br>
                         <b>Autor: <?php echo $sv['korisnik']; ?></b><br>
                         <b>Tekst: <?php echo $sv['tekst']; ?></b><br>
                         <b>Datum: <?php echo $sv['datum']; ?></b><br>
@@ -67,9 +68,9 @@
 
         </div>
 
-        <div class="col-3">
+        <div class="col-4">
             <?php if($this->session->has_userdata('user')){?>
-            <div class="centar" >DODAVANJE VESTI:</div>
+            <div class="kat-vesti-naslov centar" ><h5>Dodavanje vesti</h5></div>
             <div class="centar" id="formavesti">
                 <?php
                 $ulogovani = $this->session->userdata('user')['korisnicko'];
@@ -77,25 +78,16 @@
 
                 ?>
                 <form name="forma_vesti" method="POST" action="<?php echo site_url('Vesti/dodajVest') ?>">
-                    <table>
-                        <tr>
-                            <td><b>Autor:</b></td>
-                            <td><?php echo $ulogovani ?></td>
-                        </tr>
-                        <tr>
-                            <td><b>Naziv:</b></td>
-                            <td><input type="text" name="naziv"></td>
-                        </tr>
-                        <tr>
-                            <td><b>Tekst:</b></td>
-                            <td><textarea name="tekst"></textarea></td>
-                        </tr>
-                        <tr>
-
-                            <td>Kategorija:</td>
-
-                            <td>
-                                <select name="kategorija">
+                    
+                        
+                            <b>Autor: </b>
+                            <?php echo $ulogovani ?>
+                            <br/><br/>
+                            <input type="text" name="naziv" class="form-control" placeholder="Naslov">
+                            <br/>
+                            <textarea name="tekst" class="form-control" placeholder="Tekst vesti"></textarea>
+                            <br/>
+                                <select name="kategorija" class="form-control">
                                     <option value="" selected disabled>Izaberi kategoriju vesti</option>
                                     <?php
 
@@ -107,31 +99,22 @@
                                     ?>
 
                                 </select>
-
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td> Nivo vidljivosti:</td>
-                            <td> 
-                                <input type="radio" name="vidljivost" value="gost" id="1">Svi i gosti<br>
-                                <input type="radio" name="vidljivost" value="studenti" id="2">Svi studenti<br>
-                                <input type="radio" name="vidljivost" value="korisnici" id="3">Svi korisnici sajta (ukljucujuci i kompanije)<br>
-                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="4">Studenti odredjenog kursa<br>
+                                <br/>
+                                <b>Ko moze da vidi ovu vest?</b>
+                                <br/>
+                                <input type="radio" name="vidljivost" value="gost" id="1"> Svi i gosti<br>
+                                <input type="radio" name="vidljivost" value="studenti" id="2"> Svi studenti<br>
+                                <input type="radio" name="vidljivost" value="korisnici" id="3"> Svi korisnici sajta (ukljucujuci i kompanije)<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="4"> Studenti odredjenog kursa<br>
                                 <div id="kurs"></div>
-                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)" id="5">Formirana grupa studenata<br>
+                                <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)" id="5"> Formirana grupa studenata<br>
                                 <div id="grupa"></div>
                                  <?php if($this->input->get('vesPret') == 1){
                                     echo "<input type='radio' name='vidljivost' value='pretraga' checked>Rezultat pretrage";
                                 }?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
+                                <br/>
                                 <input type="submit" value="Dodaj vest" class="btn btn-outline-primary">
-                            </td>
-                        </tr>
-                    </table>
+                            
 
                 </form>
             </div>
