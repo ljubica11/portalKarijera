@@ -5,18 +5,26 @@ if ($this->session->has_userdata('user')) {
 } else {
     $tipKorisnika = "gost";
 }
+      
+       
+
 ?>
 
 <?php
  // var_dump($diskusije);
 if (isset($diskusije)) {
-
+    
     foreach ($diskusije as $d) {
-
+    
         $autor = $d['korisnik'];
         $vidljivost = $d['vidljivost'];
         $zaBrisanje = $d['zaBrisanje'];
-
+        $id = $d['idDis'];
+        $brojPostova = $this->DiskusijeModel->brojPostova($id);
+        $poslednjiId = $this->DiskusijeModel->poslednjiId($id);
+                    foreach ($poslednjiId as $last){
+                        $lastOne = $last['poslatoDatum'];
+                    }
         ?>
 
         <div class="centar">
@@ -25,16 +33,19 @@ if (isset($diskusije)) {
         <b>Opis: </b><?php echo $d['opis'] ?><br/>
         <b>Autor: </b><?php echo $d['korisnik'] ?><br/>
         <b>Datum pokretanja: </b><?php echo $d['datum'] ?><br/> 
-        <?php $id = $d['idDis'] ?>
+        <b>Broj postova: </b><?php echo $brojPostova?></br>
+        <b>Poslednji post: </b><?php if($brojPostova !=0){echo $lastOne;}?><br>
+        
+        
         <?php echo "<a href='#' class='badge badge-primary' onclick ='postovi($id)'> <b>Pogledaj postove</b></a>" ?>
         <?php if ($d['vidljivost'] != 'autor' && $tipKorisnika != 'gost') {
             echo "<a href='#' class='badge badge-primary' onclick ='dodajdiv($id)'> <b>Dodaj post</b></a>";
         } ?>
        <?php if($this->session->userdata('user')['korisnicko'] == $autor && $vidljivost != 'autor' && $zaBrisanje != 'da')
         { echo "<a href='#' class='badge badge-primary float-right' onclick ='arhiviraj($id) window.location.reload()'> <b>Arhiviraj</b></a><br/>" ;
-        } else if ( $zaBrisanje == 'da'){
+        } else if ( $zaBrisanje == 'da'&& $tipKorisnika != 'gost'){
            echo $msg = '<b class="float-right">' .'poslat zahtev za brisanje' . '</b>';
-        } else if( $vidljivost == 'autor'){
+        } else if( $vidljivost == 'autor'&& $tipKorisnika != 'gost'){
             echo "<a href='#' class='badge badge-primary' onclick ='traziBrisanje($id) window.location.reload()'> <b>Zahtevaj brisanje</b></a><br/>";
             echo '<b class="float-right">'.'arhivirano'.'</b>';
         }?>
