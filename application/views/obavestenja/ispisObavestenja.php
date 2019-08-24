@@ -16,10 +16,10 @@ Autor: <?php echo $obavestenja[0]['naziv'] ?>
 
 <?php
         $idKor = $this->session->userdata('user')['idKor'];
-        if ($idKor == $obavestenje['autor']) {
-            $idOba = $obavestenje['idOba'];
+        if ($idKor == $obavestenja[0]['autor']) {
+            $idOba = $obavestenja[0]['idOba'];
             $btnDisable = "";
-            if ($obavestenje['zaBrisanje'] == 'da') { ?>
+            if ($obavestenja[0]['zaBrisanje'] == 'da') { ?>
                 <a class="btn btn-outline-primary pull-right disabled" href="<?php echo site_url('Obavestenja/arhivirajObavestenje/'.$idOba); ?>"> Arhivirano </a>
             <?php }
             else { ?>
