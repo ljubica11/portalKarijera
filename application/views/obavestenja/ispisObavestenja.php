@@ -13,3 +13,16 @@
 <div class="autor">
 Autor: <?php echo $obavestenja[0]['naziv'] ?>
 </div>
+
+<?php
+        $idKor = $this->session->userdata('user')['idKor'];
+        if ($idKor == $obavestenja[0]['autor']) {
+            $idOba = $obavestenja[0]['idOba'];
+            $btnDisable = "";
+            if ($obavestenja[0]['zaBrisanje'] == 'da') { ?>
+                <a class="btn btn-outline-primary pull-right disabled" href="<?php echo site_url('Obavestenja/arhivirajObavestenje/'.$idOba); ?>"> Arhivirano </a>
+            <?php }
+            else { ?>
+                <a class="btn btn-outline-primary pull-right" href="<?php echo site_url('Obavestenja/arhivirajObavestenje/'.$idOba); ?>"> Arhiviraj </a>
+            <?php }
+        } ?>
