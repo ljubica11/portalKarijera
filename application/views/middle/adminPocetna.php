@@ -48,43 +48,117 @@
         <div class="col-3 desno-admin">
             <h4>Zahtevi <i class="fa fa-folder-open"></i></h4>
             <div class="zahteviNaziv" onclick="prikaziRegZahteve()">Registracije 
-                <div class="notif" id="notifReg"></div>
+                <div class="notif" id="registracija"></div>
             </div>
-            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('oglasi')">Oglasi</div>
-            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('vesti')">Vesti</div>
-            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obavestenja</div>
-            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('grupe')">Grupe</div>
-            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('diskusije')">Diskusije</div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('oglasi')">Oglasi
+            <div class="notif" id="oglasi"></div>
+            </div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('vesti')">Vesti
+            <div class="notif" id="vesti"></div>
+            </div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obavestenja
+            <div class="notif" id="obavestenja"></div>
+            </div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('grupe')">Grupe
+            <div class="notif" id="grupe"></div>
+            </div>
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('diskusije')">Diskusije
+            <div class="notif" id="diskusija"></div>
+            </div>
         </div>
             
         
     </div>
+    <input type="hidden" id="broj">
 </div>
 <script>
-    function prikaziSifrarnik(tip){
-         xmlhttp=new XMLHttpRequest();
-               xmlhttp.onreadystatechange=function(){
-                   if(this.readyState==4&&this.status==200){
-                      document.getElementById("resDiv").innerHTML = this.responseText;  
-                   }
-               };
-          xmlhttp.open("GET", "<?php echo site_url('Admin/prikaziSifrarnik'); ?>/"+tip, true);
-          xmlhttp.send();      
+    function sendGet ( elementID, url, callback ) {
+	xmlhttp=new XMLHttpRequest ( );
+	xmlhttp.onreadystatechange = function ( ) {
+	   if ( this.readyState == 4 && this.status == 200 ) {
+	      document.getElementById( elementID ).innerHTML = this.responseText;  
+	      if ( callback != null ) {
+	    	callback ( );  	
+	      }
+	   }
+	};
+	xmlhttp.open ( "GET", url, true );
+	xmlhttp.send ( );      
+}
+
+    function sendPost ( elementID, url, parameters, callback ){
+	xmlhttp=new XMLHttpRequest ( );
+	xmlhttp.onreadystatechange=function ( ) {
+		if ( this.readyState == 4 && this.status == 200){
+		    document.getElementById ( elementID ).innerHTML = this.responseText;
+		    if ( callback != null ) {
+		    	callback ( );
+		    }
+		}
+	};
+	xmlhttp.open ( "POST", url, true );
+	xmlhttp.setRequestHeader ( "Content-type", "application/x-www-form-urlencoded" );
+	xmlhttp.send ( parameters ); 
+}
+    
+    function prikaziSifrarnik(tip) {
+	sendGet("resDiv", "<?php echo site_url('Admin/prikaziSifrarnik'); ?>/"+tip, null );
+    }
+
+    
+    function sacuvajIzmenu(tip, id ) {
+         var izmena = document.getElementById("izmeni"+tip+id).value;
+            sendPost ( "resDiv", "<?php echo site_url('Admin/izmeniStavku'); ?>",
+		"id="+id+"&tip="+tip+"&izmena="+izmena,
+		function() { alert ( "Izmena je sacuvana!" ); }
+	);
+}
+    
+     function obrisiStavku(id, tip){
+          var del = confirm('Da li ste sigurni da zelite da obrisete ovu stavku?');
+         if(del){
+            sendPost("resDiv", "<?php echo site_url('Admin/obrisiStavku'); ?>",
+                   "id="+id+"&tip="+tip, function(){ alert("Stavka je obrisana!");} );
+         }
+     }
+    
+    function dodajStavku(tip){
+     var dodatak = document.getElementById("dodatakStavka").value;
+     sendPost("resDiv", "<?php echo site_url('Admin/dodajStavku'); ?>",
+            "tip="+tip+"&dodatak="+dodatak, function(){alert("Stavka je dodata!");});
     }
     
-    function obrisiStavku(id, tip){
-         var del = confirm('Da li ste sigurni da zelite da obrisete ovu stavku?');
+    function prikaziRegZahteve(){
+        sendGet("resDiv", "<?php echo site_url('Admin/prikaziZahteveRegistracija'); ?>", null );
+    }
+    
+    
+    function odobriRegistraciju(id, mejl){
+        sendPost("resDiv", "<?php echo site_url('Admin/odobriRegistraciju'); ?>", 
+                "id="+id+"&mejl="+mejl, function(){alert("Registracija je odobrena");});
+    }
+    
+    function zabraniRegistraciju(id, mejl){
+        sendPost("resDiv", "<?php echo site_url('Admin/zabraniRegistraciju'); ?>", 
+                "id="+id+"&mejl="+mejl, function(){alert("Registracija je zabranjena");});
+    }
+    
+    function prikaziZahteveZaBrisanje(tip){
+        sendGet("resDiv", "<?php echo site_url('Admin/zahteviZaBrisanje'); ?>/"+tip, null);
+    }
+    
+    function prikaziPostoveDisk(id){
+        var modal = document.getElementById("myModal");  
+        modal.style.display = "block";
+        sendGet("modal-body", "<?php echo site_url('Diskusije/ispisiPostove') ?>?id="+id, null);
+    }
+    
+    function obrisiZahtev(tip, id){
+       var del = confirm('Da li ste sigurni da zelite da obrisete ovu stavku?');
          if(del){
-         xmlhttp=new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-                if(this.readyState==4&&this.status==200){
-                    document.getElementById("resDiv").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("POST", "<?php echo site_url('Admin/obrisiStavku'); ?>", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("id="+id+"&tip="+tip);
-        }       
+             sendPost("resDiv", "<?php echo site_url('Admin/obrisiZahtev'); ?>",
+                      "tip="+tip+"&id="+id, function(){alert("Obrisano.");});
+         }
     }
     
     function izmeniStavku(id){
@@ -98,117 +172,37 @@
          document.getElementById(id).style.display = "inline-block";
     }
     
-    function sacuvajIzmenu(tip, id){
-        var izmena = document.getElementById("izmeni"+tip+id).value;
-        xmlhttp=new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-                if(this.readyState==4&&this.status==200){
-                    document.getElementById("resDiv").innerHTML = this.responseText;
-                    alert("Izmena je sacuvana");
-                }
-            };
-            xmlhttp.open("POST", "<?php echo site_url('Admin/izmeniStavku'); ?>", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("id="+id+"&tip="+tip+"&izmena="+izmena);
+       window.onload = function(){
+        dohvatiBroj();
+    };
+    
+    
+    function dohvatiBroj(){
+        var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
+        for(i = 0; i < nazivi.length; i++){
+        sendGet(nazivi[i], "<?php echo site_url('Admin/brojZahteva');?>/"+nazivi[i], null);
+        }
+    }
+     
+
+//      var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
+//        for(i = 0; i < nazivi.length; i++){  
+//        sendGet(nazivi[i], "<?php //echo site_url('Admin/brojZahteva');?>/"+nazivi[i], null);
+//        }
+//    };
+    
+
+    
+
+
+	
+    var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
+    for(i = 0; i < nazivi.length; i++){
+        setInterval (sendGet, 10000, nazivi[i], "<?php echo site_url('Admin/brojZahteva');?>/"+nazivi[i],
+	function ( ) { console.log(this.responseText); }
+);	
+    }
  
-    }
-    
-    function dodajStavku(tip){
-       var dodatak = document.getElementById("dodatakStavka").value;
-        xmlhttp=new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-                if(this.readyState==4&&this.status==200){
-                    document.getElementById("resDiv").innerHTML = this.responseText;
-                    alert("Stavka je dodata");
-                }
-            };
-            xmlhttp.open("POST", "<?php echo site_url('Admin/dodajStavku'); ?>", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("tip="+tip+"&dodatak="+dodatak); 
-    }
-    
-    function prikaziRegZahteve(){
-        xmlhttp=new XMLHttpRequest();
-               xmlhttp.onreadystatechange=function(){
-                   if(this.readyState==4&&this.status==200){
-                      document.getElementById("resDiv").innerHTML = this.responseText;  
-                   }
-               };
-          xmlhttp.open("GET", "<?php echo site_url('Admin/prikaziZahteveRegistracija'); ?>", true);
-          xmlhttp.send();      
-    }
-    
-    function odobriRegistraciju(id, mejl){
-        xmlhttp=new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-                if(this.readyState==4&&this.status==200){
-                    document.getElementById("resDiv").innerHTML = this.responseText;
-                    alert("Registracija je odobrena");
-                }
-            };
-            xmlhttp.open("POST", "<?php echo site_url('Admin/odobriRegistraciju'); ?>", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("id="+id+"&mejl="+mejl); 
-        
-    }
-    
-       function zabraniRegistraciju(id, mejl){
-        xmlhttp=new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-                if(this.readyState==4&&this.status==200){
-                    document.getElementById("resDiv").innerHTML = this.responseText;
-                    alert("Registracija je zabranjena");
-                }
-            };
-            xmlhttp.open("POST", "<?php echo site_url('Admin/zabraniRegistraciju'); ?>", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("id="+id+"&mejl="+mejl); 
-        
-    }
-    
-    setInterval(dohvatiBrojZahtevaReg, 100000);
-    
-    window.onload = function() {
-        dohvatiBrojZahtevaReg();
-      };
-    
-    function dohvatiBrojZahtevaReg(){
-        xmlhttp=new XMLHttpRequest();
-               xmlhttp.onreadystatechange=function(){
-                   if(this.readyState==4&&this.status==200){
-                      document.getElementById("notifReg").innerHTML = this.responseText;  
-                      console.log(this.responseText);
-                   }
-               };
-          xmlhttp.open("GET", "<?php echo site_url('Admin/brojZahtevaReg'); ?>", true);
-          xmlhttp.send();      
-    }
-    
-    function prikaziZahteveZaBrisanje(tip){
-        xmlhttp=new XMLHttpRequest();
-               xmlhttp.onreadystatechange=function(){
-                   if(this.readyState==4&&this.status==200){
-                      document.getElementById("resDiv").innerHTML = this.responseText; 
-                   }
-               };
-          xmlhttp.open("GET", "<?php echo site_url('Admin/zahteviZaBrisanje'); ?>/"+tip, true);
-          xmlhttp.send();     
-    }
-   
-      function prikaziPostoveDisk(id){
-        var modal = document.getElementById("myModal");  
-        modal.style.display = "block";
-        xmlhttp=new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-                if(this.readyState==4&&this.status==200){
-                    document.getElementById("modal-body").innerHTML = this.responseText;
-                    
-                }
-            };
-            xmlhttp.open("GET", "<?php echo site_url('Diskusije/ispisiPostove') ?>?id=" + id, true);
-            xmlhttp.send();
-    }
-    
 var span = document.getElementsByClassName("close")[0];
 
 var modal = document.getElementById("myModal");    
@@ -223,20 +217,14 @@ window.onclick = function(event) {
   }
 };
 
-    function obrisiZahtev(tip, id){
-        var del = confirm('Da li ste sigurni da zelite da obrisete ovu stavku?');
-         if(del){
-            xmlhttp=new XMLHttpRequest();
-                   xmlhttp.onreadystatechange=function(){
-                       if(this.readyState==4&&this.status==200){
-                           document.getElementById("resDiv").innerHTML = this.responseText;
-                           alert("Obrisano.");
-                       }
-                   };
-                   xmlhttp.open("POST", "<?php echo site_url('Admin/obrisiZahtev'); ?>", true);
-                   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                   xmlhttp.send("tip="+tip+"&id="+id); 
-        }
-    }
+
+//    window.onload = function(){
+//        sendGet("broj", "<?php// echo site_url('Admin/dohvatiBroj'); ?>", brojInterval());
+//
+//    };
+    
+  
+
+
    
     </script>

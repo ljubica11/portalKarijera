@@ -21,49 +21,40 @@ class Admin extends MY_Controller{
             $data = ["data" => $this->SifrarniciModel->dohvatiMesto(),
                     "tip" => $tip,
                     "naslov" => "Mesta"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'drz'){
             $data = ["data" => $this->SifrarniciModel->dohvatiDrz(),
                     "tip" => $tip,
                     "naslov" => "Drzavljanstva"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'faks'){
             $data = ["data" => $this->SifrarniciModel->dohvatiFakultete(),
                     "tip" => $tip,
                     "naslov" => "Fakulteti"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'komp'){
             $data = ["data" => $this->SifrarniciModel->dohvatiKompanije(),
                     "tip" => $tip,
                     "naslov" => "Kompanije"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'poz'){
             $data = ["data" => $this->SifrarniciModel->dohvatiPozicije(),
                     "tip" => $tip,
                     "naslov" => "Radne pozicije"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'inter'){
             $data = ["data" => $this->SifrarniciModel->dohvatiInteresovanja(),
                     "tip" => $tip,
                     "naslov" => "Interesovanja"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'ves'){
             $data = ["data" => $this->SifrarniciModel->dohvatiVestine(),
                     "tip" => $tip,
                     "naslov" => "Vestine"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'katves'){
             $data = ["data" => $this->SifrarniciModel->dohvatiKategorijeVesti(),
                     "tip" => $tip,
                     "naslov" => "Kategorije vesti"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }else if($tip == 'katdis'){
             $data = ["data" => $this->SifrarniciModel->dohvatiKategorijeDiskusija(),
                     "tip" => $tip,
                     "naslov" => "Kategorije diskusija"];
-            $this->load->view("admin/prikazSifrarnikaTest", $data);
         }
-        
+         $this->load->view("admin/prikazSifrarnikaTest", $data);
     }
     
     public function obrisiStavku(){
@@ -253,5 +244,21 @@ class Admin extends MY_Controller{
             $this->AdminModel->obrisiDisk($id);
         }
         redirect("Admin/zahteviZaBrisanje/$tip");    
+    }
+    
+    public function brojZahteva($tip){
+
+        if($tip == "registracija"){
+            $broj = $this->AdminModel->dohvatiBrojZahtevaReg();
+        }else{
+            $broj = $this->AdminModel->dohvatiBrojZahteva($tip);
+        }    
+                
+        if($broj === 0){
+           return ""; 
+        } else{
+            $data = ["broj" => $broj];
+            $this->load->view('admin/notifikacije', $data);
+        }
     }
 }

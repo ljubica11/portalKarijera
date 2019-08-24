@@ -3,7 +3,7 @@
 
 class AdminModel extends CI_Model{
     
-    
+
     public function prikaziZahteveRegistracija(){
         $this->db->select('korisnik.*, kompanija.*, sifgradovi.naziv as sediste');
         $this->db->from('korisnik');
@@ -33,6 +33,14 @@ class AdminModel extends CI_Model{
         return $this->db->count_all_results();
     }
     
+    public function dohvatiBrojZahteva($tip){
+        $this->db->where('zaBrisanje', 'da');
+        $this->db->from($tip);
+        return $this->db->count_all_results();
+    }
+
+
+
     public function zahteviZaBrisanjeOglasa(){
         $this->db->select('oglasi.*, sifgradovi.naziv as grad, kompanija.naziv as kompanija, kompanija.sajt as sajt, kompanija.opis as kopis');
         $this->db->from('oglasi');
@@ -102,4 +110,6 @@ class AdminModel extends CI_Model{
         $this->db->where('idDis', $id);
         $this->db->delete('diskusija');
     }
+    
+    
 }

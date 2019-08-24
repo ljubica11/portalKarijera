@@ -99,7 +99,7 @@
                     </div>      
              </div>;
                        
-<!--                       ako smo na profilu kompanije, ispisuju se podaci za kompaniju-->
+<!--    ako smo na profilu kompanije, ispisuju se podaci za kompaniju-->
                        
                   <?php  
                     }
