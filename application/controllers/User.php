@@ -288,5 +288,13 @@ class User extends CI_Controller{
         return true;
     }
         
+        public function usloviKoriscenja(){
+        $this->load->view('middle/usloviKoriscenja');
+    }
+
+    public function oNama(){
+        $this->load->view('middle/oNama');
+    }
+        
    
 }

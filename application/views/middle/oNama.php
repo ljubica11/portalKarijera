@@ -9,8 +9,8 @@
         <div class="container-fluid" id="oNama">
             <div class="row">
                 <div class="col-sm-5"><a href="<?php echo base_url()?>"><img src="<?php echo base_url() ?>//images/strelicalevo.png" id="strelicaLevo"></a><a href="<?php echo base_url()?>">Početna stranica</a></div>
-                <div class="col-sm-3" id="naslovOnama"><h1>NAS TIM</h1></div>
-                <div class="col-sm-4"><a id="uslkor" href="<?php echo base_url() ?>/index.php/Login/usloviKoriscenja">Uslovi korišćenja</a><a href="<?php echo base_url() ?>/index.php/Login/usloviKoriscenja"><img src="<?php echo base_url() ?>//images/strelicadesno.png"  id="strelicaDesno"></a></div>
+                <div class="col-sm-2" id="naslovOnama"><h1>NAS TIM</h1></div>
+                <div class="col-sm-5"><a id="uslkor" href="<?php echo base_url() ?>/index.php/User/usloviKoriscenja">Uslovi korišćenja</a><a href="<?php echo base_url() ?>/index.php/User/usloviKoriscenja"><img src="<?php echo base_url() ?>//images/strelicadesno.png"  id="strelicaDesno"></a></div>
             </div>
             <div class="row">
                 <div class="col-sm-1"></div>

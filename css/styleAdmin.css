@@ -729,6 +729,7 @@
 
 /*SREDJIVANJE VESTI*/
 
+
 .kat-vesti:hover{
     background-color: whitesmoke;
     cursor: pointer; 
@@ -744,3 +745,8 @@
 
 
 /*SREDJIVANJE OBAVESTENJA*/
+
+.col-6{
+    height: 90vh;
+}
+
