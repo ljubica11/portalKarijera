@@ -19,13 +19,13 @@
     </div>
     <div class="row">
         <div class="offset-sm-1"></div>
-        <div class="col-sm-10">Here are our terms and conditions (“Terms”). Contact us via admin@portalkarijera.rs if you have any other questions. Thanks for connecting.
+        <div class="col-sm-10">Here are our terms and conditions (“Terms”). Contact us via admportalkarijera@gmail.com if you have any other questions. Thanks for connecting.
 
 Portal Karijera is a software platform made available by Data61 over the web. Access to Portal Karijera is offered as a service which enables students and employers to contact each other and to explore employment opportunities.
 
 User Agreement
 
-National ICT Serbia Limited ABN 62 102 206 173 (“Data61”, “we” or “us”) is an Serbian company which operates under the business  name “Data61” in conjunction with CSIRO. Data61 operates the online software platform called “Portal Karijera” (accessible at https://portalKarijera.net). Platform allows students and business people (in either case, referred to as “User” or “You”) to connect with each other to explore employment opportunities.
+National ICT Serbia Limited ABN 62 102 206 173 (“Data61”, “we” or “us”) is an Serbian company which operates under the business  name “Data61” in conjunction with CSIRO. Data61 operates the online software platform called “Portal Karijera” (accessible at https://portalKarijera.com). Platform allows students and business people (in either case, referred to as “User” or “You”) to connect with each other to explore employment opportunities.
 
 PLEASE READ THESE TERMS  including the Privacy Policy CAREFULLY BEFORE USING OR ACCESSING, SUBSCRIBING TO, DOWNLOADING OR INSTALLING THE PLATFORM AND ASSOCIATED SERVICES SUPPLIED BY Data61.
 
@@ -71,7 +71,7 @@ If a User wishes to complain about any content or comment appearing on the Platf
 Data61 may from time to time include on the Portal Karijera Platform promotions for and links to services offered by third parties (“Third Party Services”) which are not provided by Data61.
 Third Party Services are offered to You pursuant to terms and conditions offered by the third party. Third Party Services may be promoted on the Ribit Platform for the convenience to our Users who may find the Third Party Services of interest or of use.
 If You engage with any Third Party Service provider your agreement will be directly between You and that Third Party Service provider. Data61 does not require you to engage with or respond to any Third Party Service provider.
-Data61 makes no representation or warranty as to the Third Party Services. To help us continue to improve our Ribit Platform, please let us know of any issue that You experience using a Third Party Service by contacting us at support@portalkarijera.net.
+Data61 makes no representation or warranty as to the Third Party Services. To help us continue to improve our Ribit Platform, please let us know of any issue that You experience using a Third Party Service by contacting us at admportalkarijera@gmail.com.
 Data61 reserves the right to add or to cease the availability of Third Party Services at any time, without notice to You.
 <p>IDENTITY VERIFICATION (AUTHENTICATION)</p>
 Data61 may include tools to help Users to verify the identity of other Users (“Identity Verification Services”). These tools may include mobile phone verification technology, Student Worker university email account verification, an  “Endorsement” feature (allowing a User to endorse the skills or abilities of a User on the Ribit Platform), and integration with social networking sites such as Facebook, Twitter and LinkedIn.
@@ -99,13 +99,13 @@ A Job Poster must have the right to provide their services under a Work Contract
 When You enter into a Work Contract with another User You should assume that you are creating a legally binding contract with that User, unless the transaction is prohibited by law or by this Agreement. Data61 is not a party to that Work Contract. If You do not comply with your obligations to another User under a Work Contract, You may become liable to that other User. If another User breaches any obligation to You, You – not Data61 – are responsible for enforcing any rights that You may have with that User.
 Users are solely responsible to understand  and ensure that they comply with all applicable employment laws, regulations, industrial awards, enterprise bargaining agreements or similar workplace laws. In particular, You, not Data61, are responsible for ensuring that your conduct arising from Your use of the Platform including, without limitation, entering into and conducting any Work Contract, is compliant with Your obligations under the Fair Work Act (CW) and the Fair Work Regulations, Serbia’s immigration laws, autonomous sanctions and export control regimes, and all other applicable laws of the Commonwealth of Serbia, a state or territory, or a local government authority.
 FEES
-Registering and creating an account on the Portal Karijera Platform is free. There is no charge for a Job Poster to create a listing as a Posted Opportunity, or for other Users to review content on the Ribit Platform, including a Posted Opportunity. All Users must be registered and must consent to these Terms and Conditions
+Registering and creating an account on the Portal Karijera Platform is free. There is no charge for a Job Poster to create a listing as a Posted Opportunity, or for other Users to review content on the Portal Karijera Platform, including a Posted Opportunity. All Users must be registered and must consent to these Terms and Conditions
 <p>LIMITATION OF LIABILITY</p>
 The Portal Karijera Platform and the Data61 Services  are provided on an “as is” basis. Except for liability in relation to breach of any implied condition, warranty or guarantee, including under the Competition and Consumer Act 2010 (Cth), the exclusion of which from a contract would contravene any statute or cause any part of this Agreement to be void (“Non-excludable Condition”), to the extent permitted by law Data61 specifically disclaims all liability to a User for any loss or damage (whether actual, special, direct, indirect or consequential) of every kind and nature, (including, without limitation, loss or damage relating to inaccuracy of information, or the lack of fitness for purpose of any goods or service supplied, or infringement of any third party’s intellectual property rights), arising out of or in any way connected with use of the Ribit Platform, provision of the Data61 Services, or any transaction between You and another User or between You and any Third Party Service Provider.
 <p>DEFAULT IN TRANSACTIONS</p>
 If You fail to complete a transaction (including a Work Contract) and You do not have a lawful and reasonable excuse for such failure then, in addition to and without limitation of  Data61’s other rights under this Agreement, Data61 may suspend (temporarily or indefinitely) or terminate Your account on the Ribit Platform at any time and without notice to you.
 <p>PRIVACY</p>
-In performing this Agreement, Data61 shall comply with its Privacy Policy in force from time to time. Data61’s privacy policy as at the date of this Agreement is at https://ribit.net/privacy-policy. Data61’s privacy policy is subject to change from time to time, provided that any such change will not materially reduce the level of privacy protection for a User’s personal information unless Data61 gives fair and reasonable notice to the User.
+In performing this Agreement, Data61 shall comply with its Privacy Policy in force from time to time. Data61’s privacy policy as at the date of this Agreement is at https://portalKarijera.com/usloviKoriscenja. Data61’s privacy policy is subject to change from time to time, provided that any such change will not materially reduce the level of privacy protection for a User’s personal information unless Data61 gives fair and reasonable notice to the User.
 Data61 may provide the Data61 Services from any locations, and/or through the use of contractors, worldwide. Some Users may be located outside Serbia and therefore a User’s personal information may be disclosed to another User who is outside Serbia.
 Without limitation and so as to ensure that Data61 and Users can comply with all relevant privacy legislation, each User agrees to provide any information, and to obtain any required consents, relevant to its use of the RIBIT Platform, including those in relation to the collection, use, disclosure and storage of personal information of any individual whose personal information may be included in a User’s registration (account) details, a Posted Opportunity or in an Offer made in response to a Posted Opportunity. Your use of the Ribit Platform confirms that You consent to, and authorise, the collection, use and disclosure of your personal information in accordance with Data61’s Privacy Policy and for the purpose of participating in and receiving the benefit of the Data61 Service as described here and on the Ribit website.
 A Third Party Service provider will provide their service pursuant to their own Privacy Policy. Prior to acceptance of any services from a Third Party Service provider You are solely responsible to review and consider whether their terms are acceptable to You, including their privacy policy.
@@ -124,7 +124,7 @@ Any notice shall be deemed given and received 24 hours after the email is sent, 
 In the event of a dispute between Users, Data61 encourages You to try and resolve disputes (including claims for returns or refunds) with each other directly. Accordingly, You acknowledge and consent that Data61 may, in its absolute discretion, provide such of Your information as it decides is relevant and suitable to other Users involved in a dispute.
 A dispute between a User and anyThird Party Service provider must proceed according to any dispute resolution process set out in the terms of service of the Third Party Service Provider.
 If Data61 provides information about other Users to You for the purposes of resolving disputes under this clause, You acknowledge and agree that such information will be used by You only for the limited purpose of resolving the dispute (and no other purpose) and that you indemnify Data61 against any claims relating to any other use of that information, which is not permitted by this Agreement.
-If You have a complaint about the Data61 Service please contact us at admin@portalkarijera.net.
+If You have a complaint about the Data61 Service please contact us at admportalkarijera@gmail.com.
 Data61 reserves the unfettered right to suspend or terminate the account of a User who is involved in a dispute with Data61 or with another User while the dispute is unresolved to the satisfaction of Data61.
 <p>TERMINATION</p>
 Either party may terminate an account and this Agreement at any time for any reason.
@@ -143,7 +143,7 @@ Revised  24 July 2019</div>
     </div>
     <div class="row" id="kont">
         <div class="offset-sm-4"></div>
-        <div class="col-sm-4">Kontakt: admin@portalkarijera.rs</div>
+        <div class="col-sm-4">Kontakt: admportalkarijera@gmail.com</div>
         <div class="offset-sm-4"></div>
     </div>
 </div>
