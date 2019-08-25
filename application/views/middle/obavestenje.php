@@ -85,7 +85,7 @@
                             <?php } else {?>
 
                               <select id="idVid" name="vidljivost" onchange="omoguci()" class="form-control" required>
-                                  <option value="" selected disabled>Odaberite nivo vidljivosti</option>
+                                    <option value="" selected disabled>Odaberite nivo vidljivosti</option>
                                     <option value="gost">Svi i gosti</option>
                                     <option value="korisnici">Svi korisnici</option>
                                     <option value="studenti">Svi studenti</option>
@@ -94,6 +94,7 @@
                                 </select> 
                             <br/>
                                 <select id="idKur" name="kurs" disabled="" class="form-control">
+                                    <option value="" selected disabled>Odaberite kurs</option>
                                     <?php
                                     $kursevi = $this->ObavModel->dohvatiSveKurseve();
                                     foreach ($kursevi as $kurs) {
@@ -106,6 +107,7 @@
                                 </select>
                             
                                 <select id="idGru" name="grupa" disabled="" class="form-control">
+                                    <option value="" selected disabled>Odaberite grupu</option>
                                     <?php
                                     $grupe = $this->ObavModel->dohvatiSveGrupe();
                                     foreach ($grupe as $grupa) {
