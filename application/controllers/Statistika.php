@@ -1,7 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /**
  * Description of Statistika
+ * 
+ * kontroler za funkcionalnost statistika 
+ * Statisticka obrada podataka o registrovanin studentima i generisanje izvestaja
+ * za slanje kompanijama 
  *
  * @author gordan
  */
@@ -15,6 +20,10 @@ class Statistika extends CI_Controller {
         $this->load->model('SifrarniciModel');
         $this->load->library('pdf');
     }
+    
+    /*
+     * dohvatanje upita iz modela potrebnih za statisticku obradu i ispis na stranici
+     */
 
     public function index() {
 
@@ -33,9 +42,6 @@ class Statistika extends CI_Controller {
         $diploma = $this->StatistikaModel->diploma($idFak);
         $zbirDiploma = $this->db->count_all_results('diploma');
 
-
-
-
         $data['middle_data'] = ['studenti' => $studenti, 'zaposleni' => $zaposleniStudenti, 'nezaposleni' => $nezaposleniStudenti,
             'phpkurs' => $phpkurs, 'javakurs' => $javakurs, 'linuxkurs' => $linuxkurs, 'diploma' => $diploma,
             'fakulteti' => $fakulteti, 'zbirDiploma' => $zbirDiploma, 'timKarijera' => $timKarijera,
@@ -43,6 +49,13 @@ class Statistika extends CI_Controller {
         $data['middle'] = 'middle/stats';
         $this->load->view('viewTemplate', $data);
     }
+    
+    /**
+     * generisanje pdf fajla sa statistickim izvestajem koji se smesta 
+     * u attachment e-mail poruke. Slanje emailom po listama, 
+     * kompanijama ili administratorama.
+     * 
+     */
 
     
     public function saljiIzvestaj() {
@@ -77,6 +90,7 @@ class Statistika extends CI_Controller {
         $pdf_string = $this->dompdf->output();
         
          //slanje pdf fajla mejlom
+        
         $this->load->library('Phpmailerlib');
         $Mail = $this->phpmailerlib->load();
         $mejlLista = $this->StatistikaModel->mejlLista();
@@ -98,6 +112,7 @@ class Statistika extends CI_Controller {
         $Mail->SetFrom("admin-karijera.online@gmail.com");
         $Mail->Subject = 'Statistika';
         $Mail->Body = $msg;
+        
         if ($this->input->get('listeMejlova') == 1) {
             foreach ($mejlLista as $m) {
                 $mejl = $m['email'];
@@ -111,10 +126,7 @@ class Statistika extends CI_Controller {
             }
         }
 
-        // $Mail->AddAddress("gordanst@gmail.com");
         $Mail->addStringAttachment($pdf_string, $pdf_filename);
-
-    
 
 
         if ($Mail->Send(true)) {

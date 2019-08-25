@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Description of Izvestaji
  *
+ * kontroler za funkcionalnost izvestaji
  * @author gordan
  */
 class Izvestaji extends CI_Controller {
@@ -13,6 +14,12 @@ class Izvestaji extends CI_Controller {
         $this->load->model('IzvestajiModel');
         $this->load->library('pdf');
     }
+    
+    /**
+     * dohvatanje podataka o aktivnosti na sajtu po svim osnovama u cilju
+     * statisticke obrade i ispisa u tabelama. Osim ispisa na stranici, generise se
+     * privremeni pdf fajl za slanje izvestaja mejlom.
+     */
 
     public function index() {
 
@@ -72,6 +79,11 @@ class Izvestaji extends CI_Controller {
             }
         }
     }
+    
+    /**
+     * metoda za slanje izvestaja mejlom administratorima.
+     * Slanjem mejla brise se generisani pdf fajl iz pdf foldera na serveru
+     */
 
     public function posalji() {
 
@@ -82,9 +94,7 @@ class Izvestaji extends CI_Controller {
 
         
         $this->load->library('Phpmailerlib');
-        $Mail = $this->phpmailerlib->load();
-
-        $timKarijera = $this->IzvestajiModel->mejlAdmini();
+        $Mail = $this->phpmailerlib->load();     
         $mejlLista = $this->IzvestajiModel->mejlLista();
 
 
@@ -103,17 +113,14 @@ class Izvestaji extends CI_Controller {
         $Mail->SetFrom("admin-karijera.online@gmail.com");
         $Mail->Subject = 'Statistika';
         $Mail->Body = $msg;
-        /*   foreach ($timKarijera as $m) {
-          $mejl = $m['email'];
-          $Mail->AddAddress($mejl);
-          }*/
+        
            foreach ($mejlLista as $m) {
                 $mejl = $m['email'];
                 $Mail->AddAddress($mejl);
            }
          
 
-     //   $Mail->AddAddress("gordanst@gmail.com");
+     
         $Mail->addAttachment($dir . $fajlzaslanje);
 
 
