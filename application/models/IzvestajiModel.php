@@ -3,6 +3,10 @@
 /**
  * Description of izvestajiModel
  *
+ * model za funkcionalnost izvestaji
+ * metode za dohvatanje iz baze svih tabela vezanih za korisnicke aktivnosti 
+ * na sajtu u cilju njihove statisticke obrade i generisanja izvestaja
+ * 
  * @author gordan
  */
 class IzvestajiModel extends CI_Model {
@@ -260,6 +264,10 @@ class IzvestajiModel extends CI_Model {
         }
     }
     
+    /**
+     * email lista administratora sajta
+     * @return type array
+     */
     
      public function mejlAdmini(){
         
@@ -270,15 +278,5 @@ class IzvestajiModel extends CI_Model {
         return $query->result_array();
     }
     
- public function mejlLista(){
-        
-        $this->db->select('email','korisnicko')
-                ->from('korisnik')
-                ->where('tip', 'k');       
-        $query = $this->db->get();
-        return $query->result_array();
-        
-    }
-
-
+   
 }

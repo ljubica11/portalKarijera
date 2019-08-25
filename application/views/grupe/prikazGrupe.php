@@ -76,22 +76,12 @@ foreach ($grupe as $g) {
                 <form name="obrisiLogovanog" method="GET" action="<?php echo site_url('Grupe/obrisiLogovanog') ?>">
 
                     <?php   
-                  /*  foreach ($clanovi as $c) {
-                        $idClana = $c['idKor'];*/
-
                         if ($ulogovani === $idClana) {
                             echo " <input type='hidden' name='idGru' value='$idGru'>";
                             echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="NAPUSTI GRUPU">';
-                        }
-                     
-                    
-                    ?>
-
-                </form>
-                   <?php  ?>
-                
+                        } ?>
+                </form>      
             </div>
-
         </div>
     </div>
 
