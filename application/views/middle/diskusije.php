@@ -21,25 +21,26 @@ if ($this->session->has_userdata('user')) {
                     $naziv = $k['naziv'];
 
 
-                    echo "<div class='list-group' id='myList' role='tablist'><a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis), sakrijDiv()'>" . $k['naziv'] . "</a></div><br/>";
+                    echo "<div class='list-group' id='myList' role='tablist'>"
+                    . "<a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis); sakrijDiv()'>" 
+                    . $k['naziv'] . "</a></div><br/>";
                 }
                 ?>
             </div>
 
 <?php
 if ($tipKorisnika != 'gost') {
-    echo ' 
-                    
+     ?>         
                     
                     <div>
                     <input type="button" onclick="prikaziFormuKat()" value="Dodaj kategoriju" class="formaGrupe btn btn-primary btn-lg btn-block">
                     </div>
                     
-                       ';
-}
-?>
+                      
 
-            <?php if ($tipKorisnika != 'gost') { ?>
+
+
+            <?php } if ($tipKorisnika != 'gost') { ?>
 
 
                 <div id="formaDivKat" class="formaGrupe">
@@ -48,9 +49,6 @@ if ($tipKorisnika != 'gost') {
                         <input type="submit" name="dodaj" value="Dodaj" class="btn btn-primary">
 
                     </form>
-
-
-
                 </div>
             <?php } ?>
         </div>
