@@ -1,9 +1,18 @@
 <?php
 
+/**
+ * Description of VestiModel
+ * metode za dohvatanje i brisanje kategorija i vesti po razlicitim kriterijumima i
+ * nivoima pristupa
+ */
 defined('BASEPATH') or exit('no direct access');
 
 class VestiModel extends CI_Model {
 
+    /**
+     * metoda za dohvatanje kategorija za pokretanje vesti iz baze podataka
+     * @return type array
+     */
     public function dohvatiKategorijeVesti() {
         $this->db->select('sifkategorijavesti.*');
         $this->db->from('sifkategorijavesti');
@@ -11,6 +20,13 @@ class VestiModel extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * metoda za dohvatanje vesti u zavisnosti od prava pristupa po
+     * tipu korisnika i kategoriji vesti
+     * @param type $idKatVesti
+     * @param type $tipKorisnika
+     * @return type array
+     */
     public function dohvatiVesti($idKatVesti, $tipKorisnika) {
 
         $idKor = $this->session->userdata('user')['idKor'];
@@ -26,8 +42,8 @@ class VestiModel extends CI_Model {
         $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
         $this->db->join('sifkategorijavesti', 'sifkategorijavesti.idKatVesti = vesti.kategorija');
         $this->db->where('sifkategorijavesti.idKatVesti', $idKatVesti);
-        if($tipKorisnika == "gost"){
-        $this->db->where('vidljivost', 'gost');
+        if ($tipKorisnika == "gost") {
+            $this->db->where('vidljivost', 'gost');
         }
         if ($tipKorisnika == "k") {
             $this->db->group_start();
@@ -62,7 +78,7 @@ class VestiModel extends CI_Model {
     /**
      * metoda kojom dohvatamo sve vesti u okviru kreirane grupe korisnika
      * @param type $idGru
-     * @return type
+     * @return type array
      */
     public function dohvatiVestiGrupe($idGru) {
 
@@ -75,6 +91,11 @@ class VestiModel extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * metoda kojom dohvatamo vest koja je selektovana i otvara se u posebnom prozoru
+     * @param type $idVes
+     * @return type array
+     */
     public function dohvatiJednuVest($idVes) {
 
         $this->db->select('vesti.*, korisnik.korisnicko as korisnik')
@@ -85,6 +106,17 @@ class VestiModel extends CI_Model {
         return $query->result_array();
     }
 
+    /**
+     * metoda kojom korisnik dodaje novu vest
+     * @param type $idKor
+     * @param type $kategorija
+     * @param type $naziv
+     * @param type $tekst
+     * @param type $vidljivost
+     * @param type $vidljivostGrupa
+     * @param type $vidljivostKurs
+     * @return type array
+     */
     public function dodajVest($idKor, $kategorija, $naziv, $tekst, $vidljivost, $vidljivostGrupa, $vidljivostKurs) {
 
         $this->db->set('autor', $idKor);
@@ -112,12 +144,23 @@ class VestiModel extends CI_Model {
         $this->db->insert('sadrzivesti');
     }
 
+    /**
+     *
+     * metoda za dodavanje nove kategorije na strani administratora
+     * @param type $nova_kategorija
+     */
     public function dodajKategorijuVesti($nova_kategorija) {
 
         $this->db->set('naziv', $nova_kategorija);
         $this->db->insert('sifkategorijavesti');
     }
 
+    /**
+     * metoda za dohvatanje svih vesti u zavisnosti od prava pristupa po
+     * tipu korisnika
+     * @param type $tipKorisnika
+     * @return type array
+     */
     public function dohvatiSveVesti($tipKorisnika) {
 
         $idKor = $this->session->userdata('user')['idKor'];
@@ -131,8 +174,8 @@ class VestiModel extends CI_Model {
         $this->db->select('vesti.*, korisnik.korisnicko as korisnik');
         $this->db->from('vesti');
         $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
-        if($tipKorisnika == "gost"){
-        $this->db->where('vidljivost', 'gost');
+        if ($tipKorisnika == "gost") {
+            $this->db->where('vidljivost', 'gost');
         }
         if ($tipKorisnika == "k") {
             $this->db->group_start();
@@ -141,10 +184,10 @@ class VestiModel extends CI_Model {
             $this->db->group_end();
         }
         if ($tipKorisnika == "s") {
-            $this->db->group_start(); 
+            $this->db->group_start();
             $this->db->where('vidljivost', 'gost');
             $this->db->or_where('vidljivost', 'korisnici');
-            $this->db->or_where('vidljivost', 'studenti');  
+            $this->db->or_where('vidljivost', 'studenti');
             $this->db->or_group_start();
             $this->db->where('vidljivost', 'kurs');
             $this->db->where("vidljivostKurs in ($whereKurs)", NULL, FALSE);
@@ -174,6 +217,10 @@ class VestiModel extends CI_Model {
         $this->db->insert("vidivest", $data);
     }
 
+    /**
+     * metoda za arhiviranje vesti kojom vest postaje vidljiva samo autoru
+     * @param type $idVes
+     */
     public function arhivirajVest($idVes) {
 
         $this->db->set('vidljivost', 'autor')
@@ -183,13 +230,20 @@ class VestiModel extends CI_Model {
                 ->update('vesti');
     }
 
+    /**
+     * metoda kojom se salje zahtev za brisanje vesti administratoru
+     * @param type $idVes
+     */
     public function traziBrisanje($idVes) {
         $data = ["zaBrisanje" => "da"];
         $this->db->where("idVes", $idVes);
         $this->db->update("vesti", $data);
     }
-    
-    public function dohvatiVestiAutora($idKor){
+
+    /**
+     * metoda kojom se dohvataju sve vesti ciji je autor ulogovani korisnik
+     */
+    public function dohvatiVestiAutora($idKor) {
         $this->db->select('vesti.*, korisnik.korisnicko as korisnik');
         $this->db->from('vesti');
         $this->db->join('korisnik', 'korisnik.idKor = vesti.autor');
