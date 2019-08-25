@@ -606,4 +606,8 @@ button, input {
     font-family: 'Roboto Slab', serif;
 }
 
+#resetstyle{
+    height: 75vh; 
+    width: 100%;
+}
 

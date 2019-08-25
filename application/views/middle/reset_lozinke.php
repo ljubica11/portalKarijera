@@ -11,7 +11,7 @@
     <body>
         <div class="row justify-content-center ">
 		
-            <div class="col-sm-5" style="height: 75vh; width: 100%">
+            <div class="col-sm-5" id="resetstyle">
                 <?php
                     if($forma){
                         echo form_open("Reset_lozinke/send");
