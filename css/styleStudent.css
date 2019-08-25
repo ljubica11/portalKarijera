@@ -122,6 +122,7 @@
     border: 1px solid black;
     margin: 20px;
     padding: 0 30px 30px 40px;
+    background-color: white;
 
 }
 
@@ -445,8 +446,6 @@
 
 .sadrzaj{
     padding: 30px;
-    border: 1px solid #4169E1;
-    border-radius: 5px;
     margin: 0 50px;
 }
 
@@ -620,7 +619,7 @@
 
 .inputfile-cv:focus + label,
 .inputfile-cv + label:hover {
-    background-color: darkblue;
+    background-color: #dc3545;
 }
 
 #btn-sacuvaj-cv{

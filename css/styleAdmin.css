@@ -3,7 +3,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: linear-gradient(to top, #000066 0%, #0066ff 70%);
+  background-color: #f8f9fa;
   width: 100%;
   height: 50px;
   border-top: 1px solid lightgray;
@@ -19,6 +19,11 @@
     padding-left: 35px;
 }
 
+.afooter a:hover{
+    color: #373737;
+    text-decoration: none;
+}
+
 .copy{
     float: right;
     padding-right: 20px;
@@ -29,7 +34,6 @@
 
 .navbar{
     border-bottom: 1px solid lightgray;
-    background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
     
 }
 
@@ -59,6 +63,10 @@
     border-top: none !important;
     line-height: 3;
     height: calc(100vh - 135px)
+}
+
+.admin-containter{
+    margin-bottom: 0 !important;
 }
 
 .sifrarniciNaziv{
@@ -160,7 +168,7 @@
     
     .pretraga-container{
         padding: 20px;
-        line-height: 2;
+        line-height: 2; 
     }
     
     .btn-pretraga{
@@ -317,6 +325,7 @@
     border: 1px solid black;
     margin: 20px;
     padding: 0 30px 30px 40px;
+    background-color: white;
 
 }
 .centar{
@@ -709,8 +718,6 @@
 
 .sadrzaj{
     padding: 30px;
-    border: 1px solid #4169E1;
-    border-radius: 5px;
     margin: 0 50px;
 }
 

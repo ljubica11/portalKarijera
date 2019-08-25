@@ -4,7 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Description of Grupe
+ * 
  * kontroler za funkcionalnost Grupe
+ * 
+ * formiranje grupa studenata po razlicitim parametrima i pravima pristupa 
+ * po izboru korisnika. U okviru svake od grupa kreiraju se diskusije, obavestenja
+ * i vesti sa pravima vidljivosti po izboru korisnika. U svakoj grupi se izlistavaju
+ * oglasi kompanija vidljivi toj grupi.
+ * . 
  * @author gordan
  */
 class Grupe extends CI_Controller {
@@ -16,7 +23,6 @@ class Grupe extends CI_Controller {
         $this->load->model('GrupeModel');
         $this->load->model('SifrarniciModel');
         $this->load->model('DiskusijeModel');
-        
     }
 
     public function index() {
@@ -34,6 +40,10 @@ class Grupe extends CI_Controller {
         $this->parser->parse('grupe', ["grupe" => $grupe]);
     }
 
+    /**
+     * ispisivanje clanova odredjene grupe.
+     * Na stranici se u listi korisnika generise i link ka njihovim profilima.
+     */
     public function ispisiClanove() {
 
         $idGru = $this->input->post('idGru');
@@ -57,7 +67,6 @@ class Grupe extends CI_Controller {
             'interesovanja' => $interesovanja, 'vestine' => $vestine, 'diploma' => $diploma, 'idGru' => $idGru]);
     }
 
-   
     /**
      * 
      * metoda za ubacivanje u grupu ulogovanog korisnika
@@ -66,10 +75,11 @@ class Grupe extends CI_Controller {
 
         $idGru = $this->input->get('idGru');
         $idKor = $this->session->userdata('user')['idKor'];
-        if($idKor == null){
+        if ($idKor == null) {
             redirect('Registracija/index');
         } else {
-        $this->GrupeModel->DodajStudente($idGru, $idKor);}
+            $this->GrupeModel->DodajStudente($idGru, $idKor);
+        }
         redirect('Grupe/index');
     }
 
@@ -83,19 +93,17 @@ class Grupe extends CI_Controller {
         $this->GrupeModel->obrisiStudente($idGru, $idKor);
         redirect('Grupe/index');
     }
-    
+
     /**
      * brisanje clan(ov)a iz grupe
      */
-
     public function obrisiClanaGrupe() {
-         
+
         $idGru = $this->input->post('idGru');
         $idKorArr = $this->input->post('idKor');
         foreach ($idKorArr as $idKor) {
             $this->GrupeModel->obrisiStudente($idGru, $idKor);
-
-    }
+        }
         $this->output->enable_profiler(FALSE);
 
         redirect('Grupe/index');
@@ -113,10 +121,10 @@ class Grupe extends CI_Controller {
         $this->load->model('ObavModel');
 
         $tipKorisnika = $this->session->userdata('user')['tip'];
-      
+
 
         $clanovi = $this->GrupeModel->dohvatiClanove($idGru);
-        $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru,$tipKorisnika);
+        $diskusijeGrupe = $this->DiskusijeModel->dohvatiDiskusijeGrupe($idGru, $tipKorisnika);
         $oglasiGrupe = $this->OglasiModel->dohvatiOglaseGrupe($idGru);
         $vestiGrupe = $this->VestiModel->dohvatiVestiGrupe($idGru);
         $obavestenjaGrupe = $this->ObavModel->dohvatiObavestenjaGrupe($idGru);
@@ -129,29 +137,28 @@ class Grupe extends CI_Controller {
         $data['middle_data'] = ['clanovi' => $clanovi, 'diskusijeGrupe' => $diskusijeGrupe,
             'oglasiGrupe' => $oglasiGrupe, 'vestiGrupe' => $vestiGrupe,
             'obavestenjaGrupe' => $obavestenjaGrupe, 'kategorije' => $kategorije,
-            'katVesti' => $katVesti, 'kursevi' => $kursevi, 'grupa' => $grupa ];
+            'katVesti' => $katVesti, 'kursevi' => $kursevi, 'grupa' => $grupa];
         $this->load->view('viewTemplate', $data);
     }
-    
+
     /**
      * metoda za ispisivanje opcija u padajucim listama za parametre po kojima dohvatamo studente
      */
-
     public function ispisiOpcije() {
 
         $tip = $this->input->post("tip");
-        
-         if ($tip == 'gradgrupe') {
+
+        if ($tip == 'gradgrupe') {
             $data = ['grad' => $this->SifrarniciModel->dohvatiMesto()];
         } else if ($tip == 'vestinegrupe') {
             $data = ['vestine' => $this->SifrarniciModel->dohvatiVestine()];
         } else if ($tip == 'fakultetgrupe') {
             $data = ['fakultet' => $this->SifrarniciModel->dohvatiFakultete()];
-        } else if ($tip == 'interesovanjagrupe'){
+        } else if ($tip == 'interesovanjagrupe') {
             $data = ['interesovanja' => $this->SifrarniciModel->dohvatiInteresovanja()];
-        } else if ($tip == 'statusgrupe'){
+        } else if ($tip == 'statusgrupe') {
             $data = ['status' => $this->GrupeModel->status()];
-        } else if ($tip == 'grupag'){
+        } else if ($tip == 'grupag') {
             $data = ['grupa' => $this->GrupeModel->dohvatiGrupe()];
         } else if ($tip == 'kursgrupe' OR $tip == 'kursg') {
             $data = ["kursevi" => $this->SifrarniciModel->dohvatiKurs()];
@@ -159,50 +166,44 @@ class Grupe extends CI_Controller {
 
         $this->load->view('grupe/opcije', $data);
     }
-    
+
     /**
      * kreiranje grupe i
      * upiti kojima pravimo grupe studenata po razlicitim parametrima
      */
-    
-    
-    public function upiti(){
-        
+    public function upiti() {
+
         $naziv = $this->input->post('nazivGrupe');
         $opis = $this->input->post('opisGrupe');
         $zaBrisanje = null;
-       
-      
-        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis, $zaBrisanje); 
-        
+
+
+        $idGru = $this->GrupeModel->dodajNovuGrupu($naziv, $opis, $zaBrisanje);
+
         $idKurs = $this->input->post("kurs");
         $idGra = $this->input->post("grad");
         $idVes = $this->input->post("vestine");
         $idFak = $this->input->post("fakultet");
         $idInter = $this->input->post('interesovanja');
         $status = $this->input->post('status');
-        
+
         $studentiUpit = $this->GrupeModel->upiti($idGra, $idKurs, $idFak, $idVes, $idInter, $status);
-        
+
         foreach ($studentiUpit as $su) {
-                    $idKor = $su['idKor'];
-                    $this->GrupeModel->DodajStudente($idGru, $idKor);
+            $idKor = $su['idKor'];
+            $this->GrupeModel->DodajStudente($idGru, $idKor);
         }
         $this->output->enable_profiler(FALSE);
         redirect('Grupe/index');
-        
     }
-    
+
     /**
      * zahtev korisnika adminu za brisanjem grupe
      */
-    
-     public function traziBrisanje(){
-            
-        $idGru = $this->input->post('idGru');    
+    public function traziBrisanje() {
+
+        $idGru = $this->input->post('idGru');
         $this->GrupeModel->zaBrisanje($idGru);
-       
-        
-}
+    }
 
 }

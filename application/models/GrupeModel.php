@@ -5,6 +5,7 @@
  * metode za dohvatanje korisnika po različitim šifrarnicima za potrebe funkcionalnosti "Grupe",
  * kreiranje grupa i dodavanje korisnika po različitim parametrima
  * @author gordan
+ * 
  */
 defined('BASEPATH') or exit('no direct access');
 
@@ -186,17 +187,30 @@ class GrupeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-     
+     /**
+      * student zaposlen/nezaposlen
+      * @return type array
+      */
     public function status(){
         
         $this->db->select('status')
-                          ->from('student');
+                   ->from('student');
         $query = $this->db->get();
         return $query ->result_array;
         
         
     }
-    
+    /**
+     * dohvatanje studenata iz baze po razlicitim parametrima
+     * 
+     * @param type $grad
+     * @param type $kurs
+     * @param type $fakultet
+     * @param type $vestine
+     * @param type $interesovanja
+     * @param type $status
+     * @return type array
+     */
     public function upiti($grad, $kurs, $fakultet, $vestine, $interesovanja, $status){
         
         $this->db->select('ime, prezime, student.idKor as idKor');
@@ -233,6 +247,10 @@ class GrupeModel extends CI_Model {
         return $query->result_array ();
     }
     
+    /**
+     * zahtev amdinistratoru za brisanje grupe
+     * @param type $idGru
+     */
       public function zaBrisanje($idGru) {
 
         $data = ["zaBrisanje" => "da"];
