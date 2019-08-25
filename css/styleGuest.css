@@ -618,9 +618,6 @@ button, input {
     color: darkblue;
 }
 
-#styleres{
-    background-image: url('../images/conn1.jpg');
-}
 
 .naslov-oglas{
     text-align: center;
@@ -769,6 +766,9 @@ button, input {
 }
 
 #lozinkacontainer{
-    height: 76%;
+
+    height: calc(100% - 137px);
+/*    margin-bottom: 0 !important;*/
+
 
 }

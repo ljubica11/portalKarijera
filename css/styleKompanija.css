@@ -366,7 +366,8 @@ input[type="number"] {
 }
 
 #pret{
-    height: 63%;
+    height: calc(100% - 163px);
+    margin-bottom: 0 !important;
 }
 
 .list-group-item {
