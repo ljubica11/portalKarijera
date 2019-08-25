@@ -3,14 +3,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-3 levo-admin">
-            <h4>Sifrarnici <i class="fa fa-book"></i></h4>
+            <h4>Šifrarnici <i class="fa fa-book"></i></h4>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('mesto')">Mesta</div>
-            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('drz')">Drzavljanstva</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('drz')">Državljanstva</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('faks')">Fakulteti</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('komp')">Kompanije</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('poz')">Pozicije</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('inter')">Interesovanja</div>
-            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('ves')">Vestine</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('ves')">Veštine</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('katves')">Kategorije vesti</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('katdis')">Kategorije diskusija</div>
         </div>
@@ -56,7 +56,7 @@
             <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('vesti')">Vesti
             <div class="notif" id="vesti"></div>
             </div>
-            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obavestenja
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obaveštenja
             <div class="notif" id="obavestenja"></div>
             </div>
             <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('grupe')">Grupe

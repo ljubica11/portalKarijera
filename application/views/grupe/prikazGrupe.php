@@ -18,7 +18,7 @@ foreach ($grupe as $g) {
         <br/>
         <b>Kreirana:</b> <?php echo $g['datum']; ?>
         <br/>
-        <b>Broj clanova:</b><?php
+        <b>Broj članova:</b><?php
     $brojClanova = $this->db->where('idGru', $idGru)->count_all_results('clanovigrupe');
     echo ' ' . $brojClanova;
     ?>
@@ -54,7 +54,7 @@ foreach ($grupe as $g) {
                     <?php
                     if (empty($clanovi)) {
                         echo " <input type='hidden' name='idGru' value='$idGru'>";
-                        echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UCLANI SE">';
+                        echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UČLANI SE">';
                     } else  if(!empty ($clanovi)){
                         $i = 0;
                       
@@ -64,7 +64,7 @@ foreach ($grupe as $g) {
 
                                 if ($ulogovani != $idClana) {
                                     echo " <input type='hidden' name='idGru' value='$idGru'>";
-                                    echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UCLANI SE">';
+                                    echo ' <input type="submit" class="btn btn-outline-primary btn-sm float-right" value="UČLANI SE">';
                                 }
                                 if (++$i > 0)
                                     break;

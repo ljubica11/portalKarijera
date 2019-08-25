@@ -5,11 +5,11 @@
         <div class="tabInfo">
             <?php 
             if(isset($interesovanja)){
-                echo "<h4> Vasa interesovanja </h4>";
+                echo "<h4> Vaša interesovanja </h4>";
             }else if(isset($vestine)){
-                echo "<h4> Vase vestine </h4>";
+                echo "<h4> Vaše vestine </h4>";
             }else if(isset ($fakulteti)){
-                echo "<h4> Podaci o zavrsenim studijama </h4>";
+                echo "<h4> Podaci o završenim studijama </h4>";
             }else if(isset ($kompanije)){
                 echo "<h4>Radno iskustvo</h4>";
             }
@@ -68,7 +68,7 @@
                 <div id="dodateVestine">
                 </div>
                 <br/><br/>
-                Vase vestine nisu na listi? Dodajte ih!
+                Vaše veštine nisu na listi? Dodajte ih!
                 <br>
                 
                 <div class='form-row'>
@@ -94,7 +94,7 @@
                  }else if(isset($fakulteti)){
             ?>
              
-           Ovde mozete da ostavite podatke o stecenoj diplomi. Ukoliko nemate diplomu ili jos uvek studirate, predjite na sledeci korak.
+           Ovde mozete da ostavite podatke o stečenoj diplomi. Ukoliko nemate diplomu ili još uvek studirate, pređite na sledeći korak.
              <br/>
              <div class="form-row">
                  <div class="col-6 offset-3">
@@ -122,7 +122,7 @@
                 <br/>
                 <input type="radio" name="nivo" value="osnovne"> Osnovne akademske studije<br>
                 <input type="radio" name="nivo" value="master"> Master akademske studije<br>
-                <input type="radio" name="nivo" value="specijalisticke"> Specijalisticke akademske studije<br>
+                <input type="radio" name="nivo" value="specijalisticke"> Specijalističke akademske studije<br>
                 <input type="radio" name="nivo" value="doktorske"> Doktorske akademske studije<br>
                 <input type="radio" name="nivo" value="strukovne"> Strukovne studije<br><br/>
                  </div>
@@ -132,7 +132,7 @@
                 <br/>
                 <input class="form-control" type="text" name="zvanje" placeholder="Steceno zvanje">
                 <br/>
-                <input type="checkbox" name="vidDipl" value="1">Ne zelim da ovaj podatak bude javan
+                <input type="checkbox" name="vidDipl" value="1">Ne želim da ovaj podatak bude javan
                 <br/><br/>
                 <input type="submit" name="dalje" value="Dalje" class='nextButton btn btn-primary btn-lg'>
              </form>
@@ -144,9 +144,9 @@
                  }else if(isset($kompanije)){
              ?>
              
-         Ovde mozete ostaviti podatke o ranijem ili trenutnom radnom angazmanu. 
+         Ovde možete ostaviti podatke o ranijem ili trenutnom radnom angažmanu. 
          <br/>
-         *Sajt prihvata samo <b>JEDNO</b> radno iskustvo, tako da - birajte pazljivo sta cete napisati. 
+         *Sajt prihvata samo <b>JEDNO</b> radno iskustvo, tako da - birajte pažljivo šta ćete napisati. 
          <div class="form-row">
                  <div class="col-6 offset-3">
             <form class="dodatneInfoForma" name="iskustvoForma" method="POST" action="<?php echo site_url('Registracija/dodajIskustvoZaKorisnika')?>">
@@ -185,7 +185,7 @@
                 <br/>
             <div id="selectsediste">
             <select class="form-control" name="sediste" id="listasediste" onchange="dodajInput('sediste')">
-                <option disabled selected value="">Sediste</option>
+                <option disabled selected value="">Sedište</option>
                 <?php 
                         foreach ($gradovi as $grad){
                             $naziv = $grad["naziv"];
@@ -201,7 +201,7 @@
             <br/>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon2">Pocetak radnog odnosa:</span>
+                  <span class="input-group-text" id="basic-addon2">Početak radnog odnosa:</span>
                 </div>
                 <input type="date" class="form-control" name="od">
             </div>
@@ -219,7 +219,7 @@
             <br/>
             Kraj radnog odnosa: <input class="form-control" type="date" name="do">-->
            
-            <input type="checkbox" name="vidRad" value="1">Ne zelim da ovaj podatak bude javan          
+            <input type="checkbox" name="vidRad" value="1">Ne želim da ovaj podatak bude javan          
             <br/><br/>
             <input type="submit" name="dalje" value="Zavrsi registraciju" class='nextButton btn btn-primary btn-lg'>
             </form> 

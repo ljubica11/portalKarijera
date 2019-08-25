@@ -16,7 +16,7 @@
                 <div id="gradgrupe"></div>
                 <input type="checkbox" name="upiti[]" value="fakultetgrupe"onclick="ispisiOpcije(value)">Po fakultetu<br>
                 <div id="fakultetgrupe"></div>
-                <input  type="checkbox" name="upiti[]" value="vestinegrupe"onclick="ispisiOpcije(value)">Po vestinama<br>
+                <input  type="checkbox" name="upiti[]" value="vestinegrupe"onclick="ispisiOpcije(value)">Po veštinama<br>
                 <div id="vestinegrupe"></div>
                 <input type="checkbox" name="upiti[]" value="interesovanjagrupe"onclick="ispisiOpcije(value)">Po interesovanjima<br>
                 <div id="interesovanjagrupe"></div>
