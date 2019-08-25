@@ -25,11 +25,23 @@ class Login extends CI_Controller{
 
         public function logovanje(){
             
+            
+            $this->load->model('UserModel');
             $username= $this->input->post('username');
             $pass= $this->input->post('pass');
             
-            $this->load->model('UserModel');
+           if (password_needs_rehash($pass, PASSWORD_DEFAULT)) {
+             $this->UserModel->hashstored($username, $pass);
+            
+
+            
+          
+            
             $users= $this->UserModel->login($username, $pass);
+            
+            
+           
+            }
             
             if(count($users)==0){
                 redirect("Reset_lozinke");
