@@ -22,9 +22,10 @@
                 <b>Tekst:</b> <?php echo $obavestenje['tekst']; ?><br>
                  <b>Datum: </b><?php echo substr($obavestenje['datum'], 0, 10); ?><br>
                 
-                
+                <?php if($this->session->userdata('user')['idKor'] == $obavestenje['autor']){ ?>
                  <input type="submit" value="Pošalji mejlom" onclick="mejl(<?php echo $idOba ?>)" class="btn btn-outline-primary float-right">'
             <?php
+                }
 //                echo "<b><a href='#' onclick='obavAjax($idOba)'>" . $obavestenje['naslov'] . "</a></b><br/>";
 //                echo "<div style='text-align:right'>" . substr($obavestenje['datum'], 0, 10) . "</div>";
                 
