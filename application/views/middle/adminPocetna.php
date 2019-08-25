@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div class="container-fluid">
+<div class="container-fluid admin-containter">
     <div class="row">
         <div class="col-3 levo-admin">
             <h4>Šifrarnici <i class="fa fa-book"></i></h4>
