@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
            }
            $this->load->helper('string');
            $novaLozinka = random_string('alnum',15);
-           $datum = date('Y-m-d H:i:s', 1+3600);
+           $datum = date('Y-m-d');
          
            $data = [
                'idKor'=>$korisnik->idKor,
