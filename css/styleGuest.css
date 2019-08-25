@@ -606,12 +606,12 @@ button, input {
     font-family: 'Roboto Slab', serif;
 }
 
-#resetstyle{
+#styleres{
+    border-right-color: black;
     height: 75vh; 
     width: 100%;
-    color: white;
+    color: darkblue;
 }
-
-#styleres{
-    background-image: url('../images/conn1.jpg');
+#lozinkacontainer{
+    height: 76%;
 }
