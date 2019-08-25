@@ -116,7 +116,7 @@ class User extends CI_Controller{
         public function dodajCV(){
             $idKor= $this->session->userdata('user')['idKor'];
             $config['allowed_types'] = 'pdf';
-            $config['max_size'] = '1000';
+            $config['max_size'] = '2048';
             
             if(!is_dir('./CV/'.$idKor)){
                 mkdir('./CV/'.$idKor, 0777);
