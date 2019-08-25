@@ -174,9 +174,10 @@
     
        window.onload = function(){
         dohvatiBroj();
+        prikaziRegZahteve();
     };
     
-    
+
     setInterval(dohvatiBroj, 10000);
     
     
