@@ -24,7 +24,7 @@
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="<?php echo base_url()?>/index.php/obavestenja">Obavestenja<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="<?php echo base_url()?>/index.php/obavestenja">Obaveštenja<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?php echo base_url()?>/index.php/vesti">Vesti<span class="sr-only">(current)</span></a>
