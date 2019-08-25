@@ -54,15 +54,26 @@
             </div>
             <div class="row">
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" id="iskustvaNaslov">Iskustva polaznika: </div>
+                <div class="col-sm-4 text-center" id="iskustvaNaslov">Iskustva polaznika </div> 
                 <div class="col-sm-4"></div>
             </div>
             <div class="row">
                 <div class="col-sm-12"></div>
             </div>
             <div class="row" id="iskustva">
-                <div class="col-sm-6">Tamara Sekularac: "Da nisam otkrila ovaj portal verovatno se nikad ne bih povezala sa današnjim kolegama, niti bih radila na Elektrotehničkom fakultetu. Svaka čast kreatorima na izumu."</div>
-                <div class="col-sm-6">Jovan Djukic: "Portal je fenomenalan. Jako koristan za mlade generacije, lakše se uspostavlja komunikacija sa poslodavcima koji umeju da prepoznaju talenat."</div>
+                <div class="col-1">
+                    <img src="<?php echo base_url()?>/images/tamara.jpg" class="img-fluid img-korisnici">
+                </div>
+                <div class="col-5">
+                    <b>Tamara Sekularac:</b> "Prolazak kroz IT preobuku i pronalaženje ovog portala me je izbavilo tmurne budućnosti u trafici na okretnici u Žarkovu, u kojoj sam godinama pre toga radila . Danas imam sjajan posao, sve zahvaljujući portalu Karijera!"
+                </div>
+                
+                <div class="col-1">
+                    <img src="<?php echo base_url()?>/images/jovan.jpg" class="img-fluid img-korisnici">
+                </div>
+                <div class="col-5">
+                    <b>Jovan Djukic:</b> "Moj život se u potpunosti promenio od kad sam prvi put došao na ovaj sajt. Za početak, više ne moram da ustajem u četiri ujutro svakog dana, jer sam zahvaljujući kontaktima sa portala Karijera konačno dao otkaz u pekari i našao dobar posao."    
+                </div>
             </div>
             </div>
         <div class="container" id="container4">
