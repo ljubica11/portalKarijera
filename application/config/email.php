@@ -17,3 +17,7 @@ $config['email']['crlf'] = "\r\n";
 $config['email']['newline'] = "\r\n";
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+
+/*configuracija za resetovanje lozinke preko mailtrap-a
+ * mail: admportalkarijera@gmail.com
+ * lozinka: A123123*

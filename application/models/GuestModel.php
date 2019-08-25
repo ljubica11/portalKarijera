@@ -18,6 +18,7 @@
              $this->load->view('Login/oNama');
         }
         
+        /*dohvatanje najnovijih vesti obavestenja, oglasa i diskusija iz baze*/
         public function najnovijaVest() {
             $this->db->select('tekst');
             $this->db->from('vesti');
