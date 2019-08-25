@@ -17,3 +17,4 @@ $config['email']['crlf'] = "\r\n";
 $config['email']['newline'] = "\r\n";
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+

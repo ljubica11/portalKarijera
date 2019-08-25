@@ -19,13 +19,15 @@
     padding-left: 35px;
 }
 
-
+/*footer sredjen*/
 .copy{
     float: right;
     padding-right: 20px;
     font-size: 18px;
     color: #696969;
 }
+
+/*navigation bar*/
 .navbar{
     border-bottom: 1px solid #ccc;
     background-color: gray;
@@ -40,6 +42,7 @@ nav .navbar-nav li a {
 .navbar-brand{
     color: white !important;
 }
+
 
 .wrapper{
     background-image: url("../images/pozadina1.jpg");
@@ -123,17 +126,20 @@ nav .navbar-nav li a {
   to {opacity: 1;}
 }
 
+/*login_stranica-naslovna middle deo pozadina*/
 #container1{
 background-image: url('../images/pozadina1.jpg');
 max-width: 100%;
 }
 
+/*login_stranica-naslovna middle deo sponzori projekta logo*/
 #container2{
     height: 120px;
     background-color: lightgray;
     max-width: 100%;
 }
 
+/*login_stranica-naslovna middle deo iskustva polaznika*/
 #container3{
     padding: 0 20px 20px 20px;
     background-color: #696969;
@@ -141,6 +147,7 @@ max-width: 100%;
     max-width: 100%
 }
 
+/*login_stranica-naslovna middle deo o portalu*/
 #container4{
     
     background-color: lightgray;
@@ -149,6 +156,7 @@ max-width: 100%;
     padding-right: 5%;
 }
 
+/*login_stranica-naslovna middle deo najnovije vesti, obavestenja, diskusije i oglasi smenjivanje*/
 #container5{
     margin-bottom: 0px;
     background-color: #696969;
@@ -168,7 +176,7 @@ max-width: 100%;
 }
 
 
-
+/*login_stranica-naslovna middle deo najnovije podesavanja za smenjivanje vesti, diskusija, obavestenja i oglasa*/
 .div.main {
   width:90%;
   overflow:hidden;
@@ -314,6 +322,7 @@ button, input {
     font-style: italic;
 }
 
+/*sredjivanje strane uslovi koriscenja*/
 #usloviKor{
     background-color: #D3D3D3;
     color: black;
@@ -322,6 +331,7 @@ button, input {
     border-width: 20px;
 }
 
+/*sredjivanje naslova na strani O nama*/
 #naslovOnama{
     color: darkblue;
     text-shadow: -1px -1px 1px #aaa,
@@ -330,6 +340,7 @@ button, input {
              0px 0px 7px rgba(0,0,0,0.4)
 }
 
+/*sredjivanje strane O nama*/
 #oNama{
     background-color: #D3D3D3;
     color: darkblue;
@@ -410,12 +421,14 @@ button, input {
 
 }
 
+/*strelica link na stranama O nama i Uslovi Koriscenja*/
 #strelicaLevo{
    height: 80px;
    width: 80px;
    margin-bottom: 40px;
 }
 
+/*strelica link na stranama O nama i Uslovi Koriscenja*/
 #strelicaDesno{
    height: 80px;
    width: 80px;
@@ -423,6 +436,7 @@ button, input {
    
 }
 
+/*sredjene margine na stranama O nama i Uslovi koriscenja*/
 #uslkor{
    margin-left: 210px;
 }
@@ -513,6 +527,7 @@ button, input {
     margin-top: 20px; 
 }
 
+/*sredjivanje middle dela visine kod obavestenja, oglasa i vesti*/
 #obav{
     height: 400vh;
     
@@ -526,6 +541,7 @@ button, input {
     height: 400vh;
 }
 
+/*sredjivanje dugmica za kategorije u okviru diskusija*/
 .list-group-item {
   display:block;
   float:left;

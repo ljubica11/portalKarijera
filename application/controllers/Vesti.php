@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Description of Vesti
+ *
+ * kontroler za funkcionalnost Vesti
+ * kreiranje kategorija vesti, kreiranje vesti
+ * sa razlicitim pravima pristupa u zavisnosti od korisnikovog izbora
+ *
+ *
+ */
 defined('BASEPATH') or exit('no direct access');
 
 class Vesti extends CI_Controller {
@@ -28,6 +37,9 @@ class Vesti extends CI_Controller {
         $this->load->view('viewTemplate', $data);
     }
 
+    /**
+     * metoda za ispisivanje vesti po kategorijama vesti
+     */
     public function ispisiVesti() {
 
         if ($this->session->has_userdata('user')) {
@@ -40,6 +52,9 @@ class Vesti extends CI_Controller {
         $this->load->view("vesti/prikazVesti", ["vesti" => $vesti]);
     }
 
+    /**
+     * metoda za dodavanje vesti sa biranjem razlicitih nivoa vidljivosti
+     */
     public function dodajVest() {
 
         $kategorija = $this->input->post('kategorija');
@@ -51,14 +66,14 @@ class Vesti extends CI_Controller {
         $idVes = $this->VestiModel->dodajVest($this->session->userdata('user')['idKor'], $kategorija, $naziv, $tekst, $vidljivost, $vidljivostGrupa, $vidljivostKurs);
         if ($vidljivost == "pretraga") {
             $this->dodajVestZaPretragu($idVes);
-        }else if($vidljivost == "grupa"){
+        } else if ($vidljivost == "grupa") {
             $this->VestiModel->dodajVestGrupe($idVes, $vidljivostGrupa);
         }
         redirect('Vesti');
     }
 
     /**
-     * metoda za dodavanje vesti u okviru odredjene gurpe
+     * metoda za dodavanje vesti u okviru odredjene grupe
      */
     public function dodajVestGrupe() {
 
@@ -77,6 +92,9 @@ class Vesti extends CI_Controller {
         redirect("Grupe/grupa/$idGru");
     }
 
+    /**
+     * metoda za dodavanje nove kategorije vesti na strani admina-a
+     */
     public function dodajKategorijuVesti() {
         $nova_kategorija = $this->input->post('novakatvesti');
         $this->VestiModel->dodajKategorijuVesti($nova_kategorija);
@@ -91,17 +109,19 @@ class Vesti extends CI_Controller {
         }
     }
 
+    /**
+     * metoda koja oomogucava autoru vesti da je arhivira cime postaje vidljiva samo njemu
+     */
     public function arhivirajVest($idVes) {
 
         $this->VestiModel->arhivirajVest($idVes);
         $this->session->set_flashdata("poruka", "Uspesno ste arhivirali vest. Sada je mozete videti samo vi u odeljku 'Moje vesti'");
         redirect("Vesti/index");
     }
-    
-    public function dohvatiJednuVest($idVes){
+
+    public function dohvatiJednuVest($idVes) {
         $data = ["vest" => $this->VestiModel->dohvatiJednuVest($idVes)];
         $this->load->view('vesti/jednaVest', $data);
-
     }
 
     public function traziBrisanje($idVes) {
@@ -110,13 +130,13 @@ class Vesti extends CI_Controller {
         $this->session->set_flashdata('poruka', 'Poslat je zahtev za brisanje vesti administratoru. Vasa vest ce uskoro biti obrisana sa sajta.');
         redirect("Vesti/index");
     }
-    
-    public function dohvatiVestiAutora($idKor){
-        $vesti= $this->VestiModel->dohvatiVestiAutora($idKor);
-        if(empty($vesti)){
+
+    public function dohvatiVestiAutora($idKor) {
+        $vesti = $this->VestiModel->dohvatiVestiAutora($idKor);
+        if (empty($vesti)) {
             echo "<h4>Nema vesti</h4>";
-        }else{
-        $this->load->view("vesti/prikazVesti", ["vesti" => $vesti]);
+        } else {
+            $this->load->view("vesti/prikazVesti", ["vesti" => $vesti]);
         }
     }
 

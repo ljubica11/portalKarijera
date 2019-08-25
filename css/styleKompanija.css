@@ -19,7 +19,7 @@
     color: white;
     padding-left: 35px;
 }
-
+/*footer sredjen*/
 
 .copy{
     float: right;
@@ -28,6 +28,7 @@
     color: white;
 }
 
+/*navigation bar*/
 .navbar{
     border-bottom: 1px solid lightgray;
     background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
@@ -239,6 +240,7 @@ input[type="number"] {
     top: 20px;
 }
 
+/*sredjivanje strane uslovi koriscenja*/
 #usloviKor{
     background-color: #D3D3D3;
     color: black;
@@ -247,6 +249,7 @@ input[type="number"] {
     border-width: 20px;
 }
 
+/*sredjivanje naslova na strani O nama*/
 #oNama{
     background-color: #D3D3D3;
     color: black;
@@ -367,6 +370,7 @@ input[type="number"] {
     
 }
 
+/*sredjene visine middle dela odavestenja, oglasa i pretrage*/
 #obav{
     height: 500vh;
     
@@ -382,6 +386,7 @@ input[type="number"] {
     margin-bottom: 0 !important;
 }
 
+/*sredjivanje dugmica za kategorije u okviru diskusija*/
 .list-group-item {
   display:block;
   float:left;
