@@ -135,6 +135,7 @@ max-width: 100%;
 }
 
 #container3{
+    padding: 0 20px 20px 20px;
     background-color: #696969;
     color: white;
     max-width: 100%
@@ -306,6 +307,7 @@ button, input {
     text-decoration: underline;
     font-size: 30px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 #iskustva{
@@ -756,4 +758,10 @@ button, input {
     background-color: gray;
     color: white;
     border: none !important;
+}
+
+.img-korisnici{
+    height: 100px;
+    width: 100px; 
+    border-radius: 50%;
 }
