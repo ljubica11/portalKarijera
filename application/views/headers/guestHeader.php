@@ -11,18 +11,8 @@
     <body style="background-color: #e6e6e6">
         <nav class="navbar navbar-expand-lg navbar-light" id="header">
             <a class="navbar-brand" href="<?php echo site_url('Login')?>"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="90" height="60" title="Logo" alt="Logo">PortalKarijera</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav ml-auto">
-                <li class="wrap" name="searchIcon">
-                    <form>
-                        <input type="text" class="input" placeholder="Pretraga">
-                    </form>
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?php echo base_url()?>/index.php/obavestenja">Obaveštenja<span class="sr-only">(current)</span></a>
                 </li>
@@ -47,34 +37,6 @@
                 </form>
             </div> 
         </nav>
-       
-        <script>
-           $(document).ready(function(){
-                $(".fa-search").click(function(){
-                  $(".wrap, .input").toggleClass("active");
-                  $("input[type='text']").focus();
-                  $route[search-going-data]='Search/search_going_data';
-                  $('#goingto').on('keyup',function(){
-                      var gointval=$('#gointTo').val();
-                      if(gointval==""){
-                          alert("no data");
-                      }else{
-                          $.ajax({
-                              url:"<?php echo base_url('search-going-data'); ?>",
-                              type:'POST',
-                              data:{searchval:gointval},
-                              success:function(res){
-                                  console.log(res);
-                              }
-                          });
-                      }
-                  });
-                });
-          });
-           
-          
-    
-        </script>
 
         
         
