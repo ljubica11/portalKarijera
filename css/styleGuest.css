@@ -611,10 +611,11 @@ button, input {
     font-family: 'Roboto Slab', serif;
 }
 
-#resetstyle{
+#styleres{
+    border-right-color: black;
     height: 75vh; 
     width: 100%;
-    color: white;
+    color: darkblue;
 }
 
 #styleres{
@@ -760,8 +761,13 @@ button, input {
     border: none !important;
 }
 
+
 .img-korisnici{
     height: 100px;
     width: 100px; 
     border-radius: 50%;
+
+#lozinkacontainer{
+    height: 76%;
+
 }
