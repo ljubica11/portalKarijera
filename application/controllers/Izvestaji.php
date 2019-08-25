@@ -95,7 +95,7 @@ class Izvestaji extends CI_Controller {
         
         $this->load->library('Phpmailerlib');
         $Mail = $this->phpmailerlib->load();     
-        $mejlLista = $this->IzvestajiModel->mejlLista();
+        $mejlLista = $this->IzvestajiModel->mejlAdmini();
 
 
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
