@@ -144,8 +144,11 @@
                      </div>
                     <div class="sadrzaj-pocetna">
                     <?php
-                                        foreach ($obavestenja as $obavestenje){
-                                            echo "- <a href='#'>".$obavestenje['naslov']."</a><br/>";
+                                        foreach ($obavestenja as $obavestenje){ ?>
+                        
+                        <a href="<?php echo site_url("Obavestenja/index")?>?idObavestenja=<?php echo $obavestenje['idOba']?>" target="_blank"><?php echo $obavestenje['naslov'] ?></a><br/>
+                        <?php
+                                           
                                         }
                     ?>
                     </div>

@@ -19,13 +19,15 @@
     padding-left: 35px;
 }
 
-
+/*footer sredjen*/
 .copy{
     float: right;
     padding-right: 20px;
     font-size: 18px;
     color: #696969;
 }
+
+/*navigation bar*/
 .navbar{
     border-bottom: 1px solid #ccc;
     background-color: gray;
@@ -40,6 +42,7 @@ nav .navbar-nav li a {
 .navbar-brand{
     color: white !important;
 }
+
 
 .wrapper{
     background-image: url("../images/pozadina1.jpg");
@@ -123,17 +126,20 @@ nav .navbar-nav li a {
   to {opacity: 1;}
 }
 
+/*login_stranica-naslovna middle deo pozadina*/
 #container1{
 background-image: url('../images/pozadina1.jpg');
 max-width: 100%;
 }
 
+/*login_stranica-naslovna middle deo sponzori projekta logo*/
 #container2{
     height: 120px;
     background-color: lightgray;
     max-width: 100%;
 }
 
+/*login_stranica-naslovna middle deo iskustva polaznika*/
 #container3{
     padding: 0 20px 20px 20px;
     background-color: #696969;
@@ -141,6 +147,7 @@ max-width: 100%;
     max-width: 100%
 }
 
+/*login_stranica-naslovna middle deo o portalu*/
 #container4{
     
     background-color: lightgray;
@@ -149,6 +156,7 @@ max-width: 100%;
     padding-right: 5%;
 }
 
+/*login_stranica-naslovna middle deo najnovije vesti, obavestenja, diskusije i oglasi smenjivanje*/
 #container5{
     margin-bottom: 0px;
     background-color: #696969;
@@ -168,7 +176,7 @@ max-width: 100%;
 }
 
 
-
+/*login_stranica-naslovna middle deo najnovije podesavanja za smenjivanje vesti, diskusija, obavestenja i oglasa*/
 .div.main {
   width:90%;
   overflow:hidden;
@@ -314,6 +322,7 @@ button, input {
     font-style: italic;
 }
 
+/*sredjivanje strane uslovi koriscenja*/
 #usloviKor{
     background-color: #D3D3D3;
     color: black;
@@ -322,6 +331,7 @@ button, input {
     border-width: 20px;
 }
 
+/*sredjivanje naslova na strani O nama*/
 #naslovOnama{
     color: darkblue;
     text-shadow: -1px -1px 1px #aaa,
@@ -330,6 +340,7 @@ button, input {
              0px 0px 7px rgba(0,0,0,0.4)
 }
 
+/*sredjivanje strane O nama*/
 #oNama{
     background-color: #D3D3D3;
     color: darkblue;
@@ -352,6 +363,7 @@ button, input {
 .poruka {
     overflow: auto;
     overflow-wrap: normal;
+    background-color: white;
 }
 
 .lajk {
@@ -405,15 +417,18 @@ button, input {
     padding: 10px;
     border: 1px solid lightgray;
     box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color: white;
 
 }
 
+/*strelica link na stranama O nama i Uslovi Koriscenja*/
 #strelicaLevo{
    height: 80px;
    width: 80px;
    margin-bottom: 40px;
 }
 
+/*strelica link na stranama O nama i Uslovi Koriscenja*/
 #strelicaDesno{
    height: 80px;
    width: 80px;
@@ -421,6 +436,7 @@ button, input {
    
 }
 
+/*sredjene margine na stranama O nama i Uslovi koriscenja*/
 #uslkor{
    margin-left: 210px;
 }
@@ -511,6 +527,7 @@ button, input {
     margin-top: 20px; 
 }
 
+/*sredjivanje middle dela visine kod obavestenja, oglasa i vesti*/
 #obav{
     height: 400vh;
     
@@ -524,45 +541,44 @@ button, input {
     height: 400vh;
 }
 
+/*sredjivanje dugmica za kategorije u okviru diskusija*/
 .list-group-item {
-    box-sizing: border-box;
-    width: 11em;
-    height: 3em;
-    font-size: 20px;
-    border-radius: 0.5em;
-    margin: 0.5em;
-    box-shadow: 0 0 1em rgba(0,0,0,0.2);
-    color: white;
-    font-family: sans-serif;
-    text-transform: capitalize;
-    line-height: 2em;
-    transition: 0.3s;
-    cursor: pointer;
+  display:block;
+  float:left;
+  margin: 5px;
+  color:#fff;
+  text-align:center;
+  font-size:15px;
+  cursor: pointer;
+  text-decoration: none;
+  padding:10px;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-bottom: 3px solid rgba(0,0,0,0.5);
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5), /* Exterior Shadow */
+    inset 0 1px rgba(255,255,255,0.3), /* Top light Line */
+    inset 0 10px rgba(255,255,255,0.2), /* Top Light Shadow */
+    inset 0 10px 20px rgba(255,255,255,0.25), /* Sides Light Shadow */
+    inset 0 -15px 30px rgba(0,0,0,0.3); /* Dark Background */
+  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.5),
+    inset 0 1px rgba(255,255,255,0.3),
+    inset 0 10px rgba(255,255,255,0.2),
+    inset 0 10px 20px rgba(255,255,255,0.25),
+    inset 0 -15px 30px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 8px rgba(0,0,0,0.5),
+    inset 0 1px rgba(255,255,255,0.3),
+    inset 0 10px rgba(255,255,255,0.2),
+    inset 0 10px 20px rgba(255,255,255,0.25),
+    inset 0 -15px 30px rgba(0,0,0,0.3);
 }
 
-.list-group-item:nth-child(odd) {
-    background: linear-gradient(to right, blue, tomato);
-    text-align: left;
-    padding-left: 10%;
-    transform: perspective(500px) rotateY(45deg);
-    color: white;
-}
-
-.list-group-item:nth-child(even) {
-    background: linear-gradient(to left, blue, tomato);
-    text-align: right;
-    padding-right: 10%;
-    transform: perspective(500px) rotateY(-45deg);
-}
-
-.list-group-item:nth-child(odd):hover {
-    transform: perspective(200px) rotateY(45deg);
-    padding-left: 5%;
-}
-
-.list-group-item:nth-child(even):hover {
-    transform: perspective(200px) rotateY(-45deg);
-    padding-right: 5%;
+.list-group-item:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  -moz-opacity:0.7;
+  -khtml-opacity: 0.7;
 }
 
 .formaGrupe {
@@ -618,9 +634,6 @@ button, input {
     color: darkblue;
 }
 
-#styleres{
-    background-image: url('../images/conn1.jpg');
-}
 
 .naslov-oglas{
     text-align: center;
@@ -769,6 +782,9 @@ button, input {
 }
 
 #lozinkacontainer{
-    height: 76%;
+
+    height: calc(100% - 137px);
+/*    margin-bottom: 0 !important;*/
+
 
 }

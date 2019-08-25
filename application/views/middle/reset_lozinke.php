@@ -20,6 +20,7 @@
                         echo form_submit("reset", "Resetuj");
                     ?>
                 </div>
+<!--                forma lozinke za unos korisnickog imena, klikom na dugme salje se mejl korisniku sa novom lozinkom-->
                 <?php
                     } else {
                         if($mail_ok){

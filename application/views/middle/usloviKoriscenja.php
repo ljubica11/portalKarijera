@@ -16,6 +16,7 @@
             <?php } else{?>
             <div class="col-sm-4"><a id="onam" href="<?php echo base_url() ?>/index.php/User/oNama">O nama</a><a href="<?php echo base_url() ?>/index.php/User/oNama"><img src="<?php echo base_url() ?>//images/strelicadesno.png"  id="strelicaDesno"></a></div>
         <?php } ?>
+                <!--Ako je gost onda je putanja preko Login kontrolora, a ako je korisnik ili admin onda je preko User kontrolora-->
     </div>
     <div class="row">
         <div class="offset-sm-1"></div>

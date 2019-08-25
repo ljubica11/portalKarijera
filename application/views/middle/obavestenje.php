@@ -15,7 +15,7 @@
             foreach ($obavestenja as $obavestenje) {
                 // var_dump($obavestenja);
                 $idOba = $obavestenje['idOba'];
-                ?>
+               ?>
 
                 <div class="centar">
                     <b>Naslov:<a href="#" onclick="obavAjax(<?php echo $idOba ?>)"> <?php echo $obavestenje['naslov']; ?></a></b><br>
@@ -28,12 +28,10 @@
                     if ($idKor == $obavestenje['autor']) { ?>
                         <input type="submit" value="Pošalji mejlom" onclick="mejl(<?php echo $idOba ?>)" class="btn btn-outline-primary float-right">                    
                     <?php } ?>
-                </div>   
+                </div> 
             <?php }
             ?>
-
-
-
+            
             <div id="myModal" class="modal modal-vesti">
                 <div class="modal-content modal-content-vesti">
 
@@ -52,9 +50,6 @@
 
                 </div>
             </div>
-
-
-
         </div>
         <div class="<?php if (!$this->session->has_userdata('user') or $this->session->userdata('user')['tip'] == "s")
                 echo 'col-3';
@@ -219,7 +214,4 @@ if ($this->session->flashdata('obavestenjePostavljeno')) {
 
 
 </script>
-
-
-
 

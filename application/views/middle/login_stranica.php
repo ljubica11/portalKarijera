@@ -65,14 +65,14 @@
                     <img src="<?php echo base_url()?>/images/tamara.jpg" class="img-fluid img-korisnici">
                 </div>
                 <div class="col-5">
-                    <b>Tamara Sekularac:</b> "Prolazak kroz IT preobuku i pronalaženje ovog portala me je izbavilo tmurne budućnosti u trafici na okretnici u Žarkovu, u kojoj sam godinama pre toga radila . Danas imam sjajan posao, sve zahvaljujući portalu Karijera!"
+                    <b>Tamara Šekularac:</b> "Prolazak kroz IT preobuku i pronalaženje ovog portala me je izbavilo tmurne budućnosti u trafici na okretnici u Žarkovu, u kojoj sam godinama pre toga radila . Danas imam sjajan posao, sve zahvaljujući portalu Karijera!"
                 </div>
                 
                 <div class="col-1">
                     <img src="<?php echo base_url()?>/images/jovan.jpg" class="img-fluid img-korisnici">
                 </div>
                 <div class="col-5">
-                    <b>Jovan Djukic:</b> "Moj život se u potpunosti promenio od kad sam prvi put došao na ovaj sajt. Za početak, više ne moram da ustajem u četiri ujutro svakog dana, jer sam zahvaljujući kontaktima sa portala Karijera konačno dao otkaz u pekari i našao dobar posao."    
+                    <b>Jovan Đukic:</b> "Moj život se u potpunosti promenio od kad sam prvi put došao na ovaj sajt. Za početak, više ne moram da ustajem u četiri ujutro svakog dana, jer sam zahvaljujući kontaktima sa portala Karijera konačno dao otkaz u pekari i našao dobar posao."    
                 </div>
             </div>
             </div>

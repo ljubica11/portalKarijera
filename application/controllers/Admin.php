@@ -1,5 +1,7 @@
 <?php
 
+//kontroler za sve funkcionalnosti administratora
+
 class Admin extends MY_Controller{
     
      public function __construct() {
@@ -14,8 +16,10 @@ class Admin extends MY_Controller{
     }
     
     
+//    metoda za dohvatanje odgovarajucih sifrarnikau skladu sa proslednjenim tipom 
+    //dobijeni podaci se prosledjuju na stranicu za ispisivanje sifrarnika
     public function prikaziSifrarnik($tip){
-//        $tip = $this->input->get('tip');
+
         
          if($tip == 'mesto'){
             $data = ["data" => $this->SifrarniciModel->dohvatiMesto(),
@@ -57,6 +61,8 @@ class Admin extends MY_Controller{
          $this->load->view("admin/prikazSifrarnikaTest", $data);
     }
     
+    
+    // metoda za brisanje stavki iz odgovarajucih sifrarnika, u skladu sa proslednjenim tipom
     public function obrisiStavku(){
         $id = $this->input->post('id');
         $tip = $this->input->post('tip');
@@ -82,6 +88,8 @@ class Admin extends MY_Controller{
         $this->prikaziSifrarnik($tip);
     }
     
+    
+    // metoda za izmenu stavki u sifrarnicima u skladu sa prosledjenim tipom
     public function izmeniStavku(){
         $tip = $this->input->post('tip');
         $id = $this->input->post('id');
@@ -110,6 +118,8 @@ class Admin extends MY_Controller{
         $this->prikaziSifrarnik($tip);
     }
     
+    
+    // metoda za dodavanje novih stavki u sifrarnike u skladu sa, pogadjate, proslednjenim tipom
     public function dodajStavku(){
         $this->load->model('VestiModel');
         $this->load->model('DiskusijeModel');
@@ -140,6 +150,7 @@ class Admin extends MY_Controller{
         $this->prikaziSifrarnik($tip);
     }
     
+    // metoda prikaz zahteva za registraciju (registracije kompanija koje admin jos nije odobrio)
     public function prikaziZahteveRegistracija(){
 
         
@@ -153,6 +164,7 @@ class Admin extends MY_Controller{
        
     }
     
+    //metoda za odobravanje registracije
     public function odobriRegistraciju(){
         $id = $this->input->post('id');
         $mejl = $this->input->post('mejl');
@@ -163,6 +175,7 @@ class Admin extends MY_Controller{
         
     }
     
+    //metoda za zabranu registracije i brisanje te kompanije iz baze
     public function zabraniRegistraciju(){
        $id = $this->input->post('id');
        $mejl = $this->input->post('mejl');
@@ -173,6 +186,7 @@ class Admin extends MY_Controller{
        echo $poruka;
     }
     
+    //metoda za slanje mejla kompaniji nakon sto joj je registracija prohvacena ili odbijena
     public function posaljiMejl($msg, $mejl){
         $this->load->library('Phpmailerlib');
         $Mail = $this->phpmailerlib->load();
@@ -202,16 +216,9 @@ class Admin extends MY_Controller{
         
     }
     
-    public function brojZahtevaReg(){
-        $broj = $this->AdminModel->dohvatiBrojZahtevaReg();
-        if($broj === 0){
-           return ""; 
-        } else{
-            $data = ["broj" => $broj];
-            $this->load->view('admin/notifikacije', $data);
-        }
-    }
+
     
+    //metoda za dohvatanje broja zahteva za brisanje, u skladu sa proslednjenim tipom
     public function zahteviZaBrisanje($tip){
         if($tip == "oglasi"){
             $data = ["oglasi" => $this->AdminModel->zahteviZaBrisanjeOglasa()];
@@ -228,6 +235,8 @@ class Admin extends MY_Controller{
         
     }
     
+    
+    // metoda za brisanje zahteva
     public function obrisiZahtev(){
         $tip = $this->input->post('tip');
         $id = $this->input->post('id');
@@ -246,6 +255,7 @@ class Admin extends MY_Controller{
         redirect("Admin/zahteviZaBrisanje/$tip");    
     }
     
+    // metoda za dohvatanje broja zahteva za registraciju, tj za brisanje iz baze;
     public function brojZahteva($tip){
 
         if($tip == "registracija"){

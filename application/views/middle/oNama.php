@@ -19,6 +19,7 @@
                     <?php } else{?>
                     <a id="uslkor" href="<?php echo base_url() ?>/index.php/User/usloviKoriscenja">Uslovi korišćenja</a><a href="<?php echo base_url() ?>/index.php/User/usloviKoriscenja"><img src="<?php echo base_url() ?>//images/strelicadesno.png"  id="strelicaDesno"></a>'
                     <?php } ?>
+<!--                    Ako je gost onda je putanja preko Login kontrolora, a ako je korisnik ili admin onda je preko User kontrolora-->
                 </div>
             </div>
             <div class="row">
@@ -61,7 +62,7 @@
             </div>
             <div class="row">
                 <div class="offset-sm-4"></div>
-                <div class="col-sm-4" id="mejl">admin@portalkarijera.rs</div>
+                <div class="col-sm-4" id="mejl">admportalkarijera@gmail.com</div>
                 <div class="offset-sm-4"></div>
             </div>
         </div>
