@@ -96,7 +96,8 @@ class User extends CI_Controller{
         
           $this->load->library('upload', $config);
           if (!$this->upload->do_upload('image')){
-            echo $this->upload->display_errors();
+              $this->session->set_flashdata('brisanjeObav', $this->upload->display_errors());
+              redirect('User');
         }else{
             redirect('User');
       }
@@ -124,8 +125,8 @@ class User extends CI_Controller{
           $config['upload_path']= './CV/'.$idKor;
           $this->load->library('upload', $config);
           if(!$this->upload->do_upload('cv')){
-              $this->index();
-              echo $this->upload->display_errors();
+              $this->session->set_flashdata('brisanjeObav', $this->upload->display_errors());
+              redirect('User');
           }else{
               $upload_data = $this->upload->data();
               echo $upload_data["file_type"];

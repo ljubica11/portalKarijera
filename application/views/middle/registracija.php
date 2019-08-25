@@ -8,6 +8,8 @@
 </div>   
     <div id="Student" class="tabcontent overflow-auto scroll">
         <div class="naslovReg"> <h4>Povežite se sa drugim studentima i inovativnim kompanijama</h4></div>
+        <br/>
+        <small>*Sva polja su obavezna</small>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -82,7 +84,8 @@
                      </select><br/><?php echo form_error('status');?>
                      <div id="res">
                      </div>
-                     <input class="form-control" name="lozinka" type="password"  placeholder="Lozinka"><?php echo form_error('lozinka') ?> <br/>
+                     <input class="form-control" name="lozinka" type="password"  placeholder="Lozinka"><?php echo form_error('lozinka') ?>
+                     <small>Lozinka mora da ima najmanje pet karaktera, bar jedno malo slovo, bar jedno veliko slovo, bar jedan broj, i bar jedan poseban karakter (!@#$%^&*()\-_=+{};:,<.>§~)</small><br/>
                      <input class="form-control" name="ponLozinka" type="password"  placeholder="Ponovi lozinku"><?php echo form_error('ponLozinka') ?> <br/>
                      <input class="form-control" type="email" name="email"  placeholder="E-mail" value="<?php echo set_value('email') ?>"><?php echo form_error('email') ?>
                      <input class="form-check-input" type="checkbox" name="vidEmail" value="1">Ne želim da mi mejl bude javan <br/><br/>
@@ -102,6 +105,8 @@
     </div>
     <div id="Kompanija" class="tabcontent overflow-auto scroll">
         <div class="naslovReg"> <h4>Pronađite najbolje studente za vas posao</h4></div>
+        <br/>
+        <small>*Sva polja su obavezna</small>
          <div class="container-fluid">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -136,6 +141,7 @@
             <input class="form-control" type="text" name="korisnicko" value="<?php echo set_value('korisnicko')?>" placeholder="Odaberite korisnicko ime"><?php echo form_error('korisnicko') ?>
             <br/>
             <input class="form-control" type="password" name="lozinka" placeholder="Sifra"><?php echo form_error('lozinka') ?>
+            <small>Lozinka mora da ima najmanje pet karaktera, bar jedno malo slovo, bar jedno veliko slovo, bar jedan broj, i bar jedan poseban karakter (!@#$%^&*()\-_=+{};:,<.>§~)</small><
             <br/>
             <input class="form-control" type="password" name="ponlozinka" placeholder="Potvrdite sifru"><?php echo form_error('ponlozinka') ?>
             <br/>
