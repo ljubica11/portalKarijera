@@ -4,7 +4,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
-   
             <div class="container" id="container1">
                 <div class="row">
                     <div class="offset-sm-12" style="height: 50px"></div>
@@ -107,6 +106,44 @@
                 <div id="najnovije" class="slide-right col-sm-12"></div>
             </div>
         </div>
+        
+         <div id="myModal" class="modal modal-login">
+                <div class="modal-content modal-content-login">
+
+                    <div class="modal-header modal-header-login">
+                        <h4>Login</h4>
+                        <span class="close">&times;</span>
+                    </div>
+                    
+                    <div class="modal-body modal-body-login" id="modal-body">
+                        Pogrešno korisničko ime i/ili lozinka. Pokušajte ponovo. 
+                        <br/><br/>
+                        <form  name="loginForma" method="POST" action="<?php echo site_url('Login/logovanje')?>">
+                            <div class="form-row">
+                                <div class="col-8 offset-2">
+                                    <input class="form-control" type="text" name="username" value="<?php echo $this->session->flashdata('login_username')?>">
+                            <br/>
+                            <input class="form-control" type="password" placeholder="Lozinka" name="pass">
+                            <small><a href="<?php echo site_url('Reset_lozinke')?>">Zaboravili ste lozinku?</a></small>
+                                
+                                </div>
+                            </div>
+                            <br/>
+                            <button class="btn btn-outline-primary" type="submit">Login</button>
+                        </form>
+                        
+                    </div>
+
+
+                    <div class="modal-footer modal-footer-vesti">
+                        <h5>Portal "Karijera"</h5>
+                    </div>
+
+                </div>
+            </div>
+        
+        
+        
         <?php if ($this->session->flashdata('msg')){
         $msg = $this->session->flashdata('msg');
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
@@ -134,6 +171,23 @@
 
             to_change_title();
             //pozvano menjanje najnovijih vesti,obavestenja, oglasa i diskusija, definisano menjanje na 2000
+            <?php if($this->session->flashdata('login_username')){ ?>
+            document.getElementById("myModal").style.display = "block";
+            <?php } ?>
+            
+            var span = document.getElementsByClassName("close")[0];
+
+            var modal = document.getElementById("myModal");    
+
+            span.onclick = function() {
+              modal.style.display = "none";
+            };
+
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            };
         </script>
     </body>
 </html>
