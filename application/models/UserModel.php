@@ -11,7 +11,7 @@ class UserModel extends CI_Model{
     
      public function login($username, $pass){
         $this->db->where('korisnicko', $username);
-        $this->db->where('lozinka', $pass);
+        $this->db->where('lozinka', password_verify($pass));
         $this->db->where('cekaOdobrenje', null);
         $this->db->from('korisnik');
         $query=$this->db->get();
@@ -117,5 +117,20 @@ class UserModel extends CI_Model{
             $this->db->where('idKor', $idKor);
             $this->db->update('student', $data);
     }
+    
+    
+    /**
+     * pass hash
+     * @param type $username
+     * @param type $pass
+     */
+    public function hashstored($username, $pass){
+        
+     $data = ['lozinka' => password_hash($pass, PASSWORD_DEFAULT)];
+     $this->db->where('korisnicko', $username);
+     $this->db->update('korisnik', $data);
+     
+             
+    } 
       
 }
