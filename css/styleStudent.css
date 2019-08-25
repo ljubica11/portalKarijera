@@ -620,7 +620,7 @@
 
 .inputfile-cv:focus + label,
 .inputfile-cv + label:hover {
-    background-color: darkblue;
+    background-color: #dc3545;
 }
 
 #btn-sacuvaj-cv{
