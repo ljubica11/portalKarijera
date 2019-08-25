@@ -5,6 +5,7 @@
  * Description of DiskusijeModel
  * metode za pokretanje diskusija po različitim kategorijama, kreiranje diskusionih grupa, 
  * u okviru kojih se razmenjuju postovi korisnika.
+ * 
  * @author gordan
  */
 defined('BASEPATH') or exit('no direct access');
@@ -275,6 +276,11 @@ class DiskusijeModel extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    /**
+     * metoda za ispis broja postova u okviru odredjene diskusije
+     * @param type $idDis
+     * @return type int
+     */
 
     public function brojPostova($idDis) {
 
@@ -284,6 +290,12 @@ class DiskusijeModel extends CI_Model {
                 ->where('postdiskusija.diskusija', $idDis);
         return $this->db->count_all_results();
     }
+    
+    /**
+     * metoda za ispis vremena poslednje dodatog posta u okviru diskusije
+     * @param type $idDis
+     * @return type array
+     */
     
      public function poslednjiId($idDis) {
 
@@ -355,6 +367,10 @@ class DiskusijeModel extends CI_Model {
         $this->db->set('naziv', $naziv);
         $this->db->insert('sifkategorijadiskusija');
     }
+    /**
+     * slanje zahteva za brisanje adminu
+     * @param type $idDis
+     */
 
     public function zaBrisanje($idDis) {
 
@@ -362,6 +378,10 @@ class DiskusijeModel extends CI_Model {
         $this->db->where("idDis", $idDis);
         $this->db->update("diskusija", $data);
     }
+    /**
+     * mogucnost autoru da arhivira diskusiju
+     * @param type $idDis
+     */
 
     public function arhivirajDiskusiju($idDis) {
 
