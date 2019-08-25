@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!--Ispisivanje obavestenja iz prosledjene promenljive $obavestenja-->
 <div class="datum">
  Datum postavljanja: <?php echo  substr($obavestenja[0]['datum'], 0, 10); ?>
 </div>
@@ -14,6 +15,7 @@
 Autor: <?php echo $obavestenja[0]['naziv'] ?>
 </div>
 
+<!--Prikazivanje dugmeta za arhiviranje-->
 <?php
         $idKor = $this->session->userdata('user')['idKor'];
         if ($idKor == $obavestenja[0]['autor']) {
