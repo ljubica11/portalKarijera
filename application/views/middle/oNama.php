@@ -61,7 +61,7 @@
             </div>
             <div class="row">
                 <div class="offset-sm-4"></div>
-                <div class="col-sm-4" id="mejl">admin@portalkarijera.rs</div>
+                <div class="col-sm-4" id="mejl">admportalkarijera@gmail.com</div>
                 <div class="offset-sm-4"></div>
             </div>
         </div>
