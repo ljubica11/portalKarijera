@@ -616,6 +616,7 @@ button, input {
     color: darkblue;
 }
 
+
 .naslov-oglas{
     text-align: center;
 }
@@ -763,6 +764,9 @@ button, input {
 }
 
 #lozinkacontainer{
-    height: 76%;
+
+    height: calc(100% - 137px);
+/*    margin-bottom: 0 !important;*/
+
 
 }

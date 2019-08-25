@@ -366,7 +366,8 @@ input[type="number"] {
 }
 
 #pret{
-    height: calc(100%-163px);
+
+    height: calc(100% - 163px);
     margin-bottom: 0 !important;
 }
 
