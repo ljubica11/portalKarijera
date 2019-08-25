@@ -16,36 +16,37 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="<?php echo site_url('User')?>"><img id="brand-image" src="<?php echo base_url()?>//images/logo.png" width="60" height="40" title="Logo" alt="Logo">PortalKarijera</a>
             <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url("Vesti/index") ?>">Vesti</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url("Obavestenja/index");?>">Obaveštenja</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url("Diskusije/index")?>">Diskusije</a>
-                </li> 
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url('Oglasi');?>">Oglasi</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url("Grupe/index")?>">Grupe</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url("Izvestaji/index")?>">Izveštaji</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url("Statistika/index")?>">Statistika</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="<?php echo site_url('Pretraga');?>">Pretraga sajta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="<?php echo site_url("User/logout")?>">Logout</a> 
-                </li>
-              </ul>
-                
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url("Vesti/index") ?>">Vesti</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url("Obavestenja/index");?>">Obaveštenja</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url("Diskusije/index")?>">Diskusije</a>
+                    </li> 
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url('Oglasi');?>">Oglasi</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url("Grupe/index")?>">Grupe</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url("Izvestaji/index")?>">Izveštaji</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url("Statistika/index")?>">Statistika</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="<?php echo site_url('Pretraga');?>">Pretraga sajta</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="<?php echo site_url("User/logout")?>">Logout</a> 
+                    </li>
+                </ul>   
             </div> 
         </nav>
 

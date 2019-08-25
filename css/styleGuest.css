@@ -135,6 +135,7 @@ max-width: 100%;
 }
 
 #container3{
+    padding: 0 20px 20px 20px;
     background-color: #696969;
     color: white;
     max-width: 100%
@@ -306,6 +307,7 @@ button, input {
     text-decoration: underline;
     font-size: 30px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 #iskustva{
@@ -609,14 +611,11 @@ button, input {
     font-family: 'Roboto Slab', serif;
 }
 
-#resetstyle{
+#styleres{
+    border-right-color: black;
     height: 75vh; 
     width: 100%;
-    color: white;
-}
-
-#styleres{
-    background-image: url('../images/conn1.jpg');
+    color: darkblue;
 }
 
 .naslov-oglas{
@@ -756,4 +755,16 @@ button, input {
     background-color: gray;
     color: white;
     border: none !important;
+}
+
+
+.img-korisnici{
+    height: 100px;
+    width: 100px; 
+    border-radius: 50%;
+}
+
+#lozinkacontainer{
+    height: 76%;
+
 }

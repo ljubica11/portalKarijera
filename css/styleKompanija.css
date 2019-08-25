@@ -357,7 +357,7 @@ input[type="number"] {
 }
 
 #obav{
-    height: 400vh;
+    height: 500vh;
     
 }
 
@@ -366,7 +366,8 @@ input[type="number"] {
 }
 
 #pret{
-    height: 67vh;
+    height: calc(100%-163px);
+    margin-bottom: 0 !important;
 }
 
 .list-group-item {

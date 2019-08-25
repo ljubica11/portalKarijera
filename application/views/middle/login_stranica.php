@@ -4,37 +4,36 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
-    
-    
-                <div class="container" id="container1">
-            <div class="row">
-                <div class="offset-sm-12" style="height: 50px"></div>
-            </div>
-            <div class="row">
-                <div class="offset-sm-1 col-sm-3 text-white">
-                    <h1>Povezivanje studenata i</h1>
+   
+            <div class="container" id="container1">
+                <div class="row">
+                    <div class="offset-sm-12" style="height: 50px"></div>
                 </div>
-                <div class="offset-sm-8"></div>
-            </div>
-            <div class="row">
-                <div class="offset-sm-1 col-sm-3 text-white">
-                    <h1>kompanija radi ubrzanja inovacija</h1>
+                <div class="row">
+                    <div class="offset-sm-1 col-sm-3 text-white">
+                        <h1>Povezivanje studenata i</h1>
+                    </div>
+                    <div class="offset-sm-8"></div>
                 </div>
-                <div class="offset-sm-8"></div>
+                <div class="row">
+                    <div class="offset-sm-1 col-sm-3 text-white">
+                        <h1>kompanija radi ubrzanja inovacija</h1>
+                    </div>
+                    <div class="offset-sm-8"></div>
+                </div>
+                <div class="row">
+                    <div class="offset-sm-12" style="height: 50px"></div>
+                </div>
+                <div class="row">
+                    <form class="offset-sm-1 form-inline my-2 my-lg-0" name="loginForma" method="POST" action="<?php echo base_url()?>/index.php/registracija">
+                        <button class="btn btn-outline-primary my-2 my-sm-0 btn-lg" type="submit">Registracija</button>
+                    </form>
+                    <div class="offset-sm-8"></div>
+                </div>
+                <div class="row">
+                    <div class="offset-sm-12" style="height: 250px"></div>
+                </div>
             </div>
-            <div class="row">
-                <div class="offset-sm-12" style="height: 50px"></div>
-            </div>
-            <div class="row">
-                <form class="offset-sm-1 form-inline my-2 my-lg-0" name="loginForma" method="POST" action="http://localhost/portalKarijera/index.php/registracija">
-                    <button class="btn btn-outline-primary my-2 my-sm-0 btn-lg" type="submit">Registracija</button>
-                </form>
-                <div class="offset-sm-8"></div>
-            </div>
-            <div class="row">
-                <div class="offset-sm-12" style="height: 250px"></div>
-            </div>
-        </div>
         <div class="container" id="container2">
             <div class="row">
                 <div class="offset-sm-12" style="height: 15px"></div>
@@ -55,15 +54,26 @@
             </div>
             <div class="row">
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" id="iskustvaNaslov">Iskustva polaznika: </div>
+                <div class="col-sm-4 text-center" id="iskustvaNaslov">Iskustva polaznika </div> 
                 <div class="col-sm-4"></div>
             </div>
             <div class="row">
                 <div class="col-sm-12"></div>
             </div>
             <div class="row" id="iskustva">
-                <div class="col-sm-6">Tamara Sekularac: "Da nisam otkrila ovaj portal verovatno se nikad ne bih povezala sa današnjim kolegama, niti bih radila na Elektrotehničkom fakultetu. Svaka čast kreatorima na izumu."</div>
-                <div class="col-sm-6">Jovan Djukic: "Portal je fenomenalan. Jako koristan za mlade generacije, lakše se uspostavlja komunikacija sa poslodavcima koji umeju da prepoznaju talenat."</div>
+                <div class="col-1">
+                    <img src="<?php echo base_url()?>/images/tamara.jpg" class="img-fluid img-korisnici">
+                </div>
+                <div class="col-5">
+                    <b>Tamara Sekularac:</b> "Prolazak kroz IT preobuku i pronalaženje ovog portala me je izbavilo tmurne budućnosti u trafici na okretnici u Žarkovu, u kojoj sam godinama pre toga radila . Danas imam sjajan posao, sve zahvaljujući portalu Karijera!"
+                </div>
+                
+                <div class="col-1">
+                    <img src="<?php echo base_url()?>/images/jovan.jpg" class="img-fluid img-korisnici">
+                </div>
+                <div class="col-5">
+                    <b>Jovan Djukic:</b> "Moj život se u potpunosti promenio od kad sam prvi put došao na ovaj sajt. Za početak, više ne moram da ustajem u četiri ujutro svakog dana, jer sam zahvaljujući kontaktima sa portala Karijera konačno dao otkaz u pekari i našao dobar posao."    
+                </div>
             </div>
             </div>
         <div class="container" id="container4">
@@ -87,9 +97,8 @@
                     podršku inovacionom sistemu, kroz identifikovanje i predviđanje potrebnih poslovnih veština,
                     spajanje narastajućih industrija i novih tržišnih prilika.
                     <br><br>
-                    Ovi podaci ce pomoći studentima i kompanijama da se prilagode i upravljaju tržisnim poslovnim
-                    promenama, obezbeđujuci zdrav rast i održiv biznis.
-                    
+                    Ovi podaci će pomoći studentima i kompanijama da se prilagode i upravljaju tržisnim poslovnim
+                    promenama, obezbeđujuci zdrav rast i održiv biznis.                   
                 </p>
             </div>
         </div>
@@ -102,6 +111,7 @@
         $msg = $this->session->flashdata('msg');
         echo '<script type="text/javascript">alert("' . $msg . '")</script>';
         } ?>
+        <!--Listanje najnovijih vesti, obavestenja, diskusija i oglasa vidljivih gostu-->
         <script>
              
             var title = ['<p><u><b>Najnovija vest:</b></u><br>  <?php foreach ($vest as $v){ echo ($v['tekst']); } ?></p>', 
@@ -123,7 +133,7 @@
             };
 
             to_change_title();
-            
+            //pozvano menjanje najnovijih vesti,obavestenja, oglasa i diskusija, definisano menjanje na 2000
         </script>
     </body>
 </html>
