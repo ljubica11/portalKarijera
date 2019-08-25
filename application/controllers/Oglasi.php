@@ -1,5 +1,5 @@
 <?php
-
+// kontroler za funkcionalnosti oglasa
 
 class Oglasi extends MY_Controller{
     
@@ -9,7 +9,9 @@ class Oglasi extends MY_Controller{
         $this->load->model("OglasiModel");
         $this->load->model("SifrarniciModel");  
     }
-
+    
+// metoda za ucitavanje stranice sa svim oglasima
+    // oglase dohvatamo na osnovu nivoa vidljivosti korisnika
     public function index(){
         if($this->session->has_userdata('user')){
         $tipKorisnika = $this->session->userdata('user')['tip'];
@@ -28,18 +30,21 @@ class Oglasi extends MY_Controller{
         $this->load->view('viewTemplate', $data);
     }
     
+    //metoda za dohvatanje oglasa jednog korisnika
     public function dohvatiOglaseKorisnika(){
         $idKor = $this->input->get('idKor');
         $oglasi = ["oglasi" => $this->OglasiModel->dohvatiOglaseKorisnika($idKor)];
         $this->load->view('oglasi/prikazOglasa', $oglasi);
     }
     
+    //metoda za dohvatanje svih oglasa koje moze da vidi kompanija
     public function dohvatiSveOglase(){
         $tip = "k";
         $oglasi = ["oglasi" => $this->OglasiModel->dohvatiSveOglase($tip)];
         $this->load->view('oglasi/prikazOglasa', $oglasi);
     }
     
+    //metoda za dodavanje novih oglasa
     public function dodajNoviOglas(){
         
         $idKor= $this->session->userdata('user')['idKor'];
@@ -116,6 +121,7 @@ class Oglasi extends MY_Controller{
     }
     }
     
+    //metoda za dodavanje oglasa na nivou pretrage
     public function dodajOglasZaPretragu($idOgl){
         $res = $this->session->userdata('res');
             foreach ($res as $user){
@@ -125,6 +131,7 @@ class Oglasi extends MY_Controller{
             }
     }
 
+    //metoda za ucitavanje jednog oglasa
     public function pogledajOglas($idOgl){
        $oglasi = $this->OglasiModel->dohvatiJedanOglas($idOgl);
        $data["middle_data"] = ["oglasi" => $oglasi];
@@ -132,6 +139,7 @@ class Oglasi extends MY_Controller{
        $this->load->view('viewTemplate', $data);
     }
 
+    //metoda za pretraggu oglasa u skladu sa tipom korisnika
         public function pretragaOglasa(){
             $tip = $this->input->post('tip');
             $rec = $this->input->post('pretraga');
@@ -147,17 +155,21 @@ class Oglasi extends MY_Controller{
 //            var_dump($res);
     }
 
-    
+    //korisnik prilikom postavljanja oglasa moze da doda novo mesto u sifrarnik;
     public function dodajMesto(){
          $this->dodajNovoMesto('mesto');
     }
     
+    
+    // slanje zahteva za brisanje oglasa
     public function traziBrisanje($idOgl){
         $this->OglasiModel->traziBrisanje($idOgl);
         $this->session->set_flashdata('brisanje', 'Poslat je zahtev za brisanje oglasa administratoru. Vas oglas ce uskoro biti obrisan sa sajta.');
         redirect("Oglasi");
     }
     
+    //dohvatamo dodatne opcije, ako korisnik prilikom postavljanja oglasa
+    //resi da je nivo vidljivosti kurs ili grupa
     public function dohvatiOpcije(){
         $tip = $this->input->post("tip");
         if($tip == 'kurs'){
