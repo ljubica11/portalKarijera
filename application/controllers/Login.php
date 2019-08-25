@@ -23,6 +23,9 @@ class Login extends CI_Controller{
          // $this->load->view('login_stranica');  
     }
 
+   
+            
+            
         public function logovanje(){
             
             
@@ -30,26 +33,19 @@ class Login extends CI_Controller{
             $username= $this->input->post('username');
             $pass= $this->input->post('pass');
             
-           if (password_needs_rehash($pass, PASSWORD_DEFAULT)) {
-             $this->UserModel->hashstored($username, $pass);
-            
-
-            
-          
-            
-            $users= $this->UserModel->login($username, $pass);
-            
-            
-           
-            }
-            
-            if(count($users)==0){
-                redirect("Reset_lozinke");
-            }else{
-                $user = $users[0];
-                $this->session->set_userdata('user', $user);
-                redirect("User");
-            }
+//           if (password_needs_rehash($pass, PASSWORD_DEFAULT)) {
+//             $this->UserModel->hashstored($username, $pass);
+//        }
+             $users= $this->UserModel->loginNovo($username, $pass);
+             var_dump($users);
+             
+             if($users == FALSE){
+                 redirect("Reset_lozinke");
+             }else{
+                 $this->session->set_userdata('user', $users);
+                  redirect("User");
+//                 var_dump($users);
+             }
         
     }
     public function usloviKoriscenja(){

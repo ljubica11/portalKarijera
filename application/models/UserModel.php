@@ -18,6 +18,22 @@ class UserModel extends CI_Model{
         return $query->result_array ();
     }
     
+    
+    public function loginNovo($username, $pass)
+{
+  
+    $this->db->where('korisnicko', $username);
+    $query = $this->db->get('korisnik');
+    $result = $query->row_array();
+
+    if (!empty($result) && password_verify($pass, $result['lozinka'])) {
+       
+        return $result;
+    } else {
+        return false;
+    }
+}
+    
     public function podaciZaStudenta($id){
         $this->db->select('ime, prezime, datum, telefon, vidljivostTelefon, adresa, vidljivostAdresa, status, sifgradovi.naziv as grad, sifdrzavljanstvo.naziv as drzavljanstvo, sifkurs.naziv as kurs');
         $this->db->from('student');
