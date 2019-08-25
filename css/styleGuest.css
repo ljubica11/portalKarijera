@@ -609,5 +609,9 @@ button, input {
 #resetstyle{
     height: 75vh; 
     width: 100%;
+    color: white;
 }
 
+#styleres{
+    background-image: url('../images/conn1.jpg');
+}
