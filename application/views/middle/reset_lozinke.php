@@ -11,7 +11,7 @@
     <body>
         <div class="row justify-content-center ">
 		
-            <div class="col-sm-5" style="height: 75vh; width: 100%">
+            <div class="col-sm-5" id="resetstyle">
                 <?php
                     if($forma){
                         echo form_open("Reset_lozinke/send");
@@ -32,9 +32,9 @@
                 <?php
                     } else {
                         if($mail_ok){
-                            echo "<p>Nova lozinka vam je poslata na mail. Vazi 1 sat.</p>";
+                            echo "<p>Nova lozinka vam je poslata na mail. Vremensko trajanje nove lozinke je 60 minuta.</p>";
                         } else{
-                            echo "<p>Doslo je do greske pri slanju mail-a. Molimo vas pokusajte kasnije. Hvala</p>";
+                            echo "<p>Došlo je do greške pri slanju mail-a. Molimo vas pokušajte kasnije. Hvala</p>";
                         }
                     }
                 ?>

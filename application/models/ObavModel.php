@@ -148,5 +148,55 @@ class ObavModel extends CI_Model { // ovaj model cemo koristiti da izvucemo poda
         $this->db->where('idOba',$idObav);
         $this->db->update('obavestenja', $data);
     }
+    
+    /**
+     * metode za dohvatanje korisnickih mejlova
+     * @param type $idGru
+     * @return type
+     */
+    
+    public function mejlListaGrupe($idGru){
+        
+         $this->db->select('email','korisnicko')
+                 ->from('korisnik')
+                 ->join('clanovigrupe', 'clanovigrupe.idKor = korisnik.idKor')
+                 ->join('grupe', 'clanovigrupe.idGru = grupe.idGru')
+                 ->where('tip', 's')
+                 ->where('vidljivostEmail')
+                 ->where('grupe.IdGru', $idGru);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+     public function mejlListaKurs($idKurs){
+        
+         $this->db->select('email','korisnicko')
+                 ->from('korisnik')
+                 ->join('student', 'student.idKor = korisnik.idKor')
+                 ->join('sifkurs', 'student.idKurs = sifkurs.idKurs')
+                 ->where('vidljivostEmail')
+                 ->where('student.IdKurs', $idKurs);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+     public function mejlListaStudenti(){
+        
+        $this->db->select('email','korisnicko')
+                ->from('korisnik')
+                ->where('tip', 's')
+                ->where('vidljivostEmail');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    
+    public function mejlListaSvi(){
+        
+        $this->db->select('email','korisnicko')
+                ->from('korisnik')
+                ->where('vidljivostEmail');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
 }

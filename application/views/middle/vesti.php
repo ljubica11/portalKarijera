@@ -105,7 +105,7 @@
                                 <input type="radio" name="vidljivost" value="gost" id="1"> Svi i gosti<br>
                                 <input type="radio" name="vidljivost" value="studenti" id="2"> Svi studenti<br>
                                 <input type="radio" name="vidljivost" value="korisnici" id="3"> Svi korisnici sajta (ukljucujuci i kompanije)<br>
-                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="4"> Studenti odredjenog kursa<br>
+                                <input type="radio" name="vidljivost" value="kurs" onclick="ispisiOpcije(value)" id="4"> Studenti određenog kursa<br>
                                 <div id="kurs"></div>
                                 <input type="radio" name="vidljivost" value="grupa" onclick="ispisiOpcije(value)" id="5"> Formirana grupa studenata<br>
                                 <div id="grupa"></div>

@@ -1,14 +1,21 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Description of StatistikaModel
- *
+ * 
+ * model za funkcionalnost statisticki izvestaji
+ * metode za dohvatanje iz baze tabela vezanih za podatke o registrovanim
+ * studentima, u cilju njihove statisticke obrade i generisanja izvestaja
+ * i slanja kompanijama
+ * 
  * @author gordan
  */
 defined('BASEPATH') or exit('no direct access');
 
 class StatistikaModel extends CI_Model {
 
+      
     public function diploma($idFak) {
 
         $this->db->from('diploma')
@@ -17,7 +24,6 @@ class StatistikaModel extends CI_Model {
 
         return $this->db->count_all_results();
     }
-
 
     public function zaposleniStudenti() {
 
@@ -70,24 +76,32 @@ class StatistikaModel extends CI_Model {
         return $query->result_array();
     }
     
-    public function mejlLista(){
-        
-        $this->db->select('email','korisnicko')
+    /**
+     * mejl lista kompanija
+     * @return type array
+     */
+
+    public function mejlLista() {
+
+        $this->db->select('email', 'korisnicko')
                 ->from('korisnik')
-                ->where('tip', 'k');       
+                ->where('tip', 'k')
+                ->where('vidljivostEmail');
         $query = $this->db->get();
         return $query->result_array();
-        
     }
     
-    public function mejlAdmini(){
-        
+    /**
+     * mejl lista administratora sajta
+     * @return type array
+     */
+    public function mejlAdmini() {
+
         $this->db->select('email', 'idKor')
                 ->from('korisnik')
-                ->where('tip', 'a');       
+                ->where('tip', 'a');
         $query = $this->db->get();
         return $query->result_array();
     }
-    
-    
+
 }

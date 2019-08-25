@@ -33,7 +33,7 @@ Podaci o fakultetu
 <br/>
 <div id="selectsediste">
 <select class="form-control" name="sediste" id="listasediste" onchange="dodajInput('sediste')">
-    <option disabled selected value="">Sediste fakulteta</option>
+    <option disabled selected value="">Sedište fakulteta</option>
     <?php 
             foreach ($gradovi as $grad){
                 $naziv = $grad["naziv"];
@@ -51,7 +51,7 @@ Podaci o fakultetu
 <b>Nivo studija: </b><br/>
 <input type="radio" name="nivo" value="osnovne">Osnovne akademske studije<br>
 <input type="radio" name="nivo" value="master">Master akademske studije<br>
-<input type="radio" name="nivo" value="specijalisticke">Specijalisticke akademske studije<br>
+<input type="radio" name="nivo" value="specijalisticke">Specijalističke akademske studije<br>
 <input type="radio" name="nivo" value="doktorske">Doktorske akademske studije<br>
 <input type="radio" name="nivo" value="strukovne">Strukovne studije<br>
 </div>

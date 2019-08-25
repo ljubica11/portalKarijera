@@ -112,7 +112,7 @@
             <?php if($idAutor == $this->session->userdata('user')['idKor'] and date('Y-m-d') > date('Y-m-d', $date) and $status == null) { ?>
              <a class="btn btn-danger" href="<?php echo site_url("Oglasi/traziBrisanje/$idOgl")?>"><i class="fa fa-trash-o"></i> Obrisi oglas</a>
             <?php } else if($status !== null){ ?>
-              <span class="text-muted">Poslali ste zahtev za brisanje ovog oglasa, uskoro ce biti obrisan</span>
+              <span class="text-muted">Poslali ste zahtev za brisanje ovog oglasa, uskoro će biti obrisan</span>
             <?php } ?>
         </div>
     </div>

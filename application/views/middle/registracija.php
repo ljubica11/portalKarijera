@@ -7,7 +7,7 @@
   <button class="tablinks" onclick="openReg(event, 'Kompanija')">Kompanija</button>
 </div>   
     <div id="Student" class="tabcontent overflow-auto scroll">
-        <div class="naslovReg"> <h4>Povezite se sa drugim studentima i inovativnim kompanijama</h4></div>
+        <div class="naslovReg"> <h4>Povežite se sa drugim studentima i inovativnim kompanijama</h4></div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -24,15 +24,15 @@
                          <div class="col-6 offset-1">
                              
                              <label class="radio-inline">
-                                <input  type="radio" name="pol" value="m" checked id="polMuski"> Muski
+                                <input  type="radio" name="pol" value="m" checked id="polMuski"> Muški
                               </label>
                              <label class="radio-inline">
-                                <input  type="radio" name="pol" value="z" id="polZenski"> Zenski
+                                <input  type="radio" name="pol" value="z" id="polZenski"> Ženski
                               </label>          
                          </div>
                      </div>
                      <select class="form-control" name="kurs">
-                         <option disabled selected value="">Kurs koji ste zavrsili</option>
+                         <option disabled selected value="">Kurs koji ste završili</option>
                          <?php 
                          foreach ($kursevi as $kurs){
                              $naziv = $kurs["naziv"];
@@ -42,7 +42,7 @@
                          ?>
                      </select> <br/> <?php echo form_error('kurs');?>   
                      <select class="form-control" name="drzavljanstvo">
-                         <option disabled selected value="">Drzavljanstvo</option>
+                         <option disabled selected value="">Državljanstvo</option>
                          <?php 
                          foreach ($drzavljanstvo as $drz){
                              $naziv = $drz["naziv"];
@@ -52,10 +52,10 @@
                          ?>
                      </select><br/> <?php echo form_error('drzavljanstvo');?>
                      <input class="form-control" name="telefon" type="text" value="<?php echo set_value('telefon') ?>" placeholder="broj telefona"><?php echo form_error('telefon') ?>      
-                     <input class="form-check-input" type="checkbox" name="vidTel" value="1" id="checkTel">Ne zelim da mi broj telefona bude javan<br/><br/>
+                     <input class="form-check-input" type="checkbox" name="vidTel" value="1" id="checkTel">Ne želim da mi broj telefona bude javan<br/><br/>
                      
                      <input class="form-control" name="adresa" type="text" value="<?php echo set_value('adresa') ?>" placeholder="Adresa"><?php echo form_error('adresa') ?>
-                     <input class="form-check-input" type="checkbox" name="vidAdresa" value="1">Ne zelim da mi adresa bude javna<br/><br/>
+                     <input class="form-check-input" type="checkbox" name="vidAdresa" value="1">Ne želim da mi adresa bude javna<br/><br/>
                      
                      <div id="selectmesto">
                      <select class="form-control" name="mesto" onchange="dodajInput('mesto')" id="listamesto"> 
@@ -85,11 +85,11 @@
                      <input class="form-control" name="lozinka" type="password"  placeholder="Lozinka"><?php echo form_error('lozinka') ?> <br/>
                      <input class="form-control" name="ponLozinka" type="password"  placeholder="Ponovi lozinku"><?php echo form_error('ponLozinka') ?> <br/>
                      <input class="form-control" type="email" name="email"  placeholder="E-mail" value="<?php echo set_value('email') ?>"><?php echo form_error('email') ?>
-                     <input class="form-check-input" type="checkbox" name="vidEmail" value="1">Ne zelim da mi mejl bude javan <br/><br/>
+                     <input class="form-check-input" type="checkbox" name="vidEmail" value="1">Ne želim da mi mejl bude javan <br/><br/>
                      
                      <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                          <span class="input-group-text" id="basic-addon4">Datum rodjenja</span>
+                          <span class="input-group-text" id="basic-addon4">Datum rođenja</span>
                         </div>
                         <input class="form-control" type="date" name="datum"  value="<?php echo set_value('datum') ?>"> 
                     </div>
@@ -101,7 +101,7 @@
         </div>
     </div>
     <div id="Kompanija" class="tabcontent overflow-auto scroll">
-        <div class="naslovReg"> <h4>Pronadjite najbolje studente za vas posao</h4></div>
+        <div class="naslovReg"> <h4>Pronađite najbolje studente za vas posao</h4></div>
          <div class="container-fluid">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -109,7 +109,7 @@
             <input class="form-control" type="text" name="naziv" value="<?php echo set_value('naziv') ?>" placeholder="Naziv"><?php echo form_error('naziv') ?>
             <br/>
             <select class="form-control" name="sediste"> 
-                <option disabled selected value="">Sediste</option>
+                <option disabled selected value="">Sedište</option>
             <?php 
             foreach ($mesta as $mesto){
                 $naziv = $mesto["naziv"];

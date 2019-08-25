@@ -17,7 +17,7 @@
 </select>
 <?php } else if(isset($tip) and $tip == "sediste"){ ?>
 <select class="form-control" name="sediste" id="listasediste" onchange="dodajInput('sediste')">
-    <option disabled value="">Sediste</option>
+    <option disabled value="">Sedište</option>
     <?php 
            foreach ($mesta as $mesto){
                 $naziv = $mesto["naziv"];

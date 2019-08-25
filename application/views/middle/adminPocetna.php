@@ -3,14 +3,14 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-3 levo-admin">
-            <h4>Sifrarnici <i class="fa fa-book"></i></h4>
+            <h4>Šifrarnici <i class="fa fa-book"></i></h4>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('mesto')">Mesta</div>
-            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('drz')">Drzavljanstva</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('drz')">Državljanstva</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('faks')">Fakulteti</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('komp')">Kompanije</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('poz')">Pozicije</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('inter')">Interesovanja</div>
-            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('ves')">Vestine</div>
+            <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('ves')">Veštine</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('katves')">Kategorije vesti</div>
             <div class="sifrarniciNaziv" onclick="prikaziSifrarnik('katdis')">Kategorije diskusija</div>
         </div>
@@ -56,7 +56,7 @@
             <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('vesti')">Vesti
             <div class="notif" id="vesti"></div>
             </div>
-            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obavestenja
+            <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('obavestenja')">Obaveštenja
             <div class="notif" id="obavestenja"></div>
             </div>
             <div class="zahteviNaziv" onclick="prikaziZahteveZaBrisanje('grupe')">Grupe
@@ -177,31 +177,16 @@
     };
     
     
+    setInterval(dohvatiBroj, 10000);
+    
+    
     function dohvatiBroj(){
         var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
         for(i = 0; i < nazivi.length; i++){
         sendGet(nazivi[i], "<?php echo site_url('Admin/brojZahteva');?>/"+nazivi[i], null);
         }
     }
-     
-
-//      var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
-//        for(i = 0; i < nazivi.length; i++){  
-//        sendGet(nazivi[i], "<?php //echo site_url('Admin/brojZahteva');?>/"+nazivi[i], null);
-//        }
-//    };
     
-
-    
-
-
-	
-    var nazivi = ["oglasi", "vesti", "obavestenja", "grupe", "diskusija", "registracija"];
-    for(i = 0; i < nazivi.length; i++){
-        setInterval (sendGet, 10000, nazivi[i], "<?php echo site_url('Admin/brojZahteva');?>/"+nazivi[i],
-	function ( ) { console.log(this.responseText); }
-);	
-    }
  
 var span = document.getElementsByClassName("close")[0];
 
@@ -216,14 +201,6 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 };
-
-
-//    window.onload = function(){
-//        sendGet("broj", "<?php// echo site_url('Admin/dohvatiBroj'); ?>", brojInterval());
-//
-//    };
-    
-  
 
 
    

@@ -6,7 +6,7 @@
         <div class="izmenaPodatakaForma">
         <?php foreach ($podaci as $podatak){ ?>
             <form method="POST" action="<?php echo site_url('User/izmeniPodatke')?>" class="formaReg">
-                Korisnicko ime:
+                Korisničko ime:
 
                              <input class="form-control" name="korisnicko" type="text" value="<?php echo $this->session->userdata('user')['korisnicko'] ?>"> <?php echo form_error('korisnicko') ?> <br/>
                              <input type="hidden" name="originalKorisnicko" value="<?php echo $this->session->userdata('user')['korisnicko'] ?>">
@@ -14,7 +14,7 @@
                              <input class="form-control" name="ime" type="text" value="<?php echo $podatak['ime'] ?>"><?php echo form_error('ime') ?> <br/>
                              Prezime:
                              <input class="form-control" name="prezime" type="text" value="<?php echo $podatak['prezime'] ?>"><?php echo form_error('prezime') ?> <br/>
-                             Kurs koji ste zavrsili:
+                             Kurs koji ste završili:
                              <select class="form-control" name="kurs">
                                  <?php 
                                  foreach ($kursevi as $kurs){
@@ -28,7 +28,7 @@
                                  }
                                  ?>
                              </select> <br/> <?php echo form_error('kurs');?>   
-                             Drzavljanstvo:
+                             Državljanstvo:
                              <select class="form-control" name="drzavljanstvo">
                                  <?php 
                                  foreach ($drzavljanstvo as $drz){
@@ -77,7 +77,7 @@
                              <input class="form-control" type="email" name="email"  value="<?php echo $this->session->userdata('user')['email'] ?>"><?php echo form_error('email') ?><br/>
                              <input type="hidden" name="originalEmail" value="<?php echo $this->session->userdata('user')['email'] ?>">
 
-                             Datum rodjenja: 
+                             Datum rođenja: 
                                 <input class="form-control" type="date" name="datum"  value="<?php echo $podatak["datum"] ?>"> 
 
                              <?php echo form_error('datum') ?>  <br/>

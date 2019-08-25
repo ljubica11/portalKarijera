@@ -74,7 +74,7 @@ class Grupe extends CI_Controller {
     }
 
     /**
-     * metoda za brisanje korisnika iz odredjene grupe
+     * metoda za brisanje ulogovanog korisnika iz odredjene grupe
      */
     public function obrisiLogovanog() {
 
@@ -83,6 +83,10 @@ class Grupe extends CI_Controller {
         $this->GrupeModel->obrisiStudente($idGru, $idKor);
         redirect('Grupe/index');
     }
+    
+    /**
+     * brisanje clan(ov)a iz grupe
+     */
 
     public function obrisiClanaGrupe() {
          
@@ -92,7 +96,7 @@ class Grupe extends CI_Controller {
             $this->GrupeModel->obrisiStudente($idGru, $idKor);
 
     }
-        //$this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(FALSE);
 
         redirect('Grupe/index');
     }
@@ -184,10 +188,14 @@ class Grupe extends CI_Controller {
                     $idKor = $su['idKor'];
                     $this->GrupeModel->DodajStudente($idGru, $idKor);
         }
-        $this->output->enable_profiler(TRUE);
-     //  redirect('Grupe/index');
+        $this->output->enable_profiler(FALSE);
+        redirect('Grupe/index');
         
     }
+    
+    /**
+     * zahtev korisnika adminu za brisanjem grupe
+     */
     
      public function traziBrisanje(){
             

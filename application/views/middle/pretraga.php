@@ -8,12 +8,12 @@
                     <img src="<?php echo base_url();?>/images/search2" class="img-fluid">
                 </div>
                 <div class="col-7 offset-1" id="pretraga-pocetni-div">
-                    Napredna pretraga portala "Karijera" vam olaksava pronalazenje studenata ili kompanija prema vasim krijerijumima. 
-                    Ovo je idealan nacin da se povezete sa drugim studentima, upoznate sa uslovima rada u raznim kompanijama, pronadjete savrsene kandidate za vas posao ili jednostavno steknete nova poznanstva.
+                    Napredna pretraga portala "Karijera" vam olakšava pronalaženje studenata ili kompanija prema vašim kriterijumima. 
+                    Ovo je idealan način da se povežete sa drugim studentima, upoznate sa uslovima rada u raznim kompanijama, pronađete savršene kandidate za vas posao ili jednostavno steknete nova poznanstva.
                     <br/><br/><br/>
                     <div class="row">
                         <div class="col-12 text-center">
-                            <h4>Zapocnite pretragu!</h4>
+                            <h4>Započnite pretragu!</h4>
                        
             <br/>
                             <input type="button" class="btn-pretraga btn btn-primary" value="Pretraga studenata" id="pretraga-stud-btn">

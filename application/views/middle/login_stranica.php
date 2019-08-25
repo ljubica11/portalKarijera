@@ -40,13 +40,13 @@
                 <div class="offset-sm-12" style="height: 15px"></div>
             </div>
             <div class="row" style="align-top">
-                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma1.png" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-1"><img src="http://localhost/portalKarijera/images/firma2.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="<?php echo base_url()?>/images/firma1.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-1"><img src="<?php echo base_url()?>/images/firma2.png" class="img-fluid" alt="Responsive image"></div>
                 <div class="col-sm-1"><h1>ETF</h1></div>
-                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma3.png" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma4.png" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma5.png" class="img-fluid" alt="Responsive image"></div>
-                <div class="col-sm-2"><img src="http://localhost/portalKarijera/images/firma6.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="<?php echo base_url()?>/images/firma3.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="<?php echo base_url()?>/images/firma4.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="<?php echo base_url()?>/images/firma5.png" class="img-fluid" alt="Responsive image"></div>
+                <div class="col-sm-2"><img src="<?php echo base_url()?>/images/firma6.png" class="img-fluid" alt="Responsive image"></div>
             </div>
         </div>
         <div class="container" id="container3">
@@ -62,8 +62,8 @@
                 <div class="col-sm-12"></div>
             </div>
             <div class="row" id="iskustva">
-                <div class="col-sm-6">Tamara Sekularac: "Da nisam otkrila ovaj portal verovatno se nikad ne bih povezala sa danasnjim kolegama, niti bih radila na Elektrotehnickom fakultetu. Svaka cast kreatorima na izumu."</div>
-                <div class="col-sm-6">Jovan Djukic: "Portal je fenomenalan. Jako koristan za mlade generacije, lakse se uspostavlja komunikacija sa poslodavcima koji umeju da prepoznaju talenat."</div>
+                <div class="col-sm-6">Tamara Sekularac: "Da nisam otkrila ovaj portal verovatno se nikad ne bih povezala sa današnjim kolegama, niti bih radila na Elektrotehničkom fakultetu. Svaka čast kreatorima na izumu."</div>
+                <div class="col-sm-6">Jovan Djukic: "Portal je fenomenalan. Jako koristan za mlade generacije, lakše se uspostavlja komunikacija sa poslodavcima koji umeju da prepoznaju talenat."</div>
             </div>
             </div>
         <div class="container" id="container4">
@@ -76,19 +76,19 @@
                 </div>
                 <div class="offset-sm-2"></div>
                 <p>
-                    Portal Karijera je vodeca srpska platforma za pronalazenje poslova i prakse za
-                    univerzitete i studente. Nas fokus je na povezivanju studentskih talenata sa preduzetnistvom
-                    i inovativnim kompanijama radi ostvarivanja znacajnog poboljsanja poslovnog procesa.
+                    Portal Karijera je vodeća srpska platforma za pronalaženje poslova i prakse za
+                    univerzitete i studente. Naš fokus je na povezivanju studentskih talenata sa preduzetništvom
+                    i inovativnim kompanijama radi ostvarivanja značajnog poboljšanja poslovnog procesa.
                     <br><br>
-                    Nasa platforma je zasnovana na algoritmu koji spaja studente sa poslovima prema njihovim
-                    vestinama, studijama i interesovanjima, i preporucuje odgovarajuce studente kompanijama.
+                    Naša platforma je zasnovana na algoritmu koji spaja studente sa poslovima prema njihovim
+                    veštinama, studijama i interesovanjima, i preporučuje odgovarajuće studente kompanijama.
                     <br><br>
-                    Kao istrazivaci i analiticari podataka,kroz jedinsstveni uvid u podatke i prognoze, pruzamo
-                    podrsku inovacionom sistemu, kroz identifikovanje i predvidjanje potrebnih poslovnih vestina,
-                    spajanje narastajucih industrija i novih trzisnih prilika.
+                    Kao istraživači i analiticari podataka,kroz jedinsstveni uvid u podatke i prognoze, pružamo
+                    podršku inovacionom sistemu, kroz identifikovanje i predviđanje potrebnih poslovnih veština,
+                    spajanje narastajućih industrija i novih tržišnih prilika.
                     <br><br>
-                    Ovi podaci ce pomoci studentima i kompanijama da se prilagode i upravljaju trzisnim poslovnim
-                    promenama, obezbedjujuci zdrav rast i odrziv biznis.
+                    Ovi podaci ce pomoći studentima i kompanijama da se prilagode i upravljaju tržisnim poslovnim
+                    promenama, obezbeđujuci zdrav rast i održiv biznis.
                     
                 </p>
             </div>

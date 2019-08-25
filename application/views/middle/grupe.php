@@ -16,7 +16,7 @@
                 <div id="gradgrupe"></div>
                 <input type="checkbox" name="upiti[]" value="fakultetgrupe"onclick="ispisiOpcije(value)">Po fakultetu<br>
                 <div id="fakultetgrupe"></div>
-                <input  type="checkbox" name="upiti[]" value="vestinegrupe"onclick="ispisiOpcije(value)">Po vestinama<br>
+                <input  type="checkbox" name="upiti[]" value="vestinegrupe"onclick="ispisiOpcije(value)">Po veštinama<br>
                 <div id="vestinegrupe"></div>
                 <input type="checkbox" name="upiti[]" value="interesovanjagrupe"onclick="ispisiOpcije(value)">Po interesovanjima<br>
                 <div id="interesovanjagrupe"></div>
@@ -33,8 +33,7 @@
 
             <?php
             ?>
-            <div id="parametri">  </div>
-
+           
 
         </div>
         <div class="col-6 col-sm-6" style="margin-bottom: 90px">  
@@ -69,22 +68,6 @@
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("idGru=" + idGru);
     }
-
-    /*function prikaziParametre(id) {
-
-        var idGru = id;
-
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-
-                document.getElementById("parametri").innerHTML = this.responseText;
-            }
-        };
-
-        xmlhttp.open("GET", "<?php echo site_url('Grupe/parametri') ?>?idGru=" + idGru, true);
-        xmlhttp.send();
-    }*/
 
     function ispisiOpcije(value) {
 

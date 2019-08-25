@@ -727,11 +727,18 @@
    left: 10px; 
 }
 
-.col-6{
-    height: 90vh;
-}
+
 
 /*SREDJIVANJE VESTI*/
+
+
+
+/*.col-6{
+    height: 90vh;
+}*/
+
+/*SREDJIVANJE VESTI*/
+
 
 .kat-vesti:hover{
     background-color: whitesmoke;
@@ -747,5 +754,6 @@
 }
 
 
-/*SREDJIVANJE OBAVESTENJA*/
+
+
 
