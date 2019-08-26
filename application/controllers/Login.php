@@ -29,22 +29,12 @@ class Login extends CI_Controller{
             $this->load->model('UserModel');
             $username= $this->input->post('username');
             $pass= $this->input->post('pass');
-            
-           if (password_needs_rehash($pass, PASSWORD_DEFAULT)) {
-             $this->UserModel->hashstored($username, $pass);
-            
-
-            
-          
-            
             $users= $this->UserModel->login($username, $pass);
-            
-            
-           
-            }
-            
-            if(count($users)==0){
-                redirect("Reset_lozinke");
+//            var_dump($users);
+            if(empty($users)){
+                $this->session->set_flashdata('login_username', $username);
+                redirect("Login");
+//                redirect("Reset_lozinke");
             }else{
                 $user = $users[0];
                 $this->session->set_userdata('user', $user);

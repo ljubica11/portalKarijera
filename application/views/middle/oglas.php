@@ -64,7 +64,7 @@
                           
                           if(!empty($uslovi)){
                               $usloviNiz = explode(";", $uslovi);
-                              echo "<h5>Kvalifikacije:</h5>";
+                              echo "<br/><h5>Kvalifikacije:</h5>";
                               foreach ($usloviNiz as $usl){
                                   echo "- ".$usl."<br/>";
                               }  
@@ -72,20 +72,21 @@
                           
                           if(!empty($ponuda)){
                               $ponudaNiz = explode(";", $ponuda);
-                              echo "<h5>Sta nudimo: </h5>";
+                              echo "<br/><h5>Sta nudimo: </h5>";
                               foreach ($ponudaNiz as $pon){
                                   echo "- ".$pon."<br/>";
                               }
                           }
                           
                           if(!empty($plata)){
-                              echo "<h5>Plata za ovu poziciju:</h5>";
+                              echo "<br/><h5>Plata za ovu poziciju:</h5>";
                               echo $plata." rsd";
                               if($placanje !== "mesecno"){
                                   echo "<br/>*Plata je izrazena na".$placanje."m nivou";
                               }
                           }
                               ?> 
+                          <br/><br/>
                           <div class="row">
                           <div class="col-3 datum-oglas">
                               <?php $date = strtotime($vremeIst);
@@ -108,12 +109,14 @@
                     </div>
                 </div>           
         </div>
-        <div class="col-sm-2">
-            <?php if($idAutor == $this->session->userdata('user')['idKor'] and date('Y-m-d') > date('Y-m-d', $date) and $status == null) { ?>
+        <div class="col-2">
+            <?php if($idAutor == $this->session->userdata('user')['idKor'] and date('Y-m-d') > date('Y-m-d', $date)){
+                if($status == null) { ?>
              <a class="btn btn-danger" href="<?php echo site_url("Oglasi/traziBrisanje/$idOgl")?>"><i class="fa fa-trash-o"></i> Obrisi oglas</a>
             <?php } else if($status !== null){ ?>
               <span class="text-muted">Poslali ste zahtev za brisanje ovog oglasa, uskoro će biti obrisan</span>
-            <?php } ?>
+            <?php }
+            }?>
         </div>
     </div>
 </div>

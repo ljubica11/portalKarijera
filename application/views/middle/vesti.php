@@ -14,17 +14,7 @@
            <?php
              }
             ?>
-<!--            <div class="centar">
-                <h6>DODAVANJE NOVE KATEGORIJE VESTI:</h6>
-            </div>
 
-            <div class="centar">
-                <form name="forma_kat_vesti" method="POST" action="dodajKategorijuVesti">
-                    <input type="text" name="novakatvesti" placeholder="Polje za unos..." ><br>
-                    <input type="submit" value="Dodaj Kategoriju" class="btn btn-outline-primary">
-                </form>
-                               
-            </div>-->
         <?php if($this->session->has_userdata('user')){
         $idKor = $this->session->userdata('user')['idKor']; ?>
         <a href="#" class="btn btn-primary btn-lg btn-mojeVesti" onclick="mojeVesti(<?php echo $idKor ?>)">Moje vesti</a>
@@ -56,9 +46,9 @@
 
                     <div class="centar">
                         <b>Naslov:<a href="#" onclick="procitajVest(<?php echo $sv['idVes']?>)"> <?php echo $sv['naziv']; ?></a></b><br>
-                        <b>Autor: <?php echo $sv['korisnik']; ?></b><br>
-                        <b>Tekst: <?php echo $sv['tekst']; ?></b><br>
-                        <b>Datum: <?php echo $sv['datum']; ?></b><br>
+                        <b>Autor:</b> <?php echo $sv['korisnik']; ?><br>
+                        <b>Tekst:</b> <?php echo $sv['tekst']; ?><br>
+                        <b>Datum:</b> <?php echo $sv['datum']; ?><br>
                         <br>
                     </div>
                 <?php } ?>

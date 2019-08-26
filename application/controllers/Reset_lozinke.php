@@ -15,6 +15,7 @@ class Reset_lozinke extends CI_Controller{
         if($this->form_validation->run() == false){
             $this->index();
             return; 
+//            validacija forme, ako je netacna da se vrati nazad, a ako je tacna da se posalje mejl sa resetovanom lozinkom
         }
         $this->load->model("ResetLozinkaModel");
         $data['middle_data'] = ['forma' =>false];

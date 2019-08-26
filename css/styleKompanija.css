@@ -19,7 +19,7 @@
     color: white;
     padding-left: 35px;
 }
-
+/*footer sredjen*/
 
 .copy{
     float: right;
@@ -28,6 +28,7 @@
     color: white;
 }
 
+/*navigation bar*/
 .navbar{
     border-bottom: 1px solid lightgray;
     background: linear-gradient(to bottom, #000066 0%, #3333ff 100%);
@@ -47,6 +48,8 @@
     border: 1px solid lightgray;
 }
 
+
+
 .centar{
     margin-top: 20px;
     padding: 10px;
@@ -56,6 +59,15 @@
     text-overflow: ellipsis;
     background-color: white;
     white-space: nowrap; 
+}
+
+.postdesno{
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid lightgray;
+    box-shadow: -14px 17px 15px -8px rgba(0, 0, 0, 1);
+    background-color: white;
+
 }
 
 .container-fluid{
@@ -194,6 +206,7 @@ input[type="number"] {
     border: 1px solid black;
     margin: 20px 0;
     padding: 0 30px 30px 40px;
+    background-color: white;
     }
 
     
@@ -227,6 +240,7 @@ input[type="number"] {
     top: 20px;
 }
 
+/*sredjivanje strane uslovi koriscenja*/
 #usloviKor{
     background-color: #D3D3D3;
     color: black;
@@ -235,6 +249,7 @@ input[type="number"] {
     border-width: 20px;
 }
 
+/*sredjivanje naslova na strani O nama*/
 #oNama{
     background-color: #D3D3D3;
     color: black;
@@ -355,8 +370,9 @@ input[type="number"] {
     
 }
 
+/*sredjene visine middle dela odavestenja, oglasa i pretrage*/
 #obav{
-    height: 400vh;
+    height: 500vh;
     
 }
 
@@ -365,49 +381,51 @@ input[type="number"] {
 }
 
 #pret{
-    height: 67vh;
+
+    height: calc(100% - 163px);
+    margin-bottom: 0 !important;
 }
 
+/*sredjivanje dugmica za kategorije u okviru diskusija*/
 .list-group-item {
-    box-sizing: border-box;
-    width: 11em;
-    height: 3em;
-    font-size: 20px;
-    border-radius: 0.5em;
-    margin: 0.5em;
-    box-shadow: 0 0 1em rgba(0,0,0,0.2);
-    color: white;
-    font-family: sans-serif;
-    text-transform: capitalize;
-    line-height: 2em;
-    transition: 0.3s;
-    cursor: pointer;
+  display:block;
+  float:left;
+  margin: 5px;
+  color:#fff;
+  text-align:center;
+  font-size:15px;
+  cursor: pointer;
+  text-decoration: none;
+  padding:10px;
+  border: 1px solid rgba(0,0,0,0.5);
+  border-bottom: 3px solid rgba(0,0,0,0.5);
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5), /* Exterior Shadow */
+    inset 0 1px rgba(255,255,255,0.3), /* Top light Line */
+    inset 0 10px rgba(255,255,255,0.2), /* Top Light Shadow */
+    inset 0 10px 20px rgba(255,255,255,0.25), /* Sides Light Shadow */
+    inset 0 -15px 30px rgba(0,0,0,0.3); /* Dark Background */
+  -webkit-box-shadow: 0 2px 8px rgba(0,0,0,0.5),
+    inset 0 1px rgba(255,255,255,0.3),
+    inset 0 10px rgba(255,255,255,0.2),
+    inset 0 10px 20px rgba(255,255,255,0.25),
+    inset 0 -15px 30px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 8px rgba(0,0,0,0.5),
+    inset 0 1px rgba(255,255,255,0.3),
+    inset 0 10px rgba(255,255,255,0.2),
+    inset 0 10px 20px rgba(255,255,255,0.25),
+    inset 0 -15px 30px rgba(0,0,0,0.3);
 }
 
-.list-group-item:nth-child(odd) {
-    background: linear-gradient(to right, blue, tomato);
-    text-align: left;
-    padding-left: 10%;
-    transform: perspective(500px) rotateY(45deg);
-    color: white;
+.list-group-item:hover {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  -moz-opacity:0.7;
+  -khtml-opacity: 0.7;
 }
 
-.list-group-item:nth-child(even) {
-    background: linear-gradient(to left, blue, tomato);
-    text-align: right;
-    padding-right: 10%;
-    transform: perspective(500px) rotateY(-45deg);
-}
-
-.list-group-item:nth-child(odd):hover {
-    transform: perspective(200px) rotateY(45deg);
-    padding-left: 5%;
-}
-
-.list-group-item:nth-child(even):hover {
-    transform: perspective(200px) rotateY(-45deg);
-    padding-right: 5%;
-}
 
 /*NEWS FEED*/
 
@@ -522,8 +540,6 @@ input[type="number"] {
 
 .sadrzaj{
     padding: 30px;
-    border: 1px solid #4169E1;
-    border-radius: 5px;
     margin: 0 50px;
 }
 
