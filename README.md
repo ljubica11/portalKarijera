@@ -4,44 +4,13 @@ This website was created as a final project in IT retraining program. It's a sim
 ## Table of contents
 
 * [General info](#general-info)
-* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
+* [Screenshots](#screenshots)
 
 ## General info
 Purpose of this project was to make a website that would allow certified attendees of IT retraining program to register, make a profile and get in touch with companies that are looking to recruit new talents, as well as with other students. It also allows companies to register and post job ads, send announcements, post news, browse registered students by multiple criteria, make groups of students or start discussions with them on different topics (like a forum). Website allows administrators to collect, process and send data about registered users. We have four types of users: guest, student, company and admin. 
-
-## Screenshots
-
-#### Registration
-After basic info is validated, student can add their interests, skills, previous education, employment information, etc. Students can log in after registration, while companies can submit their registration, but are only allowed to log in after admin has approved the registration. 
-
-![Registration](./screenshots/registracija.jpg)
-
-#### User profile
-Both students and companies have their profile pages, with photo/logo and all public info. Users can see the latest news, announcements and job ads on their profiles. 
-
-![User profile](./screenshots/profil.jpg)
-
-#### News page
-Users can read and/or post news, depending on the type of the user. 
-
-![News page](./screenshots/vesti.jpg)
-
-#### Job ads
-Posting a job ad (only companies can to this). After it expires, ad can only be seen by the author. Author can send a request for an expired ad to be deleted altogether, and admin is the only one who can approve or decline that request. 
-
-![Job ads](./screenshots/oglasi.jpg)
-
-##### Search students or companies
-
-![Search students or companies](./screenshots/pretraga.jpg)
-
-#### Admin page
-Admin has access to all registration and delete requests, and they also can update all the codebooks in database, as well as make reports and statistics about users. After the registration has been approved or declined, user is automatically notified via e-mail address that they have left in registration process. 
-
-![Search students or companies](./screenshots/admin.jpg)
 
 ## Technologies
 * PHP
@@ -81,3 +50,34 @@ To log in as an *admin*, use username "**boka**" and password "**k259*O**";
 * Sending reports on e-mail
 * Adding, deleting or updating items in codebooks (for admin)
 * Much, much more!
+
+## Screenshots
+
+#### Registration
+After basic info is validated, student can add their interests, skills, previous education, employment information, etc. Students can log in after registration, while companies can submit their registration, but are only allowed to log in after admin has approved the registration. 
+
+![Registration](./screenshots/registracija.jpg)
+
+#### User profile
+Both students and companies have their profile pages, with photo/logo and all public info. Users can see the latest news, announcements and job ads on their profiles. 
+
+![User profile](./screenshots/profil.jpg)
+
+#### News page
+Users can read and/or post news, depending on the type of the user. 
+
+![News page](./screenshots/vesti.jpg)
+
+#### Job ads
+Posting a job ad (only companies can to this). After it expires, ad can only be seen by the author. Author can send a request for an expired ad to be deleted altogether, and admin is the only one who can approve or decline that request. 
+
+![Job ads](./screenshots/oglasi.jpg)
+
+##### Search students or companies
+
+![Search students or companies](./screenshots/pretraga.jpg)
+
+#### Admin page
+Admin has access to all registration and delete requests, and they also can update all the codebooks in database, as well as make reports and statistics about users. After the registration has been approved or declined, user is automatically notified via e-mail address that they have left in registration process. 
+
+![Search students or companies](./screenshots/admin.jpg)
