@@ -1,10 +1,11 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Obavestenja extends CI_Controller {
-
-    public function __construct() {
+class Obavestenja extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->model('ObavModel');
@@ -13,7 +14,8 @@ class Obavestenja extends CI_Controller {
     /**
      * Default metoda za prikazivanje stranice obavestenja
      */
-    public function index() {
+    public function index()
+    {
         if ($this->session->has_userdata('user')) {
             $tipKorisnika = $this->session->userdata('user')['tip'];
         } else {
@@ -29,7 +31,8 @@ class Obavestenja extends CI_Controller {
     /**
      * Funkcija za ispisivanje jednog obavestenja preko Ajax-a
      */
-    public function ispisiObavestenja() {
+    public function ispisiObavestenja()
+    {
         //Iscitavanje id obavestenja metodom get
         $idOba = $this->input->get('id');
         
@@ -38,13 +41,13 @@ class Obavestenja extends CI_Controller {
         
         //Ispisivanje obavestenja pozivanjem metode iz view-a
         echo $this->load->view('obavestenja/ispisObavestenja', $obavestenja, true);
-        
     }
     
     /**
      * Funkcija kontrolera za dodavanje obavestenja u bazu
      */
-    public function dodajObavestenje() {
+    public function dodajObavestenje()
+    {
         
         //Ocitavanje input polja forme (iz view-a)
         $naslov = $this->input->post("naslov");
@@ -57,7 +60,7 @@ class Obavestenja extends CI_Controller {
         $idObav = $this->ObavModel->dodajObavestenje($this->session->userdata('user')['idKor'], $naslov, $obav, $vid, $vidKursa, $vidGrupe);
         if ($vid == "pretraga") {
             $this->dodajObavestenjeZaPretragu($idObav);
-        } else if ($vid == "grupa") {
+        } elseif ($vid == "grupa") {
             $this->ObavModel->dodajObavestenjaGrupe($idObav, $vidGrupe);
         }
         $this->session->set_flashdata('obavestenjePostavljeno', 'Uspesno ste postavili obavestenje!');
@@ -67,8 +70,8 @@ class Obavestenja extends CI_Controller {
     /**
      * Funkcija za dodavanje obavestenja u okviru funkcionalnosti Grupe
      */
-    public function dodajObavestenjaGrupe() {
-
+    public function dodajObavestenjaGrupe()
+    {
         $idGru = $this->input->post('idGru');
         $naslov = $this->input->post('naslov');
         $obavest = $this->input->post('tekst');
@@ -86,7 +89,8 @@ class Obavestenja extends CI_Controller {
      * Funkcija za dodavanje obavestenja na osnovu odredjene pretrage korisnika
      * @param int $idObav
      */
-    public function dodajObavestenjeZaPretragu($idObav) {
+    public function dodajObavestenjeZaPretragu($idObav)
+    {
         $res = $this->session->userdata('res');
         foreach ($res as $user) {
             $this->ObavModel->dodajObavestenjeZaPretragu($idObav, $user['idKor']);
@@ -97,7 +101,8 @@ class Obavestenja extends CI_Controller {
      * Funkcija za arhiviranje odredjenog obavestenja
      * @param int $idObav
      */
-    public function arhivirajObavestenje($idObav) {
+    public function arhivirajObavestenje($idObav)
+    {
         $this->ObavModel->arhivirajObavestenje($idObav);
         $this->session->set_flashdata('brisanjeObav', 'Poslat je zahtev za brisanje obavestenja administratoru. Vase obavestenje ce uskoro biti obrisano sa sajta.');
         redirect("User");
@@ -106,7 +111,8 @@ class Obavestenja extends CI_Controller {
     /**
      * Funkcija za slanje obavestenja na mail
      */
-    public function saljiMejl() {
+    public function saljiMejl()
+    {
         $this->load->library('Phpmailerlib');
         $Mail = $this->phpmailerlib->load();
 
@@ -136,40 +142,34 @@ class Obavestenja extends CI_Controller {
         $Mail->SMTPDebug = 0;
         $Mail->Mailer = 'smtp';
         $Mail->isSMTP();
-        $Mail->Host = "smtp.gmail.com";
+        $Mail->Host = "karijera-portal.link.in.rs";
         $Mail->Port = 587;
-        $Mail->SMTPSecure = "tls";
+        $Mail->SMTPSecure = "";
         $Mail->SMTPAuth = true;
-        $Mail->Username = "karijera.online@gmail.com";
-        $Mail->Password = "A123A123*";
-        $Mail->SetFrom("admin-karijera.online@gmail.com");
+        $Mail->Username = "admin@karijera-portal.link.in.rs";
+        $Mail->Password = "11111111";
+        $Mail->SetFrom("admin@karijera-portal.link.in.rs");
         $Mail->Subject = 'Obavestenje ' . $naslov;
         $Mail->Body = $msg;
 
         if ($vidljivost) {
-
             foreach ($mejlListaSvi as $m) {
                 $mejl = $m['email'];
                 $Mail->AddAddress($mejl);
             }
-        } else
-
-        if ($vidljivost) {
+        } elseif ($vidljivost) {
             $Mail->AddAddress('office@gmshops.co.rs');
             foreach ($mejlListaStudenti as $m) {
                 $mejl = $m['email'];
                 $Mail->AddAddress($mejl);
             }
-        } else
-        if ($vidljivostKurs) {
+        } elseif ($vidljivostKurs) {
             $Mail->AddAddress('online@gmshops.co.rs');
             foreach ($mejlListaKurs as $m) {
                 $mejl = $m['email'];
                 $Mail->AddAddress($mejl);
             }
-        } else
-
-        if ($vidljivostGrupa) {
+        } elseif ($vidljivostGrupa) {
             foreach ($mejlListaGrupe as $m) {
                 $mejl = $m['email'];
                 $Mail->AddAddress($mejl);
@@ -184,5 +184,4 @@ class Obavestenja extends CI_Controller {
         //  $this->output->enable_profiler(TRUE);
         $this->index();
     }
-
 }
