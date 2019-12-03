@@ -1,15 +1,14 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Description of Izvestaji
  *
  * kontroler za funkcionalnost izvestaji
  * @author gordan
  */
-class Izvestaji extends CI_Controller
-{
-    public function __construct()
-    {
+class Izvestaji extends CI_Controller {
+
+    public function __construct() {
         parent::__construct();
 
         $this->load->model('IzvestajiModel');
@@ -22,8 +21,10 @@ class Izvestaji extends CI_Controller
      * privremeni pdf fajl za slanje izvestaja mejlom.
      */
 
-    public function index()
-    {
+    public function index() {
+
+
+
         $datumOd = $this->input->post('datumOd');
         $datumDo = $this->input->post('datumDo');
         $brojDisk = $this->IzvestajiModel->brojDiskusija($datumOd, $datumDo);
@@ -84,15 +85,16 @@ class Izvestaji extends CI_Controller
      * Slanjem mejla brise se generisani pdf fajl iz pdf foldera na serveru
      */
 
-    public function posalji()
-    {
+    public function posalji() {
+
+      
         $dir = './pdf/';
         $fajlovi = scandir($dir, SCANDIR_SORT_DESCENDING);
         $fajlzaslanje = $fajlovi[0];
 
         
         $this->load->library('Phpmailerlib');
-        $Mail = $this->phpmailerlib->load();
+        $Mail = $this->phpmailerlib->load();     
         $mejlLista = $this->IzvestajiModel->mejlAdmini();
 
 
@@ -102,20 +104,20 @@ class Izvestaji extends CI_Controller
         $Mail->SMTPDebug = 0;
         $Mail->Mailer = 'smtp';
         $Mail->isSMTP();
-        $Mail->Host = "karijera-portal.link.in.rs";
+        $Mail->Host = "smtp.gmail.com";
         $Mail->Port = 587;
-        $Mail->SMTPSecure = "";
+        $Mail->SMTPSecure = "tls";
         $Mail->SMTPAuth = true;
-        $Mail->Username = "admin@karijera-portal.link.in.rs";
-        $Mail->Password = "11111111";
-        $Mail->SetFrom("admin@karijera-portal.link.in.rs");
+        $Mail->Username = "karijera.online@gmail.com";
+        $Mail->Password = "A123A123*";
+        $Mail->SetFrom("admin-karijera.online@gmail.com");
         $Mail->Subject = 'Statistika';
         $Mail->Body = $msg;
         
-        foreach ($mejlLista as $m) {
-            $mejl = $m['email'];
-            $Mail->AddAddress($mejl);
-        }
+           foreach ($mejlLista as $m) {
+                $mejl = $m['email'];
+                $Mail->AddAddress($mejl);
+           }
          
 
      
@@ -134,4 +136,5 @@ class Izvestaji extends CI_Controller
         }
         $this->index();
     }
+
 }
