@@ -24,7 +24,7 @@
                     <div class="offset-sm-12" style="height: 50px"></div>
                 </div>
                 <div class="row">
-                    <form class="offset-sm-1 form-inline my-2 my-lg-0" name="loginForma" method="POST" action="<?php echo base_url()?>/index.php/registracija">
+                    <form class="offset-sm-1 form-inline my-2 my-lg-0" name="loginForma" method="POST" action="<?php echo base_url()?>index.php/registracija">
                         <button class="btn btn-outline-primary my-2 my-sm-0 btn-lg" type="submit">Registracija</button>
                     </form>
                     <div class="offset-sm-8"></div>
