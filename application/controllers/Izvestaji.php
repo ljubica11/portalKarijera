@@ -104,13 +104,13 @@ class Izvestaji extends CI_Controller {
         $Mail->SMTPDebug = 0;
         $Mail->Mailer = 'smtp';
         $Mail->isSMTP();
-        $Mail->Host = "smtp.gmail.com";
+        $Mail->Host = "karijera-portal.link.in.rs";
         $Mail->Port = 587;
-        $Mail->SMTPSecure = "tls";
+        $Mail->SMTPSecure = "";
         $Mail->SMTPAuth = true;
-        $Mail->Username = "karijera.online@gmail.com";
-        $Mail->Password = "A123A123*";
-        $Mail->SetFrom("admin-karijera.online@gmail.com");
+        $Mail->Username = "admin@karijera-portal.link.in.rs";
+        $Mail->Password = "11111111*";
+        $Mail->SetFrom("admin@karijera-portal.link.in.rs");
         $Mail->Subject = 'Statistika';
         $Mail->Body = $msg;
         
