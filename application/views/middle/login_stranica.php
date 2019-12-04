@@ -80,8 +80,7 @@
         </div>
         <div class="col-5">
             <b>Tamara Šekularac:</b> "Prolazak kroz IT preobuku i pronalaženje ovog portala me je izbavilo tmurne
-            budućnosti u trafici na okretnici u Žarkovu, u kojoj sam godinama pre toga radila . Danas imam sjajan posao,
-            sve zahvaljujući portalu Karijera!"
+            budućnosti. Danas imam sjajan posao, sve zahvaljujući portalu Karijera!"
         </div>
 
         <div class="col-1">
@@ -91,7 +90,7 @@
         <div class="col-5">
             <b>Jovan Đukic:</b> "Moj život se u potpunosti promeni od kad sam prvi put došao na ovaj sajt. Za početak,
             više ne moram da ustajem u četiri ujutro svakog dana, jer sam zahvaljujući kontaktima sa portala Karijera
-            konačno dao otkaz u pekari i našao dobar posao."
+            konačno našao dobar posao."
         </div>
     </div>
 </div>
