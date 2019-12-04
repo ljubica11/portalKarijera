@@ -101,16 +101,19 @@ class Izvestaji extends CI_Controller {
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
 
-        $Mail->SMTPDebug = 0;
-        $Mail->Mailer = 'smtp';
-        $Mail->isSMTP();
-        $Mail->Host = "karijera-portal.link.in.rs";
-        $Mail->Port = 587;
-        $Mail->SMTPSecure = "";
-        $Mail->SMTPAuth = true;
-        $Mail->Username = "admin@karijera-portal.link.in.rs";
-        $Mail->Password = "11111111*";
-        $Mail->SetFrom("admin@karijera-portal.link.in.rs");
+       
+                $Mail->SMTPDebug = 0;
+                $Mail->Mailer = 'smtp';
+                $Mail->isSMTP();
+                $Mail->Host = "smtp.gmail.com";
+                $Mail->Port = 587;
+                $Mail->SMTPSecure = "tls";
+                $Mail->SMTPAuth = true;
+                $Mail->Username = "karijera.online@gmail.com";
+                $Mail->Password = "A123A123*";
+                $Mail->SetFrom("admin-karijera.online@gmail.com");
+                $Mail->Subject = 'Statistika';
+                $Mail->Body = $msg;
         $Mail->Subject = 'Statistika';
         $Mail->Body = $msg;
         
