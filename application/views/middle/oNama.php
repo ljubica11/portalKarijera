@@ -24,16 +24,16 @@
                 <div class="col-sm-5">
                     <?php if (!$this->session->has_userdata('user')) { ?>
                         <a id="uslkor"
-                           href="<?php echo base_url() ?>/index.php/Login/usloviKoriscenja">Uslovi
+                           href="<?php echo base_url() ?>index.php/Login/usloviKoriscenja">Uslovi
                             korišćenja</a><a
-                            href="<?php echo base_url() ?>/index.php/Login/usloviKoriscenja"><img
+                            href="<?php echo base_url() ?>index.php/Login/usloviKoriscenja"><img
                                 src="<?php echo base_url() ?>//images/strelicadesno.png"
                                 id="strelicaDesno"></a>
                         <?php } else { ?>
                         <a id="uslkor"
-                           href="<?php echo base_url() ?>/index.php/User/usloviKoriscenja">Uslovi
+                           href="<?php echo base_url() ?>index.php/User/usloviKoriscenja">Uslovi
                             korišćenja</a><a
-                            href="<?php echo base_url() ?>/index.php/User/usloviKoriscenja"><img
+                            href="<?php echo base_url() ?>index.php/User/usloviKoriscenja"><img
                                 src="<?php echo base_url() ?>//images/strelicadesno.png"
                                 id="strelicaDesno"></a>'
                         <?php } ?>
