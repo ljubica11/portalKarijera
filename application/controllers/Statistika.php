@@ -1,18 +1,19 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Description of Statistika
- * 
- * kontroler za funkcionalnost statistika 
+ *
+ * kontroler za funkcionalnost statistika
  * Statisticka obrada podataka o registrovanin studentima i generisanje izvestaja
- * za slanje kompanijama 
+ * za slanje kompanijama
  *
  * @author gordan
  */
-class Statistika extends CI_Controller {
-
-    public function __construct() {
+class Statistika extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
 
 
@@ -25,8 +26,8 @@ class Statistika extends CI_Controller {
      * dohvatanje upita iz modela potrebnih za statisticku obradu i ispis na stranici
      */
 
-    public function index() {
-
+    public function index()
+    {
         $studenti = $this->db->count_all_results('student');
         $zaposleniStudenti = $this->StatistikaModel->zaposleniStudenti();
         $nezaposleniStudenti = $this->StatistikaModel->nezaposleniStudenti();
@@ -51,16 +52,15 @@ class Statistika extends CI_Controller {
     }
     
     /**
-     * generisanje pdf fajla sa statistickim izvestajem koji se smesta 
-     * u attachment e-mail poruke. Slanje emailom po listama, 
+     * generisanje pdf fajla sa statistickim izvestajem koji se smesta
+     * u attachment e-mail poruke. Slanje emailom po listama,
      * kompanijama ili administratorama.
-     * 
+     *
      */
 
     
-    public function saljiIzvestaj() {
-
-
+    public function saljiIzvestaj()
+    {
         $studenti = $this->db->count_all_results('student');
         $zaposleniStudenti = $this->StatistikaModel->zaposleniStudenti();
         $nezaposleniStudenti = $this->StatistikaModel->nezaposleniStudenti();
@@ -89,52 +89,55 @@ class Statistika extends CI_Controller {
         $pdf_filename = time() . '_' . 'stats' . '.pdf';
         $pdf_string = $this->dompdf->output();
         
-         //slanje pdf fajla mejlom
+        //slanje pdf fajla mejlom
         
-        $this->load->library('Phpmailerlib');
-        $Mail = $this->phpmailerlib->load();
+        //   $this->load->library('Phpmailerlib');
+        //    $Mail = $this->phpmailerlib->load();
         $mejlLista = $this->StatistikaModel->mejlLista();
         $timKarijera = $this->StatistikaModel->mejlAdmini();
-        
+        $this->load->library('email');
+
+        $this->email->from("karijera-portal.link.in.rs", 'Your Name');
+
 
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
-
-        $Mail->SMTPDebug = 0;
-        $Mail->Mailer = 'smtp';
-        $Mail->isSMTP();
-        $Mail->Host = "karijera-portal.link.in.rs";
-        $Mail->Port = 587;
-        $Mail->SMTPSecure = "";
-        $Mail->SMTPAuth = true;
-        $Mail->Username = "admin@karijera-portal.link.in.rs";
-        $Mail->Password = "11111111*";
-        $Mail->SetFrom("admin@karijera-portal.link.in.rs");
-        $Mail->Subject = 'Statistika';
-        $Mail->Body = $msg;
+        /*
+                $Mail->SMTPDebug = 0;
+                $Mail->Mailer = 'smtp';
+                $Mail->isSMTP();
+                $Mail->Host = "karijera-portal.link.in.rs";
+                $Mail->Port = 587;
+                $Mail->SMTPSecure = "";
+                $Mail->SMTPAuth = true;
+                $Mail->Username = "admin@karijera-portal.link.in.rs";
+                $Mail->Password = "11111111*";
+                $Mail->SetFrom("admin@karijera-portal.link.in.rs");
+                $Mail->Subject = 'Statistika';
+                $Mail->Body = $msg; */
         
         if ($this->input->get('listeMejlova') == 1) {
             foreach ($mejlLista as $m) {
                 $mejl = $m['email'];
-                $Mail->AddAddress($mejl);
+                //  $Mail->AddAddress($mejl);
+                $this->email->to($mejl);
             }
-        } else if ($this->input->get('listeMejlova') == 2) {
-
+        } elseif ($this->input->get('listeMejlova') == 2) {
             foreach ($timKarijera as $m) {
                 $mejl = $m['email'];
-                $Mail->AddAddress($mejl);
+                //   $Mail->AddAddress($mejl);
+                $this->email->to($mejl);
             }
         }
 
-        $Mail->addStringAttachment($pdf_string, $pdf_filename);
+        //  $Mail->addStringAttachment($pdf_string, $pdf_filename);
 
-
+/*
         if ($Mail->Send(true)) {
             echo "Poruka poslata";
         } else {
             echo "Poruka nije poslata<br/>";
             echo "GRESKA: " . $Mail->ErrorInfo;
-        }
+        } */
     }
-
 }
