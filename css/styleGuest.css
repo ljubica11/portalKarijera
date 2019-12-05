@@ -862,3 +862,7 @@ button, input {
   background-color: gray;
   color: white;
 }
+
+.navbar-toggler:focus{
+    outline: none !important;
+}
