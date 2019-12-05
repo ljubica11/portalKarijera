@@ -134,9 +134,13 @@ max-width: 100%;
 
 /*login_stranica-naslovna middle deo sponzori projekta logo*/
 #container2{
-    height: 120px;
+    min-height: 120px;
     background-color: lightgray;
     max-width: 100%;
+}
+
+#container2 img{
+    padding: 20px 0;
 }
 
 /*login_stranica-naslovna middle deo iskustva polaznika*/

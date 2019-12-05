@@ -38,25 +38,22 @@
         <div class="offset-sm-12" style="height: 15px"></div>
     </div>
     <div class="row" style="align-top">
-        <div class="col-sm-2"><img
+        <div class="col-sm-2 col-4"><img
                 src="<?php echo base_url()?>/images/firma1.png"
                 class="img-fluid" alt="Responsive image"></div>
-        <div class="col-sm-1"><img
+        <div class="col-sm-1 col-4"><img
                 src="<?php echo base_url()?>/images/firma2.png"
-                class="img-fluid" alt="Responsive image"></div>
-        <div class="col-sm-1">
-            <h1>ETF</h1>
-        </div>
-        <div class="col-sm-2"><img
+                class="img-fluid" alt="Responsive image"></div> 
+        <div class="col-sm-3 col-4"><img
                 src="<?php echo base_url()?>/images/firma3.png"
                 class="img-fluid" alt="Responsive image"></div>
-        <div class="col-sm-2"><img
+        <div class="col-sm-2 col-4"><img
                 src="<?php echo base_url()?>/images/firma4.png"
                 class="img-fluid" alt="Responsive image"></div>
-        <div class="col-sm-2"><img
+        <div class="col-sm-2 col-4"><img
                 src="<?php echo base_url()?>/images/firma5.png"
                 class="img-fluid" alt="Responsive image"></div>
-        <div class="col-sm-2"><img
+        <div class="col-sm-2 col-4"><img
                 src="<?php echo base_url()?>/images/firma6.png"
                 class="img-fluid" alt="Responsive image"></div>
     </div>
