@@ -2,7 +2,7 @@
 
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="http://localhost/portalKarijera//css/styleGuest.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/css/styleGuest.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +44,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-4"><img
                     src="<?php echo base_url()?>images/ljuba.jpg"
-                    style="height: 100%; width: 100%; border-style: double;"></div>
+                    style="width: 100%; border-style: double;" class="img-fluid"></div>
             <div class="col-sm-4">
                 <p></p>Gđica Ljubica Krstić<p></p>
                 <p></p>Vođa portala. Bivši novinar sve dok nije shvatila da je rođeni talenat za PHP kodiranje. Uvek
@@ -67,7 +67,7 @@
             </div>
             <div class="col-sm-4"><img
                     src="<?php echo base_url()?>images/gogi.jpg"
-                    style="height: 100%; width: 100%; border-style: double;"></div>
+                    style="width: 100%; border-style: double;" class="img-fluid"></div>
             <div class="col-sm-3">
                 <p></p>
                 <p></p>063/140-59-71<p></p>
@@ -78,7 +78,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-4"><img
                     src="<?php echo base_url()?>images/zoka.jpg"
-                    style="height: 100%; width: 100%; border-style: double;"></div>
+                    style=" width: 100%; border-style: double;" class="img-fluid"></div>
             <div class="col-sm-4">
                 <p></p>Gđica Zorana Trifunović<p></p>
                 <p></p>Uvek vesela i nasmejana zrači pozitivizmom gde god da se nađe. Najviše voli da se šali na svoj
@@ -101,7 +101,7 @@
             </div>
             <div class="col-sm-4"><img
                     src="<?php echo base_url()?>images/sasa.jpg"
-                    style="height: 100%; width: 100%; border-style: double;"></div>
+                    style="width: 100%; border-style: double;" class="img-fluid"></div>
             <div class="col-sm-3">
                 <p></p>
                 <p></p>063/833-55-77 <p></p>
@@ -112,7 +112,7 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-4"><img
                     src="<?php echo base_url()?>images/sanja.jpg"
-                    style="height: 100%; width: 100%; border-style: double;"></div>
+                    style="width: 100%; border-style: double;" class="img-fluid"></div>
             <div class="col-sm-4">
                 <p></p>Gđica Sanja Kordić<p></p>
                 <p></p>Kreativni član našeg tima, zadužen za vizuelnu stranu portala. Iskreno, bez koga pauze u radu ne
