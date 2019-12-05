@@ -5,7 +5,7 @@
         <div class="col-10 offset-1 pretraga-container">
             <div class="row">
                 <div class="col-4">
-                    <img src="<?php echo base_url();?>/images/search2" class="img-fluid">
+                    <img src="<?php echo base_url();?>/images/search2.png" class="img-fluid">
                 </div>
                 <div class="col-7 offset-1" id="pretraga-pocetni-div">
                     Napredna pretraga portala "Karijera" vam olakšava pronalaženje studenata ili kompanija prema vašim kriterijumima. 
