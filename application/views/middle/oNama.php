@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <a href="<?php echo base_url() ?>"><img
-                        src="<?php echo base_url() ?>//images/strelicalevo.png"
+                        src="<?php echo base_url() ?>/images/strelicalevo.png"
                         id="strelicaLevo"></a><a
                     href="<?php echo base_url() ?>">Početna
                     stranica</a>
@@ -27,7 +27,7 @@
                     href="<?php echo base_url() ?>index.php/Login/usloviKoriscenja">Uslovi
                     korišćenja</a><a
                     href="<?php echo base_url() ?>index.php/Login/usloviKoriscenja"><img
-                        src="<?php echo base_url() ?>//images/strelicadesno.png"
+                        src="<?php echo base_url() ?>/images/strelicadesno.png"
                         id="strelicaDesno"></a>
                 <?php } else { ?>
                 <a id="uslkor"
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-4"><img
-                    src="<?php echo base_url()?>/images/ljuba.jpg"
+                    src="<?php echo base_url()?>images/ljuba.jpg"
                     style="height: 100%; width: 100%; border-style: double;"></div>
             <div class="col-sm-4">
                 <p></p>Gđica Ljubica Krstić<p></p>
@@ -66,7 +66,7 @@
                 zadatak i posmatrajte njegovu magiju.
             </div>
             <div class="col-sm-4"><img
-                    src="<?php echo base_url()?>/images/gogi.jpg"
+                    src="<?php echo base_url()?>images/gogi.jpg"
                     style="height: 100%; width: 100%; border-style: double;"></div>
             <div class="col-sm-3">
                 <p></p>
@@ -77,7 +77,7 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-4"><img
-                    src="<?php echo base_url()?>/images/zoka.jpg"
+                    src="<?php echo base_url()?>images/zoka.jpg"
                     style="height: 100%; width: 100%; border-style: double;"></div>
             <div class="col-sm-4">
                 <p></p>Gđica Zorana Trifunović<p></p>
@@ -100,7 +100,7 @@
                 istražuje dok ne iskopa sve što može o tome.
             </div>
             <div class="col-sm-4"><img
-                    src="<?php echo base_url()?>/images/sasa.jpg"
+                    src="<?php echo base_url()?>images/sasa.jpg"
                     style="height: 100%; width: 100%; border-style: double;"></div>
             <div class="col-sm-3">
                 <p></p>
@@ -111,7 +111,7 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-4"><img
-                    src="<?php echo base_url()?>/images/sanja.jpg"
+                    src="<?php echo base_url()?>images/sanja.jpg"
                     style="height: 100%; width: 100%; border-style: double;"></div>
             <div class="col-sm-4">
                 <p></p>Gđica Sanja Kordić<p></p>
