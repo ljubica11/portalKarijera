@@ -11,22 +11,17 @@ if ($this->session->has_userdata('user')) {
 <div class="container-fluid" style="margin-bottom: 90px" id="dis">
     <div class="row">
         <div class="col-3 levo">
-            <div class=" formaGrupe">
-                <b> Kategorije </b>
-                <br/>
-
-                <?php
-                foreach ($kategorije as $k) {
+            <div class="kat-vesti-naslov centar"><h5>Kategorije</h5> </div>
+            <?php
+            foreach ($kategorije as $k) {
                     $idKatDis = $k['idKatDis'];
-                    $naziv = $k['naziv'];
-
-
-                    echo "<div class='list-group' id='myList' role='tablist'>"
-                    . "<a href='#' class='list-group-item list-group-item-action text-center' id='list-$idKatDis-list' role='tab' aria-controls='$idKatDis' onclick='diskusije($idKatDis); sakrijDiv()'>" 
-                    . $k['naziv'] . "</a></div><br/>";
-                }
-                ?>
+                    $naziv = $k['naziv']; ?>
+            <div class="centar kat-vesti" onclick="diskusije(<?php echo $idKatDis ?>); sakrijDiv()">
+                <?php echo "<b>".$naziv."</b>" ?>
             </div>
+           <?php
+             }
+            ?>
 
 <?php
 if ($tipKorisnika != 'gost') {

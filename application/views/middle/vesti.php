@@ -3,7 +3,7 @@
 
 <div class="container-fluid" id="ves">
     <div class="row">
-        <div class="col-3" >
+        <div class="col-3 levo" >
             <div class="kat-vesti-naslov centar"><h5>Kategorije vesti</h5> </div>
             <?php
             foreach ($kategorije as $k) {
