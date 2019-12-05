@@ -102,7 +102,7 @@ class Statistika extends CI_Controller {
 
         $Mail->SMTPDebug = 0;
         $Mail->Mailer = 'smtp';
-        $Mail->isSMTP();
+       // $Mail->isSMTP();
         $Mail->Host = "karijera-portal.link.in.rs";
         $Mail->Port = 587;
         $Mail->SMTPSecure = "";
