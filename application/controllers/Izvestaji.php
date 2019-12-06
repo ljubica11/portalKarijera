@@ -105,16 +105,7 @@ class Izvestaji extends CI_Controller
         $this->email->subject('Izvestaji - Karijera Portal');
         $this->email->message($msg);
         $this->email->attach($dir . $fajlzaslanje);
-        foreach ($mejlLista as $m) {
-            $mejl = $m['email'];
-            $this->email->to($mejl);
-           
-        
-         
-
-
-
-
+        $this->email->to($mejlLista);
 
             if ($this->email->send()) {
                 echo "Poruka poslata";
@@ -124,7 +115,7 @@ class Izvestaji extends CI_Controller
                 echo "Poruka nije poslata<br/>";
                 echo "GRESKA: " . show_error($this->email->print_debugger());
             }
-        }
+        
         $this->index();
     }
 }
