@@ -113,6 +113,7 @@ class Statistika extends CI_Controller
                 $this->email->subject('Statistika - Karijera Portal');
                 $this->email->attach($file);
                 $this->email->send();
+                $this->email->clear();
             }
         } elseif ($this->input->get('listeMejlova') == 2) {
             foreach ($timKarijera as $m) {
@@ -124,6 +125,7 @@ class Statistika extends CI_Controller
                 $this->email->subject('Statistika - Karijera Portal');
                 $this->email->attach($file);
                 $this->email->send();
+                $this->email->clear();
             }
         }
     
