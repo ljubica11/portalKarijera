@@ -114,10 +114,6 @@ class Izvestaji extends CI_Controller
 
             $this->email->clear();
         }
-
-
-
-/* 
             if ($this->email->send()) {
                 echo "Poruka poslata";
                 $this->load->helper('file');
@@ -125,7 +121,7 @@ class Izvestaji extends CI_Controller
             } else {
                 echo "Poruka nije poslata<br/>";
                 echo "GRESKA: " . show_error($this->email->print_debugger());
-            } */
+            }
         
 
         $this->index();

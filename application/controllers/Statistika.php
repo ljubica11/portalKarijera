@@ -97,42 +97,41 @@ class Statistika extends CI_Controller
         $this->load->dompdf->load_html($html);
         $this->dompdf->render();
         $pdf_filename = time() . '_' . 'stats' . '.pdf';
-        $pdf_string = $this->dompdf->output();
         $file = base_url().'pdf/'.$pdf_filename;
         
         //slanje pdf fajla mejlom
-        
-  
-        
-        $this->email->from("admin@karijera-portal.link.in.rs", 'admin karijera-portal');
-        $this->email->set_newline("\r\n");
-
 
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
-        $this->email->message($msg);
-        $this->email->subject('Izvestaji - Karijera Portal');
-        $this->email->attach($file);
-  
         
         if ($this->input->get('listeMejlova') == 1) {
             foreach ($mejlLista as $m) {
                 $mejl = $m['email'];
-                
+                $this->email->from("admin@karijera-portal.link.in.rs", 'admin karijera-portal');
                 $this->email->to($mejl);
+                $this->email->message($msg);
+                $this->email->subject('Statistika - Karijera Portal');
+                $this->email->attach($file);
+                $this->email->send();
             }
         } elseif ($this->input->get('listeMejlova') == 2) {
             foreach ($timKarijera as $m) {
                 $mejl = $m['email'];
                 $this->email->to($mejl);
+                $this->email->from("admin@karijera-portal.link.in.rs", 'admin karijera-portal');
+                $this->email->to($mejl);
+                $this->email->message($msg);
+                $this->email->subject('Statistika - Karijera Portal');
+                $this->email->attach($file);
+                $this->email->send();
             }
         }
     
     
-        if ($this->email->send()) {
+       /*  if ) {
             echo 'Poruka poslata.';
         } else {
             show_error($this->email->print_debugger());
-        }
+        } */
     }
 }
