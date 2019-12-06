@@ -71,20 +71,20 @@
         <div class="col-sm-12"></div>
     </div>
     <div class="row" id="iskustva">
-        <div class="col-1">
+        <div class="col-sm-1 col-4">
             <img src="<?php echo base_url()?>/images/tamara.jpg"
                 class="img-fluid img-korisnici">
         </div>
-        <div class="col-5">
+        <div class="col-sm-5 col-8">
             <b>Tamara Šekularac:</b> "Prolazak kroz IT preobuku i pronalaženje ovog portala me je izbavilo tmurne
             budućnosti. Danas imam sjajan posao, sve zahvaljujući portalu Karijera!"
         </div>
 
-        <div class="col-1">
+        <div class="col-sm-1 col-4">
             <img src="<?php echo base_url()?>/images/jovan.jpg"
                 class="img-fluid img-korisnici">
         </div>
-        <div class="col-5">
+        <div class="col-sm-5 col-8">
             <b>Jovan Đukic:</b> "Moj život se u potpunosti promeni od kad sam prvi put došao na ovaj sajt. Za početak,
             više ne moram da ustajem u četiri ujutro svakog dana, jer sam zahvaljujući kontaktima sa portala Karijera
             konačno našao dobar posao."
