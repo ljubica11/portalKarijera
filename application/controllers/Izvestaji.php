@@ -96,17 +96,28 @@ class Izvestaji extends CI_Controller
         $this->load->library('email');
         $mejlLista = $this->IzvestajiModel->mejlAdmini();
         
-        $this->email->from("admin@karijera-portal.link.in.rs", 'admin karijera-portal');
+      
         
         $this->email->set_newline("\r\n");
 
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
-        $this->email->subject('Izvestaji - Karijera Portal');
-        $this->email->message($msg);
-        $this->email->attach($dir . $fajlzaslanje);
-        $this->email->to($mejlLista);
+        
+        foreach ($mejlLista as $m) {
+            $mejl = $m['email'];
+            $this->email->from("admin@karijera-portal.link.in.rs", 'admin karijera-portal');
+            $this->email->to($mejl);
+            $this->email->subject('Izvestaji - Karijera Portal');
+            $this->email->message($msg);
+            $this->email->attach($dir . $fajlzaslanje);
+            ($this->email->send());
 
+            $this->email->clear();
+        }
+
+
+
+/* 
             if ($this->email->send()) {
                 echo "Poruka poslata";
                 $this->load->helper('file');
@@ -114,8 +125,9 @@ class Izvestaji extends CI_Controller
             } else {
                 echo "Poruka nije poslata<br/>";
                 echo "GRESKA: " . show_error($this->email->print_debugger());
-            }
+            } */
         
+
         $this->index();
     }
 }
