@@ -101,16 +101,15 @@ class Izvestaji extends CI_Controller
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
         $this->email->subject('Izvestaji - Karijera Portal');
         $this->email->message($msg);
-
+        $this->email->attach($dir . $fajlzaslanje);
         
         foreach ($mejlLista as $m) {
             $mejl = $m['email'];
             $this->email->to($mejl);
+            $this->email->send();
         }
          
 
-     
-        $this->email->attach($dir . $fajlzaslanje);
 
 
 
