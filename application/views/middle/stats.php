@@ -62,7 +62,7 @@ foreach ($nezaposleni as $n) {
             </tr>
           </tbody>
         </table>
-        <?php echo 'a'. base_url().'/pdf/'.$pdf_filename; ?>
+
 
 
       </div>
