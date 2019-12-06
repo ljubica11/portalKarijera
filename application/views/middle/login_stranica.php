@@ -43,7 +43,7 @@
                 class="img-fluid" alt="Responsive image"></div>
         <div class="col-sm-1 col-4"><img
                 src="<?php echo base_url()?>/images/firma2.png"
-                class="img-fluid" alt="Responsive image"></div> 
+                class="img-fluid" alt="Responsive image"></div>
         <div class="col-sm-3 col-4"><img
                 src="<?php echo base_url()?>/images/firma3.png"
                 class="img-fluid" alt="Responsive image"></div>

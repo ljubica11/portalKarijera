@@ -1,14 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 /**
  * Description of Izvestaji
  *
  * kontroler za funkcionalnost izvestaji
  * @author gordan
  */
-class Izvestaji extends CI_Controller {
-
-    public function __construct() {
+class Izvestaji extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->model('IzvestajiModel');
@@ -21,10 +22,8 @@ class Izvestaji extends CI_Controller {
      * privremeni pdf fajl za slanje izvestaja mejlom.
      */
 
-    public function index() {
-
-
-
+    public function index()
+    {
         $datumOd = $this->input->post('datumOd');
         $datumDo = $this->input->post('datumDo');
         $brojDisk = $this->IzvestajiModel->brojDiskusija($datumOd, $datumDo);
@@ -85,56 +84,45 @@ class Izvestaji extends CI_Controller {
      * Slanjem mejla brise se generisani pdf fajl iz pdf foldera na serveru
      */
 
-    public function posalji() {
-
-      
+    public function posalji()
+    {
         $dir = './pdf/';
         $fajlovi = scandir($dir, SCANDIR_SORT_DESCENDING);
         $fajlzaslanje = $fajlovi[0];
 
         
-        $this->load->library('Phpmailerlib');
-        $Mail = $this->phpmailerlib->load();     
+              
+        $this->load->config('email');
+        $this->load->library('email');
         $mejlLista = $this->IzvestajiModel->mejlAdmini();
 
-
+        $this->email->from("admin@karijera-portal.link.in.rs", 'admin karijera-portal');
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
+        $this->email->subject('Izvestaji - Karijera Portal');
+        $this->email->message($msg);
 
-        $Mail->SMTPDebug = 0;
-        $Mail->Mailer = 'smtp';
-        $Mail->isSMTP();
-        $Mail->Host = "karijera-portal.link.in.rs";
-        $Mail->Port = 587;
-        $Mail->SMTPSecure = "";
-        $Mail->SMTPAuth = true;
-        $Mail->Username = "admin@karijera-portal.link.in.rs";
-        $Mail->Password = "11111111*";
-        $Mail->SetFrom("admin@karijera-portal.link.in.rs");
-        $Mail->Subject = 'Statistika';
-        $Mail->Body = $msg;
         
-           foreach ($mejlLista as $m) {
-                $mejl = $m['email'];
-                $Mail->AddAddress($mejl);
-           }
+        foreach ($mejlLista as $m) {
+            $mejl = $m['email'];
+            $this->email->to($mejl);
+        }
          
 
      
-        $Mail->addAttachment($dir . $fajlzaslanje);
+        $this->email->attach($dir . $fajlzaslanje);
 
 
 
 
-        if ($Mail->Send(true)) {
+        if ($this->email->send()) {
             echo "Poruka poslata";
             $this->load->helper('file');
             delete_files($dir);
         } else {
             echo "Poruka nije poslata<br/>";
-            echo "GRESKA: " . $Mail->ErrorInfo;
+            echo "GRESKA: " . show_error($this->email->print_debugger());
         }
         $this->index();
     }
-
 }

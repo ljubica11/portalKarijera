@@ -111,6 +111,7 @@ class Statistika extends CI_Controller
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
         $this->email->message($msg);
+        $this->email->subject('Izvestaji - Karijera Portal');
         $this->email->attach($file);
   
         
