@@ -95,18 +95,21 @@ class Izvestaji extends CI_Controller
         $this->load->config('email');
         $this->load->library('email');
         $mejlLista = $this->IzvestajiModel->mejlAdmini();
-
+        
         $this->email->from("admin@karijera-portal.link.in.rs", 'admin karijera-portal');
+        
+        $this->email->set_newline("\r\n");
+
         $msg = 'Postovana/i, u prilogu izvestaj o strukturi studenata. '
                 . ' Srdacan pozdrav. ' . 'Portal Karijera tim';
         $this->email->subject('Izvestaji - Karijera Portal');
         $this->email->message($msg);
         $this->email->attach($dir . $fajlzaslanje);
-        
         foreach ($mejlLista as $m) {
+       
             $mejl = $m['email'];
             $this->email->to($mejl);
-            $this->email->send();
+           
         }
          
 
