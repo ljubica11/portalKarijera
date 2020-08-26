@@ -1,5 +1,5 @@
 # Karijera - web app for connecting IT students and employers
-This website was created as a final project in IT retraining program. It's a simple to use and dynamic web app, that helps students get in touch with potential employers, and also lets us collect and process data about registered students. 
+This is a simple to use and dynamic web app, that helps students get in touch with potential employers, and also lets us collect and process data about registered students. 
 
 ## Table of contents
 
